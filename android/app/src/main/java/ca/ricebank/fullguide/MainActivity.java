@@ -1,4 +1,4 @@
-package com.coreevent;
+package ca.ricebank.fullguide;
 
 import com.facebook.react.ReactActivity;
 
