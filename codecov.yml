@@ -1,0 +1,5 @@
+coverage:
+  notify:
+    slack:
+      uix:  # custom title
+        url: https://hooks.slack.com/services/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
