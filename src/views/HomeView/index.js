@@ -3,10 +3,14 @@ import { Card } from 'react-native-elements';
 import { View, ScrollView, Text, Image } from 'react-native';
 import Carousel from 'react-native-looped-carousel';
 
-import { Assets, Views, Components } from '../../global/globalIncludes';
+import { Storage, Assets, Views, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class HomeView extends Component {
+    async componentWillMount() {
+        const response = await Storage.Carousel.fetch();
+        debugger;
+    }
     render() {
         return (
             <View style={styles.container}>

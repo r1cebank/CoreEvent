@@ -7,6 +7,7 @@ export const InitialAppState = {
         inDebug: false
     },
     utils: {
-        errors: []
+        errors: [],
+        loading: true
     }
 };

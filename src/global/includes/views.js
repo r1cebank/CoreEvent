@@ -9,7 +9,8 @@
 
 const views = {
     get HomeView() { return require('../../views/HomeView'); },
-    get EmptyView() { return require('../../views/EmptyView'); }
+    get EmptyView() { return require('../../views/EmptyView'); },
+    get LoadingView() { return require('../../views/LoadingView'); }
 };
 
 module.exports = views;
