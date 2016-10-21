@@ -10,7 +10,8 @@
 const views = {
     get HomeView() { return require('../../views/HomeView'); },
     get EmptyView() { return require('../../views/EmptyView'); },
-    get LoadingView() { return require('../../views/LoadingView'); }
+    get LoadingView() { return require('../../views/LoadingView'); },
+    get CarouselView() { return require('../../views/CarouselView'); }
 };
 
 module.exports = views;

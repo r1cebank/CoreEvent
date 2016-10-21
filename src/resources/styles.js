@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     },
     tabNotSelected: {
         marginBottom: -8
+    },
+    tabBarStyle: {
+        backgroundColor: Colors.backgroundColor
     }
 });
 

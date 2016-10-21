@@ -4,8 +4,9 @@ import { Card, Icon } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, TouchableHighlight  } from 'react-native';
 import PullToRefresh from 'react-native-animated-ptr';
+import { Actions } from 'react-native-router-flux';
 
 import { Storage, Colors, Assets, Views, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
@@ -42,14 +43,17 @@ class HomeView extends Component {
                         autoplay>
                         {this.props.carousel.map((carouselImage, index) => {
                             return (
-                                <Image
+                                <TouchableHighlight
                                     key={index}
-                                    source={{ uri: carouselImage.image.url }}
-                                    indicator={Progress.CircleSnail}
-                                    indicatorProps={{
-                                        showsText: true
-                                    }}
-                                    style={styles.carouselImage} />
+                                    onPress={() => Actions.carousel({ title: `carousel ${index + 1}` })}>
+                                    <Image
+                                        source={{ uri: carouselImage.image.url }}
+                                        indicator={Progress.CircleSnail}
+                                        indicatorProps={{
+                                            showsText: true
+                                        }}
+                                        style={styles.carouselImage} />
+                                </TouchableHighlight>
                             );
                         })}
                     </Carousel>
@@ -66,7 +70,6 @@ class HomeView extends Component {
                         <Icon
                             reverse
                             name="person-pin"
-                            onPress={() => console.log('hello')}
                             color='#05a8aa' />
                         <Icon
                             reverse

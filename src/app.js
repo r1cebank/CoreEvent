@@ -46,7 +46,9 @@ class App extends Component {
                     }
                     return null;
                 })()}
-                <Tabs hidesTabTouch>
+                <Tabs
+                    hidesTabTouch
+                    tabBarStyle={styles.tabBarStyle}>
                     <Tab
                         titleStyle={styles.titleStyle}
                         tabStyle={selectedTab !== 'hot' && styles.tabNotSelected}
