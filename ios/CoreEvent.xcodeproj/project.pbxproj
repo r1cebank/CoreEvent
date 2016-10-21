@@ -38,6 +38,7 @@
 		EC35401C1DB94B92000DC2EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401B1DB94B92000DC2EF /* SystemConfiguration.framework */; };
 		EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401D1DB94B9D000DC2EF /* libz.tbd */; };
 		EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */; };
+		EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC486AED1DB9EE6B00FC177A /* libART.a */; };
 		EC8A51DA1DB9A2E00098F194 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D61DB9A2E00098F194 /* NotoSans-Bold.ttf */; };
 		EC8A51DB1DB9A2E00098F194 /* NotoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D71DB9A2E00098F194 /* NotoSans-BoldItalic.ttf */; };
 		EC8A51DC1DB9A2E00098F194 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D81DB9A2E00098F194 /* NotoSans-Italic.ttf */; };
@@ -160,6 +161,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		EC486AEC1DB9EE6B00FC177A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +209,7 @@
 		EC35401D1DB94B9D000DC2EF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		EC3540491DB95BD4000DC2EF /* CoreEvent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CoreEvent.entitlements; path = CoreEvent/CoreEvent.entitlements; sourceTree = "<group>"; };
+		EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		EC8A51D61DB9A2E00098F194 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		EC8A51D71DB9A2E00098F194 /* NotoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		EC8A51D81DB9A2E00098F194 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -232,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */,
 				EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */,
 				EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */,
 				EC35401C1DB94B92000DC2EF /* SystemConfiguration.framework in Frameworks */,
@@ -362,6 +372,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -444,6 +455,14 @@
 				EC3540191DB94B89000DC2EF /* CoreData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC486AE91DB9EE6B00FC177A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC486AED1DB9EE6B00FC177A /* libART.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		F9645A70E8734EB1BE2B8A75 /* Resources */ = {
@@ -549,6 +568,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = EC486AE91DB9EE6B00FC177A /* Products */;
+					ProjectRef = EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -709,6 +732,13 @@
 			remoteRef = EC3540161DB94ADD000DC2EF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EC486AED1DB9EE6B00FC177A /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = EC486AEC1DB9EE6B00FC177A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -765,7 +795,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=/Users/siyuangao/n/bin/node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 

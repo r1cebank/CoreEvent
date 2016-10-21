@@ -18,6 +18,7 @@ import { AsyncStorage } from 'react-native';
 
 import utilReducer from './reducers/utils';
 import settingsReducer from './reducers/settings';
+import dataReducer from './reducers/data';
 
 const loggerMiddleware = createLogger();
 // const reactotronEnhancer = createReactotronEnhancer(Reactotron);
@@ -32,6 +33,7 @@ const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
 
 const rootReducer = combineReducers({
     // every modules reducer should be define here
+    data: dataReducer,
     utils: utilReducer,
     settings: settingsReducer
 });
@@ -47,9 +49,6 @@ const configureStore = function(initialState) {
     persistStore(store, {
         storage: AsyncStorage,
         blacklist: [
-            'data',
-            'cart',
-            'routerReducer',
             'utils'
         ]
     });

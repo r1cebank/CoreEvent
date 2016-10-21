@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-native-elements';
 
 import styles from './resources/styles';
-import { Views, Scenes, Icons, Colors } from './global/globalIncludes';
+import { Actions, Store, Views, Scenes, Icons, Colors } from './global/globalIncludes';
 
 class App extends Component {
     static propTypes = {
@@ -22,6 +22,11 @@ class App extends Component {
             selectedTab: 'hot'
         };
     }
+    componentWillMount() {
+        // Fetch data
+        Store.appStore.dispatch(Actions.Data
+                .fetchCarousel());
+    }
     changeTab(selectedTab) {
         this.setState({
             selectedTab
@@ -29,9 +34,9 @@ class App extends Component {
     }
     render() {
         const { selectedTab } = this.state;
-        if (this.props.loading) {
-            return <Views.LoadingView />;
-        }
+        // if (this.props.loading) {
+        //     return <Views.LoadingView loadingText="loading" />;
+        // }
         return (
             // TODO: More complex scene config
             <View style={this.props.style}>
