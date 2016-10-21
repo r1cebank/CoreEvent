@@ -4,6 +4,8 @@
 
 const globalIncludes = {
     get Views() { return require('./includes/views'); },
+    get Scenes() { return require('./includes/scenes'); },
+    get API() { return require('./includes/api'); },
     get Components() { return require('./includes/components'); },
     get Storage() { return require('./includes/storage'); },
     get Store() { return require('./includes/store'); },

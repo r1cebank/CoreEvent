@@ -7,9 +7,8 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-unresolved */
 
-const views = {
-    get HomeView() { return require('../../views/HomeView'); },
-    get EmptyView() { return require('../../views/EmptyView'); }
+const scenes = {
+    get HomeScene() { return require('../../scenes/HomeScene'); }
 };
 
-module.exports = views;
+module.exports = scenes;

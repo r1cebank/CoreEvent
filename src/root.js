@@ -9,8 +9,10 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { AppState } from 'react-native';
+import { AppState, BackAndroid } from 'react-native';
 import Reactotron from 'reactotron';
+import { Actions } from 'react-native-router-flux';
+
 
 // The root view is a navigation component which define a default view
 import Env from './env';
@@ -37,6 +39,17 @@ function setup() {
 
     // Root component
     class Root extends Component {
+
+        componentWillMount() {
+            BackAndroid.addEventListener('hardwareBackPress', () => {
+                try {
+                    // Handle Android back
+                    Actions.pop();
+                } catch (err) {
+                    // Handle app exit
+                }
+            });
+        }
         componentDidMount() {
             // Binding appstate change method
             AppState.addEventListener('change', this._handleAppStateChange);

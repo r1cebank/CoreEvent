@@ -9,12 +9,16 @@ if (__DEV__) {
     environment = {
         UA_APPID: 'UA-86083449-1',
         DEBUG_PASSWORD: '3939',
+        PARSE_APPID: 'GuideFree',
+        PARSE_URL: 'https://parse.agreatstartup.com/parse',
         GCM: ''
     };
 } else {
     environment = {
         UA_APPID: 'UA-86083449-1',
         DEBUG_PASSWORD: '3939',
+        PARSE_APPID: 'GuideFree',
+        PARSE_URL: 'https://parse.agreatstartup.com/parse',
         GCM: ''
     };
 }

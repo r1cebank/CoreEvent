@@ -7,6 +7,7 @@
 
 
 const assets = {
+    get placeholder() { return require('../assets/placeholder.png'); }
 };
 
 module.exports = assets;
