@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 class CarouselView extends Component {
     componentWillMount() {
-        Actions.refresh({ title: this.props.title});
+        Actions.refresh({ title: this.props.carouselImage.name });
     }
     render() {
         return (

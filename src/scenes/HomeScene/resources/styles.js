@@ -4,7 +4,7 @@ import { Colors, Dimensions } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     navbarStyle: {
-        backgroundColor: Colors.backgroundColor,
+        backgroundColor: Colors.frontColor,
         borderBottomWidth: 0
     },
     titleStyle: {

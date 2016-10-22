@@ -13,7 +13,8 @@ import styles from './resources/styles';
 
 class HomeView extends Component {
     static propTypes = {
-        carousel: React.PropTypes.array
+        carousel: React.PropTypes.array,
+        config: React.PropTypes.object
     }
     constructor(props) {
         super(props);
@@ -37,26 +38,33 @@ class HomeView extends Component {
                 scrollEventThrottle={200}
                 style={styles.scrollView}>
                 <View style={styles.container}>
-                    <Carousel
-                        delay={10000}
-                        style={styles.carousel}
-                        autoplay>
-                        {this.props.carousel.map((carouselImage, index) => {
+                    {(() => {
+                        if (this.props.config.attributes.show_carousel) {
                             return (
-                                <TouchableHighlight
-                                    key={index}
-                                    onPress={() => Actions.carousel({ title: `carousel ${index + 1}` })}>
-                                    <Image
-                                        source={{ uri: carouselImage.image.url }}
-                                        indicator={Progress.CircleSnail}
-                                        indicatorProps={{
-                                            showsText: true
-                                        }}
-                                        style={styles.carouselImage} />
-                                </TouchableHighlight>
+                                <Carousel
+                                    delay={10000}
+                                    style={styles.carousel}
+                                    autoplay>
+                                    {this.props.carousel.map((carouselImage, index) => {
+                                        return (
+                                            <TouchableHighlight
+                                                key={index}
+                                                onPress={() => Actions.carousel({ carouselImage })}>
+                                                <Image
+                                                    source={{ uri: carouselImage.image.url }}
+                                                    indicator={Progress.CircleSnail}
+                                                    indicatorProps={{
+                                                        showsText: true
+                                                    }}
+                                                    style={styles.carouselImage} />
+                                            </TouchableHighlight>
+                                        );
+                                    })}
+                                </Carousel>
                             );
-                        })}
-                    </Carousel>
+                        }
+                        return null;
+                    })()}
                     <ScrollView
                         ref={(c) => { this.buttonDrawer = c; }}
                         horizontal={true}
@@ -97,22 +105,9 @@ class HomeView extends Component {
                             onPress={() => console.log('hello')}
                             color='#00A878' />
                     </ScrollView>
-                    <Card>
-                        <Text>
-                            The idea with React Native Elements
-                        </Text>
-                    </Card>
-                    <Card>
-                        <Text>
-                            The idea with React Native Elements
-                        </Text>
-                    </Card>
-                    <Card>
-                        <Text>
-                            The idea with React Native Elements
-                        </Text>
-                    </Card>
-                    <Card>
+                    <Card title='CARD WITH DIVIDER'
+                        titleStyle={{textAlign:'left'}}
+                        containerStyle={{backgroundColor:Colors.frontColor ,marginTop: 10, margin:0, shadowRadius: 0}}>
                         <Text>
                             The idea with React Native Elements
                         </Text>
@@ -282,7 +277,8 @@ class HomeView extends Component {
 
 HomeView.defaultProps = {
     selectedTab: 'home',
-    carousel: []
+    carousel: [],
+    config: { attributes: {} }
 };
 
 function select(store) {
@@ -290,7 +286,8 @@ function select(store) {
         carousel: store.data.carousel,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
-        loading: store.utils.loading
+        loading: store.utils.loading,
+        config: store.settings.config
     };
 }
 

@@ -11,6 +11,12 @@ export function setLanguage(locale) {
         locale
     };
 }
+export function updateConfig(config) {
+    return {
+        type: ActionType.CONFIG_FETCHED,
+        config
+    };
+}
 export function setEnv(env) {
     return {
         type: ActionType.SET_ENV,

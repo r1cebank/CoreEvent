@@ -4,7 +4,15 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-native-elements';
 
 import styles from './resources/styles';
-import { Actions, Store, Views, Scenes, Icons, Colors } from './global/globalIncludes';
+import {
+    Actions,
+    Store,
+    Views,
+    Scenes,
+    Icons,
+    Colors,
+    Storage
+} from './global/globalIncludes';
 
 class App extends Component {
     static propTypes = {
@@ -22,10 +30,16 @@ class App extends Component {
             selectedTab: 'hot'
         };
     }
-    componentWillMount() {
+    async componentWillMount() {
         // Fetch data
+        // Store.appStore.dispatch(Actions.Settings
+        //         .fetchConfig());
+        const carousel = await Storage.Carousel.fetch();
+        const config = await Storage.Config.fetch();
         Store.appStore.dispatch(Actions.Data
-                .fetchCarousel());
+                .updateCarousel(carousel));
+        Store.appStore.dispatch(Actions.Settings
+                .updateConfig(config));
     }
     changeTab(selectedTab) {
         this.setState({
@@ -54,7 +68,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'hot' && styles.tabNotSelected}
                         selected={selectedTab === 'hot'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="hot"
+                        title="HOT"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -79,7 +93,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'cat' && styles.tabNotSelected}
                         selected={selectedTab === 'cat'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="category"
+                        title="CATEGORY"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -104,7 +118,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'profile' && styles.tabNotSelected}
                         selected={selectedTab === 'profile'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="profile"
+                        title="PROFILE"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -129,7 +143,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'search' && styles.tabNotSelected}
                         selected={selectedTab === 'search'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="search"
+                        title="SEARCH"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -154,7 +168,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'settings' && styles.tabNotSelected}
                         selected={selectedTab === 'settings'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="settings"
+                        title="SETTINGS"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons

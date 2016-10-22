@@ -18,6 +18,12 @@ function reducer(state = {}, action) {
                 env: action.env
             };
         }
+        case ActionType.CONFIG_FETCHED: {
+            return {
+                ...state,
+                config: action.config
+            };
+        }
         default:
             return state;
     }

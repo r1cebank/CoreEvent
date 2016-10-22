@@ -3,12 +3,8 @@
 */
 
 import * as ActionType from './actionTypes';
-import { Storage } from '../../global/globalIncludes';
+// import { Storage } from '../../global/globalIncludes';
 
-export function fetchCarousel() {
-    return async (dispatch) => {
-        let data = await Storage.Carousel.fetch();
-        data = JSON.parse(JSON.stringify(data));
-        dispatch({ type: ActionType.CAROUSEL_FETCHED, data });
-    };
+export function updateCarousel(data) {
+    return { type: ActionType.CAROUSEL_FETCHED, data: JSON.parse(JSON.stringify(data)) };
 }

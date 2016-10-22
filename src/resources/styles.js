@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         marginBottom: -8
     },
     tabBarStyle: {
-        backgroundColor: Colors.backgroundColor
+        backgroundColor: Colors.frontColor
     }
 });
 
