@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
-import { Navigator, Platform, StatusBar } from 'react-native';
+import { Navigator, Platform } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import { Views, Colors } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
-const statusBarHeight = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
 const scenes = Actions.create(
     <Scene

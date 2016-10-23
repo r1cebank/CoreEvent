@@ -18,7 +18,7 @@ class QRScannerView extends Component {
         this.state = {};
     }
     async componentWillMount() {
-        Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
+        Actions.refresh({ title: Languages.t('qrScanner', this.props.locale) });
         const authorization = await Camera.checkDeviceAuthorizationStatus();
         this.setState({ authorization });
     }

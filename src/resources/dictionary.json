@@ -6,7 +6,8 @@
         "message": "MESSAGE",
         "settings": "SETTINGS",
         "categories": "Categories",
-        "whatshot": "What's hot"
+        "whatshot": "What's hot",
+        "qrScanner": "QR Scanner"
     },
     "zh": {
         "hot": "热门",
@@ -15,6 +16,7 @@
         "message": "信息",
         "settings": "设置",
         "categories": "分类",
-        "whatshot": "热门"
+        "whatshot": "热门",
+        "qrScanner": "二维码"
     }
 }
