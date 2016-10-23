@@ -85,27 +85,6 @@ class HomeView extends Component {
                             }
                             return null;
                         })()}
-                        <ScrollView
-                            ref={(c) => { this.buttonDrawer = c; }}
-                            horizontal={true}
-                            automaticallyAdjustContentInsets={false}
-                            showsHorizontalScrollIndicator={false}
-                            showsVerticalScrollIndicator={false}
-                            scrollEventThrottle={200}
-                            style={styles.buttonDrawer}
-                            contentContainerStyle={styles.buttonDrawerContainer}
-                            testID="RestaurantList">
-                            {icons.map((icon, index) => {
-                                return (
-                                    <Icon
-                                        reverse
-                                        key={index}
-                                        name={icon.iconName}
-                                        onPress={() => {}}
-                                        color={Colors[icon.color]} />
-                                );
-                            })}
-                        </ScrollView>
                         <Card
                             title="Your events"
                             titleStyle={styles.cardTitle}
@@ -155,7 +134,7 @@ class HomeView extends Component {
                                     </Text>
                                     <Button
                                         small
-                                        icon={{name: 'code'}}
+                                        icon={{name: 'add'}}
                                         backgroundColor='#03A9F4'
                                         fontFamily='Lato'
                                         buttonStyle={{borderRadius: 40, marginLeft: 0, marginRight: 0, marginBottom: 0}}
@@ -170,7 +149,7 @@ class HomeView extends Component {
                                     </Text>
                                     <Button
                                         small
-                                        icon={{name: 'code'}}
+                                        icon={{name: 'add'}}
                                         backgroundColor='#03A9F4'
                                         fontFamily='Lato'
                                         buttonStyle={{borderRadius: 40, marginLeft: 0, marginRight: 0, marginBottom: 0}}

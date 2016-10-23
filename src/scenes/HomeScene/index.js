@@ -28,6 +28,11 @@ const scenes = Actions.create(
                     onPress={Actions.qrScanner}
                     name="crop-free" />
             }
+            renderLeftButton={() =>
+                <Icon
+                    color={Colors.grey}
+                    name="add" />
+            }
             initial={true} />
         <Scene
             key="carousel"

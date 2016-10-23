@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, InteractionManager } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { List, ListItem } from 'react-native-elements';
 
@@ -40,6 +40,11 @@ class CategoryChildView extends Component {
                                                 key={index}
                                                 title={Languages.f(category.get('name'),
                                                     this.props.locale)}
+                                                onPress={() => {
+                                                    InteractionManager.runAfterInteractions(() => {
+                                                        Actions.eventListView({ category });
+                                                    });
+                                                }}
                                                 leftIcon={{
                                                     name: category.get('icon'),
                                                     type: category.get('iconType')
