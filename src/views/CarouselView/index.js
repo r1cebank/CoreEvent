@@ -1,9 +1,11 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 class CarouselView extends Component {
+    static propTypes = {
+        carouselImage: React.PropTypes.object
+    }
     componentWillMount() {
         Actions.refresh({ title: this.props.carouselImage.name });
     }

@@ -13,7 +13,8 @@ const views = {
     get LoadingView() { return require('../../views/LoadingView'); },
     get CarouselView() { return require('../../views/CarouselView'); },
     get CategoryView() { return require('../../views/CategoryView'); },
-    get CategoryChildView() { return require('../../views/CategoryChildView'); }
+    get CategoryChildView() { return require('../../views/CategoryChildView'); },
+    get QRScannerView() { return require('../../views/QRScannerView'); }
 };
 
 module.exports = views;

@@ -1,7 +1,5 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Scene, Router } from 'react-native-router-flux';
 
 class EmptyView extends Component {
     render() {

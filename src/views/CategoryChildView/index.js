@@ -1,9 +1,7 @@
-/* eslint-disable */
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
 import { View, Text, ScrollView } from 'react-native';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import { List, ListItem } from 'react-native-elements';
 
 import { Storage, Components } from '../../global/globalIncludes';
