@@ -11,7 +11,9 @@ const views = {
     get HomeView() { return require('../../views/HomeView'); },
     get EmptyView() { return require('../../views/EmptyView'); },
     get LoadingView() { return require('../../views/LoadingView'); },
-    get CarouselView() { return require('../../views/CarouselView'); }
+    get CarouselView() { return require('../../views/CarouselView'); },
+    get CategoryView() { return require('../../views/CategoryView'); },
+    get CategoryChildView() { return require('../../views/CategoryChildView'); }
 };
 
 module.exports = views;

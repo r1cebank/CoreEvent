@@ -13,9 +13,9 @@ class HomeScene extends Component {
         return (
             <Router>
                 <Scene
-                    key="homeRoot">
+                    key="categoryRoot">
                     <Scene
-                        key="home"
+                        key="category"
                         sceneStyle={{
                             paddingTop: Navigator
                             .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
@@ -23,17 +23,11 @@ class HomeScene extends Component {
                         titleStyle={styles.titleStyle}
                         leftButtonIconStyle={styles.leftButtonIconStyle}
                         navigationBarStyle={styles.navbarStyle}
-                        component={Views.HomeView}
-                        title="What's hot"
-                        renderRightButton={() =>
-                            <Icon
-                                color={Colors.grey}
-                                onPress={() => {}}
-                                name="crop-free" />
-                        }
+                        component={Views.CategoryView}
+                        title="Categories"
                         initial={true} />
                     <Scene
-                        key="carousel"
+                        key="categoryChildView"
                         sceneStyle={{
                             paddingTop: Navigator
                             .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
@@ -41,7 +35,7 @@ class HomeScene extends Component {
                         titleStyle={styles.titleStyle}
                         leftButtonIconStyle={styles.leftButtonIconStyle}
                         navigationBarStyle={styles.navbarStyle}
-                        component={Views.CarouselView} />
+                        component={Views.CategoryChildView} />
                 </Scene>
             </Router>
         );

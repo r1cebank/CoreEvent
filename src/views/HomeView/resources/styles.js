@@ -24,6 +24,43 @@ const styles = StyleSheet.create({
     },
     buttonDrawerContainer: {
         justifyContent: 'center'
+    },
+    yourEvent: {
+        backgroundColor: Colors.frontColor
+    },
+    yourEventContainer: {
+        justifyContent: 'center'
+    },
+    cardTitle: {
+        textAlign: 'left'
+    },
+    cardContainer: {
+        backgroundColor: Colors.frontColor,
+        marginTop: 10,
+        margin: 0,
+        shadowRadius: 0
+    },
+    circle: {
+        width: 30,
+        height: 30,
+        borderRadius: 100 / 2,
+        backgroundColor: 'white',
+        opacity: 0.7
+    },
+    circle2: {
+        width: 45,
+        height: 25,
+        left: 175,
+        borderRadius: 50,
+        backgroundColor: 'black',
+        transform: [
+            { scaleX: 2 }
+        ]
+    },
+    clouds: {
+        height: 20,
+        width: 100,
+        resizeMode: 'contain'
     }
 });
 

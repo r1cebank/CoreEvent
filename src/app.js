@@ -35,9 +35,12 @@ class App extends Component {
         // Store.appStore.dispatch(Actions.Settings
         //         .fetchConfig());
         const carousel = await Storage.Carousel.fetch();
+        const category = await Storage.Category.fetchRoot();
         const config = await Storage.Config.fetch();
         Store.appStore.dispatch(Actions.Data
                 .updateCarousel(carousel));
+        Store.appStore.dispatch(Actions.Data
+                .updateCategory(category));
         Store.appStore.dispatch(Actions.Settings
                 .updateConfig(config));
     }
@@ -111,7 +114,7 @@ class App extends Component {
                             );
                         }}
                         onPress={() => this.changeTab('cat')}>
-                        <Views.EmptyView />
+                        <Scenes.CategoryScene />
                     </Tab>
                     <Tab
                         titleStyle={styles.titleStyle}
@@ -140,15 +143,15 @@ class App extends Component {
                     </Tab>
                     <Tab
                         titleStyle={styles.titleStyle}
-                        tabStyle={selectedTab !== 'search' && styles.tabNotSelected}
-                        selected={selectedTab === 'search'}
+                        tabStyle={selectedTab !== 'messages' && styles.tabNotSelected}
+                        selected={selectedTab === 'messages'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="SEARCH"
+                        title="MESSAGES"
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.grey}
-                                    name="search"
+                                    name="chat"
                                     size={26} />
                             );
                         }}
@@ -156,11 +159,11 @@ class App extends Component {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.primary}
-                                    name="search"
+                                    name="chat"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('search')}>
+                        onPress={() => this.changeTab('messages')}>
                         <Views.EmptyView />
                     </Tab>
                     <Tab

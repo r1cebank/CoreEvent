@@ -12,6 +12,12 @@ function reducer(state = {}, action) {
                 carousel: action.data
             };
         }
+        case ActionType.CATEGORY_FETCHED: {
+            return {
+                ...state,
+                category: action.data
+            };
+        }
         default:
             return state;
     }

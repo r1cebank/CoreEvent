@@ -8,3 +8,6 @@ import * as ActionType from './actionTypes';
 export function updateCarousel(data) {
     return { type: ActionType.CAROUSEL_FETCHED, data: JSON.parse(JSON.stringify(data)) };
 }
+export function updateCategory(data) {
+    return { type: ActionType.CATEGORY_FETCHED, data: JSON.parse(JSON.stringify(data)) };
+}
