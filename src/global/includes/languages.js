@@ -14,6 +14,12 @@ const language = {
         return I18n.t(key, {
             locale
         });
+    },
+    f: (obj, locale) => {
+        if (obj[locale]) {
+            return obj[locale];
+        }
+        return obj.en;
     }
 };
 

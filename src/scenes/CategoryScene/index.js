@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'react-native-elements';
 import { Navigator, Platform, StatusBar } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
@@ -21,7 +20,6 @@ const scenes = Actions.create(
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.CategoryView}
-            title="Categories"
             initial={true} />
         <Scene
             key="categoryChildView"

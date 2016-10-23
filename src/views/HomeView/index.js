@@ -4,18 +4,26 @@ import { Card, Icon, Button } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
-import { View, ScrollView, Text, TouchableHighlight, InteractionManager, RefreshControl  } from 'react-native';
-import PullToRefresh from 'react-native-animated-ptr';
+// import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
+import {
+    View,
+    ScrollView,
+    Text,
+    TouchableHighlight,
+    InteractionManager,
+    RefreshControl
+} from 'react-native';
 
-import { Colors, Assets } from '../../global/globalIncludes';
+import { Colors, Assets, Languages } from '../../global/globalIncludes';
 import styles from './resources/styles';
 import icons from './resources/icons';
 
 class HomeView extends Component {
     static propTypes = {
         carousel: React.PropTypes.array,
-        config: React.PropTypes.object
+        config: React.PropTypes.object,
+        locale: React.PropTypes.string
     }
     constructor(props) {
         super(props);
@@ -23,11 +31,19 @@ class HomeView extends Component {
             isRefreshing: false
         };
     }
+    componentWillMount() {
+        Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
+    }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
         setTimeout(() => {
             this.setState({ isRefreshing: false });
         }, 5000);
+    }
+    openCarousel = carouselImage => {
+        InteractionManager.runAfterInteractions(() => {
+            Actions.carousel({ carouselImage });
+        });
     }
     render() {
         return (
@@ -55,11 +71,8 @@ class HomeView extends Component {
                                             return (
                                                 <TouchableHighlight
                                                     key={index}
-                                                    onPress={() => {
-                                                        InteractionManager.runAfterInteractions(() => {
-                                                            Actions.carousel({ carouselImage });
-                                                        });
-                                                    }}>
+                                                    onPress={() =>
+                                                        this.openCarousel(carouselImage)}>
                                                     <Image
                                                         source={{ uri: carouselImage.image.url }}
                                                         indicator={Progress.CircleSnail}

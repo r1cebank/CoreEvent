@@ -1,12 +1,20 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, Text, ScrollView, InteractionManager } from 'react-native';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { View, ScrollView, InteractionManager } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { List, ListItem } from 'react-native-elements';
 
+import { Languages } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class CategoryView extends Component {
+    static propTypes = {
+        category: React.PropTypes.array,
+        locale: React.PropTypes.string
+    }
+    componentWillMount() {
+        Actions.refresh({ title: Languages.t('categories', this.props.locale) });
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -15,12 +23,12 @@ class CategoryView extends Component {
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     style={styles.scrollView}>
-                    <List containerStyle={{marginBottom: 20}}>
+                    <List containerStyle={{ marginBottom: 20 }}>
                         {
                             this.props.category.map((category, index) => (
                                 <ListItem
                                     key={index}
-                                    title={category.name[this.props.locale]}
+                                    title={Languages.f(category.name, this.props.locale)}
                                     onPress={() => {
                                         InteractionManager.runAfterInteractions(() => {
                                             Actions.categoryChildView({ category });

@@ -11,6 +11,7 @@ import {
     Scenes,
     Icons,
     Colors,
+    Languages,
     Storage
 } from './global/globalIncludes';
 
@@ -71,7 +72,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'hot' && styles.tabNotSelected}
                         selected={selectedTab === 'hot'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="HOT"
+                        title={Languages.t('hot', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -96,7 +97,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'cat' && styles.tabNotSelected}
                         selected={selectedTab === 'cat'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="CATEGORY"
+                        title={Languages.t('category', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -121,7 +122,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'profile' && styles.tabNotSelected}
                         selected={selectedTab === 'profile'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="PROFILE"
+                        title={Languages.t('profile', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -146,7 +147,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'messages' && styles.tabNotSelected}
                         selected={selectedTab === 'messages'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="MESSAGES"
+                        title={Languages.t('message', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
@@ -171,7 +172,7 @@ class App extends Component {
                         tabStyle={selectedTab !== 'settings' && styles.tabNotSelected}
                         selected={selectedTab === 'settings'}
                         selectedTitleStyle={styles.titleSelected}
-                        title="SETTINGS"
+                        title={Languages.t('settings', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons

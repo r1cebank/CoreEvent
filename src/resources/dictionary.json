@@ -1,6 +1,20 @@
 {
     "en": {
+        "hot": "HOT",
+        "category": "CATEGORY",
+        "profile": "PROFILE",
+        "message": "MESSAGE",
+        "settings": "SETTINGS",
+        "categories": "Categories",
+        "whatshot": "What's hot"
     },
     "zh": {
+        "hot": "热门",
+        "category": "分类",
+        "profile": "我",
+        "message": "信息",
+        "settings": "设置",
+        "categories": "分类",
+        "whatshot": "热门"
     }
 }
