@@ -14,7 +14,8 @@ const views = {
     get CarouselView() { return require('../../views/CarouselView'); },
     get CategoryView() { return require('../../views/CategoryView'); },
     get CategoryChildView() { return require('../../views/CategoryChildView'); },
-    get QRScannerView() { return require('../../views/QRScannerView'); }
+    get QRScannerView() { return require('../../views/QRScannerView'); },
+    get PopupView() { return require('../../views/PopupView'); }
 };
 
 module.exports = views;

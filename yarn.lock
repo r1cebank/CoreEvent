@@ -5346,6 +5346,10 @@ react-native-mock@^0.2.5:
     react-timer-mixin "=0.13.3"
     warning "=2.1.0"
 
+react-native-modalbox@^1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
+
 react-native-progress@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.1.0.tgz#775d69fceda3ebbf6b1cdafdf9342c1fbccb8216"

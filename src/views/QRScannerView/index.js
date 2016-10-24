@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 import Camera from 'react-native-camera';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 import { Languages } from '../../global/globalIncludes';
 
@@ -23,7 +23,19 @@ class QRScannerView extends Component {
         this.setState({ authorization });
     }
     readBarcode(code) {
-        console.log(code);
+        if (code.type === 'org.iso.QRCode') {
+            try {
+                const dataJson = JSON.parse(code.data);
+                if (dataJson.eventID) {
+                    Actions.pop({ refresh: { showModal: true, modalEventID: dataJson.eventID } });
+                    console.log(code);
+                } else {
+                    console.log('malformed data');
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
     }
     render() {
         return (

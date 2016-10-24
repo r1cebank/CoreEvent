@@ -1,11 +1,13 @@
 /*
- *  Restaurant tile element
+ *  ExpandableText element
  */
 
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 
-class ExpandableMarkdown extends Component {
+import styles from './resources/styles';
+
+class ExpandableText extends Component {
     static propTypes = {
         children: React.PropTypes.string
     };
@@ -14,7 +16,7 @@ class ExpandableMarkdown extends Component {
         this.state = {
             text: props.children,
             maximumCount: 100,
-            viewMore: false
+            viewMore: props.children.length < 100
         };
     }
     viewMore = () => {
@@ -26,15 +28,25 @@ class ExpandableMarkdown extends Component {
         // TODO: Replace to TouchableOpacity when https://github.com/facebook/react-native/pull/8909 is merged
         return (
             <View {...this.props}>
-                <Text>
-                    {this.state.text.slice(0, this.state.viewMore ?
-                        this.state.text.length : this.state.maximumCount)}
-                </Text>
+                {(() => {
+                    if (this.state.viewMore) {
+                        return (
+                            <Text>
+                                {this.state.text}
+                            </Text>
+                        );
+                    }
+                    return (
+                        <Text>
+                            {this.state.text.slice(0, this.state.maximumCount)}...
+                        </Text>
+                    );
+                })()}
                 {(() => {
                     if (!this.state.viewMore) {
                         return (
                             <TouchableOpacity onPress={this.viewMore}>
-                                <Text>Read more</Text>
+                                <Text style={styles.linkStyle}>Read more</Text>
                             </TouchableOpacity>
                         );
                     }
@@ -46,4 +58,4 @@ class ExpandableMarkdown extends Component {
     }
 }
 
-module.exports = ExpandableMarkdown;
+module.exports = ExpandableText;

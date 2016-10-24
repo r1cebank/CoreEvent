@@ -76,6 +76,11 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         marginRight: 0,
         marginBottom: 0
+    },
+    eventModal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 300
     }
 });
 

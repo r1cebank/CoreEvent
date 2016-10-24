@@ -5,7 +5,8 @@
 /* eslint-disable global-require */
 
 const components = {
-    get ExpandableMarkdown() { return require('../../components/ExpandableMarkdown'); }
+    get ExpandableText() { return require('../../components/ExpandableText'); },
+    get EventTile() { return require('../../components/EventTile'); }
 };
 
 module.exports = components;

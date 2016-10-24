@@ -6,7 +6,7 @@ import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
-import Markdown from 'react-native-simple-markdown';
+import Modal from 'react-native-modalbox';
 
 import {
     View,
@@ -35,6 +35,7 @@ class HomeView extends Component {
     }
     componentDidMount() {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
+        this.modal.open();
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.locale !== this.props.locale) {
@@ -53,7 +54,6 @@ class HomeView extends Component {
         });
     }
     render() {
-        const markdown = 'Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming';
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -105,8 +105,7 @@ class HomeView extends Component {
                                 showsVerticalScrollIndicator={false}
                                 scrollEventThrottle={200}
                                 style={styles.yourEvent}
-                                contentContainerStyle={styles.yourEventContainer}
-                                testID="RestaurantList">
+                                contentContainerStyle={styles.yourEventContainer}>
                                 <View style={{flexDirection: 'row'}}>
                                     <Card
                                         imageStyle={{resizeMode: 'cover'}}
@@ -133,40 +132,30 @@ class HomeView extends Component {
                             titleStyle={styles.cardTitle}
                             containerStyle={styles.cardContainer}>
                             <View style={styles.recommendedContainer}>
-                                <Card
-                                    containerStyle={styles.eventCard}
-                                    title="Test event"
-                                    titleStyle={{ fontWeight: 'bold' }}
-                                    image={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png'}}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5}}>
-                                        <Icon name="schedule" size={20} color={Colors.grey} />
-                                        <View style={{ marginLeft: 10 }}>
-                                            <Text style={{ fontWeight: 'bold' }}>Thursday, October 27</Text>
-                                            <Text>9:30 pm - 12:30 pm</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5}}>
-                                        <Icon name="location-on" size={20} color={Colors.grey} />
-                                        <View style={{ marginLeft: 10 }}>
-                                            <Text style={{ fontWeight: 'bold' }}>Room H19</Text>
-                                            <Text>7131 Stride Ave</Text>
-                                        </View>
-                                    </View>
-                                    <Components.ExpandableMarkdown style={{ marginBottom: 10 }}>
-                                        {markdown}
-                                    </Components.ExpandableMarkdown>
-                                    <Button
-                                        small
-                                        icon={{ name: 'add' }}
-                                        backgroundColor="#03A9F4"
-                                        fontFamily="NotoSans-Bold"
-                                        buttonStyle={styles.eventCardButton}
-                                        title={Languages.t('addToMe', this.props.locale)} />
-                                </Card>
+                                <Components.EventTile
+                                    eventTitle="Code club"
+                                    imageUrl="https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png"
+                                    venueName="Room H18"
+                                    venueAddress="7131 Stride Ave"
+                                    description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
+                                    ctaTitle={Languages.t('addToMe', this.props.locale)}
+                                    startTime={new Date()} />
                             </View>
                         </Card>
                     </View>
                 </ScrollView>
+                <Modal style={styles.eventModal} position="bottom" ref={(c) => this.modal = c}>
+                    <Icon name="keyboard-arrow-down" size={30} color={Colors.grey} />
+                    <Components.EventTile
+                        eventTitle="Code club"
+                        imageUrl="https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png"
+                        simple={true}
+                        venueName="Room H18"
+                        venueAddress="7131 Stride Ave"
+                        description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
+                        ctaTitle={Languages.t('addToMe', this.props.locale)}
+                        startTime={new Date()} />
+                </Modal>
             </View>
         );
     }
