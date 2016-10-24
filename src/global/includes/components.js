@@ -5,7 +5,7 @@
 /* eslint-disable global-require */
 
 const components = {
-    // get BottonDropdown() { return require('../../components/BottonDropdown'); }
+    get ExpandableMarkdown() { return require('../../components/ExpandableMarkdown'); }
 };
 
 module.exports = components;

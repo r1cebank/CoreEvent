@@ -17,7 +17,7 @@ import {
     RefreshControl
 } from 'react-native';
 
-import { Colors, Assets, Languages } from '../../global/globalIncludes';
+import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
 
@@ -53,7 +53,7 @@ class HomeView extends Component {
         });
     }
     render() {
-        const markdown = '###Want to learn to program?\r\n\r\nYou can **emphasize** what you want, or just _suggest it_ \uD83D\uDE0F\u2026\r\n\r\n';
+        const markdown = 'Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming';
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -152,13 +152,13 @@ class HomeView extends Component {
                                             <Text>7131 Stride Ave</Text>
                                         </View>
                                     </View>
-                                    <Markdown styles={styles}>
+                                    <Components.ExpandableMarkdown style={{ marginBottom: 10 }}>
                                         {markdown}
-                                    </Markdown>
+                                    </Components.ExpandableMarkdown>
                                     <Button
                                         small
                                         icon={{ name: 'add' }}
-                                        backgroundColor='#03A9F4'
+                                        backgroundColor="#03A9F4"
                                         fontFamily="NotoSans-Bold"
                                         buttonStyle={styles.eventCardButton}
                                         title={Languages.t('addToMe', this.props.locale)} />
