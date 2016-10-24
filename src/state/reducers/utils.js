@@ -3,6 +3,7 @@
  */
 
 import _ from 'lodash';
+import { REHYDRATE } from 'redux-persist/constants';
 import * as ActionType from '../actions/actionTypes';
 
 function reducer(state = {}, action) {
@@ -14,6 +15,12 @@ function reducer(state = {}, action) {
                 data: action.data
             });
             return newState;
+        }
+        case REHYDRATE: {
+            return {
+                ...state,
+                hydrationComplete: true
+            };
         }
         default:
             return state;

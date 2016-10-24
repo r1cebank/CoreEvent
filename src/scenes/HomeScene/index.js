@@ -21,7 +21,6 @@ const scenes = Actions.create(
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.HomeView}
-            title="What's hot"
             renderRightButton={() =>
                 <Icon
                     color={Colors.grey}

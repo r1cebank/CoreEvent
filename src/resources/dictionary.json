@@ -7,7 +7,10 @@
         "settings": "SETTINGS",
         "categories": "Categories",
         "whatshot": "What's hot",
-        "qrScanner": "QR Scanner"
+        "qrScanner": "QR Scanner",
+        "addToMe": "Add to my planner",
+        "recommended": "Recommended",
+        "myEvents": "My Events"
     },
     "zh": {
         "hot": "热门",
@@ -17,6 +20,9 @@
         "settings": "设置",
         "categories": "分类",
         "whatshot": "热门",
-        "qrScanner": "二维码"
+        "qrScanner": "二维码",
+        "addToMe": "添加到我的日程",
+        "recommended": "推荐",
+        "myEvents": "我的活动"
     }
 }

@@ -61,6 +61,21 @@ const styles = StyleSheet.create({
         height: 20,
         width: 100,
         resizeMode: 'contain'
+    },
+    recommendedContainer: {
+        flexDirection: 'column'
+    },
+    eventCard: {
+        flex: 1,
+        margin: 0,
+        shadowRadius: 0,
+        marginBottom: 10
+    },
+    eventCardButton: {
+        borderRadius: 40,
+        marginLeft: 0,
+        marginRight: 0,
+        marginBottom: 0
     }
 });
 

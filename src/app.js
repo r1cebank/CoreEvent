@@ -52,9 +52,9 @@ class App extends Component {
     }
     render() {
         const { selectedTab } = this.state;
-        // if (this.props.loading) {
-        //     return <Views.LoadingView loadingText="loading" />;
-        // }
+        if (!this.props.hydrationComplete) {
+            return null;
+        }
         return (
             // TODO: More complex scene config
             <View style={this.props.style}>
@@ -202,7 +202,8 @@ function select(store) {
     return {
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
-        loading: store.utils.loading
+        loading: store.utils.loading,
+        hydrationComplete: store.utils.hydrationComplete
     };
 }
 

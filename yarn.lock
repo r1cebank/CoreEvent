@@ -5288,6 +5288,14 @@ react-native:
     yeoman-environment "1.5.3"
     yeoman-generator "0.21.2"
 
+react-native-animated-ptr@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-animated-ptr/-/react-native-animated-ptr-1.0.2.tgz#8388b4440fd1d9b4663f742199d38acfe3f28678"
+
+"react-native-camera@github:lwansbrough/react-native-camera":
+  version "0.3.8"
+  resolved "https://codeload.github.com/lwansbrough/react-native-camera/tar.gz/fb3b12b4f1a2ed8d1b20cc21a9b52117878b2c35"
+
 react-native-elements:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.6.2.tgz#5c66ec53090425a74c341ddc11ce660b17e420f6"
@@ -5313,6 +5321,10 @@ react-native-i18n:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-0.1.1.tgz#7fdc7512e71c9f5057d5f9ee8d559fc4801a1c14"
 
+react-native-image-progress@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-progress/-/react-native-image-progress-0.6.0.tgz#14614add12beaa247a052e5a52e6a9fee0fb8c67"
+
 react-native-looped-carousel@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/react-native-looped-carousel/-/react-native-looped-carousel-0.1.3.tgz#9f763223563007d19b750a77f2dc7b7a4f2609c8"
@@ -5334,6 +5346,10 @@ react-native-mock@^0.2.5:
     react-timer-mixin "=0.13.3"
     warning "=2.1.0"
 
+react-native-progress@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.1.0.tgz#775d69fceda3ebbf6b1cdafdf9342c1fbccb8216"
+
 react-native-router-flux:
   version "3.36.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.36.0.tgz#2f36360d684b5e546ecee2d2ee1baccc8e1dd74f"
@@ -5342,6 +5358,17 @@ react-native-router-flux:
     react-native-experimental-navigation "0.26.x"
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
+
+react-native-simple-markdown:
+  version "1.0.60-rc.2"
+  resolved "https://registry.yarnpkg.com/react-native-simple-markdown/-/react-native-simple-markdown-1.0.60-rc.2.tgz#2e8dd99dc728f1a0d4a669a0e128349a6e99eba5"
+  dependencies:
+    lodash "^4.15.0"
+    simple-markdown "git://github.com/CharlesMangwa/simple-markdown.git"
+
+react-native-spinkit@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-spinkit/-/react-native-spinkit-0.1.3.tgz#6d33b41ab3c3062d5e2fdb1c5df0fa6af1e067f3"
 
 react-native-tab-navigator@^0.3.3:
   version "0.3.3"
@@ -5904,6 +5931,10 @@ signal-exit@^2.0.0:
 signal-exit@^3.0.0, signal-exit@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.1.tgz#5a4c884992b63a7acd9badb7894c3ee9cfccad81"
+
+"simple-markdown@git://github.com/CharlesMangwa/simple-markdown.git":
+  version "0.1.1"
+  resolved "git://github.com/CharlesMangwa/simple-markdown.git#33d963c760b8196bee01b1a5ba9974bc7f669af1"
 
 simple-plist@0.1.4:
   version "0.1.4"

@@ -6,6 +6,8 @@ import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
+import Markdown from 'react-native-simple-markdown';
+
 import {
     View,
     ScrollView,
@@ -17,7 +19,7 @@ import {
 
 import { Colors, Assets, Languages } from '../../global/globalIncludes';
 import styles from './resources/styles';
-import icons from './resources/icons';
+// import icons from './resources/icons';
 
 class HomeView extends Component {
     static propTypes = {
@@ -31,8 +33,13 @@ class HomeView extends Component {
             isRefreshing: false
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.locale !== this.props.locale) {
+            Actions.refresh({ title: Languages.t('whatshot', nextProps.locale) });
+        }
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -46,6 +53,7 @@ class HomeView extends Component {
         });
     }
     render() {
+        const markdown = '###Want to learn to program?\r\n\r\nYou can **emphasize** what you want, or just _suggest it_ \uD83D\uDE0F\u2026\r\n\r\n';
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -86,7 +94,7 @@ class HomeView extends Component {
                             return null;
                         })()}
                         <Card
-                            title="Your events"
+                            title={Languages.t('myEvents', this.props.locale)}
                             titleStyle={styles.cardTitle}
                             containerStyle={styles.cardContainer}>
                             <ScrollView
@@ -121,39 +129,39 @@ class HomeView extends Component {
                             </ScrollView>
                         </Card>
                         <Card
-                            title="Recommended"
+                            title={Languages.t('recommended', this.props.locale)}
                             titleStyle={styles.cardTitle}
                             containerStyle={styles.cardContainer}>
-                            <View style={{flexDirection: 'column'}}>
+                            <View style={styles.recommendedContainer}>
                                 <Card
-                                    containerStyle={{flex: 1, margin: 0, shadowRadius: 0, marginBottom: 10}}
-                                    title='HELLO WORLD 2345678910'
-                                    image={Assets.placeholder}>
-                                    <Text style={{marginBottom: 10}}>
-                                        The idea with React Native Elements is more about component structure than actual design.
-                                    </Text>
+                                    containerStyle={styles.eventCard}
+                                    title="Test event"
+                                    titleStyle={{ fontWeight: 'bold' }}
+                                    image={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png'}}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5}}>
+                                        <Icon name="schedule" size={20} color={Colors.grey} />
+                                        <View style={{ marginLeft: 10 }}>
+                                            <Text style={{ fontWeight: 'bold' }}>Thursday, October 27</Text>
+                                            <Text>9:30 pm - 12:30 pm</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5}}>
+                                        <Icon name="location-on" size={20} color={Colors.grey} />
+                                        <View style={{ marginLeft: 10 }}>
+                                            <Text style={{ fontWeight: 'bold' }}>Room H19</Text>
+                                            <Text>7131 Stride Ave</Text>
+                                        </View>
+                                    </View>
+                                    <Markdown styles={styles}>
+                                        {markdown}
+                                    </Markdown>
                                     <Button
                                         small
-                                        icon={{name: 'add'}}
+                                        icon={{ name: 'add' }}
                                         backgroundColor='#03A9F4'
-                                        fontFamily='Lato'
-                                        buttonStyle={{borderRadius: 40, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                                        title='VIEW NOW' />
-                                </Card>
-                                <Card
-                                    containerStyle={{flex: 1, margin: 0, shadowRadius: 0, marginBottom: 10}}
-                                    title='HELLO WORLD'
-                                    image={Assets.placeholder}>
-                                    <Text style={{marginBottom: 10}}>
-                                        The idea with React Native Elements is more about component structure than actual design.
-                                    </Text>
-                                    <Button
-                                        small
-                                        icon={{name: 'add'}}
-                                        backgroundColor='#03A9F4'
-                                        fontFamily='Lato'
-                                        buttonStyle={{borderRadius: 40, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                                        title='VIEW NOW' />
+                                        fontFamily="NotoSans-Bold"
+                                        buttonStyle={styles.eventCardButton}
+                                        title={Languages.t('addToMe', this.props.locale)} />
                                 </Card>
                             </View>
                         </Card>
