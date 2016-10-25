@@ -4,8 +4,9 @@ import { View, Text } from 'react-native';
 
 import Camera from 'react-native-camera';
 import { Actions } from 'react-native-router-flux';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-import { Languages, Storage } from '../../global/globalIncludes';
+import { Languages, Storage, Utils } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -16,7 +17,8 @@ class QRScannerView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            errorText: ''
+            errorText: '',
+            reading: false
         };
     }
     async componentWillMount() {
@@ -30,6 +32,7 @@ class QRScannerView extends Component {
                 const dataJson = JSON.parse(code.data);
                 if (dataJson.eventId) {
                     try {
+                        this.setState({ reading: true });
                         const modalEventData = await Storage.Event.fetchById(dataJson.eventId);
                         const modalLocationData = await Storage.Location
                         .fetchById(modalEventData.get('location').id);
@@ -42,21 +45,25 @@ class QRScannerView extends Component {
                         });
                     } catch (e) {
                         this.setState({
+                            reading: false,
                             errorText: Languages.t('cannotGetEvent', this.props.locale)
                         });
                     }
                 } else {
                     this.setState({
+                        reading: false,
                         errorText: Languages.t('missingEventID', this.props.locale)
                     });
                 }
             } catch (e) {
                 this.setState({
+                    reading: false,
                     errorText: Languages.t('cannotDecode', this.props.locale)
                 });
             }
         } else {
             this.setState({
+                reading: false,
                 errorText: Languages.t('codeNotSupported', this.props.locale)
             });
         }
@@ -64,7 +71,10 @@ class QRScannerView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Camera onBarCodeRead={this.readBarcode} style={styles.camera}>
+                <Spinner visible={this.state.reading} />
+                <Camera
+                    onBarCodeRead={this.state.reading ? Utils.noop : this.readBarcode}
+                    style={styles.camera}>
                     <View style={styles.rectangleContainer}>
                         <View style={styles.errorContainer}>
                             <Text style={styles.errorText}>

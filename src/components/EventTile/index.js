@@ -13,9 +13,8 @@ import styles from './resources/styles';
 
 class EventTile extends Component {
     static propTypes = {
-        children: React.PropTypes.string,
         eventTitle: React.PropTypes.string,
-        imageUrl: React.PropTypes.string,
+        imageSource: React.PropTypes.any,
         simple: React.PropTypes.bool,
         venueName: React.PropTypes.string,
         venueAddress: React.PropTypes.string,
@@ -29,7 +28,7 @@ class EventTile extends Component {
                 containerStyle={styles.eventCard}
                 title={this.props.eventTitle}
                 titleStyle={{ fontWeight: 'bold' }}
-                image={this.props.simple ? null : { uri: this.props.imageUrl }}>
+                image={this.props.simple ? null : this.props.imageSource} >
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
                     <Icon name="schedule" size={20} color={Colors.grey} />
                     <View style={{ marginLeft: 10 }}>

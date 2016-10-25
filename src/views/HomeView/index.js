@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon, Button } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
@@ -118,23 +118,22 @@ class HomeView extends Component {
                                 style={styles.yourEvent}
                                 contentContainerStyle={styles.yourEventContainer}>
                                 <View style={{flexDirection: 'row'}}>
-                                    <Card
-                                        imageStyle={{resizeMode: 'cover'}}
-                                        containerStyle={{flex: 1, shadowRadius: 0, borderWidth: 0.5, maxWidth: 200, marginRight: 10, margin: 0}}
-                                        title='HELLO WORLD 2345678910'
-                                        image={Assets.placeholder}>
-                                        <Text style={{marginBottom: 10}}>
-                                            The idea with React Native Elements is more about component structure than actual design.
-                                        </Text>
-                                    </Card>
-                                    <Card
-                                        containerStyle={{flex: 1, shadowRadius: 0, borderWidth: 0.5, marginRight: 10, margin: 0, maxWidth: 200}}
-                                        title='HELLO WORLD'
-                                        image={Assets.placeholder}>
-                                        <Text style={{marginBottom: 10}}>
-                                            The idea with React Native Elements is more about component structure than actual design.
-                                        </Text>
-                                    </Card>
+                                    <Components.MyEventTile
+                                        eventTitle="Test Event"
+                                        imageSource={Assets.placeholder}
+                                        venueName="Room H19"
+                                        status="joined"
+                                        locale={this.props.locale}
+                                        venueAddress="1 Infinite Loop"
+                                        startTime={new Date()} />
+                                    <Components.MyEventTile
+                                        eventTitle="Test Event 2"
+                                        imageSource={Assets.placeholder}
+                                        venueName="Room H19"
+                                        status="joined"
+                                        locale={this.props.locale}
+                                        venueAddress="1 Infinite Loop"
+                                        startTime={new Date()} />
                                 </View>
                             </ScrollView>
                         </Card>
@@ -145,7 +144,7 @@ class HomeView extends Component {
                             <View style={styles.recommendedContainer}>
                                 <Components.EventTile
                                     eventTitle="Code club"
-                                    imageUrl="https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png"
+                                    imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
                                     venueName="Room H18"
                                     venueAddress="7131 Stride Ave"
                                     description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
@@ -162,7 +161,9 @@ class HomeView extends Component {
                             return (
                                 <Components.EventTile
                                     eventTitle={this.state.modalEventData.get('name')}
-                                    imageUrl={this.state.modalEventData.get('image').url()}
+                                    imageSource={{
+                                        uri: this.state.modalEventData.get('image').url()
+                                    }}
                                     simple={true}
                                     venueName={this.state.modalLocationData.get('name')}
                                     venueAddress={this.state.modalLocationData.get('address')}
