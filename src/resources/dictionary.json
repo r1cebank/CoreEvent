@@ -10,7 +10,11 @@
         "qrScanner": "QR Scanner",
         "addToMe": "I'm going!",
         "recommended": "Recommended",
-        "myEvents": "My Events"
+        "myEvents": "My Events",
+        "codeNotSupported": "This code is not supported",
+        "cannotDecode": "Error decoding information",
+        "missingEventID": "Missing event information",
+        "cannotGetEvent": "Event not found"
     },
     "zh": {
         "hot": "热门",
@@ -23,6 +27,10 @@
         "qrScanner": "二维码",
         "addToMe": "我要去！",
         "recommended": "推荐",
-        "myEvents": "我的活动"
+        "myEvents": "我的活动",
+        "codeNotSupported": "不支持此二维码",
+        "cannotDecode": "数据解码错误",
+        "missingEventID": "缺少活动信息",
+        "cannotGetEvent": "未找到此活动"
     }
 }

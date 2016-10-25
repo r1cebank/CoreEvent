@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import Camera from 'react-native-camera';
 import { Actions } from 'react-native-router-flux';
@@ -15,35 +15,50 @@ class QRScannerView extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            errorText: ''
+        };
     }
     async componentWillMount() {
         Actions.refresh({ title: Languages.t('qrScanner', this.props.locale) });
         const authorization = await Camera.checkDeviceAuthorizationStatus();
         this.setState({ authorization });
     }
-    async readBarcode(code) {
+    readBarcode = async (code) => {
         if (code.type === 'org.iso.QRCode') {
             try {
                 const dataJson = JSON.parse(code.data);
                 if (dataJson.eventId) {
-                    const modalEventData = await Storage.Event.fetchById(dataJson.eventId);
-                    const modalLocationData = await Storage.Location
+                    try {
+                        const modalEventData = await Storage.Event.fetchById(dataJson.eventId);
+                        const modalLocationData = await Storage.Location
                         .fetchById(modalEventData.get('location').id);
-                    Actions.pop({
-                        refresh: {
-                            showModal: true,
-                            modalEventData,
-                            modalLocationData
-                        }
-                    });
-                    console.log(code);
+                        Actions.pop({
+                            refresh: {
+                                showModal: true,
+                                modalEventData,
+                                modalLocationData
+                            }
+                        });
+                    } catch (e) {
+                        this.setState({
+                            errorText: Languages.t('cannotGetEvent', this.props.locale)
+                        });
+                    }
                 } else {
-                    console.log('malformed data');
+                    this.setState({
+                        errorText: Languages.t('missingEventID', this.props.locale)
+                    });
                 }
             } catch (e) {
-                console.log(e);
+                this.setState({
+                    errorText: Languages.t('cannotDecode', this.props.locale)
+                });
             }
+        } else {
+            this.setState({
+                errorText: Languages.t('codeNotSupported', this.props.locale)
+            });
         }
     }
     render() {
@@ -51,9 +66,14 @@ class QRScannerView extends Component {
             <View style={styles.container}>
                 <Camera onBarCodeRead={this.readBarcode} style={styles.camera}>
                     <View style={styles.rectangleContainer}>
-                      <View style={styles.rectangle} />
+                        <View style={styles.errorContainer}>
+                            <Text style={styles.errorText}>
+                                {this.state.errorText}
+                            </Text>
+                        </View>
+                        <View style={styles.rectangle} />
                     </View>
-              </Camera>
+                </Camera>
             </View>
         );
     }

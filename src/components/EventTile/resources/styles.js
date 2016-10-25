@@ -4,6 +4,7 @@ import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     eventCard: {
+        alignSelf: 'stretch',
         flex: 1,
         margin: 0,
         shadowRadius: 0,

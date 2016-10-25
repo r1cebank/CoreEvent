@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { Card, Icon, Button } from 'react-native-elements';
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Grid } from 'react-native-easy-grid';
 import { Text, View } from 'react-native';
 import dateFormat from 'dateformat';
 

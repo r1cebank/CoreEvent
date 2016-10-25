@@ -19,6 +19,15 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 40
     },
+    errorContainer: {
+        backgroundColor: 'transparent',
+        borderRadius: 5,
+        marginBottom: 5
+    },
+    errorText: {
+        padding: 5,
+        color: Colors.frontColor
+    },
     rectangleContainer: {
         flex: 1,
         alignItems: 'center',
