@@ -9,9 +9,10 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { AppState, BackAndroid } from 'react-native';
+import { AppState, BackAndroid, DeviceEventEmitter } from 'react-native';
 import Reactotron from 'reactotron';
 import { Actions } from 'react-native-router-flux';
+import QuickActions from 'react-native-quick-actions';
 
 
 // The root view is a navigation component which define a default view
@@ -53,11 +54,22 @@ function setup() {
         componentDidMount() {
             // Binding appstate change method
             AppState.addEventListener('change', this._handleAppStateChange);
-            // Update Location
+            // Register quick action listener
+            DeviceEventEmitter.addListener('quickActionShortcut', this._handleQuickAction);
+            const action = QuickActions.popInitialAction();
+            if (action) {
+                this._handleQuickAction(action); // e.g. LinkingIOS.openURL(..)
+            }
         }
         componentWillUnmount() {
             // Remove binding method
             AppState.removeEventListener('change', this._handleAppStateChange);
+            DeviceEventEmitter.removeEventListener('quickActionShortcut', this._handleQuickAction);
+        }
+        _handleQuickAction(action) {
+            if (action.type === 'Scan') {
+                Actions.qrScanner();
+            }
         }
         _handleAppStateChange(state) {
             // Handle app state change

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -40,6 +41,7 @@
 		EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401D1DB94B9D000DC2EF /* libz.tbd */; };
 		EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */; };
 		EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC486AED1DB9EE6B00FC177A /* libART.a */; };
+		EC7DD7221DC0110F00D34C12 /* libRNQuickAction.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7DD71F1DC010F800D34C12 /* libRNQuickAction.a */; };
 		EC8A51DA1DB9A2E00098F194 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D61DB9A2E00098F194 /* NotoSans-Bold.ttf */; };
 		EC8A51DB1DB9A2E00098F194 /* NotoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D71DB9A2E00098F194 /* NotoSans-BoldItalic.ttf */; };
 		EC8A51DC1DB9A2E00098F194 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51D81DB9A2E00098F194 /* NotoSans-Italic.ttf */; };
@@ -183,6 +185,13 @@
 			remoteGlobalIDString = D42CB3511B2538DE00FD0AE2;
 			remoteInfo = RNSpinkit;
 		};
+		EC7DD71E1DC010F800D34C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC7DD70B1DC010F800D34C12 /* RNQuickAction.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 91090D8B1BB6C934009AE358;
+			remoteInfo = RNQuickAction;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +238,7 @@
 		EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		EC3540491DB95BD4000DC2EF /* CoreEvent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CoreEvent.entitlements; path = CoreEvent/CoreEvent.entitlements; sourceTree = "<group>"; };
 		EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		EC7DD70B1DC010F800D34C12 /* RNQuickAction.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNQuickAction.xcodeproj; path = "../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction.xcodeproj"; sourceTree = "<group>"; };
 		EC8A51D61DB9A2E00098F194 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		EC8A51D71DB9A2E00098F194 /* NotoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		EC8A51D81DB9A2E00098F194 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -262,6 +272,7 @@
 			files = (
 				EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */,
 				EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */,
+				EC7DD7221DC0110F00D34C12 /* libRNQuickAction.a in Frameworks */,
 				EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */,
 				EC35401C1DB94B92000DC2EF /* SystemConfiguration.framework in Frameworks */,
 				EC35401A1DB94B89000DC2EF /* CoreData.framework in Frameworks */,
@@ -393,6 +404,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DD70B1DC010F800D34C12 /* RNQuickAction.xcodeproj */,
 				EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -500,6 +512,14 @@
 			isa = PBXGroup;
 			children = (
 				EC486B411DBD4B7C00FC177A /* libRNSpinkit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC7DD70C1DC010F800D34C12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DD71F1DC010F800D34C12 /* libRNQuickAction.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -664,6 +684,10 @@
 					ProjectRef = AEF1FE52D5684E3E92B359F3 /* RNI18n.xcodeproj */;
 				},
 				{
+					ProductGroup = EC7DD70C1DC010F800D34C12 /* Products */;
+					ProjectRef = EC7DD70B1DC010F800D34C12 /* RNQuickAction.xcodeproj */;
+				},
+				{
 					ProductGroup = EC486B2E1DBD4B7C00FC177A /* Products */;
 					ProjectRef = B80DD6F2B6C1454FBAFD6106 /* RNSpinkit.xcodeproj */;
 				},
@@ -798,6 +822,13 @@
 			fileType = archive.ar;
 			path = libRNSpinkit.a;
 			remoteRef = EC486B401DBD4B7C00FC177A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EC7DD71F1DC010F800D34C12 /* libRNQuickAction.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNQuickAction.a;
+			remoteRef = EC7DD71E1DC010F800D34C12 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -963,6 +994,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction",
 				);
 				INFOPLIST_FILE = CoreEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -993,6 +1025,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction",
 				);
 				INFOPLIST_FILE = CoreEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
