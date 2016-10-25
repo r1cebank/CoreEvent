@@ -6,6 +6,7 @@
 
 export const darkText = '#032250';
 export const primary = '#397af8';
+export const secondary = '#CED3DC';
 export const grey = '#5e6977';
 export const frontColor = '#FFFFFF';
 export const backgroundColor = '#F7F7F7';

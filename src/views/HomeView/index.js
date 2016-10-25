@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Card, Icon, Button } from 'react-native-elements';
+import { Card, Icon } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
@@ -17,7 +17,7 @@ import {
     RefreshControl
 } from 'react-native';
 
-import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
+import { Colors, Assets, Languages, Components, Storage } from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
 
@@ -25,7 +25,9 @@ class HomeView extends Component {
     static propTypes = {
         carousel: React.PropTypes.array,
         config: React.PropTypes.object,
-        locale: React.PropTypes.string
+        locale: React.PropTypes.string,
+        modalEventID: React.PropTypes.string,
+        showModal: React.PropTypes.bool
     }
     constructor(props) {
         super(props);
@@ -35,11 +37,20 @@ class HomeView extends Component {
     }
     componentDidMount() {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
-        this.modal.open();
     }
-    componentWillReceiveProps(nextProps) {
+    async componentWillReceiveProps(nextProps) {
         if (nextProps.locale !== this.props.locale) {
             Actions.refresh({ title: Languages.t('whatshot', nextProps.locale) });
+        }
+        if (nextProps.showModal !== this.props.showModal) {
+            if (nextProps.modalEventData && nextProps.modalLocationData) {
+                this.setState({
+                    modalEventData: nextProps.modalEventData,
+                    modalLocationData: nextProps.modalLocationData
+                });
+                this.eventModal.open();
+                Actions.refresh({ showModal: false });
+            }
         }
     }
     onRefresh = () => {
@@ -144,17 +155,24 @@ class HomeView extends Component {
                         </Card>
                     </View>
                 </ScrollView>
-                <Modal style={styles.eventModal} position="bottom" ref={(c) => this.modal = c}>
+                <Modal style={styles.eventModal} position="bottom" ref={(c) => this.eventModal = c}>
                     <Icon name="keyboard-arrow-down" size={30} color={Colors.grey} />
-                    <Components.EventTile
-                        eventTitle="Code club"
-                        imageUrl="https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png"
-                        simple={true}
-                        venueName="Room H18"
-                        venueAddress="7131 Stride Ave"
-                        description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
-                        ctaTitle={Languages.t('addToMe', this.props.locale)}
-                        startTime={new Date()} />
+                    {(() => {
+                        if (this.state.modalEventData && this.state.modalLocationData) {
+                            return (
+                                <Components.EventTile
+                                    eventTitle={this.state.modalEventData.get('name')}
+                                    imageUrl={this.state.modalEventData.get('image').url()}
+                                    simple={true}
+                                    venueName={this.state.modalLocationData.get('name')}
+                                    venueAddress={this.state.modalLocationData.get('address')}
+                                    description={this.state.modalEventData.get('description')}
+                                    ctaTitle={Languages.t('addToMe', this.props.locale)}
+                                    startTime={this.state.modalEventData.get('start')} />
+                            );
+                        }
+                        return null;
+                    })()}
                 </Modal>
             </View>
         );

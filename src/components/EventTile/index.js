@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { Card, Icon, Button } from 'react-native-elements';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import { Text, View } from 'react-native';
 import dateFormat from 'dateformat';
 
@@ -33,7 +34,7 @@ class EventTile extends Component {
                     <Icon name="schedule" size={20} color={Colors.grey} />
                     <View style={{ marginLeft: 10 }}>
                         <Text style={{ fontWeight: 'bold' }}>
-                            {dateFormat(this.props.startTime, 'dddd, mmm yyyy')}
+                            {dateFormat(this.props.startTime, 'dddd, mmm dd yyyy')}
                         </Text>
                         <Text>
                             {dateFormat(this.props.startTime, 'hh:MM TT')}
@@ -61,13 +62,25 @@ class EventTile extends Component {
                         </Components.ExpandableText>
                     );
                 })()}
-                <Button
-                    small
-                    icon={{ name: 'add' }}
-                    backgroundColor={Colors.primary}
-                    fontFamily="NotoSans-Bold"
-                    buttonStyle={styles.eventCardButton}
-                    title={this.props.ctaTitle} />
+                <Grid>
+                    <Col size={4}>
+                        <Button
+                            small
+                            icon={{ name: 'add' }}
+                            backgroundColor={Colors.primary}
+                            fontFamily="NotoSans-Bold"
+                            buttonStyle={styles.eventCardCTA}
+                            title={this.props.ctaTitle} />
+                    </Col>
+                    <Col size={1}>
+                        <Button
+                            small
+                            icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
+                            backgroundColor={Colors.secondary}
+                            fontFamily="NotoSans-Bold"
+                            buttonStyle={styles.eventCardSecondary} />
+                    </Col>
+                </Grid>
             </Card>
         );
     }

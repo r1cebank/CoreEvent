@@ -7,7 +7,9 @@
 const storages = {
     get Carousel() { return require('../../storage/carousel'); },
     get Config() { return require('../../storage/config'); },
-    get Category() { return require('../../storage/category'); }
+    get Category() { return require('../../storage/category'); },
+    get Event() { return require('../../storage/event'); },
+    get Location() { return require('../../storage/location'); }
 };
 
 module.exports = storages;

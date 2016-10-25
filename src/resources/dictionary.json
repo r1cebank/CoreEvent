@@ -8,7 +8,7 @@
         "categories": "Categories",
         "whatshot": "What's hot",
         "qrScanner": "QR Scanner",
-        "addToMe": "Add to my planner",
+        "addToMe": "I'm going!",
         "recommended": "Recommended",
         "myEvents": "My Events"
     },
@@ -21,7 +21,7 @@
         "categories": "分类",
         "whatshot": "热门",
         "qrScanner": "二维码",
-        "addToMe": "添加到我的日程",
+        "addToMe": "我要去！",
         "recommended": "推荐",
         "myEvents": "我的活动"
     }

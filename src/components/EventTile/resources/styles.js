@@ -9,7 +9,17 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
         marginBottom: 10
     },
-    eventCardButton: {
+    eventCardCTA: {
+        borderRadius: 40,
+        marginLeft: 0,
+        marginRight: 10,
+        marginBottom: 0,
+        marginTop: 10
+    },
+    etcIconStyle: {
+        marginRight: 0
+    },
+    eventCardSecondary: {
         borderRadius: 40,
         marginLeft: 0,
         marginRight: 0,

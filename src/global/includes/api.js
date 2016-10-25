@@ -13,7 +13,9 @@ Parse.serverURL = Env.PARSE_URL;
 
 const classes = {
     carousel: Parse.Object.extend('Carousel'),
-    category: Parse.Object.extend('Category')
+    category: Parse.Object.extend('Category'),
+    event: Parse.Object.extend('Event'),
+    location: Parse.Object.extend('Location')
 };
 
 const api = {

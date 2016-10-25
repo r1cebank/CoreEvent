@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import Camera from 'react-native-camera';
 import { Actions } from 'react-native-router-flux';
 
-import { Languages } from '../../global/globalIncludes';
+import { Languages, Storage } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -22,12 +22,21 @@ class QRScannerView extends Component {
         const authorization = await Camera.checkDeviceAuthorizationStatus();
         this.setState({ authorization });
     }
-    readBarcode(code) {
+    async readBarcode(code) {
         if (code.type === 'org.iso.QRCode') {
             try {
                 const dataJson = JSON.parse(code.data);
-                if (dataJson.eventID) {
-                    Actions.pop({ refresh: { showModal: true, modalEventID: dataJson.eventID } });
+                if (dataJson.eventId) {
+                    const modalEventData = await Storage.Event.fetchById(dataJson.eventId);
+                    const modalLocationData = await Storage.Location
+                        .fetchById(modalEventData.get('location').id);
+                    Actions.pop({
+                        refresh: {
+                            showModal: true,
+                            modalEventData,
+                            modalLocationData
+                        }
+                    });
                     console.log(code);
                 } else {
                     console.log('malformed data');

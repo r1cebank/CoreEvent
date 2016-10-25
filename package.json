@@ -49,6 +49,7 @@
     "react-native": "^0.35.0",
     "react-native-animated-ptr": "^1.0.2",
     "react-native-camera": "github:lwansbrough/react-native-camera",
+    "react-native-easy-grid": "^0.1.6",
     "react-native-elements": "^0.6.2",
     "react-native-google-analytics-bridge": "^3.1.0",
     "react-native-i18n": "^0.1.1",
