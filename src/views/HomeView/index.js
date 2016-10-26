@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Card, Icon, Button } from 'react-native-elements';
+import { Card, Icon } from 'react-native-elements';
 import Image from 'react-native-image-progress';
-import * as Progress from 'react-native-progress';
 import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
@@ -11,13 +10,12 @@ import Modal from 'react-native-modalbox';
 import {
     View,
     ScrollView,
-    Text,
     TouchableHighlight,
     InteractionManager,
     RefreshControl
 } from 'react-native';
 
-import { Colors, Assets, Languages, Components, Storage } from '../../global/globalIncludes';
+import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
 
@@ -88,15 +86,10 @@ class HomeView extends Component {
                                         autoplay>
                                         {this.props.carousel.map((carouselImage, index) => {
                                             return (
-                                                <TouchableHighlight
+                                                <Components.CarouselImage
                                                     key={index}
-                                                    onPress={() =>
-                                                        this.openCarousel(carouselImage)}>
-                                                    <Image
-                                                        source={{ uri: carouselImage.image.url }}
-                                                        indicator={Progress.CircleSnail}
-                                                        style={styles.carouselImage} />
-                                                </TouchableHighlight>
+                                                    carouselImage={carouselImage}
+                                                    onPress={this.openCarousel} />
                                             );
                                         })}
                                     </Carousel>

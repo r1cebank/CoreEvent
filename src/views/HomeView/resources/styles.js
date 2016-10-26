@@ -14,10 +14,6 @@ const styles = StyleSheet.create({
     carousel: {
         height: 100
     },
-    carouselImage: {
-        resizeMode: 'cover',
-        height: 100
-    },
     buttonDrawer: {
         backgroundColor: Colors.frontColor,
         maxHeight: 70
