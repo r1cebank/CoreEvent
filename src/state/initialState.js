@@ -9,6 +9,7 @@ export const InitialAppState = {
     utils: {
         errors: [],
         loading: true,
+        toggleMenu: false,
         hydrationComplete: false
     }
 };

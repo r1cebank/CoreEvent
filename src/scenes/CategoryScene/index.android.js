@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon } from 'react-native-elements';
 import { Navigator, Platform } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
@@ -17,6 +18,11 @@ const scenes = Actions.create(
                 .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
             }}
             titleStyle={styles.titleStyle}
+            renderLeftButton={() =>
+                <Icon
+                    color={Colors.grey}
+                    name="swap-horiz" />
+            }
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.CategoryView}

@@ -12,3 +12,6 @@ export const CONFIG_FETCHED = 'CONFIG_FETCHED';
 // data
 export const CAROUSEL_FETCHED = 'CAROUSEL_FETCHED';
 export const CATEGORY_FETCHED = 'CATEGORY_FETCHED';
+
+// Utils
+export const TOGGLE_MENU = 'TOGGLE_MENU';

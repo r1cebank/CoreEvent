@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         margin: 0
     },
     titleStyle: {
-        maxHeight: 14
+        minHeight: 17,
+        maxHeight: 17
         // fontWeight: 'bold'
     },
     statusButton: {

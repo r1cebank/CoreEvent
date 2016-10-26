@@ -12,3 +12,8 @@ export function appError(error, errorState, data) {
         data
     };
 }
+export function toggleMenu() {
+    return {
+        type: ActionType.TOGGLE_MENU
+    };
+}

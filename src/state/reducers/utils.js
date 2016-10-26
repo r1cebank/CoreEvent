@@ -16,6 +16,12 @@ function reducer(state = {}, action) {
             });
             return newState;
         }
+        case ActionType.TOGGLE_MENU: {
+            return {
+                ...state,
+                toggleMenu: !state.toggleMenu
+            };
+        }
         case REHYDRATE: {
             return {
                 ...state,

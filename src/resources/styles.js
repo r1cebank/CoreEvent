@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         opacity: 1,
-        backgroundColor: 'black'
+        backgroundColor: Colors.backgroundColor
     },
     titleSelected: {
         color: Colors.primary,
