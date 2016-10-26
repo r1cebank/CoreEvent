@@ -121,6 +121,7 @@ class App extends Component {
                                         color: (selectedTab === item.title) ?
                                             Colors.primary : Colors.grey
                                     }}
+                                    wrapperStyle={{ padding: 20 }}
                                     hideChevron={true}
                                     titleStyle={{
                                         color: (selectedTab === item.title) ?
