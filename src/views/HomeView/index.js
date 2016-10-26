@@ -17,11 +17,10 @@ import {
 
 import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
+import actionSheets from './resources/actionsheets';
 // import icons from './resources/icons';
 
-const buttons = ['Cancel', 'Add to favorites', 'Hide from my feed', 'Report'];
-const CANCEL_INDEX = 0;
-const DESTRUCTIVE_INDEX = 3;
+
 
 
 class HomeView extends Component {
@@ -56,8 +55,11 @@ class HomeView extends Component {
             }
         }
     }
-    confirmAction = () => {
-        this.ActionSheet.show();
+    eventAction = () => {
+        this.eventActionSheet.show();
+    }
+    editStatus = () => {
+        this.editActionSheet.show();
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -125,6 +127,9 @@ class HomeView extends Component {
                                         venueName="Room H19"
                                         status="joined"
                                         locale={this.props.locale}
+                                        onPressStatus={() => {
+                                            this.editStatus();
+                                        }}
                                         venueAddress="1 Infinite Loop"
                                         startTime={new Date()} />
                                     <Components.MyEventTile
@@ -133,6 +138,9 @@ class HomeView extends Component {
                                         venueName="Room H19"
                                         status="joined"
                                         locale={this.props.locale}
+                                        onPressStatus={() => {
+                                            this.editStatus();
+                                        }}
                                         venueAddress="1 Infinite Loop"
                                         startTime={new Date()} />
                                 </View>
@@ -149,7 +157,7 @@ class HomeView extends Component {
                                     venueName="Room H18"
                                     venueAddress="7131 Stride Ave"
                                     onPressSecondary={() => {
-                                        this.confirmAction();
+                                        this.eventAction();
                                     }}
                                     description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
@@ -170,7 +178,7 @@ class HomeView extends Component {
                                     }}
                                     simple={true}
                                     onPressSecondary={() => {
-                                        this.confirmAction(this.state.modalEventData);
+                                        this.eventAction(this.state.modalEventData);
                                     }}
                                     venueName={this.state.modalLocationData.get('name')}
                                     venueAddress={this.state.modalLocationData.get('address')}
@@ -183,10 +191,16 @@ class HomeView extends Component {
                     })()}
                 </Modal>
                 <ActionSheet
-                    ref={(o) => this.ActionSheet = o}
-                    options={buttons}
-                    cancelButtonIndex={CANCEL_INDEX}
-                    destructiveButtonIndex={DESTRUCTIVE_INDEX}
+                    ref={(o) => this.eventActionSheet = o}
+                    options={actionSheets.event.buttons}
+                    cancelButtonIndex={actionSheets.event.CANCEL_INDEX}
+                    destructiveButtonIndex={actionSheets.event.DESTRUCTIVE_INDEX}
+                />
+                <ActionSheet
+                    ref={(o) => this.editActionSheet = o}
+                    options={actionSheets.edit.buttons}
+                    cancelButtonIndex={actionSheets.edit.CANCEL_INDEX}
+                    destructiveButtonIndex={actionSheets.edit.DESTRUCTIVE_INDEX}
                 />
             </View>
         );

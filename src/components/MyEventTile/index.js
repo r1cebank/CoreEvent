@@ -22,6 +22,7 @@ class MyEventTile extends Component {
     static propTypes = {
         eventTitle: React.PropTypes.string,
         imageSource: React.PropTypes.any,
+        onPressStatus: React.PropTypes.func,
         venueName: React.PropTypes.string,
         locale: React.PropTypes.string,
         status: React.PropTypes.string,
@@ -43,6 +44,7 @@ class MyEventTile extends Component {
                     buttonStyle={styles.statusButton}
                     textStyle={styles.statusText}
                     backgroundColor={Colors.green}
+                    onPress={this.props.onPressStatus}
                     icon={{
                         name: status[this.props.status].icon,
                         style: status[this.props.status].style
