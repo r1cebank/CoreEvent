@@ -105,11 +105,11 @@ class App extends Component {
                     return null;
                 })()}
                 <Drawer
-                    elevation={1}
-                    captureGestures={true}
+                    styles={{ shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3 }}
+                    openDrawerOffset={100}
                     panOpenMask={0.1}
                     tapToClose={true}
-                    openDrawerOffset={0.4}
+                    tweenHandler={Drawer.tweenPresets.parallax}
                     ref={(ref) => this.drawer = ref}
                     content={
                         <View style={{ marginBottom: 20 }}>
