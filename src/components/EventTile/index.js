@@ -16,6 +16,8 @@ class EventTile extends Component {
         eventTitle: React.PropTypes.string,
         imageSource: React.PropTypes.any,
         simple: React.PropTypes.bool,
+        onPress: React.PropTypes.func,
+        onPressSecondary: React.PropTypes.func,
         venueName: React.PropTypes.string,
         venueAddress: React.PropTypes.string,
         description: React.PropTypes.string,
@@ -69,6 +71,7 @@ class EventTile extends Component {
                             backgroundColor={Colors.primary}
                             fontFamily="NotoSans-Bold"
                             buttonStyle={styles.eventCardCTA}
+                            onPress={this.props.onPress}
                             title={this.props.ctaTitle} />
                     </Col>
                     <Col size={1}>
@@ -77,6 +80,7 @@ class EventTile extends Component {
                             icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
                             backgroundColor={Colors.secondary}
                             fontFamily="NotoSans-Bold"
+                            onPress={this.props.onPressSecondary}
                             buttonStyle={styles.eventCardSecondary} />
                     </Col>
                 </Grid>

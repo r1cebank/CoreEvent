@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Card, Icon } from 'react-native-elements';
 import Image from 'react-native-image-progress';
 import Carousel from 'react-native-looped-carousel';
+import ActionSheet from 'react-native-actionsheet';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
@@ -10,7 +11,6 @@ import Modal from 'react-native-modalbox';
 import {
     View,
     ScrollView,
-    TouchableHighlight,
     InteractionManager,
     RefreshControl
 } from 'react-native';
@@ -18,6 +18,11 @@ import {
 import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
+
+const buttons = ['Cancel', 'Add to favorites', 'Hide from my feed', 'Report'];
+const CANCEL_INDEX = 0;
+const DESTRUCTIVE_INDEX = 3;
+
 
 class HomeView extends Component {
     static propTypes = {
@@ -50,6 +55,9 @@ class HomeView extends Component {
                 Actions.refresh({ showModal: false });
             }
         }
+    }
+    confirmAction = () => {
+        this.ActionSheet.show();
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -110,10 +118,10 @@ class HomeView extends Component {
                                 scrollEventThrottle={200}
                                 style={styles.yourEvent}
                                 contentContainerStyle={styles.yourEventContainer}>
-                                <View style={{flexDirection: 'row'}}>
+                                <View style={{ flexDirection: 'row' }}>
                                     <Components.MyEventTile
-                                        eventTitle="Test Event"
-                                        imageSource={Assets.placeholder}
+                                        eventTitle="编程爱好者"
+                                        imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/7dbe40a8-bed7-4917-beb1-e6f5c668207e_150908133651401.jpg' }}
                                         venueName="Room H19"
                                         status="joined"
                                         locale={this.props.locale}
@@ -140,6 +148,9 @@ class HomeView extends Component {
                                     imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
                                     venueName="Room H18"
                                     venueAddress="7131 Stride Ave"
+                                    onPressSecondary={() => {
+                                        this.confirmAction();
+                                    }}
                                     description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
                                     startTime={new Date()} />
@@ -148,7 +159,7 @@ class HomeView extends Component {
                     </View>
                 </ScrollView>
                 <Modal style={styles.eventModal} position="bottom" ref={(c) => this.eventModal = c}>
-                    <Icon name="keyboard-arrow-down" size={30} color={Colors.grey} />
+                    <Icon name="keyboard-arrow-down" size={30} color={Colors.secondary} />
                     {(() => {
                         if (this.state.modalEventData && this.state.modalLocationData) {
                             return (
@@ -158,6 +169,9 @@ class HomeView extends Component {
                                         uri: this.state.modalEventData.get('image').url()
                                     }}
                                     simple={true}
+                                    onPressSecondary={() => {
+                                        this.confirmAction(this.state.modalEventData);
+                                    }}
                                     venueName={this.state.modalLocationData.get('name')}
                                     venueAddress={this.state.modalLocationData.get('address')}
                                     description={this.state.modalEventData.get('description')}
@@ -168,6 +182,12 @@ class HomeView extends Component {
                         return null;
                     })()}
                 </Modal>
+                <ActionSheet
+                    ref={(o) => this.ActionSheet = o}
+                    options={buttons}
+                    cancelButtonIndex={CANCEL_INDEX}
+                    destructiveButtonIndex={DESTRUCTIVE_INDEX}
+                />
             </View>
         );
     }

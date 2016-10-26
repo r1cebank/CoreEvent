@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
         margin: 0
     },
+    titleStyle: {
+        maxHeight: 14
+        // fontWeight: 'bold'
+    },
     statusButton: {
         padding: 5,
         marginBottom: 10
@@ -34,6 +38,18 @@ const styles = StyleSheet.create({
     },
     dateVenueText: {
         fontWeight: 'bold'
+    },
+    blur: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    imageStyle: {
+        flex: 1,
+        height: 150,
+        resizeMode: 'cover',
+        width: null,
+        marginBottom: 10
     }
 });
 

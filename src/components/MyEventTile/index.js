@@ -4,8 +4,7 @@
 
 import React, { Component } from 'react';
 import { Card, Icon, Button } from 'react-native-elements';
-import { Col, Grid } from 'react-native-easy-grid';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import dateFormat from 'dateformat';
 
 import { Colors, Languages } from '../../global/globalIncludes';
@@ -35,7 +34,10 @@ class MyEventTile extends Component {
                 imageStyle={styles.cardImage}
                 containerStyle={styles.cardContainer}
                 title={this.props.eventTitle}
-                image={this.props.imageSource}>
+                titleStyle={styles.titleStyle}>
+                <Image
+                    style={styles.imageStyle}
+                    source={this.props.imageSource} />
                 <Button
                     borderRadius={15}
                     buttonStyle={styles.statusButton}
