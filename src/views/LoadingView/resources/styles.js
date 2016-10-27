@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.backgroundColor
     },
     text: {
-        paddingTop: 20,
+        marginTop: 20,
         opacity: 1
     }
 });
