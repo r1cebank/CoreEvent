@@ -22,12 +22,6 @@ const scenes = RouterActions.create(
                 leftButtonIconStyle={styles.leftButtonIconStyle}
                 navigationBarStyle={styles.navbarStyle}
                 component={Views.HomeView}
-                renderRightButton={() =>
-                    <Icon
-                        color={Colors.grey}
-                        onPress={Actions.qrScanner}
-                        name="crop-free" />
-                }
                 renderLeftButton={() =>
                     <Icon
                         color={Colors.grey}

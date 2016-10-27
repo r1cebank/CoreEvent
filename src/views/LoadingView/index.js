@@ -1,7 +1,8 @@
 /* global __DEV__ */
 
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import Spinner from 'react-native-spinkit';
+import { View, Text } from 'react-native';
 
 import styles from './resources/styles';
 import { Colors, Dimensions } from '../../global/globalIncludes';
@@ -13,6 +14,9 @@ class LoadingView extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Spinner
+                    color={Colors.grey}
+                    type="ChasingDots" />
                 <Text style={styles.text}>{this.props.loadingText}</Text>
             </View>
         );

@@ -4,6 +4,7 @@ import Drawer from 'react-native-drawer';
 import React, { Component } from 'react';
 import ActionButton from 'react-native-action-button';
 import { ListItem } from 'react-native-elements';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import styles from './resources/styles';
 import {
@@ -88,6 +89,7 @@ class App extends Component {
         this.setState({
             selectedTab
         });
+        this.drawer.close();
     }
     render() {
         const { selectedTab } = this.state;
@@ -139,16 +141,16 @@ class App extends Component {
                 <ActionButton buttonColor="rgba(231,76,60,1)" position="left">
                     <ActionButton.Item
                         buttonColor="#9b59b6"
-                        title="New Task"
+                        title="New Event"
                         onPress={() => {}}>
-                        <Icons.Ionicons name="md-create" style={styles.actionButtonIcon} />
+                        <Icons.MaterialIcons name="add" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item
                         buttonColor="#3498db"
-                        title="Notifications"
-                        onPress={() => {}}>
-                        <Icons.Ionicons
-                            name="md-notifications-off"
+                        title="Scan QR code"
+                        onPress={RouterActions.qrScanner}>
+                        <Icons.MaterialIcons
+                            name="crop-free"
                             style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item

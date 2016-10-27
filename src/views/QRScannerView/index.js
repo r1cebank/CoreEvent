@@ -27,7 +27,7 @@ class QRScannerView extends Component {
         this.setState({ authorization });
     }
     readBarcode = async (code) => {
-        if (code.type === 'org.iso.QRCode') {
+        if (code.type === 'org.iso.QRCode' || code.type === 'QR_CODE') {
             try {
                 const dataJson = JSON.parse(code.data);
                 if (dataJson.eventId) {
