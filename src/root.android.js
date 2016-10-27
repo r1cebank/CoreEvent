@@ -9,13 +9,13 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { AppState, BackAndroid, DeviceEventEmitter } from 'react-native';
+import { AppState, BackAndroid } from 'react-native';
 import Reactotron from 'reactotron';
 import { Actions } from 'react-native-router-flux';
 
 // The root view is a navigation component which define a default view
 import Env from './env';
-import App from './app';
+import App from './app.android.js';
 import styles from './resources/styles';
 import { Store, Analytics, Tags } from './global/globalIncludes';
 

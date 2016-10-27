@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Card, Icon } from 'react-native-elements';
-import Image from 'react-native-image-progress';
 import Carousel from 'react-native-looped-carousel';
 import ActionSheet from 'react-native-actionsheet';
 // import PullToRefresh from 'react-native-animated-ptr';

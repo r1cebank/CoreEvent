@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors } from '../../../global/globalIncludes';
+// import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     cardImage: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         flex: 1,
         shadowRadius: 0,
         borderWidth: 0.5,
-        maxWidth: 200,
+        maxWidth: 250,
         marginRight: 10,
         margin: 0
     },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     dateTimeContainer: {
-        marginLeft: 5
+        marginLeft: 10
     },
     dateVenueText: {
         fontWeight: 'bold'

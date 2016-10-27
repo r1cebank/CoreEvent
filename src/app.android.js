@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
 import React, { Component } from 'react';
 import ActionButton from 'react-native-action-button';
-import { Tabs, Tab, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 import styles from './resources/styles';
 import {
@@ -37,7 +37,7 @@ const list = [
     {
         title: 'settings',
         icon: 'settings'
-    },
+    }
 ];
 
 const scenes = {
@@ -46,7 +46,7 @@ const scenes = {
     profile: Views.EmptyView,
     message: Views.EmptyView,
     settings: Views.EmptyView
-}
+};
 
 class App extends Component {
     static propTypes = {
@@ -137,14 +137,27 @@ class App extends Component {
                     <CurrentView />
                 </Drawer>
                 <ActionButton buttonColor="rgba(231,76,60,1)" position="left">
-                    <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+                    <ActionButton.Item
+                        buttonColor="#9b59b6"
+                        title="New Task"
+                        onPress={() => {}}>
                         <Icons.Ionicons name="md-create" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-                        <Icons.Ionicons name="md-notifications-off" style={styles.actionButtonIcon} />
+                    <ActionButton.Item
+                        buttonColor="#3498db"
+                        title="Notifications"
+                        onPress={() => {}}>
+                        <Icons.Ionicons
+                            name="md-notifications-off"
+                            style={styles.actionButtonIcon} />
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-                        <Icons.Ionicons name="md-done-all" style={styles.actionButtonIcon} />
+                    <ActionButton.Item
+                        buttonColor="#1abc9c"
+                        title="All Tasks"
+                        onPress={() => {}}>
+                        <Icons.Ionicons
+                            name="md-done-all"
+                            style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                 </ActionButton>
             </View>

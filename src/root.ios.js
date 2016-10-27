@@ -17,7 +17,7 @@ import QuickActions from 'react-native-quick-actions';
 
 // The root view is a navigation component which define a default view
 import Env from './env';
-import App from './app';
+import App from './app.ios.js';
 import styles from './resources/styles';
 import { Store, Analytics, Tags } from './global/globalIncludes';
 
