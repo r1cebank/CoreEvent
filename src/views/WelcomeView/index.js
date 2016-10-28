@@ -1,15 +1,15 @@
 /* global __DEV__ */
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, Image } from 'react-native';
 import Video from 'react-native-video';
 import { Button } from 'react-native-elements';
 
-import { Colors, Languages } from '../../global/globalIncludes';
+import { Colors, Languages, Assets } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
-class LoginView extends Component {
+class WelcomeView extends Component {
     static propTypes = {
         locale: React.PropTypes.string
     };
@@ -29,6 +29,7 @@ class LoginView extends Component {
                     playWhenInactive={false}
                     style={styles.backgroundVideo} />
                 <View style={styles.contentContainer}>
+                    <Image style={{resizeMode:'cover', width: 150, height: 150, alignSelf:'center', marginBottom: 30}} source={Assets.icon} />
                     <Text style={styles.header}>Let meet</Text>
                     <Button
                         borderRadius={40}
@@ -52,4 +53,4 @@ function select(store) {
     };
 }
 
-module.exports = connect(select)(LoginView);
+module.exports = connect(select)(WelcomeView);

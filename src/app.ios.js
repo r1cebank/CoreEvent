@@ -57,7 +57,7 @@ class App extends Component {
             return null;
         }
         if (!loggedIn) {
-            return <Views.LoginView />;
+            return <Scenes.LoginScene />;
         }
         return (
             // TODO: More complex scene config

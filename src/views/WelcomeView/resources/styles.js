@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         color: Colors.frontColor,
         textAlign: 'center',
-        marginBottom: 200
+        marginBottom: 150
     },
     signupButton: {
         color: Colors.grey,

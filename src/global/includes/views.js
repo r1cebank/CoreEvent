@@ -16,7 +16,7 @@ const views = {
     get CategoryChildView() { return require('../../views/CategoryChildView'); },
     get QRScannerView() { return require('../../views/QRScannerView'); },
     get EventListView() { return require('../../views/EventListView'); },
-    get LoginView() { return require('../../views/LoginView'); },
+    get WelcomeView() { return require('../../views/WelcomeView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

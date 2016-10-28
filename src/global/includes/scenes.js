@@ -9,6 +9,7 @@
 
 const scenes = {
     get HomeScene() { return require('../../scenes/HomeScene'); },
+    get LoginScene() { return require('../../scenes/LoginScene'); },
     get CategoryScene() { return require('../../scenes/CategoryScene'); }
 };
 
