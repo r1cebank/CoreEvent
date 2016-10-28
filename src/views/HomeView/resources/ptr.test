@@ -127,7 +127,7 @@
         />
     <PullToRefresh.ScrollAnimation
         componentType="Image"
-        imageSrc={Assets.chipmunk}
+        imageSrc={Assets.bear}
         direction="MOVE_DOWN"
         styleProps={{ height: 30, resizeMode: 'contain' }}
         occurrence="BEFORE_REFRESH"

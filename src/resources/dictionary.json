@@ -15,7 +15,9 @@
         "codeNotSupported": "This code is not supported",
         "cannotDecode": "Error decoding information",
         "missingEventID": "Missing event information",
-        "cannotGetEvent": "Event not found"
+        "cannotGetEvent": "Event not found",
+        "login": "Log In",
+        "signup": "Sign Up"
     },
     "zh": {
         "hot": "热门",
@@ -33,6 +35,8 @@
         "codeNotSupported": "不支持此二维码",
         "cannotDecode": "数据解码错误",
         "missingEventID": "缺少活动信息",
-        "cannotGetEvent": "未找到此活动"
+        "cannotGetEvent": "未找到此活动",
+        "login": "登陆",
+        "signup": "注册"
     }
 }

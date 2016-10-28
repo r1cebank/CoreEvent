@@ -9,7 +9,7 @@
 const assets = {
     get placeholder() { return require('../assets/placeholder.png'); },
     get launchpad_bg() { return require('../assets/launchpad_bg.png'); },
-    get chipmunk() { return require('../assets/chipmunk.png'); },
+    get bear() { return require('../assets/bear.png'); },
     get cloud() { return require('../assets/cloud.png'); },
     get cloud2() { return require('../assets/cloud2.png'); },
     get flame() { return require('../assets/flame.png'); },

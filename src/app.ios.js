@@ -51,9 +51,13 @@ class App extends Component {
         });
     }
     render() {
+        const loggedIn = false;
         const { selectedTab } = this.state;
         if (!this.props.hydrationComplete) {
             return null;
+        }
+        if (!loggedIn) {
+            return <Views.LoginView />;
         }
         return (
             // TODO: More complex scene config
