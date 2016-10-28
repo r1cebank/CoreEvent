@@ -14,8 +14,25 @@ class SignupView extends Component {
     static propTypes = {
         loadingText: React.PropTypes.string
     };
+    constructor(props) {
+        super(props);
+        this.state = {
+            privacyChecked: false,
+            termsChecked: false
+        };
+    }
     onUsernameUpdate = () => {
 
+    }
+    togglePrivacy = () => {
+        this.setState({
+            privacyChecked: !this.state.privacyChecked
+        });
+    }
+    toggleTerms = () => {
+        this.setState({
+            termsChecked: !this.state.termsChecked
+        });
     }
     render() {
         return (
@@ -51,8 +68,21 @@ class SignupView extends Component {
                             inputStyle={{ color: '#91627b' }} />
                     </View>
                     <CheckBox
+                        checkedColor={Colors.green}
+                        uncheckedColor={Colors.grey}
+                        checked={this.state.privacyChecked}
+                        onPress={this.togglePrivacy}
+                        textStyle={{fontSize: 12}}
                         containerStyle={{backgroundColor:'transparent', borderWidth:0}}
-                        title='I agree to the terms and conditions' />
+                        title="I have read and agree to the privacy policy" />
+                    <CheckBox
+                        checkedColor={Colors.green}
+                        uncheckedColor={Colors.grey}
+                        checked={this.state.termsChecked}
+                        onPress={this.toggleTerms}
+                        textStyle={{fontSize: 12}}
+                        containerStyle={{backgroundColor:'transparent', borderWidth:0}}
+                        title="I have read and agree to the terms and conditions" />
                     <Button
                         borderRadius={40}
                         textStyle={styles.button}
