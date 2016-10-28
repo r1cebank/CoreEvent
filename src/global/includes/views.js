@@ -17,6 +17,7 @@ const views = {
     get QRScannerView() { return require('../../views/QRScannerView'); },
     get EventListView() { return require('../../views/EventListView'); },
     get WelcomeView() { return require('../../views/WelcomeView'); },
+    get SignupView() { return require('../../views/SignupView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

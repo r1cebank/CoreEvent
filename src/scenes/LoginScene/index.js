@@ -14,11 +14,11 @@ const scenes = Actions.create(
             component={Views.WelcomeView}
             initial={true} />
         <Scene
-            key="login"
-            component={Views.CategoryView} />
+            key="loginView"
+            component={Views.SignupView} />
         <Scene
-            key="signup"
-            component={Views.CategoryChildView} />
+            key="signupView"
+            component={Views.SignupView} />
     </Scene>
 );
 

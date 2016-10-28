@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, Image } from 'react-native';
 import Video from 'react-native-video';
 import { Button } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 import { Colors, Languages, Assets } from '../../global/globalIncludes';
 
@@ -35,10 +36,12 @@ class WelcomeView extends Component {
                         borderRadius={40}
                         textStyle={styles.signupButton}
                         backgroundColor={Colors.frontColor}
+                        onPress={Actions.signupView}
                         title={Languages.t('signup', this.props.locale)} />
                     <Button
                         borderRadius={40}
                         textStyle={styles.loginButton}
+                        onPress={Actions.loginView}
                         backgroundColor="transparent"
                         title={Languages.t('login', this.props.locale)} />
                 </View>
