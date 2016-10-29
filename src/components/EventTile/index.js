@@ -27,6 +27,7 @@ class EventTile extends Component {
     render() {
         return (
             <Card
+                imageStyle={styles.imageStyle}
                 containerStyle={styles.eventCard}
                 title={this.props.eventTitle}
                 titleStyle={{ fontWeight: 'bold' }}

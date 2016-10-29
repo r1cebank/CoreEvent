@@ -108,8 +108,9 @@ class HomeView extends Component {
                         })()}
                         <Card
                             title={Languages.t('myEvents', this.props.locale)}
-                            titleStyle={styles.cardTitle}
-                            containerStyle={styles.cardContainer}>
+                            dividerStyle={styles.myEventDividerStyle}
+                            titleStyle={styles.myEventCardTitle}
+                            containerStyle={styles.myCardContainer}>
                             <ScrollView
                                 ref={(c) => { this.yourEvent = c; }}
                                 horizontal={true}
@@ -148,6 +149,7 @@ class HomeView extends Component {
                         <Card
                             title={Languages.t('recommended', this.props.locale)}
                             titleStyle={styles.cardTitle}
+                            dividerStyle={styles.dividerStyle}
                             containerStyle={styles.cardContainer}>
                             <View style={styles.recommendedContainer}>
                                 <Components.EventTile

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-// import { Colors } from '../../../global/globalIncludes';
+import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     cardImage: {
@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
     cardContainer: {
         flex: 1,
         shadowRadius: 0,
+        borderRadius: 20,
         borderWidth: 0.5,
-        maxWidth: 250,
+        width: 250,
         marginRight: 10,
-        margin: 0
+        margin: 0,
+        borderColor: Colors.secondary
     },
     titleStyle: {
         minHeight: 17,

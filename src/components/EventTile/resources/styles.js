@@ -6,9 +6,15 @@ const styles = StyleSheet.create({
     eventCard: {
         alignSelf: 'stretch',
         flex: 1,
+        borderRadius: 20,
+        borderWidth: 0.5,
         margin: 0,
         shadowRadius: 0,
-        marginBottom: 10
+        marginBottom: 10,
+        borderColor: Colors.secondary
+    },
+    imageStyle: {
+        borderRadius: 20
     },
     eventCardCTA: {
         borderRadius: 40,

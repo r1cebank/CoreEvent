@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     yourEvent: {
-        backgroundColor: Colors.frontColor
+        paddingLeft: 15,
+        backgroundColor: 'transparent'
     },
     yourEventContainer: {
         justifyContent: 'center'
@@ -30,11 +31,36 @@ const styles = StyleSheet.create({
     cardTitle: {
         textAlign: 'left'
     },
+    myEventCardTitle: {
+        marginLeft: 15,
+        marginRight: 15,
+        textAlign: 'left'
+    },
     cardContainer: {
-        backgroundColor: Colors.frontColor,
+        backgroundColor: 'transparent',
+        borderWidth: 0,
         marginTop: 10,
         margin: 0,
         shadowRadius: 0
+    },
+    myCardContainer: {
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        marginTop: 10,
+        margin: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        shadowRadius: 0
+    },
+    dividerStyle: {
+        height: 0.5,
+        backgroundColor: Colors.secondary
+    },
+    myEventDividerStyle: {
+        marginRight: 15,
+        marginLeft: 15,
+        height: 0.5,
+        backgroundColor: Colors.secondary
     },
     circle: {
         width: 30,
