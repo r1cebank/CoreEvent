@@ -56,9 +56,9 @@ class App extends Component {
         if (!this.props.hydrationComplete) {
             return null;
         }
-        // if (!loggedIn) {
-        //     return <Scenes.LoginScene />;
-        // }
+        if (!loggedIn) {
+            return <Scenes.LoginScene />;
+        }
         return (
             // TODO: More complex scene config
             <View style={this.props.style}>

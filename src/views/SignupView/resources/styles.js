@@ -10,6 +10,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.backgroundColor
     },
+    video: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 300,
+        right: 0
+    },
+    checkBoxStyle: {
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        margin: 0
+    },
+    checkboxText: {
+        fontSize: 12
+    },
     button: {
         color: Colors.frontColor,
         fontWeight: '700'
@@ -18,7 +33,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 40,
         backgroundColor: 'transparent',
-        color: Colors.grey,
+        color: Colors.frontColor,
         textAlign: 'center',
         marginBottom: 80
     }

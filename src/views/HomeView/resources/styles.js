@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         marginTop: 10,
         margin: 0,
-        shadowRadius: 0
+        shadowRadius: 0,
+        shadowColor: 'transparent'
     },
     myCardContainer: {
         backgroundColor: 'transparent',
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
         margin: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        shadowRadius: 0
+        shadowRadius: 0,
+        shadowColor: 'transparent'
     },
     dividerStyle: {
         height: 0.5,
