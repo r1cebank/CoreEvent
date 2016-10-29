@@ -1,11 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import { Colors, Dimensions } from '../../../global/globalIncludes';
+const { width, height } = Dimensions.get('window');
+const vw = width / 100;
+const vh = height / 100;
+
+import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 80,
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: Colors.backgroundColor
@@ -14,13 +17,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        bottom: 300,
+        bottom: 350,
         right: 0
     },
     checkBoxStyle: {
         backgroundColor: 'transparent',
         borderWidth: 0,
-        margin: 0
+        margin: 0,
+        marginBottom: 10
     },
     checkboxText: {
         fontSize: 12
@@ -34,8 +38,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         backgroundColor: 'transparent',
         color: Colors.frontColor,
-        textAlign: 'center',
-        marginBottom: 80
+        textAlign: 'center'
     }
 });
 

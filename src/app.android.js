@@ -92,10 +92,14 @@ class App extends Component {
         this.drawer.close();
     }
     render() {
+        const loggedIn = false;
         const { selectedTab } = this.state;
         const CurrentView = scenes[selectedTab];
         if (!this.props.hydrationComplete) {
             return null;
+        }
+        if (!loggedIn) {
+            return <Scenes.LoginScene />;
         }
         return (
             // TODO: More complex scene config

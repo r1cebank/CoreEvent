@@ -21,7 +21,7 @@ class WelcomeView extends Component {
                     backgroundColor="blue"
                     barStyle="light-content" />
                 <Video
-                    source={{ uri: 'login' }}
+                    source={Assets.loginVideo}
                     rate={1.0}                     // 0 is paused, 1 is normal.
                     muted={true}                  // Mutes the audio entirely.
                     paused={false}                 // Pauses playback entirely.
@@ -30,20 +30,24 @@ class WelcomeView extends Component {
                     playWhenInactive={false}
                     style={styles.backgroundVideo} />
                 <View style={styles.contentContainer}>
-                    <Image style={{resizeMode:'cover', width: 150, height: 150, alignSelf:'center', marginBottom: 30}} source={Assets.icon} />
-                    <Text style={styles.header}>Let meet</Text>
-                    <Button
-                        borderRadius={40}
-                        textStyle={styles.signupButton}
-                        backgroundColor={Colors.frontColor}
-                        onPress={Actions.signupView}
-                        title={Languages.t('signup', this.props.locale)} />
-                    <Button
-                        borderRadius={40}
-                        textStyle={styles.loginButton}
-                        onPress={Actions.loginView}
-                        backgroundColor="transparent"
-                        title={Languages.t('login', this.props.locale)} />
+                    <View style={{marginTop: 50}}>
+                        <Image style={{resizeMode:'cover', width: 150, height: 150, alignSelf:'center', marginBottom: 30}} source={Assets.icon} />
+                        <Text style={styles.header}>Let meet</Text>
+                    </View>
+                    <View>
+                        <Button
+                            borderRadius={40}
+                            textStyle={styles.signupButton}
+                            backgroundColor={Colors.frontColor}
+                            onPress={Actions.signupView}
+                            title={Languages.t('signup', this.props.locale)} />
+                        <Button
+                            borderRadius={40}
+                            textStyle={styles.loginButton}
+                            onPress={Actions.loginView}
+                            backgroundColor="transparent"
+                            title={Languages.t('login', this.props.locale)} />
+                    </View>
                 </View>
             </View>
         );

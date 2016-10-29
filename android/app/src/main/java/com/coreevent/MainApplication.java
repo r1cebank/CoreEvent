@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import com.brentvatne.react.ReactVideoPackage;
-import com.cmcewen.blurview.BlurViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
@@ -34,7 +33,6 @@ public class MainApplication extends Application implements ReactApplication {
           new RNSpinkitPackage(),
            new MainReactPackage(),
             new ReactVideoPackage(),
-            new BlurViewPackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage(),
             new ReactNativeI18n(),

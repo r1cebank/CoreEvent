@@ -11,9 +11,10 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flex: 1,
+        flexDirection: 'column',
         alignSelf: 'stretch',
-        justifyContent: 'flex-end',
-        marginBottom: 80
+        justifyContent: 'space-between',
+        marginBottom: 40
     },
     backgroundVideo: {
         position: 'absolute',
@@ -27,8 +28,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         backgroundColor: 'transparent',
         color: Colors.frontColor,
-        textAlign: 'center',
-        marginBottom: 150
+        textAlign: 'center'
     },
     signupButton: {
         color: Colors.grey,
