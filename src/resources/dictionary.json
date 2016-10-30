@@ -33,7 +33,10 @@
         "termsNotice": "You must agree with the terms",
         "error": "Error",
         "usernameTaken": "Username is taken",
-        "logoutConfirm": "Are you sure you want to logout?"
+        "logoutConfirm": "Are you sure you want to logout?",
+        "noUsername": "Please input an username",
+        "noPassword": "Please input a password",
+        "usernameError": "Username/password incorrect"
     },
     "zh": {
         "hot": "热门",
@@ -69,6 +72,9 @@
         "termsNotice": "请同意条款",
         "error": "出错啦",
         "usernameTaken": "用户名已经占用",
-        "logoutConfirm": "真的要登出吗？"
+        "logoutConfirm": "真的要登出吗？",
+        "noUsername": "请输入用户名",
+        "noPassword": "请输入密码",
+        "usernameError": "用户名／密码错误"
     }
 }

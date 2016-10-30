@@ -15,7 +15,7 @@ const scenes = Actions.create(
             initial={true} />
         <Scene
             key="loginView"
-            component={Views.SignupView} />
+            component={Views.LoginView} />
         <Scene
             key="signupView"
             component={Views.SignupView} />

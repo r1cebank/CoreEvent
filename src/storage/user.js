@@ -17,6 +17,18 @@ const user = {
             });
         });
     },
+    login: async (username, password) => {
+        return new Promise((resolve, reject) => {
+            API.Parse.User.logIn(username, password, {
+                success: (registeredUser) => {
+                    resolve(registeredUser);
+                },
+                error: (_, error) => {
+                    reject(error);
+                }
+            });
+        });
+    },
     logout: async () => {
         return await API.Parse.User.logOut();
     },
