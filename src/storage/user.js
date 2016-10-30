@@ -36,6 +36,16 @@ const user = {
         const query = new API.Parse.Query(API.Parse.User);
         query.equalTo('username', username);
         return await query.find();
+    },
+    updatePushToken: async (token) => {
+        const installationController = API.Parse.CoreManager.getInstallationController();
+        const installationId = await installationController.currentInstallationId();
+        const installation = new API.Parse.Installation({
+            installationId,
+            deviceType: token.os,
+            deviceToken: token.token
+        });
+        return installation.save();
     }
 };
 

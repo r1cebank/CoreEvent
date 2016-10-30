@@ -11,13 +11,14 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { AppState, BackAndroid } from 'react-native';
 import Reactotron from 'reactotron';
-import { Actions } from 'react-native-router-flux';
+import { Actions as RouterActions } from 'react-native-router-flux';
+import PushNotification from 'react-native-push-notification';
 
 // The root view is a navigation component which define a default view
 import Env from './env';
 import App from './app.android.js';
 import styles from './resources/styles';
-import { Store, Analytics, Tags } from './global/globalIncludes';
+import { Store, Analytics, Tags, Actions } from './global/globalIncludes';
 
 // Construct the root element
 function setup() {
@@ -36,6 +37,40 @@ function setup() {
     // Fire appstart event
     Analytics.GA.trackEvent(Tags.Category.APP_STATE, 'launch');
 
+    PushNotification.configure({
+
+        // (optional) Called when Token is generated (iOS and Android)
+        onRegister: (token) => {
+            Store.appStore.dispatch(Actions.Settings.setPushToken(token));
+            console.log('TOKEN:', token);
+        },
+
+        // (required) Called when a remote or local notification is opened or received
+        onNotification: (notification) => {
+            console.log('NOTIFICATION:', notification);
+        },
+
+        senderID: Env.GCM,
+
+        // IOS ONLY (optional): default: all - Permissions to register.
+        permissions: {
+            alert: true,
+            badge: true,
+            sound: true
+        },
+
+        // Should the initial notification be popped automatically
+        // default: true
+        popInitialNotification: true,
+
+        /**
+        * (optional) default: true
+        * - Specified if permissions (ios) and token (android and ios) will requested or not,
+        * - if not, you must call PushNotificationsHandler.requestPermissions() later
+        */
+        requestPermissions: false
+    });
+
     // Root component
     class Root extends Component {
 
@@ -43,7 +78,7 @@ function setup() {
             BackAndroid.addEventListener('hardwareBackPress', () => {
                 try {
                     // Handle Android back
-                    Actions.pop();
+                    RouterActions.pop();
                 } catch (err) {
                     // Handle app exit
                 }

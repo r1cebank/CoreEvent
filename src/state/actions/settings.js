@@ -29,6 +29,15 @@ export function logoutUser() {
         dispatch({ type: ActionType.LOGOUT_USER });
     };
 }
+export function setPushToken(token) {
+    return async (dispatch, getState) => {
+        const response = await Storage.User.updatePushToken(token);
+        dispatch({
+            type: ActionType.SET_PUSH_TOKEN,
+            token
+        });
+    };
+}
 export function setEnv(env) {
     return {
         type: ActionType.SET_ENV,

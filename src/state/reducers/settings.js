@@ -30,6 +30,12 @@ function reducer(state = {}, action) {
                 user: undefined
             };
         }
+        case ActionType.SET_PUSH_TOKEN: {
+            return {
+                ...state,
+                pushToken: action.token
+            };
+        }
         case ActionType.CONFIG_FETCHED: {
             return {
                 ...state,

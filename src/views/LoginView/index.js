@@ -7,6 +7,7 @@ import { View, Text } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import PopupDialog from 'react-native-popup-dialog';
+import PushNotification from 'react-native-push-notification';
 import { Kohana } from 'react-native-textinput-effects';
 
 import {
@@ -70,6 +71,7 @@ class LoginView extends Component {
             const user = await Storage.User.login(this.state.username, this.state.password);
             Store.appStore.dispatch(Actions.Settings
                 .updateUser(user.toJSON()));
+            PushNotification.requestPermissions();
         } catch (e) {
             if (e.code === 101) {
                 this.showNotice({
