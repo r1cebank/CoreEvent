@@ -20,6 +20,7 @@ const views = {
     get SignupView() { return require('../../views/SignupView'); },
     get LoginView() { return require('../../views/LoginView'); },
     get SettingsView() { return require('../../views/SettingsView'); },
+    get ProfileView() { return require('../../views/ProfileView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

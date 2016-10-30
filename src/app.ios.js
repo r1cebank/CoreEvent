@@ -40,12 +40,17 @@ class App extends Component {
         const carousel = await Storage.Carousel.fetch();
         const category = await Storage.Category.fetchRoot();
         const config = await Storage.Config.fetch();
+        // Fetch new user config
+        API.Parse.User.current().fetch();
+        const user = API.Parse.User.current();
         Store.appStore.dispatch(Actions.Data
                 .updateCarousel(carousel));
         Store.appStore.dispatch(Actions.Data
                 .updateCategory(category));
         Store.appStore.dispatch(Actions.Settings
                 .updateConfig(config));
+        Store.appStore.dispatch(Actions.Settings
+            .updateUser(user.toJSON()));
     }
     changeTab(selectedTab) {
         this.setState({
@@ -145,7 +150,7 @@ class App extends Component {
                             );
                         }}
                         onPress={() => this.changeTab('profile')}>
-                        <Views.EmptyView />
+                        <Scenes.ProfileScene />
                     </Tab>
                     <Tab
                         titleStyle={styles.titleStyle}

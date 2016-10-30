@@ -116,6 +116,12 @@ aproba@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.0.4.tgz#2713680775e7614c8ba186c065d4e2e52d1072c0"
 
+apsl-react-native-button@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/apsl-react-native-button/-/apsl-react-native-button-3.0.1.tgz#1356c976efd2e8503d1e14048e69ac43e09ef2fe"
+  dependencies:
+    lodash.isequal "^4.1.4"
+
 archive-type@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/archive-type/-/archive-type-3.2.0.tgz#9cd9c006957ebe95fadad5bd6098942a813737f6"
@@ -3966,7 +3972,7 @@ jsx-ast-utils@^1.3.1:
     acorn-jsx "^3.0.1"
     object-assign "^4.1.0"
 
-keymirror@=0.1.1:
+keymirror@=0.1.1, keymirror@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/keymirror/-/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
 
@@ -4148,7 +4154,7 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
-lodash.isequal@^4.0.0:
+lodash.isequal@^4.0.0, lodash.isequal@^4.1.4:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.4.0.tgz#6295768e98e14dc15ce8d362ef6340db82852031"
 
@@ -4464,6 +4470,10 @@ module-deps@^3.9.1:
 moment@^2.12.0, moment@2.x.x:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.1.tgz#e979c2a29e22888e60f396f2220a6118f85cd94c"
+
+moment@^2.14.1:
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.2.tgz#1bfdedf6a6e345f322fe956d5df5bd08a8ce84dc"
 
 morgan@~1.6.1:
   version "1.6.1"
@@ -5102,6 +5112,10 @@ q@^1.1.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
 
+qs@^5.2.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+
 qs@~6.2.0:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.1.tgz#ce03c5ff0935bc1d9d69a9f14cbd18e568d67625"
@@ -5288,6 +5302,10 @@ react-native:
     yeoman-environment "1.5.3"
     yeoman-generator "0.21.2"
 
+react-native-action-button@^2.0.9:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-action-button/-/react-native-action-button-2.0.13.tgz#ca7f84443c7219890450fadc9840666f307c04d0"
+
 react-native-actionsheet@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-native-actionsheet/-/react-native-actionsheet-2.0.4.tgz#769f6ee4db65fd115941ab730eca916995c09e61"
@@ -5296,13 +5314,21 @@ react-native-animated-ptr@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-native-animated-ptr/-/react-native-animated-ptr-1.0.2.tgz#8388b4440fd1d9b4663f742199d38acfe3f28678"
 
-react-native-blur@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-1.0.1.tgz#c81e48f631489a87a86a0c58674f6283d7dc15a7"
+react-native-button@^1.6.0:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.7.1.tgz#0c3fb34e7f99dc2c9a8166094be878eb7cb3c36e"
 
 "react-native-camera@github:lwansbrough/react-native-camera":
   version "0.3.8"
   resolved "https://codeload.github.com/lwansbrough/react-native-camera/tar.gz/fb3b12b4f1a2ed8d1b20cc21a9b52117878b2c35"
+
+react-native-device-info:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.9.6.tgz#352fdd2a2c1ec981ab03bdd92f9898031656d9c7"
+
+react-native-dialogbox@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-dialogbox/-/react-native-dialogbox-0.6.2.tgz#4c15e15401f09321634941eca8558f260b71a59e"
 
 react-native-drawer:
   version "2.3.0"
@@ -5333,9 +5359,31 @@ react-native-experimental-navigation@0.26.x:
     fbjs "^0.8.1"
     react-addons-pure-render-mixin "^15.0.2"
 
+react-native-gifted-form@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-form/-/react-native-gifted-form-0.0.13.tgz#0c7c8176d57cf8cfcc8fee4e4f82bef0683f7e03"
+  dependencies:
+    apsl-react-native-button "^3.0.0"
+    moment "^2.14.1"
+    react-native-button "^1.6.0"
+    react-native-gifted-spinner "^0.0.5"
+    react-native-google-places-autocomplete "^1.2.0"
+    react-timer-mixin "^0.13.3"
+    validator "^5.4.0"
+
+react-native-gifted-spinner@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.0.5.tgz#0da20cf371f90a5ac32eefca51b5a156d2b4f8bd"
+
 react-native-google-analytics-bridge:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-google-analytics-bridge/-/react-native-google-analytics-bridge-3.1.0.tgz#4869db16e6e18d59f1f4ab6a33e483cc71872421"
+
+react-native-google-places-autocomplete@^1.2.0:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-google-places-autocomplete/-/react-native-google-places-autocomplete-1.2.6.tgz#beec0ec527b26bceb611f2675e757f7b0d3c4b0f"
+  dependencies:
+    qs "^5.2.0"
 
 react-native-i18n:
   version "0.1.1"
@@ -5374,9 +5422,17 @@ react-native-modalbox@^1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
 
+react-native-popup-dialog@^0.2.14:
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.2.14.tgz#db89cd7ef73f1aab9c6612c4ce5c29112508a7f3"
+
 react-native-progress@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.1.0.tgz#775d69fceda3ebbf6b1cdafdf9342c1fbccb8216"
+
+react-native-push-notification@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.2.0.tgz#67123e4bbe22344142110c1849d9e9452ea8940c"
 
 react-native-quick-actions@^0.1.5:
   version "0.1.5"
@@ -5412,12 +5468,22 @@ react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
 
+react-native-textinput-effects@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-textinput-effects/-/react-native-textinput-effects-0.1.3.tgz#cda9b0398e0ab542a76c85ffc5b1ecd365fff5ac"
+
 react-native-vector-icons:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-2.1.0.tgz#37ff40e2fc753a56624846e7471282b818b92edc"
   dependencies:
     lodash "^4.0.0"
     yargs "^4.7.0"
+
+react-native-video@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-0.9.0.tgz#684f8fcc4e8ba6cd73226c70845bee8ee85a8b3b"
+  dependencies:
+    keymirror "0.1.1"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -5439,7 +5505,7 @@ react-static-container@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
-react-timer-mixin@^0.13.2, react-timer-mixin@=0.13.3:
+react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3, react-timer-mixin@=0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
 
@@ -6678,6 +6744,10 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
+
+validator@^5.4.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-5.7.0.tgz#7a87a58146b695ac486071141c0c49d67da05e5c"
 
 vary@~1.0.1:
   version "1.0.1"

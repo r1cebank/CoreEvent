@@ -51,6 +51,7 @@
     "react-native-actionsheet": "^2.0.4",
     "react-native-animated-ptr": "^1.0.2",
     "react-native-camera": "github:lwansbrough/react-native-camera",
+    "react-native-device-info": "^0.9.6",
     "react-native-dialogbox": "^0.6.2",
     "react-native-drawer": "^2.3.0",
     "react-native-easy-grid": "^0.1.6",

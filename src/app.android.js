@@ -44,9 +44,9 @@ const list = [
 const scenes = {
     hot: Scenes.HomeScene,
     category: Scenes.CategoryScene,
-    profile: Views.EmptyView,
+    profile: Scenes.ProfileScene,
     message: Views.EmptyView,
-    settings: Views.EmptyView
+    settings: Scenes.SettingsScene
 };
 
 class App extends Component {

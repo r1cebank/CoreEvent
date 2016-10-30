@@ -1,3 +1,4 @@
+import DeviceInfo from 'react-native-device-info';
 import { API } from '../global/globalIncludes';
 
 const user = {
@@ -5,7 +6,8 @@ const user = {
         const parseUser = new API.Parse.User();
         parseUser.set('username', username);
         parseUser.set('password', password);
-        parseUser.set('role', password);
+        parseUser.set('level', 0);
+        parseUser.set('vip', false);
         return new Promise((resolve, reject) => {
             parseUser.signUp(null, {
                 success: (registeredUser) => {
@@ -43,7 +45,15 @@ const user = {
         const installation = new API.Parse.Installation({
             installationId,
             deviceType: token.os,
-            deviceToken: token.token
+            deviceToken: token.token,
+            deviceName: DeviceInfo.getDeviceName(),
+            deviceLocale: DeviceInfo.getDeviceLocale(),
+            deviceCountry: DeviceInfo.getDeviceCountry(),
+            deviceBrand: DeviceInfo.getBrand(),
+            deviceModel: DeviceInfo.getModel(),
+            buildNumber: DeviceInfo.getBuildNumber(),
+            appVersion: DeviceInfo.getVersion(),
+            channels: ['general']
         });
         return installation.save();
     }
