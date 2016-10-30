@@ -39,6 +39,16 @@ const user = {
         query.equalTo('username', username);
         return await query.find();
     },
+    updateAvatar: async (image) => {
+        const avatar = new API.Parse.File(
+            image.path.replace(/^.*[\\\/]/, ''),
+            { base64: image.data },
+            image.mime);
+        await avatar.save();
+        const currentUser = API.Parse.User.current();
+        currentUser.set('avatar', avatar);
+        currentUser.save();
+    },
     updatePushToken: async (token) => {
         const installationController = API.Parse.CoreManager.getInstallationController();
         const installationId = await installationController.currentInstallationId();

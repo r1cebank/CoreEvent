@@ -3,7 +3,7 @@
 */
 
 import * as ActionType from './actionTypes';
-import { Storage } from '../../global/globalIncludes';
+import { Storage, API } from '../../global/globalIncludes';
 
 export function setLanguage(locale) {
     return {
@@ -29,9 +29,18 @@ export function logoutUser() {
         dispatch({ type: ActionType.LOGOUT_USER });
     };
 }
+export function fetchUserUpdate() {
+    return async (dispatch) => {
+        if (API.Parse.User.current()) {
+            API.Parse.User.current().fetch();
+            const user = API.Parse.User.current().toJSON();
+            dispatch({ type: ActionType.UPDATE_USER, user });
+        }
+    };
+}
 export function setPushToken(token) {
     return async (dispatch, getState) => {
-        const response = await Storage.User.updatePushToken(token);
+        await Storage.User.updatePushToken(token);
         dispatch({
             type: ActionType.SET_PUSH_TOKEN,
             token

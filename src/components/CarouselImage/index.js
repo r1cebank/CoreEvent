@@ -4,7 +4,8 @@
 
 import React, { Component } from 'react';
 import * as Progress from 'react-native-progress';
-import { TouchableHighlight, Image } from 'react-native';
+import { TouchableHighlight } from 'react-native';
+import Image from 'react-native-image-progress';
 
 import styles from './resources/styles';
 

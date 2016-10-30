@@ -79,6 +79,8 @@ class App extends Component {
                 .updateCategory(category));
         Store.appStore.dispatch(Actions.Settings
                 .updateConfig(config));
+        Store.appStore.dispatch(Actions.Settings
+            .fetchUserUpdate());
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.toggleMenu !== this.props.toggleMenu) {
