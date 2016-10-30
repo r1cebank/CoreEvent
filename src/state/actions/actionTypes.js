@@ -8,6 +8,8 @@ export const APP_ERROR = 'APP_ERROR';
 // settings
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const CONFIG_FETCHED = 'CONFIG_FETCHED';
+export const UPDATE_USER = 'UPDATE_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 // data
 export const CAROUSEL_FETCHED = 'CAROUSEL_FETCHED';

@@ -10,6 +10,7 @@ import {
     Views,
     Scenes,
     Icons,
+    API,
     Colors,
     Languages,
     Storage
@@ -20,6 +21,7 @@ class App extends Component {
         style: View.propTypes.style,
         location: React.PropTypes.object,
         customer: React.PropTypes.object,
+        user: React.PropTypes.object,
         loading: React.PropTypes.bool,
         locale: React.PropTypes.string,
         inDebug: React.PropTypes.bool,
@@ -51,12 +53,11 @@ class App extends Component {
         });
     }
     render() {
-        const loggedIn = false;
         const { selectedTab } = this.state;
         if (!this.props.hydrationComplete) {
             return null;
         }
-        if (!loggedIn) {
+        if (!this.props.user) {
             return <Scenes.LoginScene />;
         }
         return (
@@ -194,7 +195,7 @@ class App extends Component {
                             );
                         }}
                         onPress={() => this.changeTab('settings')}>
-                        <Views.EmptyView />
+                        <Scenes.SettingsScene />
                     </Tab>
                 </Tabs>
             </View>
@@ -206,6 +207,7 @@ function select(store) {
     return {
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
+        user: store.settings.user,
         loading: store.utils.loading,
         hydrationComplete: store.utils.hydrationComplete
     };

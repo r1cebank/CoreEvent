@@ -18,6 +18,18 @@ function reducer(state = {}, action) {
                 env: action.env
             };
         }
+        case ActionType.UPDATE_USER: {
+            return {
+                ...state,
+                user: action.user
+            };
+        }
+        case ActionType.LOGOUT_USER: {
+            return {
+                ...state,
+                user: undefined
+            };
+        }
         case ActionType.CONFIG_FETCHED: {
             return {
                 ...state,

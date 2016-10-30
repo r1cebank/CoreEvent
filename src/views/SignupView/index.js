@@ -1,32 +1,49 @@
 /* global __DEV__ */
 
+import { connect } from 'react-redux';
 import Video from 'react-native-video';
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { Actions } from 'react-native-router-flux';
-import PopupDialog, { ScaleAnimation } from 'react-native-popup-dialog';
 import { Button, CheckBox } from 'react-native-elements';
+// import { Actions } from 'react-native-router-flux';
+import PopupDialog from 'react-native-popup-dialog';
 import { Kohana } from 'react-native-textinput-effects';
 
+import {
+    Colors,
+    Assets,
+    Icons,
+    Store,
+    Actions,
+    Storage,
+    Components,
+    Languages
+} from '../../global/globalIncludes';
 
 import styles from './resources/styles';
-import { Colors, Assets, Icons } from '../../global/globalIncludes';
 
 class SignupView extends Component {
     static propTypes = {
-        loadingText: React.PropTypes.string
+        loadingText: React.PropTypes.string,
+        locale: React.PropTypes.string
     };
     constructor(props) {
         super(props);
         this.state = {
-            showError: true,
+            notice: {},
             privacyChecked: false,
-            termsChecked: false
+            termsChecked: false,
+            username: '',
+            password: '',
+            passwordConfirm: ''
         };
     }
-    onUsernameUpdate = () => {
-
+    showNotice = (notice) => {
+        this.setState({
+            showNotice: true,
+            notice
+        });
+        this.popupDialog.openDialog();
     }
     togglePrivacy = () => {
         this.setState({
@@ -37,6 +54,68 @@ class SignupView extends Component {
         this.setState({
             termsChecked: !this.state.termsChecked
         });
+    }
+    onChangeUsername = (username) => {
+        this.setState({ username });
+    }
+    onChangePassword = (password) => {
+        this.setState({ password });
+    }
+    onChangePasswordConfirm = (passwordConfirm) => {
+        this.setState({ passwordConfirm });
+    }
+    checkPassword = async () => {
+        if (this.state.username.length < 5) {
+            this.showNotice({
+                icon: 'warning',
+                color: Colors.saffron,
+                header: Languages.t('warning', this.props.locale),
+                notice: Languages.t('shortUsername', this.props.locale)
+            });
+            return;
+        } else if (this.state.password.length <= 6) {
+            this.showNotice({
+                icon: 'warning',
+                color: Colors.saffron,
+                header: Languages.t('warning', this.props.locale),
+                notice: Languages.t('passwordLengthNotice', this.props.locale)
+            });
+            return;
+        } else if (this.state.password !== this.state.passwordConfirm) {
+            this.showNotice({
+                icon: 'warning',
+                color: Colors.saffron,
+                header: Languages.t('warning', this.props.locale),
+                notice: Languages.t('passwordMatchNotice', this.props.locale)
+            });
+            return;
+        } else if (!this.state.termsChecked || !this.state.privacyChecked) {
+            this.showNotice({
+                icon: 'warning',
+                color: Colors.saffron,
+                header: Languages.t('warning', this.props.locale),
+                notice: Languages.t('termsNotice', this.props.locale)
+            });
+            return;
+        }
+        try {
+            const user = await Storage.User.signup(this.state.username, this.state.password);
+            Store.appStore.dispatch(Actions.Settings
+                .updateUser(user.toJSON()));
+        } catch (e) {
+            if (e.code === 202) {
+                this.showNotice({
+                    icon: 'error',
+                    color: Colors.infraRed,
+                    header: Languages.t('error', this.props.locale),
+                    notice: Languages.t('usernameTaken', this.props.locale)
+                });
+                return;
+            }
+        }
+    }
+    register = () => {
+        this.checkPassword();
     }
     render() {
         return (
@@ -50,14 +129,19 @@ class SignupView extends Component {
                     repeat={true}
                     playWhenInactive={false}
                     style={styles.video} />
-                <View style={{ flex: 1, flexDirection: 'column', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                    <View style={{ flex: 5, justifyContent:'center', alignItems: 'center'}}>
-                        <Text style={styles.header}>Register</Text>
+                <View style={styles.innerContainer}>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>
+                            {Languages.t('register', this.props.locale)}
+                        </Text>
                     </View>
-                    <View style={{flex: 4}}>
+                    <View style={styles.inputContainer}>
                         <Kohana
                             style={{ backgroundColor: Colors.secondary }}
-                            label="Username"
+                            autoCapitalize="none"
+                            label={Languages.t('username', this.props.locale)}
+                            onChangeText={this.onChangeUsername}
+                            value={this.state.username}
                             iconClass={Icons.MaterialIcons}
                             iconName={'account-circle'}
                             iconColor={Colors.green}
@@ -65,7 +149,10 @@ class SignupView extends Component {
                             inputStyle={{ color: Colors.japaneseIndigo }} />
                         <Kohana
                             style={{ backgroundColor: Colors.secondary }}
-                            label="Password"
+                            autoCapitalize="none"
+                            label={Languages.t('password', this.props.locale)}
+                            onChangeText={this.onChangePassword}
+                            value={this.state.password}
                             secureTextEntry={true}
                             iconClass={Icons.MaterialIcons}
                             iconName={'lock'}
@@ -74,7 +161,10 @@ class SignupView extends Component {
                             inputStyle={{ color: Colors.japaneseIndigo }} />
                         <Kohana
                             style={{ backgroundColor: Colors.secondary }}
-                            label="Confirm"
+                            autoCapitalize="none"
+                            label={Languages.t('confirm', this.props.locale)}
+                            onChangeText={this.onChangePasswordConfirm}
+                            value={this.state.passwordConfirm}
                             secureTextEntry={true}
                             iconClass={Icons.MaterialIcons}
                             iconName={'lock'}
@@ -82,7 +172,7 @@ class SignupView extends Component {
                             labelStyle={{ color: Colors.japaneseIndigo }}
                             inputStyle={{ color: Colors.japaneseIndigo }} />
                     </View>
-                    <View style={{marginBottom: 0, flex: 6, justifyContent: 'center'}}>
+                    <View style={styles.checkboxContainer}>
                         <CheckBox
                             checkedColor={Colors.green}
                             uncheckedColor={Colors.grey}
@@ -90,7 +180,7 @@ class SignupView extends Component {
                             onPress={this.toggleTerms}
                             textStyle={styles.checkboxText}
                             containerStyle={styles.checkBoxStyle}
-                            title="I have read and agree to the terms of use" />
+                            title={Languages.t('agreeTerms', this.props.locale)} />
                         <CheckBox
                             checkedColor={Colors.green}
                             uncheckedColor={Colors.grey}
@@ -98,46 +188,43 @@ class SignupView extends Component {
                             onPress={this.togglePrivacy}
                             textStyle={styles.checkboxText}
                             containerStyle={styles.checkBoxStyle}
-                            title="I have read and agree to the privacy policy" />
+                            title={Languages.t('agreePrivacy', this.props.locale)} />
                         <Button
                             borderRadius={40}
                             disabled={false}
-                            onPress={() => {
-                                this.popupDialog.openDialog();
-                            }}
+                            onPress={this.register}
                             textStyle={styles.button}
                             backgroundColor={Colors.green}
                             buttonStyle={{ marginBottom: 10 }}
-                            title="Register" />
+                            title={Languages.t('register', this.props.locale)} />
                         <Button
                             borderRadius={40}
                             textStyle={styles.button}
                             onPress={Actions.pop}
                             backgroundColor={Colors.grey}
-                            title="Back" />
+                            title={Languages.t('back', this.props.locale)} />
                     </View>
                 </View>
                 <PopupDialog
                     width={0.8}
                     height={200}
-                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-                    dialogAnimation={new ScaleAnimation()}>
-                    <View style={{alignItems:'center', flex:1, justifyContent:'flex-start'}}>
-                        <Icon
-                            reverse
-                            name="error"
-                            color={Colors.infraRed} />
-                        <Text style={{color: Colors.grey, fontSize: 20, fontWeight: '700'}}>
-                            Error occurred!
-                        </Text>
-                        <Text style={{color: Colors.grey, fontSize: 15, fontWeight: '300', paddingTop: 30}}>
-                            Username is already registered
-                        </Text>
-                    </View>
+                    open={this.state.showNotice}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                    <Components.Notice
+                        color={this.state.notice.color}
+                        icon={this.state.notice.icon}
+                        header={this.state.notice.header}
+                        notice={this.state.notice.notice} />
                 </PopupDialog>
             </View>
         );
     }
 }
 
-module.exports = SignupView;
+function select(store) {
+    return {
+        locale: store.settings.locale
+    };
+}
+
+module.exports = connect(select)(SignupView);

@@ -18,6 +18,7 @@ const views = {
     get EventListView() { return require('../../views/EventListView'); },
     get WelcomeView() { return require('../../views/WelcomeView'); },
     get SignupView() { return require('../../views/SignupView'); },
+    get SettingsView() { return require('../../views/SettingsView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

@@ -10,7 +10,7 @@ const scenes = Actions.create(
         hideNavBar={true}
         key="loginRoot">
         <Scene
-            key="root"
+            key="welcome"
             component={Views.WelcomeView}
             initial={true} />
         <Scene
