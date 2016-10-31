@@ -47,7 +47,8 @@
         "avatarUploadError": "Upload avatar failed",
         "attended": "Attended",
         "hosted": "Hosted",
-        "experience": "Experience"
+        "experience": "Experience",
+        "attending": "Attending"
     },
     "zh": {
         "hot": "热门",
@@ -97,6 +98,7 @@
         "avatarUploadError": "上传头像失败",
         "attended": "参加",
         "hosted": "主办",
-        "experience": "经验"
+        "experience": "经验",
+        "attending": "参加"
     }
 }

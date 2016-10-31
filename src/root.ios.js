@@ -49,6 +49,7 @@ function setup() {
 
         // (required) Called when a remote or local notification is opened or received
         onNotification: (notification) => {
+            Store.appStore.dispatch(Actions.Data.addPushMessage(notification));
             console.log('NOTIFICATION:', notification);
         },
 

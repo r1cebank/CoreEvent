@@ -15,6 +15,7 @@ export const SET_PUSH_TOKEN = 'SET_PUSH_TOKEN';
 // data
 export const CAROUSEL_FETCHED = 'CAROUSEL_FETCHED';
 export const CATEGORY_FETCHED = 'CATEGORY_FETCHED';
+export const PUSH_RECEIVED = 'PUSH_RECEIVED';
 
 // Utils
 export const TOGGLE_MENU = 'TOGGLE_MENU';

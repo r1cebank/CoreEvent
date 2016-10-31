@@ -184,6 +184,12 @@ class ProfileView extends Component {
                 <List containerStyle={styles.listContainer}>
                     <ListItem
                         wrapperStyle={{ padding: 5 }}
+                        title={Languages.t('attending', this.props.locale)}
+                        titleStyle={styles.titleStyle}
+                        leftIcon={{ name: 'directions-walk', style: styles.iconStyle }}
+                    />
+                    <ListItem
+                        wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myEvents', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'event', style: styles.iconStyle }}

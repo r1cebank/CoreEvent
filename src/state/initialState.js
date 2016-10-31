@@ -6,6 +6,9 @@ export const InitialAppState = {
         env: 'staging',
         inDebug: false
     },
+    data: {
+        pushMessages: []
+    },
     utils: {
         errors: [],
         loading: true,

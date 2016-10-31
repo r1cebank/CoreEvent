@@ -11,3 +11,6 @@ export function updateCarousel(data) {
 export function updateCategory(data) {
     return { type: ActionType.CATEGORY_FETCHED, data: JSON.parse(JSON.stringify(data)) };
 }
+export function addPushMessage(message) {
+    return { type: ActionType.PUSH_RECEIVED, message };
+}
