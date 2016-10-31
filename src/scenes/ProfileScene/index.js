@@ -20,6 +20,18 @@ const scenes = Actions.create(
             navigationBarStyle={styles.navbarStyle}
             component={Views.ProfileView}
             initial={true} />
+        <Scene
+            key="qrScanner"
+            direction="vertical"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            title="QR Scanner"
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.QRScannerView} />
     </Scene>
 );
 

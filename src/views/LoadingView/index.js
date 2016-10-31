@@ -16,7 +16,7 @@ class LoadingView extends Component {
             <View style={styles.container}>
                 <Spinner
                     size={40}
-                    color={Colors.grey}
+                    color={Colors.infraRed}
                     type="ChasingDots" />
                 <Text style={styles.text}>{this.props.loadingText}</Text>
             </View>

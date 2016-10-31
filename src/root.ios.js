@@ -43,7 +43,6 @@ function setup() {
 
         // (optional) Called when Token is generated (iOS and Android)
         onRegister: (token) => {
-            debugger;
             Store.appStore.dispatch(Actions.Settings.setPushToken(token));
             console.log('TOKEN:', token);
         },
@@ -104,7 +103,7 @@ function setup() {
         }
         _handleQuickAction(action) {
             if (action.type === 'Scan') {
-                Actions.qrScanner();
+                RouterActions.qrScanner();
             }
         }
         _handleAppStateChange(state) {

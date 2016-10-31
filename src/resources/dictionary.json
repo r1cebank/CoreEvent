@@ -44,7 +44,10 @@
         "selectAvatar": "Select avatar",
         "takePhoto": "Take Photo",
         "chooseFromLibrary": "Choose Photo",
-        "avatarUploadError": "Upload avatar failed"
+        "avatarUploadError": "Upload avatar failed",
+        "attended": "Attended",
+        "hosted": "Hosted",
+        "experience": "Experience"
     },
     "zh": {
         "hot": "热门",
@@ -91,6 +94,9 @@
         "selectAvatar": "选择头像",
         "takePhoto": "拍照",
         "chooseFromLibrary": "从手机相册选择",
-        "avatarUploadError": "上传头像失败"
+        "avatarUploadError": "上传头像失败",
+        "attended": "参加",
+        "hosted": "主办",
+        "experience": "经验"
     }
 }

@@ -36,11 +36,12 @@ class CategoryChildView extends Component {
                     {(() => {
                         if (this.state.category.length) {
                             return (
-                                <List containerStyle={{ marginBottom: 20 }}>
+                                <List containerStyle={styles.listContainer}>
                                     {
                                         this.state.category.map((category, index) => (
                                             <ListItem
                                                 key={index}
+                                                wrapperStyle={styles.wrapper}
                                                 title={Languages.f(category.get('name'),
                                                     this.props.locale)}
                                                 onPress={() => {
@@ -48,9 +49,11 @@ class CategoryChildView extends Component {
                                                         Actions.eventListView({ category });
                                                     });
                                                 }}
+                                                titleStyle={styles.titleStyle}
                                                 leftIcon={{
                                                     name: category.get('icon'),
-                                                    type: category.get('iconType')
+                                                    type: category.get('iconType'),
+                                                    style: styles.iconStyle
                                                 }} />
                                         ))
                                     }

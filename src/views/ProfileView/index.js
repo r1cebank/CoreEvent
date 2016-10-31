@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import DialogBox from 'react-native-dialogbox';
@@ -7,6 +7,7 @@ import * as Progress from 'react-native-progress';
 import ActionSheet from 'react-native-actionsheet';
 import PopupDialog from 'react-native-popup-dialog';
 import ImagePicker from 'react-native-image-crop-picker';
+import LinearGradient from 'react-native-linear-gradient';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Button, List, ListItem, Icon } from 'react-native-elements';
@@ -18,6 +19,7 @@ import {
     Actions,
     Colors,
     API,
+    Icons,
     Storage,
     Components
 } from '../../global/globalIncludes';
@@ -28,7 +30,8 @@ const CANCEL_INDEX = 0;
 
 class ProfileView extends Component {
     static propTypes = {
-        locale: React.PropTypes.string
+        locale: React.PropTypes.string,
+        user: React.PropTypes.object
     }
     constructor(props) {
         super(props);
@@ -127,41 +130,78 @@ class ProfileView extends Component {
         return (
             <View style={styles.container}>
                 <Spinner visible={this.state.loading} />
-                <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 10, height: 100, width: 100}}>
-                        <Icon
-                            reverse
-                            size={10}
-                            name="mode-edit"
-                            containerStyle={{position: 'absolute', left: 0, zIndex: 1}}
-                            onPress={() => this.ActionSheet.show()}
-                            color={Colors.grey}
-                        />
-                        <Image
-                            style={{flexDirection: 'row', height: 80, width: 80, resizeMode: 'cover', borderRadius: 40, justifyContent:'center', alignItems:'center'}}
-                            source={{uri: API.Parse.User.current().get('avatar').url()}}
-                            indicator={Progress.Circle} />
+                <LinearGradient
+                    colors={[ Colors.saffron, Colors.infraRed ]}
+                    style={styles.avatarContainer}>
+                    <View style={styles.avatar}>
+                        {(() => {
+                            if (this.props.user.vip) {
+                                return (
+                                    <Icon
+                                        reverse
+                                        size={10}
+                                        name="stars"
+                                        iconStyle={{ fontSize: 15 }}
+                                        containerStyle={{
+                                            position: 'absolute',
+                                            left: 60,
+                                            top: 1,
+                                            zIndex: 1
+                                        }}
+                                        color={Colors.infraRed}
+                                    />
+                                );
+                            }
+                            return null;
+                        })()}
+                        <TouchableOpacity
+                            onPress={() => this.ActionSheet.show()}>
+                            <Image
+                                style={styles.avatarImage}
+                                source={{ uri: API.Parse.User.current().get('avatar').url() }}
+                                indicator={Progress.Circle} />
+                        </TouchableOpacity>
                     </View>
-                </View>
-                <List containerStyle={{ marginBottom: 20, borderColor: Colors.grey, marginTop: 0, marginBottom: 0, borderTopWidth: 0.5, borderBottomWidth: 0.5 }}>
+                    <View style={styles.nameStatContainer}>
+                        <Text style={styles.usernameText}>
+                            {API.Parse.User.current().get('username').toUpperCase()}
+                        </Text>
+                        <View style={styles.statContainer}>
+                            <Text style={styles.statText}>
+                                1 {Languages.t('attended', this.props.locale)}
+                            </Text>
+                            <Text style={styles.statText}>
+                                1 {Languages.t('hosted', this.props.locale)}
+                            </Text>
+                            <Text style={styles.statText}>
+                                {`${
+                                    API.Parse.User.current().get('exp')
+                                } ${Languages.t('experience', this.props.locale)}`}
+                            </Text>
+                        </View>
+                    </View>
+                </LinearGradient>
+                <List containerStyle={styles.listContainer}>
                     <ListItem
                         wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myEvents', this.props.locale)}
-                        titleStyle={{ color: Colors.grey, fontSize: 20, paddingLeft: 10 }}
-                        leftIcon={{ name: 'event', style: { color: Colors.grey, fontSize: 30 } }}
+                        titleStyle={styles.titleStyle}
+                        leftIcon={{ name: 'event', style: styles.iconStyle }}
                     />
                     <ListItem
                         wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myFavorite', this.props.locale)}
-                        titleStyle={{ color: Colors.grey, fontSize: 20, paddingLeft: 10 }}
-                        leftIcon={{ name: 'favorite', style: { color: Colors.grey, fontSize: 30 } }}
+                        titleStyle={styles.titleStyle}
+                        leftIcon={{ name: 'favorite', style: styles.iconStyle }}
                     />
                 </List>
-                <Button
-                    onPress={this.logout}
-                    backgroundColor={Colors.infraRed}
-                    buttonStyle={{ borderRadius: 40, marginTop: 20 }}
-                    title={Languages.t('logout', this.props.locale)} />
+                <View style={styles.buttonContainer}>
+                    <Button
+                        onPress={this.logout}
+                        backgroundColor={Colors.infraRed}
+                        buttonStyle={{ borderRadius: 40 }}
+                        title={Languages.t('logout', this.props.locale)} />
+                </View>
                 <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
                 <ActionSheet
                     ref={(o) => this.ActionSheet = o}
@@ -186,9 +226,14 @@ class ProfileView extends Component {
     }
 }
 
+ProfileView.defaultProps = {
+    user: {}
+};
+
 function select(store) {
     return {
-        locale: store.settings.locale
+        locale: store.settings.locale,
+        user: store.settings.user
     };
 }
 
