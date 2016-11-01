@@ -20,6 +20,16 @@ const scenes = Actions.create(
             navigationBarStyle={styles.navbarStyle}
             component={Views.SettingsView}
             initial={true} />
+        <Scene
+            key="languages"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.LanguagesView} />
     </Scene>
 );
 

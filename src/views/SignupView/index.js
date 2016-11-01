@@ -129,7 +129,7 @@ class SignupView extends Component {
                 <View style={styles.innerContainer}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>
-                            {Languages.t('register', this.props.locale)}
+                            {Languages.t('registerHeading', this.props.locale)}
                         </Text>
                     </View>
                     <View style={styles.inputContainer}>

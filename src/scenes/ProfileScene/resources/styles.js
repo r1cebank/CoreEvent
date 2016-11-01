@@ -8,7 +8,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0
     },
     titleStyle: {
-        color: Colors.grey
+        color: Colors.infraRed
+    },
+    leftButtonIconStyle: {
+        tintColor: Colors.infraRed
     }
 });
 

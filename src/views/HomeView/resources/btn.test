@@ -19,3 +19,24 @@
         );
     })}
 </ScrollView>
+
+{(() => {
+    if (this.props.config.attributes.show_carousel) {
+        return (
+            <Carousel
+                delay={10000}
+                style={styles.carousel}
+                autoplay>
+                {this.props.carousel.map((carouselImage, index) => {
+                    return (
+                        <Components.CarouselImage
+                            key={index}
+                            carouselImage={carouselImage}
+                            onPress={this.openCarousel} />
+                    );
+                })}
+            </Carousel>
+        );
+    }
+    return null;
+})()}

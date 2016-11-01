@@ -12,6 +12,12 @@ function reducer(state = {}, action) {
                 locale: action.locale
             };
         }
+        case ActionType.SELECT_TAB: {
+            return {
+                ...state,
+                selectedTab: action.selectedTab
+            };
+        }
         case ActionType.SET_ENV: {
             return {
                 ...state,
@@ -27,7 +33,8 @@ function reducer(state = {}, action) {
         case ActionType.LOGOUT_USER: {
             return {
                 ...state,
-                user: undefined
+                user: undefined,
+                selectedTab: 'hot'
             };
         }
         case ActionType.SET_PUSH_TOKEN: {

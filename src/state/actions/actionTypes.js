@@ -11,6 +11,7 @@ export const CONFIG_FETCHED = 'CONFIG_FETCHED';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const SET_PUSH_TOKEN = 'SET_PUSH_TOKEN';
+export const SELECT_TAB = 'SELECT_TAB';
 
 // data
 export const CAROUSEL_FETCHED = 'CAROUSEL_FETCHED';

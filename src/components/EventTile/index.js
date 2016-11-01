@@ -3,9 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import { Card, Icon, Button } from 'react-native-elements';
+import { Icon, Button } from 'react-native-elements';
 import { Col, Grid } from 'react-native-easy-grid';
 import { Text, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import dateFormat from 'dateformat';
 
 import { Colors, Components } from '../../global/globalIncludes';
@@ -14,10 +15,8 @@ import styles from './resources/styles';
 class EventTile extends Component {
     static propTypes = {
         eventTitle: React.PropTypes.string,
-        imageSource: React.PropTypes.any,
         simple: React.PropTypes.bool,
         onPress: React.PropTypes.func,
-        onPressSecondary: React.PropTypes.func,
         venueName: React.PropTypes.string,
         venueAddress: React.PropTypes.string,
         description: React.PropTypes.string,
@@ -26,40 +25,39 @@ class EventTile extends Component {
     }
     render() {
         return (
-            <View
-                onStartShouldSetResponder={() => true}
-                onResponderMove={(event) => {
-                    if (event.nativeEvent.force === 1) {
-                    }
-                }}>
-                <Card
-                    imageStyle={styles.imageStyle}
-                    containerStyle={styles.eventCard}
-                    title={this.props.eventTitle}
-                    titleStyle={{ fontWeight: 'bold' }}
-                    image={this.props.simple ? null : this.props.imageSource} >
+            <LinearGradient
+                colors={[ Colors.cyan, Colors.royalPurple ]}
+                style={styles.eventCard}>
+                <View>
+                    <Text style={{ marginBottom: 10, color: Colors.frontColor, backgroundColor: 'transparent', fontSize: 20, fontWeight: '700', textAlign:'center'}}>
+                        {this.props.eventTitle}
+                    </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                        <Icon name="schedule" size={20} color={Colors.grey} />
+                        <Icon name="schedule" size={20} color={Colors.frontColor} />
                         <View style={{ marginLeft: 10 }}>
-                            <Text style={{ fontWeight: 'bold' }}>
+                            <Text style={styles.timeVenueText}>
                                 {dateFormat(this.props.startTime, 'dddd, mmm dd yyyy')}
                             </Text>
-                            <Text>
+                            <Text style={styles.timeVenueSecondaryText}>
                                 {dateFormat(this.props.startTime, 'hh:MM TT')}
                             </Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                        <Icon name="location-on" size={20} color={Colors.grey} />
+                        <Icon name="location-on" size={20} color={Colors.frontColor} />
                         <View style={{ marginLeft: 10 }}>
-                            <Text style={{ fontWeight: 'bold' }}>{this.props.venueName}</Text>
-                            <Text>{this.props.venueAddress}</Text>
+                            <Text style={styles.timeVenueText}>
+                                {this.props.venueName}
+                            </Text>
+                            <Text style={styles.timeVenueSecondaryText}>
+                                {this.props.venueAddress}
+                            </Text>
                         </View>
                     </View>
                     {(() => {
                         if (this.props.simple) {
                             return (
-                                <Text style={{ marginBottom: 10 }}>
+                                <Text style={{ marginBottom: 10, backgroundColor: 'transparent', color: Colors.frontColor }}>
                                     {this.props.description.slice(0, 100)}...
                                 </Text>
                             );
@@ -75,24 +73,24 @@ class EventTile extends Component {
                             <Button
                                 small
                                 icon={{ name: 'add' }}
-                                backgroundColor={Colors.primary}
+                                backgroundColor="transparent"
                                 fontFamily="NotoSans-Bold"
                                 buttonStyle={styles.eventCardCTA}
                                 onPress={this.props.onPress}
+                                textStyle={{ textAlign: 'center' }}
                                 title={this.props.ctaTitle} />
                         </Col>
                         <Col size={1}>
                             <Button
                                 small
                                 icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
-                                backgroundColor={Colors.secondary}
+                                backgroundColor="transparent"
                                 fontFamily="NotoSans-Bold"
-                                onPress={this.props.onPressSecondary}
                                 buttonStyle={styles.eventCardSecondary} />
                         </Col>
                     </Grid>
-                </Card>
-            </View>
+                </View>
+            </LinearGradient>
         );
     }
 }

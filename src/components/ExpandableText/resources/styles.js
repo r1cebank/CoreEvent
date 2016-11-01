@@ -4,7 +4,8 @@ import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     linkStyle: {
-        color: Colors.grey,
+        backgroundColor: 'transparent',
+        color: Colors.frontColor,
         textDecorationLine: 'underline'
     }
 });

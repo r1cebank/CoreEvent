@@ -4,19 +4,22 @@ import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     eventCard: {
-        alignSelf: 'stretch',
         flex: 1,
         borderRadius: 20,
-        borderWidth: 0.5,
-        margin: 0,
-        shadowRadius: 0,
-        marginBottom: 10,
-        borderColor: Colors.secondary
+        padding: 10
+        // borderColor: Colors.secondary
     },
     imageStyle: {
         borderRadius: 20
     },
+    timeVenueText: {
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+        color: Colors.frontColor
+    },
     eventCardCTA: {
+        borderWidth: 1,
+        borderColor: Colors.frontColor,
         borderRadius: 40,
         marginLeft: 0,
         marginRight: 10,
@@ -26,7 +29,13 @@ const styles = StyleSheet.create({
     etcIconStyle: {
         marginRight: 0
     },
+    timeVenueSecondaryText: {
+        color: Colors.frontColor,
+        backgroundColor: 'transparent'
+    },
     eventCardSecondary: {
+        borderWidth: 1,
+        borderColor: Colors.frontColor,
         borderRadius: 40,
         marginLeft: 0,
         marginRight: 0,

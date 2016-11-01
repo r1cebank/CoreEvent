@@ -9,58 +9,52 @@ import styles from './resources/styles';
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
 const scenes = Actions.create(
-    <Scene key="modal" component={Modal}>
+    <Scene
+        key="homeRoot">
         <Scene
-            key="homeRoot">
-            <Scene
-                key="home"
-                sceneStyle={{
-                    paddingTop: Navigator
-                    .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
-                }}
-                titleStyle={styles.titleStyle}
-                leftButtonIconStyle={styles.leftButtonIconStyle}
-                navigationBarStyle={styles.navbarStyle}
-                component={Views.HomeView}
-                renderRightButton={() =>
-                    <Icon
-                        color={Colors.grey}
-                        onPress={Actions.qrScanner}
-                        name="crop-free" />
-                }
-                renderLeftButton={() =>
-                    <Icon
-                        color={Colors.grey}
-                        onPress={() => Actions.error('Error message')}
-                        name="add" />
-                }
-                initial={true} />
-            <Scene
-                key="carousel"
-                sceneStyle={{
-                    paddingTop: Navigator
-                    .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
-                }}
-                titleStyle={styles.titleStyle}
-                leftButtonIconStyle={styles.leftButtonIconStyle}
-                navigationBarStyle={styles.navbarStyle}
-                component={Views.CarouselView} />
-            <Scene
-                key="qrScanner"
-                direction="vertical"
-                sceneStyle={{
-                    paddingTop: Navigator
-                    .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
-                }}
-                title="QR Scanner"
-                titleStyle={styles.titleStyle}
-                leftButtonIconStyle={styles.leftButtonIconStyle}
-                navigationBarStyle={styles.navbarStyle}
-                component={Views.QRScannerView} />
-        </Scene>
+            key="home"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.HomeView}
+            renderRightButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.qrScanner}
+                    name="crop-free" />
+            }
+            renderLeftButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={() => Actions.error('Error message')}
+                    name="add" />
+            }
+            initial={true} />
         <Scene
-            key="error"
-            component={Views.PopupView} />
+            key="carousel"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.CarouselView} />
+        <Scene
+            key="qrScanner"
+            direction="vertical"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.QRScannerView} />
     </Scene>
 );
 

@@ -4,6 +4,7 @@ export const InitialAppState = {
     settings: {
         locale: I18n.locale,
         env: 'staging',
+        selectedTab: 'hot',
         inDebug: false
     },
     data: {

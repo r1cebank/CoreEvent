@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Actions as RouterActions } from 'react-native-router-flux';
-import { Button } from 'react-native-elements';
 import DialogBox from 'react-native-dialogbox';
+import { Actions as RouterActions } from 'react-native-router-flux';
+import { List, ListItem, Button } from 'react-native-elements';
 
-import { Languages, Store, Actions } from '../../global/globalIncludes';
+
+import { Languages, Store, Colors, Actions } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -30,9 +31,23 @@ class SettingsView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button
-                    onPress={this.logout}
-                    title="Logout" />
+                <List containerStyle={styles.listContainer}>
+                    <ListItem
+                        wrapperStyle={{ padding: 5 }}
+                        title={Languages.t('language', this.props.locale)}
+                        titleStyle={styles.titleStyle}
+                        chevronColor={Colors.infraRed}
+                        onPress={RouterActions.languages}
+                        leftIcon={{ name: 'translate', style: styles.iconStyle }}
+                    />
+                </List>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        onPress={this.logout}
+                        backgroundColor={Colors.infraRed}
+                        buttonStyle={{ borderRadius: 40 }}
+                        title={Languages.t('logout', this.props.locale)} />
+                </View>
                 <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
             </View>
         );

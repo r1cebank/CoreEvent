@@ -17,4 +17,4 @@ export const cyan = '#05b2dc';
 export const infraRed = '#EF476F';
 export const japaneseIndigo = '#264653';
 export const green = '#00A878';
-export const positive = '';
+export const royalPurple = '#775AAD';

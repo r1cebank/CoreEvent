@@ -11,29 +11,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch'
     },
-    carousel: {
-        height: 100
-    },
-    buttonDrawer: {
-        backgroundColor: Colors.frontColor,
-        maxHeight: 70
-    },
-    buttonDrawerContainer: {
-        justifyContent: 'center'
-    },
     yourEvent: {
         paddingLeft: 15,
         backgroundColor: 'transparent'
     },
-    yourEventContainer: {
-        justifyContent: 'center'
-    },
     cardTitle: {
-        textAlign: 'left'
-    },
-    myEventCardTitle: {
-        marginLeft: 15,
-        marginRight: 15,
         textAlign: 'left'
     },
     cardContainer: {
@@ -54,15 +36,11 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
         shadowColor: 'transparent'
     },
-    dividerStyle: {
-        height: 0.5,
-        backgroundColor: Colors.secondary
-    },
-    myEventDividerStyle: {
-        marginRight: 15,
-        marginLeft: 15,
-        height: 0.5,
-        backgroundColor: Colors.secondary
+    header: {
+        padding: 20,
+        fontSize: 15,
+        fontWeight: '700',
+        color: Colors.infraRed
     },
     circle: {
         width: 30,
@@ -81,13 +59,14 @@ const styles = StyleSheet.create({
             { scaleX: 2 }
         ]
     },
+    recommendedContainer: {
+        paddingLeft: 15,
+        paddingRight: 15
+    },
     clouds: {
         height: 20,
         width: 100,
         resizeMode: 'contain'
-    },
-    recommendedContainer: {
-        flexDirection: 'column'
     },
     eventCard: {
         flex: 1,

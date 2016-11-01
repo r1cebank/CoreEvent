@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.backgroundColor
     },
     titleSelected: {
-        color: Colors.primary,
+        color: Colors.infraRed,
         marginTop: -2,
         marginBottom: 7,
         opacity: 1

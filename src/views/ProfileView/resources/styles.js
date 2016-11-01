@@ -19,12 +19,8 @@ const styles = StyleSheet.create({
         color: Colors.infraRed,
         fontSize: 30
     },
-    buttonContainer: {
-        flex: 2,
-        justifyContent: 'center'
-    },
     listContainer: {
-        flex: 4,
+        flex: 6,
         borderColor:
         Colors.grey,
         marginTop: 0,

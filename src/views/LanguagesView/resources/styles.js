@@ -7,13 +7,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.backgroundColor
     },
-    scrollView: {
-        flex: 1,
-        alignSelf: 'stretch'
-    },
-    wrapper: {
-        padding: 5
-    },
     titleStyle: {
         color: Colors.grey,
         fontSize: 20,
@@ -24,7 +17,7 @@ const styles = StyleSheet.create({
         fontSize: 30
     },
     listContainer: {
-        flex: 1,
+        flex: 4,
         borderColor:
         Colors.grey,
         marginTop: 0,

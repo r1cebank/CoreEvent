@@ -26,6 +26,7 @@
         "agreeTerms": "I have read and agree to the terms of use",
         "agreePrivacy": "I have read and agree to the privacy policy",
         "register": "Register",
+        "registerHeading": "Register",
         "back": "Back",
         "warning": "Warning",
         "passwordLengthNotice": "Password needs to be longer than 6",
@@ -47,7 +48,9 @@
         "attended": "Attended",
         "hosted": "Hosted",
         "experience": "Experience",
-        "attending": "Attending"
+        "attending": "Attending",
+        "trending": "Trending",
+        "language": "Language"
     },
     "ja": {
         "hot": "おすすめ",
@@ -70,6 +73,7 @@
         "cannotGetEvent": "イベントが見つかりません。",
         "login": "ログイン",
         "signup": "新規登録",
+        "registerHeading": "新規登録",
         "username": "ユーザーID",
         "password": "パスワード",
         "confirm": "パスワード再入力",
@@ -97,7 +101,8 @@
         "attended": "参加完了",
         "hosted": "主催",
         "experience": "経験値",
-        "attending": "参加予定"
+        "attending": "参加予定",
+        "language": "言語設定"
     },
     "zh": {
         "hot": "热门",
@@ -120,6 +125,7 @@
         "cannotGetEvent": "未找到此活动",
         "login": "登陆",
         "signup": "注册",
+        "registerHeading": "注册",
         "username": "用户名",
         "password": "密码",
         "confirm": "确认密码",
@@ -147,6 +153,8 @@
         "attended": "参加",
         "hosted": "主办",
         "experience": "经验",
-        "attending": "参加"
+        "attending": "参加",
+        "trending": "热门",
+        "language": "语言"
     }
 }

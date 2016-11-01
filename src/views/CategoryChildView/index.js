@@ -4,7 +4,7 @@ import { View, ScrollView, InteractionManager } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { List, ListItem } from 'react-native-elements';
 
-import { Storage, Languages, Views } from '../../global/globalIncludes';
+import { Storage, Languages, Views, Colors } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -41,6 +41,7 @@ class CategoryChildView extends Component {
                                         this.state.category.map((category, index) => (
                                             <ListItem
                                                 key={index}
+                                                chevronColor={Colors.infraRed}
                                                 wrapperStyle={styles.wrapper}
                                                 title={Languages.f(category.get('name'),
                                                     this.props.locale)}

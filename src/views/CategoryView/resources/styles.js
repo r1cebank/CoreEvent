@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         Colors.grey,
         marginTop: 0,
         marginBottom: 0,
-        borderTopWidth: 0.5,
-        borderBottomWidth: 0.5
+        borderTopWidth: 0,
+        borderBottomWidth: 0
     }
 });
 

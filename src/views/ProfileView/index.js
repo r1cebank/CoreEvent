@@ -1,7 +1,6 @@
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import DialogBox from 'react-native-dialogbox';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import ActionSheet from 'react-native-actionsheet';
@@ -48,17 +47,6 @@ class ProfileView extends Component {
             notice
         });
         this.popupDialog.openDialog();
-    }
-    logout = () => {
-        this.dialogbox.confirm({
-            content: Languages.t('logoutConfirm', this.props.locale),
-            ok: {
-                callback: () => {
-                    Store.appStore.dispatch(Actions.Settings
-                        .logoutUser());
-                }
-            }
-        });
     }
     onActionSelect = async (index) => {
         if (index > 0) {
@@ -129,6 +117,9 @@ class ProfileView extends Component {
         ];
         return (
             <View style={styles.container}>
+                <StatusBar
+                    backgroundColor="blue"
+                    barStyle="light-content" />
                 <Spinner visible={this.state.loading} />
                 <LinearGradient
                     colors={[ Colors.saffron, Colors.infraRed ]}
@@ -158,6 +149,7 @@ class ProfileView extends Component {
                             onPress={() => this.ActionSheet.show()}>
                             <Image
                                 style={styles.avatarImage}
+                                indicatorProps={{ color: Colors.infraRed }}
                                 source={{ uri: API.Parse.User.current().get('avatar').url() }}
                                 indicator={Progress.Circle} />
                         </TouchableOpacity>
@@ -201,14 +193,6 @@ class ProfileView extends Component {
                         leftIcon={{ name: 'favorite', style: styles.iconStyle }}
                     />
                 </List>
-                <View style={styles.buttonContainer}>
-                    <Button
-                        onPress={this.logout}
-                        backgroundColor={Colors.infraRed}
-                        buttonStyle={{ borderRadius: 40 }}
-                        title={Languages.t('logout', this.props.locale)} />
-                </View>
-                <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
                 <ActionSheet
                     ref={(o) => this.ActionSheet = o}
                     title={Languages.t('selectAvatar', this.props.locale)}

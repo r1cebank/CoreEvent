@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     eventsContainer: {
+        paddingBottom: 10,
         flexDirection: 'column'
     },
     cardContainer: {

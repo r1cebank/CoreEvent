@@ -21,6 +21,7 @@ const views = {
     get LoginView() { return require('../../views/LoginView'); },
     get SettingsView() { return require('../../views/SettingsView'); },
     get ProfileView() { return require('../../views/ProfileView'); },
+    get LanguagesView() { return require('../../views/LanguagesView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

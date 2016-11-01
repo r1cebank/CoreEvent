@@ -22,17 +22,13 @@ class App extends Component {
         location: React.PropTypes.object,
         customer: React.PropTypes.object,
         user: React.PropTypes.object,
+        changeTab: React.PropTypes.func,
         loading: React.PropTypes.bool,
         locale: React.PropTypes.string,
+        selectedTab: React.PropTypes.string,
         inDebug: React.PropTypes.bool,
         hydrationComplete: React.PropTypes.bool
     };
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedTab: 'hot'
-        };
-    }
     async componentWillMount() {
         // Fetch data
         // Store.appStore.dispatch(Actions.Settings
@@ -56,7 +52,7 @@ class App extends Component {
         });
     }
     render() {
-        const { selectedTab } = this.state;
+        const { selectedTab } = this.props;
         if (!this.props.hydrationComplete) {
             return null;
         }
@@ -84,7 +80,7 @@ class App extends Component {
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.grey}
+                                    color={Colors.saffron}
                                     name="whatshot"
                                     size={26} />
                             );
@@ -92,12 +88,12 @@ class App extends Component {
                         renderSelectedIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.primary}
+                                    color={Colors.infraRed}
                                     name="whatshot"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('hot')}>
+                        onPress={() => this.props.changeTab('hot')}>
                         <Scenes.HomeScene />
                     </Tab>
                     <Tab
@@ -109,7 +105,7 @@ class App extends Component {
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.grey}
+                                    color={Colors.saffron}
                                     name="list"
                                     size={26} />
                             );
@@ -117,12 +113,12 @@ class App extends Component {
                         renderSelectedIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.primary}
+                                    color={Colors.infraRed}
                                     name="list"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('cat')}>
+                        onPress={() => this.props.changeTab('cat')}>
                         <Scenes.CategoryScene />
                     </Tab>
                     <Tab
@@ -134,7 +130,7 @@ class App extends Component {
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.grey}
+                                    color={Colors.saffron}
                                     name="person"
                                     size={26} />
                             );
@@ -142,12 +138,12 @@ class App extends Component {
                         renderSelectedIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.primary}
+                                    color={Colors.infraRed}
                                     name="person"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('profile')}>
+                        onPress={() => this.props.changeTab('profile')}>
                         <Scenes.ProfileScene />
                     </Tab>
                     <Tab
@@ -159,7 +155,7 @@ class App extends Component {
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.grey}
+                                    color={Colors.saffron}
                                     name="chat"
                                     size={26} />
                             );
@@ -167,12 +163,12 @@ class App extends Component {
                         renderSelectedIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.primary}
+                                    color={Colors.infraRed}
                                     name="chat"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('messages')}>
+                        onPress={() => this.props.changeTab('messages')}>
                         <Views.EmptyView />
                     </Tab>
                     <Tab
@@ -184,7 +180,7 @@ class App extends Component {
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.grey}
+                                    color={Colors.saffron}
                                     name="settings"
                                     size={26} />
                             );
@@ -192,12 +188,12 @@ class App extends Component {
                         renderSelectedIcon={() => {
                             return (
                                 <Icons.MaterialIcons
-                                    color={Colors.primary}
+                                    color={Colors.infraRed}
                                     name="settings"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.changeTab('settings')}>
+                        onPress={() => this.props.changeTab('settings')}>
                         <Scenes.SettingsScene />
                     </Tab>
                 </Tabs>
@@ -206,8 +202,15 @@ class App extends Component {
     }
 }
 
+function actions(dispatch) {
+    return {
+        changeTab: (tab) => dispatch(Actions.Settings.selectTab(tab))
+    };
+}
+
 function select(store) {
     return {
+        selectedTab: store.settings.selectedTab,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
         user: store.settings.user,
@@ -216,4 +219,4 @@ function select(store) {
     };
 }
 
-module.exports = connect(select)(App);
+module.exports = connect(select, actions)(App);

@@ -11,6 +11,12 @@ export function setLanguage(locale) {
         locale
     };
 }
+export function selectTab(selectedTab) {
+    return {
+        type: ActionType.SELECT_TAB,
+        selectedTab
+    };
+}
 export function updateConfig(config) {
     return {
         type: ActionType.CONFIG_FETCHED,

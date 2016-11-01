@@ -1,22 +1,22 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Col, Grid, Row } from 'react-native-easy-grid';
 import { Card, Icon } from 'react-native-elements';
 import Carousel from 'react-native-looped-carousel';
-import ActionSheet from 'react-native-actionsheet';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
 import {
     View,
+    Text,
     ScrollView,
     InteractionManager,
     RefreshControl
 } from 'react-native';
 
-import { Colors, Assets, Languages, Components } from '../../global/globalIncludes';
+import { Colors, Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
-import actionSheets from './resources/actionsheets';
 // import icons from './resources/icons';
 
 
@@ -40,9 +40,6 @@ class HomeView extends Component {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
     }
     async componentWillReceiveProps(nextProps) {
-        if (nextProps.locale !== this.props.locale) {
-            Actions.refresh({ title: Languages.t('whatshot', nextProps.locale) });
-        }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData && nextProps.modalLocationData) {
                 this.setState({
@@ -86,31 +83,10 @@ class HomeView extends Component {
                       />
                     }>
                     <View style={styles.container}>
-                        {(() => {
-                            if (this.props.config.attributes.show_carousel) {
-                                return (
-                                    <Carousel
-                                        delay={10000}
-                                        style={styles.carousel}
-                                        autoplay>
-                                        {this.props.carousel.map((carouselImage, index) => {
-                                            return (
-                                                <Components.CarouselImage
-                                                    key={index}
-                                                    carouselImage={carouselImage}
-                                                    onPress={this.openCarousel} />
-                                            );
-                                        })}
-                                    </Carousel>
-                                );
-                            }
-                            return null;
-                        })()}
-                        <Card
-                            title={Languages.t('myEvents', this.props.locale)}
-                            dividerStyle={styles.myEventDividerStyle}
-                            titleStyle={styles.myEventCardTitle}
-                            containerStyle={styles.myCardContainer}>
+                        <View>
+                            <Text style={styles.header}>
+                                {Languages.t('myEvents', this.props.locale)}
+                            </Text>
                             <ScrollView
                                 ref={(c) => { this.yourEvent = c; }}
                                 horizontal={true}
@@ -123,7 +99,6 @@ class HomeView extends Component {
                                 <View style={{ flexDirection: 'row' }}>
                                     <Components.MyEventTile
                                         eventTitle="编程爱好者"
-                                        imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/7dbe40a8-bed7-4917-beb1-e6f5c668207e_150908133651401.jpg' }}
                                         venueName="Room H19"
                                         status="joined"
                                         locale={this.props.locale}
@@ -134,7 +109,6 @@ class HomeView extends Component {
                                         startTime={new Date()} />
                                     <Components.MyEventTile
                                         eventTitle="Test Event 2"
-                                        imageSource={Assets.placeholder}
                                         venueName="Room H19"
                                         status="joined"
                                         locale={this.props.locale}
@@ -145,26 +119,31 @@ class HomeView extends Component {
                                         startTime={new Date()} />
                                 </View>
                             </ScrollView>
-                        </Card>
-                        <Card
-                            title={Languages.t('recommended', this.props.locale)}
-                            titleStyle={styles.cardTitle}
-                            dividerStyle={styles.dividerStyle}
-                            containerStyle={styles.cardContainer}>
+                        </View>
+                        <View>
+                            <Text style={styles.header}>
+                                {Languages.t('trending', this.props.locale)}
+                            </Text>
                             <View style={styles.recommendedContainer}>
-                                <Components.EventTile
-                                    eventTitle="Code club"
-                                    imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
-                                    venueName="Room H18"
-                                    venueAddress="7131 Stride Ave"
-                                    onPressSecondary={() => {
-                                        this.eventAction();
-                                    }}
-                                    description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
-                                    ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                    startTime={new Date()} />
+                                <Grid>
+                                    <Row>
+                                        <Col>
+                                            <Components.EventTile
+                                                eventTitle="Code club"
+                                                imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
+                                                venueName="Room H18"
+                                                venueAddress="7131 Stride Ave"
+                                                onPressSecondary={() => {
+                                                    this.eventAction();
+                                                }}
+                                                description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
+                                                ctaTitle={Languages.t('addToMe', this.props.locale)}
+                                                startTime={new Date()} />
+                                        </Col>
+                                    </Row>
+                                </Grid>
                             </View>
-                        </Card>
+                        </View>
                     </View>
                 </ScrollView>
                 <Modal style={styles.eventModal} position="bottom" ref={(c) => this.eventModal = c}>
@@ -191,18 +170,6 @@ class HomeView extends Component {
                         return null;
                     })()}
                 </Modal>
-                <ActionSheet
-                    ref={(o) => this.eventActionSheet = o}
-                    options={actionSheets.event.buttons}
-                    cancelButtonIndex={actionSheets.event.CANCEL_INDEX}
-                    destructiveButtonIndex={actionSheets.event.DESTRUCTIVE_INDEX}
-                />
-                <ActionSheet
-                    ref={(o) => this.editActionSheet = o}
-                    options={actionSheets.edit.buttons}
-                    cancelButtonIndex={actionSheets.edit.CANCEL_INDEX}
-                    destructiveButtonIndex={actionSheets.edit.DESTRUCTIVE_INDEX}
-                />
             </View>
         );
     }

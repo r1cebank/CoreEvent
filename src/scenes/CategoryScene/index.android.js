@@ -10,6 +10,7 @@ const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
 const scenes = Actions.create(
     <Scene
+        hideNavBar={true}
         key="categoryRoot">
         <Scene
             key="category"

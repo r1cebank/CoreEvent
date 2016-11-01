@@ -28,6 +28,7 @@ class CategoryView extends Component {
                             this.props.category.map((category, index) => (
                                 <ListItem
                                     key={index}
+                                    chevronColor={Colors.infraRed}
                                     wrapperStyle={styles.wrapper}
                                     title={Languages.f(category.name, this.props.locale)}
                                     onPress={() => {

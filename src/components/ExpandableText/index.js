@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 
+import { Colors } from '../../global/globalIncludes';
+
 import styles from './resources/styles';
 
 class ExpandableText extends Component {
@@ -31,13 +33,21 @@ class ExpandableText extends Component {
                 {(() => {
                     if (this.state.viewMore) {
                         return (
-                            <Text>
+                            <Text
+                                style={{
+                                    backgroundColor: 'transparent',
+                                    color: Colors.frontColor
+                                }}>
                                 {this.state.text}
                             </Text>
                         );
                     }
                     return (
-                        <Text>
+                        <Text
+                            style={{
+                                backgroundColor: 'transparent',
+                                color: Colors.frontColor
+                            }}>
                             {this.state.text.slice(0, this.state.maximumCount)}...
                         </Text>
                     );
