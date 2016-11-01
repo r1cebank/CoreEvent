@@ -50,7 +50,9 @@
         "experience": "Experience",
         "attending": "Attending",
         "trending": "Trending",
-        "language": "Language"
+        "language": "Language",
+        "newEvent": "Host New Event",
+        "host": "Host"
     },
     "ja": {
         "hot": "おすすめ",
@@ -102,7 +104,8 @@
         "hosted": "主催",
         "experience": "経験値",
         "attending": "参加予定",
-        "language": "言語設定"
+        "language": "言語設定",
+        "newEvent": "New Event"
     },
     "zh": {
         "hot": "热门",
@@ -155,6 +158,8 @@
         "experience": "经验",
         "attending": "参加",
         "trending": "热门",
-        "language": "语言"
+        "language": "语言",
+        "newEvent": "主办新活动",
+        "host": "主办"
     }
 }

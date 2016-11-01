@@ -30,7 +30,7 @@ const scenes = Actions.create(
             renderLeftButton={() =>
                 <Icon
                     color={Colors.infraRed}
-                    onPress={() => Actions.error('Error message')}
+                    onPress={Actions.newEvent}
                     name="add" />
             }
             initial={true} />
@@ -51,10 +51,23 @@ const scenes = Actions.create(
                 paddingTop: Navigator
                 .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
             }}
+            renderBackButton={() => null}
             titleStyle={styles.titleStyle}
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.QRScannerView} />
+        <Scene
+            key="newEvent"
+            direction="vertical"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            renderBackButton={() => null}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.NewEventView} />
     </Scene>
 );
 

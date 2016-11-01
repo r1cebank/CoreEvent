@@ -22,6 +22,7 @@ const views = {
     get SettingsView() { return require('../../views/SettingsView'); },
     get ProfileView() { return require('../../views/ProfileView'); },
     get LanguagesView() { return require('../../views/LanguagesView'); },
+    get NewEventView() { return require('../../views/NewEventView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 
