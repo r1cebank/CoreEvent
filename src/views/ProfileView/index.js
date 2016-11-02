@@ -166,9 +166,7 @@ class ProfileView extends Component {
                                 1 {Languages.t('hosted', this.props.locale)}
                             </Text>
                             <Text style={styles.statText}>
-                                {`${
-                                    API.Parse.User.current().get('exp')
-                                } ${Languages.t('experience', this.props.locale)}`}
+                                1 ${Languages.t('experience', this.props.locale)}
                             </Text>
                         </View>
                     </View>

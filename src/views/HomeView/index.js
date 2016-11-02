@@ -182,7 +182,7 @@ class HomeView extends Component {
                 style={styles.container}
                 isRefreshing={this.state.isRefreshing}
                 onRefresh={this.onRefresh}
-                PTRbackgroundColor="#ebebe6"
+                PTRbackgroundColor="#B4E4ED"
                 contentBackgroundColor={Colors.backgroundColor}
                 contentComponent={this.renderContent()}>
                 <PullToRefresh.ScrollAnimation
@@ -207,7 +207,7 @@ class HomeView extends Component {
                     componentType="View"
                     xValues={{ from: 0 }}
                     yValues={{ from: 10, to: 90 }}
-                    styleProps={{ width: 480, height: 200, backgroundColor: '#cccdc8' }}
+                    styleProps={{ width: 480, height: 200, backgroundColor: '#FFFFFF' }}
                     occurrence="BEFORE_REFRESH"
                     direction="MOVE_DOWN"
                     shouldHideDuringRefresh={{ toXValue: 0, toYValue: 120 }}

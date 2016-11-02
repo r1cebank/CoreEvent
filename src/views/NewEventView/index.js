@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import { Button, FormLabel, FormInput, ListItem } from 'react-native-elements';
-import CalendarStrip from 'react-native-calendar-strip';
-import { Isao, Hoshi } from 'react-native-textinput-effects';
+import { Button, ListItem } from 'react-native-elements';
+import { Hoshi } from 'react-native-textinput-effects';
 
 import styles from './resources/styles';
 import { Colors, Languages, Icons } from '../../global/globalIncludes';
