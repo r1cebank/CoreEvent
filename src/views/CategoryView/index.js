@@ -13,7 +13,7 @@ class CategoryView extends Component {
         locale: React.PropTypes.string
     }
     componentWillMount() {
-        Actions.refresh({ title: Languages.t('categories', this.props.locale) });
+        Actions.refresh({ title: Languages.t('interestsLC', this.props.locale) });
     }
     render() {
         return (

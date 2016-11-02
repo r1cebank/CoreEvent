@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     headerContainer: {
-        flex: 2,
+        flex: 3,
         flexDirection: 'column',
         justifyContent: 'center',
         alignSelf: 'stretch',

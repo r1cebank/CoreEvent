@@ -101,12 +101,12 @@ class App extends Component {
                         tabStyle={selectedTab !== 'cat' && styles.tabNotSelected}
                         selected={selectedTab === 'cat'}
                         selectedTitleStyle={styles.titleSelected}
-                        title={Languages.t('category', this.props.locale)}
+                        title={Languages.t('interests', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.saffron}
-                                    name="list"
+                                    name="star"
                                     size={26} />
                             );
                         }}
@@ -114,7 +114,7 @@ class App extends Component {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.infraRed}
-                                    name="list"
+                                    name="star"
                                     size={26} />
                             );
                         }}

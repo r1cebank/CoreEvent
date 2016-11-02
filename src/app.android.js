@@ -24,8 +24,8 @@ const list = [
         icon: 'whatshot'
     },
     {
-        title: 'category',
-        icon: 'list'
+        title: 'interestsLC',
+        icon: 'star'
     },
     {
         title: 'profile',

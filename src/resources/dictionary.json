@@ -5,6 +5,8 @@
         "profile": "PROFILE",
         "profileLC": "Profile",
         "message": "MESSAGE",
+        "interests": "INTERESTS",
+        "interestsLC": "Interests",
         "settings": "SETTINGS",
         "settingsLC": "Settings",
         "categories": "Categories",
@@ -51,13 +53,16 @@
         "attending": "Attending",
         "trending": "Trending",
         "language": "Language",
-        "newEvent": "Host New Event",
-        "host": "Host"
+        "newEvent": "Start a new event",
+        "host": "Host",
+        "start": "Start"
     },
     "ja": {
         "hot": "おすすめ",
         "category": "カテゴリー",
         "profile": "プロフィール",
+        "interests": "INTERESTS",
+        "interestsLC": "Interests",
         "profileLC": "プロフィール",
         "message": "通知",
         "settings": "設定",
@@ -105,7 +110,9 @@
         "experience": "経験値",
         "attending": "参加予定",
         "language": "言語設定",
-        "newEvent": "New Event"
+        "newEvent": "Start a new event",
+        "host": "Host",
+        "start": "Start"
     },
     "zh": {
         "hot": "热门",
@@ -113,6 +120,8 @@
         "profile": "我",
         "profileLC": "我",
         "message": "信息",
+        "interests": "兴趣",
+        "interestsLC": "兴趣",
         "settings": "设置",
         "settingsLC": "设置",
         "categories": "分类",
@@ -160,6 +169,7 @@
         "trending": "热门",
         "language": "语言",
         "newEvent": "主办新活动",
-        "host": "主办"
+        "host": "主办",
+        "start": "创建"
     }
 }
