@@ -16,8 +16,8 @@ const language = {
         });
     },
     f: (obj, locale) => {
-        if (obj[locale]) {
-            return obj[locale];
+        if (obj[locale.split('-')[0]]) {
+            return obj[locale.split('-')[0]];
         }
         return obj.en;
     }

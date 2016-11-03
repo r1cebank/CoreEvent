@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, ScrollView, InteractionManager } from 'react-native';
+import {
+    View,
+    ScrollView,
+    InteractionManager,
+    Text,
+    TouchableOpacity
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { List, ListItem } from 'react-native-elements';
 
 import { Storage, Languages, Views, Colors } from '../../global/globalIncludes';
 
@@ -33,36 +38,30 @@ class CategoryChildView extends Component {
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     style={styles.scrollView}>
-                    {(() => {
-                        if (this.state.category.length) {
-                            return (
-                                <List containerStyle={styles.listContainer}>
-                                    {
-                                        this.state.category.map((category, index) => (
-                                            <ListItem
-                                                key={index}
-                                                chevronColor={Colors.infraRed}
-                                                wrapperStyle={styles.wrapper}
-                                                title={Languages.f(category.get('name'),
-                                                    this.props.locale)}
-                                                onPress={() => {
-                                                    InteractionManager.runAfterInteractions(() => {
-                                                        Actions.eventListView({ category });
-                                                    });
-                                                }}
-                                                titleStyle={styles.titleStyle}
-                                                leftIcon={{
-                                                    name: category.get('icon'),
-                                                    type: category.get('iconType'),
-                                                    style: styles.iconStyle
-                                                }} />
-                                        ))
-                                    }
-                                </List>
-                            );
-                        }
-                        return null;
-                    })()}
+                    <View style={styles.list}>
+                        {(() => {
+                            return this.state.category.map((rowData, index) => {
+                                return (
+                                    <TouchableOpacity
+                                        key={index}
+                                        style={[
+                                            rowData % 2 ? styles.rightItem : styles.leftItem,
+                                            styles.categoryItem,
+                                            { backgroundColor: rowData.get('color') }
+                                        ]}
+                                        onPress={() => {
+                                            InteractionManager.runAfterInteractions(() => {
+                                                Actions.eventListView({ category: rowData });
+                                            });
+                                        }}>
+                                        <Text style={styles.categoryItemText}>
+                                            {Languages.f(rowData.get('name'), this.props.locale)}
+                                        </Text>
+                                    </TouchableOpacity>
+                                );
+                            });
+                        })()}
+                    </View>
                 </ScrollView>
             </View>
         );

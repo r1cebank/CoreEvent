@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import { Colors, Dimensions } from '../../../global/globalIncludes';
+import { Colors } from '../../../global/globalIncludes';
+
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -11,26 +13,38 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch'
     },
-    wrapper: {
-        padding: 5
+    list: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
-    titleStyle: {
-        color: Colors.grey,
-        fontSize: 20,
-        paddingLeft: 10
+    categoryItemText: {
+        backgroundColor: 'transparent',
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 20
     },
-    iconStyle: {
-        color: Colors.infraRed,
-        fontSize: 30
+    leftItem: {
+        marginTop: 5,
+        marginLeft: 10,
+        marginRight: 5,
+        marginBottom: 5
     },
-    listContainer: {
-        flex: 1,
-        borderColor:
-        Colors.grey,
-        marginTop: 0,
-        marginBottom: 0,
-        borderTopWidth: 0,
-        borderBottomWidth: 0
+    rightItem: {
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 10,
+        marginBottom: 5
+    },
+    categoryItem: {
+        width: (width / 2) - 30,
+        padding: 10,
+        margin: 10,
+        height: 100,
+        borderRadius: 20,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
