@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import Image from 'react-native-image-progress';
@@ -117,9 +117,6 @@ class ProfileView extends Component {
         ];
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor="blue"
-                    barStyle="light-content" />
                 <Spinner visible={this.state.loading} />
                 <LinearGradient
                     colors={[ Colors.saffron, Colors.infraRed ]}
@@ -166,7 +163,7 @@ class ProfileView extends Component {
                                 1 {Languages.t('hosted', this.props.locale)}
                             </Text>
                             <Text style={styles.statText}>
-                                1 ${Languages.t('experience', this.props.locale)}
+                                1 {Languages.t('experience', this.props.locale)}
                             </Text>
                         </View>
                     </View>

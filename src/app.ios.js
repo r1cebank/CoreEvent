@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-native-elements';
@@ -68,6 +68,9 @@ class App extends Component {
                     }
                     return null;
                 })()}
+                <StatusBar
+                    backgroundColor="blue"
+                    barStyle="default" />
                 <Tabs
                     hidesTabTouch
                     tabBarStyle={styles.tabBarStyle}>
