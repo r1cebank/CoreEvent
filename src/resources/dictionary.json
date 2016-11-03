@@ -55,7 +55,13 @@
         "language": "Language",
         "newEvent": "Start a new event",
         "host": "Host",
-        "start": "Start"
+        "start": "Start",
+        "newEventSubtitle": "Find people who share the same interest as you, learn from them and accomplish something",
+        "eventName": "Event Name",
+        "eventDescription": "Event Description",
+        "eventLocation": "Event Location",
+        "eventInterest": "For people interested in",
+        "eventInterestSubtitle": "Select a few topics"
     },
     "ja": {
         "hot": "おすすめ",
@@ -112,7 +118,13 @@
         "language": "言語設定",
         "newEvent": "Start a new event",
         "host": "Host",
-        "start": "Start"
+        "start": "Start",
+        "newEventSubtitle": "Find people who share the same interest as you, learn from them and accomplish something",
+        "eventName": "Event Name",
+        "eventDescription": "Event Description",
+        "eventLocation": "Event Location",
+        "eventInterest": "For people interested in",
+        "eventInterestSubtitle": "Select a few topics"
     },
     "zh": {
         "hot": "热门",
@@ -170,6 +182,12 @@
         "language": "语言",
         "newEvent": "主办新活动",
         "host": "主办",
-        "start": "创建"
+        "start": "创建",
+        "newEventSubtitle": "找到与你有相同兴趣的人",
+        "eventName": "活动名称",
+        "eventDescription": "活动介绍",
+        "eventLocation": "活动地点",
+        "eventInterest": "面向感兴趣的人",
+        "eventInterestSubtitle": "请选择几个主题"
     }
 }

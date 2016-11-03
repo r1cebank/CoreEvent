@@ -18,3 +18,5 @@ export const infraRed = '#EF476F';
 export const japaneseIndigo = '#264653';
 export const green = '#00A878';
 export const royalPurple = '#775AAD';
+export const silverSand = '#b9c1ca';
+export const aurometalsaurus = '#6a7989';

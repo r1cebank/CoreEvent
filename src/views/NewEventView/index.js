@@ -22,11 +22,11 @@ class NewEventView extends Component {
                 <LinearGradient
                     colors={[ Colors.royalPurple, Colors.infraRed ]}
                     style={styles.headerContainer}>
-                    <Text style={{ color: Colors.frontColor, fontSize: 30, fontWeight: '700', backgroundColor: 'transparent'}}>
+                    <Text style={styles.header}>
                         {Languages.t('newEvent', this.props.locale)}
                     </Text>
-                    <Text style={{ margin: 10, paddingLeft: 10, paddingRight: 10, color: Colors.frontColor, fontSize: 15, backgroundColor: 'transparent', textAlign: 'center'}}>
-                        Find people who share the same interest as you, learn from them and accomplish something
+                    <Text style={styles.headerSubtitle}>
+                        {Languages.t('newEventSubtitle', this.props.locale)}
                     </Text>
                 </LinearGradient>
                 <ScrollView
@@ -36,43 +36,41 @@ class NewEventView extends Component {
                     style={styles.scrollView}>
                     <View style={{ marginTop: 10 }}>
                         <Hoshi
-                            label={'Event Name'}
-                            style={{borderBottomWidth: 1, marginTop: 10}}
-                            labelStyle={{ color: '#6a7989', fontSize: 16, marginLeft: 14 }}
+                            label={Languages.t('eventName', this.props.locale)}
+                            style={styles.input}
+                            labelStyle={styles.inputLabel}
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
                         />
                         <Hoshi
-                            label={'Description'}
-                            style={{borderBottomWidth: 1, marginTop: 10}}
-                            labelStyle={{ color: '#6a7989', fontSize: 16, marginLeft: 14 }}
+                            label={Languages.t('eventDescription', this.props.locale)}
+                            style={styles.input}
+                            labelStyle={styles.inputLabel}
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
                         />
                         <ListItem
-                            wrapperStyle={{ padding: 10, paddingTop: 20 }}
-                            containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#b9c1ca', padding: 10 }}
-                            title="Event Location"
-                            titleStyle={{ color: '#6a7989', fontSize: 16, marginLeft: 0 }}
+                            wrapperStyle={styles.itemSelector}
+                            containerStyle={styles.itemSelectorContainer}
+                            title={Languages.t('eventLocation', this.props.locale)}
+                            titleStyle={styles.itemSelectorTitle}
                             onPress={() => {}}
                         />
                         <ListItem
-                            wrapperStyle={{ padding: 10, paddingTop: 20 }}
-                            containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#b9c1ca', padding: 10 }}
-                            title="For people interested in"
-                            subtitle="Select a few topics"
-                            titleStyle={{ color: '#6a7989', fontSize: 16, marginLeft: 0 }}
+                            wrapperStyle={styles.itemSelector}
+                            containerStyle={styles.itemSelectorContainer}
+                            title={Languages.t('eventInterest', this.props.locale)}
+                            subtitle={Languages.t('eventInterestSubtitle', this.props.locale)}
+                            titleStyle={styles.itemSelectorTitle}
                             onPress={() => {}}
                         />
+                        <Button
+                            onPress={this.logout}
+                            backgroundColor={Colors.infraRed}
+                            buttonStyle={styles.button}
+                            title={Languages.t('start', this.props.locale)} />
                     </View>
                 </ScrollView>
-                <View style={{ flex: 2, alignSelf: 'stretch', justifyContent: 'center' }}>
-                    <Button
-                        onPress={this.logout}
-                        backgroundColor={Colors.infraRed}
-                        buttonStyle={{ borderRadius: 40 }}
-                        title={Languages.t('start', this.props.locale)} />
-                </View>
             </View>
         );
     }
