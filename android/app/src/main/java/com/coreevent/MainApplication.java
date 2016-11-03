@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new RNSpinkitPackage(),
            new MainReactPackage(),
+            new RNGeocoderPackage(),
             new LinearGradientPackage(),
             new ImagePickerPackage(),
             new PickerPackage(),

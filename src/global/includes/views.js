@@ -23,6 +23,8 @@ const views = {
     get ProfileView() { return require('../../views/ProfileView'); },
     get LanguagesView() { return require('../../views/LanguagesView'); },
     get NewEventView() { return require('../../views/NewEventView'); },
+    get LocationSelectorView() { return require('../../views/LocationSelectorView'); },
+    get ChildLocationSelectorView() { return require('../../views/ChildLocationSelectorView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

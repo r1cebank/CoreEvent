@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, InteractionManager } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Button, ListItem } from 'react-native-elements';
 import { Hoshi } from 'react-native-textinput-effects';
+import Geocoder from 'react-native-geocoder';
 
 import styles from './resources/styles';
 import { Colors, Languages, Icons } from '../../global/globalIncludes';
@@ -13,8 +14,19 @@ class NewEventView extends Component {
     static propTypes = {
         locale: React.PropTypes.string
     }
+    constructor(props) {
+        super(props);
+        this.state = {
+            city: {}
+        };
+    }
     componentWillMount() {
         RouterActions.refresh({ title: Languages.t('newEvent', this.props.locale) });
+    }
+    onCitySelect = async (city) => {
+        const geocode = await Geocoder.geocodeAddress(city.name);
+        console.log(geocode);
+        this.setState({ city, geocode });
     }
     render() {
         return (
@@ -53,8 +65,15 @@ class NewEventView extends Component {
                             wrapperStyle={styles.itemSelector}
                             containerStyle={styles.itemSelectorContainer}
                             title={Languages.t('eventLocation', this.props.locale)}
+                            subtitle={this.state.city.name}
                             titleStyle={styles.itemSelectorTitle}
-                            onPress={() => {}}
+                            onPress={() => {
+                                InteractionManager.runAfterInteractions(() => {
+                                    RouterActions.locationSelector({
+                                        onCitySelect: this.onCitySelect
+                                    });
+                                });
+                            }}
                         />
                         <ListItem
                             wrapperStyle={styles.itemSelector}
@@ -62,8 +81,13 @@ class NewEventView extends Component {
                             title={Languages.t('eventInterest', this.props.locale)}
                             subtitle={Languages.t('eventInterestSubtitle', this.props.locale)}
                             titleStyle={styles.itemSelectorTitle}
-                            onPress={() => {}}
-                        />
+                            onPress={() => {
+                                InteractionManager.runAfterInteractions(() => {
+                                    RouterActions.locationSelector({
+                                        onCitySelect: this.onCitySelect
+                                    });
+                                });
+                            }} />
                         <Button
                             onPress={this.logout}
                             backgroundColor={Colors.infraRed}
