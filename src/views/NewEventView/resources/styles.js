@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
         borderBottomColor: Colors.silverSand,
         padding: 10
     },
+    itemWithSelection: {
+        borderBottomWidth: 3,
+        borderBottomColor: Colors.infraRed
+    },
     itemSelectorTitle: {
         color: Colors.aurometalsaurus,
         fontSize: 16,

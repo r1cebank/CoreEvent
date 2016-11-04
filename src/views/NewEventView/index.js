@@ -17,7 +17,8 @@ class NewEventView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city: {}
+            city: {},
+            interests: []
         };
     }
     componentWillMount() {
@@ -27,7 +28,16 @@ class NewEventView extends Component {
         const geocode = await Geocoder.geocodeAddress(city.name);
         this.setState({ city, geocode });
     }
-    onInterestSelect = async (interests) => {
+    onInterestSelect = (interests) => {
+        this.setState({ interests });
+    }
+    getInterestSubtitle = () => {
+        if (this.state.interests.length) {
+            return this.state.interests.map((interest) => {
+                return Languages.f(interest.get('name'), this.props.locale);
+            }).join(' ');
+        }
+        return Languages.t('eventInterestSubtitle', this.props.locale);
     }
     render() {
         return (
@@ -64,7 +74,10 @@ class NewEventView extends Component {
                         />
                         <ListItem
                             wrapperStyle={styles.itemSelector}
-                            containerStyle={styles.itemSelectorContainer}
+                            containerStyle={[
+                                styles.itemSelectorContainer,
+                                this.state.city.name && styles.itemWithSelection
+                            ]}
                             title={Languages.t('eventLocation', this.props.locale)}
                             subtitle={this.state.city.name}
                             titleStyle={styles.itemSelectorTitle}
@@ -78,13 +91,17 @@ class NewEventView extends Component {
                         />
                         <ListItem
                             wrapperStyle={styles.itemSelector}
-                            containerStyle={styles.itemSelectorContainer}
+                            containerStyle={[
+                                styles.itemSelectorContainer,
+                                this.state.interests.length && styles.itemWithSelection
+                            ]}
                             title={Languages.t('eventInterest', this.props.locale)}
-                            subtitle={Languages.t('eventInterestSubtitle', this.props.locale)}
+                            subtitle={this.getInterestSubtitle()}
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
                                 InteractionManager.runAfterInteractions(() => {
                                     RouterActions.categorySelector({
+                                        selectedInterest: this.state.interests,
                                         onInterestSelect: this.onInterestSelect
                                     });
                                 });

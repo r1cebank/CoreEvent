@@ -10,7 +10,16 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.backgroundColor
     },
     scrollView: {
-        flex: 1
+        flex: 1,
+        alignSelf: 'stretch'
+    },
+    list: {
+        flex: 1,
+        marginTop: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     }
 });
 
