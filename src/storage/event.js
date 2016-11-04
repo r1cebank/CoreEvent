@@ -5,10 +5,10 @@ const event = {
         const query = new API.Parse.Query(API.Classes.event);
         return await query.get(id);
     },
-    fetchByParentId: async (id) => {
+    fetchByCategory: async (id) => {
         const parentCategory = new API.Classes.category();
         parentCategory.id = id;
-        const query = new API.Parse.Query(API.Classes.event).equalTo('category', parentCategory);
+        const query = new API.Parse.Query(API.Classes.event).equalTo('categories', parentCategory);
         query.limit(20);
         return await query.find();
     }

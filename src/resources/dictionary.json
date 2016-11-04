@@ -61,7 +61,9 @@
         "eventDescription": "Event Description",
         "eventLocation": "Event Location",
         "eventInterest": "For people interested in",
-        "eventInterestSubtitle": "Select a few topics"
+        "eventInterestSubtitle": "Select a few topics",
+        "interests": "Interests",
+        "search": "Search..."
     },
     "ja": {
         "hot": "おすすめ",
@@ -124,7 +126,9 @@
         "eventDescription": "Event Description",
         "eventLocation": "Event Location",
         "eventInterest": "For people interested in",
-        "eventInterestSubtitle": "Select a few topics"
+        "eventInterestSubtitle": "Select a few topics",
+        "interests": "Interests",
+        "search": "Search..."
     },
     "zh": {
         "hot": "热门",
@@ -188,6 +192,8 @@
         "eventDescription": "活动介绍",
         "eventLocation": "活动地点",
         "eventInterest": "面向感兴趣的人",
-        "eventInterestSubtitle": "请选择几个主题"
+        "eventInterestSubtitle": "请选择几个主题",
+        "interests": "主题",
+        "search": "搜索..."
     }
 }

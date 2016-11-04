@@ -32,22 +32,16 @@ class CategoryView extends Component {
                         {(() => {
                             return this.props.category.map((rowData, index) => {
                                 return (
-                                    <TouchableOpacity
+                                    <Components.CategoryTile
                                         key={index}
-                                        style={[
-                                            rowData % 2 ? styles.rightItem : styles.leftItem,
-                                            styles.categoryItem,
-                                            { backgroundColor: rowData.color }
-                                        ]}
+                                        index={index}
                                         onPress={() => {
                                             InteractionManager.runAfterInteractions(() => {
                                                 Actions.categoryChildView({ category: rowData });
                                             });
-                                        }}>
-                                        <Text style={styles.categoryItemText}>
-                                            {Languages.f(rowData.name, this.props.locale)}
-                                        </Text>
-                                    </TouchableOpacity>
+                                        }}
+                                        color={rowData.color}
+                                        name={Languages.f(rowData.name, this.props.locale)} />
                                 );
                             });
                         })()}

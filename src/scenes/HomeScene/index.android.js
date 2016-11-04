@@ -80,6 +80,16 @@ const scenes = RouterActions.create(
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.ChildLocationSelectorView} />
+        <Scene
+            key="categorySelector"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.CategorySelectorView} />
     </Scene>
 );
 

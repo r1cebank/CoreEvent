@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 import {
     View,
     ScrollView,
-    InteractionManager,
-    Text,
-    TouchableOpacity
+    InteractionManager
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { Storage, Languages, Views, Colors } from '../../global/globalIncludes';
+import { Storage, Languages, Views, Components } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -42,22 +40,17 @@ class CategoryChildView extends Component {
                         {(() => {
                             return this.state.category.map((rowData, index) => {
                                 return (
-                                    <TouchableOpacity
+                                    <Components.CategoryTile
                                         key={index}
-                                        style={[
-                                            rowData % 2 ? styles.rightItem : styles.leftItem,
-                                            styles.categoryItem,
-                                            { backgroundColor: rowData.get('color') }
-                                        ]}
+                                        index={index}
                                         onPress={() => {
                                             InteractionManager.runAfterInteractions(() => {
                                                 Actions.eventListView({ category: rowData });
                                             });
-                                        }}>
-                                        <Text style={styles.categoryItemText}>
-                                            {Languages.f(rowData.get('name'), this.props.locale)}
-                                        </Text>
-                                    </TouchableOpacity>
+                                        }}
+                                        color={rowData.get('color')}
+                                        name={Languages
+                                            .f(rowData.get('name'), this.props.locale)} />
                                 );
                             });
                         })()}

@@ -5,6 +5,10 @@ const category = {
         const query = new API.Parse.Query(API.Classes.category).equalTo('root', true);
         return await query.find();
     },
+    fetchNonRoot: async () => {
+        const query = new API.Parse.Query(API.Classes.category).equalTo('root', false);
+        return await query.find();
+    },
     fetchChild: async (parent) => {
         const parentCategory = new API.Classes.category();
         parentCategory.id = parent;

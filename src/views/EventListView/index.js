@@ -21,7 +21,7 @@ class EventListView extends Component {
     }
     async componentWillMount() {
         Actions.refresh({ title: Languages.f(this.props.category.get('name'), this.props.locale) });
-        const events = await Storage.Event.fetchByParentId(this.props.category.id);
+        const events = await Storage.Event.fetchByCategory(this.props.category.id);
         for (const event of events) {
             event.locationData = await Storage.Location.fetchById(event.get('location').id);
         }

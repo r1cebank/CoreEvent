@@ -25,8 +25,9 @@ class NewEventView extends Component {
     }
     onCitySelect = async (city) => {
         const geocode = await Geocoder.geocodeAddress(city.name);
-        console.log(geocode);
         this.setState({ city, geocode });
+    }
+    onInterestSelect = async (interests) => {
     }
     render() {
         return (
@@ -83,8 +84,8 @@ class NewEventView extends Component {
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
                                 InteractionManager.runAfterInteractions(() => {
-                                    RouterActions.locationSelector({
-                                        onCitySelect: this.onCitySelect
+                                    RouterActions.categorySelector({
+                                        onInterestSelect: this.onInterestSelect
                                     });
                                 });
                             }} />
