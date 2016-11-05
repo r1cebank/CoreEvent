@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, ScrollView, InteractionManager, Text } from 'react-native';
+import { View, ScrollView , Text } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { SearchBar, Button } from 'react-native-elements';
 
