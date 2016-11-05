@@ -65,7 +65,6 @@ class NewEventView extends Component {
             name: this.state.eventName,
             description: this.state.eventDescription
         };
-        console.log(event);
     }
     render() {
         return (

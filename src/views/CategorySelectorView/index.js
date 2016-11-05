@@ -82,9 +82,10 @@ class CategorySelectorView extends Component {
                                             this.props
                                             .onInterestSelect(this.toggleSelection(categoryItem));
                                         }}
+                                        fontSize={15}
                                         icon={{ name: selected ? 'check' : 'add' }}
                                         backgroundColor={selected ? Colors.green : Colors.infraRed}
-                                        buttonStyle={{margin: 5, marginLeft: 10, marginRight: 10, paddingLeft: 15, paddingRight: 15, padding: 10}}
+                                        buttonStyle={{margin: 5, marginLeft: 5, marginRight: 5, paddingLeft: 15, paddingRight: 15, padding: 5}}
                                         title={Languages.f(categoryItem.get('name'), this.props.locale)} />
                                 );
                             });
