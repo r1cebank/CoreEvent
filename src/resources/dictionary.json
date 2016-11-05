@@ -63,7 +63,8 @@
         "eventInterest": "For people interested in",
         "eventInterestSubtitle": "Select a few topics",
         "interests": "Interests",
-        "search": "Search..."
+        "search": "Search...",
+        "myDraft": "My Draft"
     },
     "ja": {
         "hot": "おすすめ",
@@ -128,7 +129,8 @@
         "eventInterest": "For people interested in",
         "eventInterestSubtitle": "Select a few topics",
         "interests": "Interests",
-        "search": "Search..."
+        "search": "Search...",
+        "myDraft": "My Draft"
     },
     "zh": {
         "hot": "热门",
@@ -194,6 +196,7 @@
         "eventInterest": "面向感兴趣的人",
         "eventInterestSubtitle": "请选择几个主题",
         "interests": "主题",
-        "search": "搜索..."
+        "search": "搜索...",
+        "myDraft": "待编辑"
     }
 }

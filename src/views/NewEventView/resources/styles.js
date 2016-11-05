@@ -53,9 +53,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 0
     },
+    itemSubtitle: {
+        fontWeight: 'bold'
+    },
     input: {
         borderBottomWidth: 1,
         marginTop: 10
+    },
+    inputText: {
+        paddingLeft: 16
     },
     inputLabel: {
         color: Colors.aurometalsaurus,

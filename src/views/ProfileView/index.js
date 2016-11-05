@@ -9,7 +9,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import LinearGradient from 'react-native-linear-gradient';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import { Button, List, ListItem, Icon } from 'react-native-elements';
+import { List, ListItem, Icon } from 'react-native-elements';
 
 
 import {
@@ -180,6 +180,12 @@ class ProfileView extends Component {
                         title={Languages.t('myEvents', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'event', style: styles.iconStyle }}
+                    />
+                    <ListItem
+                        wrapperStyle={{ padding: 5 }}
+                        title={Languages.t('myDraft', this.props.locale)}
+                        titleStyle={styles.titleStyle}
+                        leftIcon={{ name: 'mode-edit', style: styles.iconStyle }}
                     />
                     <ListItem
                         wrapperStyle={{ padding: 5 }}

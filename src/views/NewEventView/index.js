@@ -18,15 +18,29 @@ class NewEventView extends Component {
         super(props);
         this.state = {
             city: {},
-            interests: []
+            state: {},
+            interests: [],
+            eventDescription: '',
+            eventName: ''
         };
     }
     componentWillMount() {
         RouterActions.refresh({ title: Languages.t('newEvent', this.props.locale) });
     }
-    onCitySelect = async (city) => {
-        const geocode = await Geocoder.geocodeAddress(city.name);
-        this.setState({ city, geocode });
+    onChangeEventName = (eventName) => {
+        this.setState({ eventName });
+    }
+    onChangeEventDescription = (eventDescription) => {
+        this.setState({ eventDescription });
+    }
+    onCitySelect = async (city, state) => {
+        let geocode;
+        try {
+            geocode = await Geocoder.geocodeAddress(`${state.n}${city.n}`);
+        } catch (e) {
+            // Report error
+        }
+        this.setState({ city, geocode, state });
     }
     onInterestSelect = (interests) => {
         this.setState({ interests });
@@ -38,6 +52,20 @@ class NewEventView extends Component {
             }).join(' ');
         }
         return Languages.t('eventInterestSubtitle', this.props.locale);
+    }
+    checkCreate = () => {
+        return !(!!this.state.eventName && !!this.state.eventDescription &&
+                !!this.state.city.n && !!this.state.interests.length);
+    }
+    createDraft = () => {
+        const event = {
+            city: this.state.city,
+            state: this.state.state,
+            geocode: this.state.geocode,
+            name: this.state.eventName,
+            description: this.state.eventDescription
+        };
+        console.log(event);
     }
     render() {
         return (
@@ -61,6 +89,8 @@ class NewEventView extends Component {
                         <Hoshi
                             label={Languages.t('eventName', this.props.locale)}
                             style={styles.input}
+                            inputStyle={styles.inputText}
+                            onChangeText={this.onChangeEventName}
                             labelStyle={styles.inputLabel}
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
@@ -68,6 +98,8 @@ class NewEventView extends Component {
                         <Hoshi
                             label={Languages.t('eventDescription', this.props.locale)}
                             style={styles.input}
+                            inputStyle={styles.inputText}
+                            onChangeText={this.onChangeEventDescription}
                             labelStyle={styles.inputLabel}
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
@@ -76,10 +108,14 @@ class NewEventView extends Component {
                             wrapperStyle={styles.itemSelector}
                             containerStyle={[
                                 styles.itemSelectorContainer,
-                                this.state.city.name && styles.itemWithSelection
+                                this.state.city.n && styles.itemWithSelection
                             ]}
                             title={Languages.t('eventLocation', this.props.locale)}
-                            subtitle={this.state.city.name}
+                            subtitle={
+                                this.state.city.n ? `${this.state.state.n}${this.state.city.n}` :
+                                        undefined
+                            }
+                            subtitleStyle={styles.itemSubtitle}
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
                                 InteractionManager.runAfterInteractions(() => {
@@ -97,6 +133,7 @@ class NewEventView extends Component {
                             ]}
                             title={Languages.t('eventInterest', this.props.locale)}
                             subtitle={this.getInterestSubtitle()}
+                            subtitleStyle={styles.itemSubtitle}
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
                                 InteractionManager.runAfterInteractions(() => {
@@ -107,7 +144,8 @@ class NewEventView extends Component {
                                 });
                             }} />
                         <Button
-                            onPress={this.logout}
+                            onPress={this.createDraft}
+                            disabled={this.checkCreate()}
                             backgroundColor={Colors.infraRed}
                             buttonStyle={styles.button}
                             title={Languages.t('start', this.props.locale)} />

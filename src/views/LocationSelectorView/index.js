@@ -7,6 +7,7 @@ import { ListItem, List } from 'react-native-elements';
 import { Languages, Colors } from '../../global/globalIncludes';
 
 import CNCities from './resources/cncities.json';
+import CN from './resources/cn.json';
 import styles from './resources/styles';
 
 class LocationSelectorView extends Component {
@@ -27,17 +28,17 @@ class LocationSelectorView extends Component {
                     style={styles.scrollView}>
                     <List containerStyle={styles.listContainer}>
                         {(() => {
-                            return CNCities.map((city, index) => {
+                            return CN.l.map((state, index) => {
                                 return (
                                     <ListItem
                                         key={index}
                                         wrapperStyle={{ padding: 5 }}
-                                        title={city.name}
+                                        title={state.n}
                                         chevronColor={Colors.infraRed}
                                         onPress={() => {
                                             InteractionManager.runAfterInteractions(() => {
                                                 RouterActions.childLocationSelector({
-                                                    city,
+                                                    state,
                                                     onCitySelect: this.props.onCitySelect
                                                 });
                                             });

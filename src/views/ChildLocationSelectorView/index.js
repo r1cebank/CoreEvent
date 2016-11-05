@@ -12,10 +12,10 @@ class ChildLocationSelectorView extends Component {
     static propTypes = {
         locale: React.PropTypes.string,
         onCitySelect: React.PropTypes.func,
-        city: React.PropTypes.object
+        state: React.PropTypes.object
     }
     componentWillMount() {
-        RouterActions.refresh({ title: this.props.city.name });
+        RouterActions.refresh({ title: this.props.state.name });
     }
     render() {
         return (
@@ -27,15 +27,15 @@ class ChildLocationSelectorView extends Component {
                     style={styles.scrollView}>
                     <List containerStyle={styles.listContainer}>
                         {(() => {
-                            return this.props.city.cities[0].cities.map((city, index) => {
+                            return this.props.state.l.map((city, index) => {
                                 return (
                                     <ListItem
                                         key={index}
                                         wrapperStyle={{ padding: 5 }}
-                                        title={city.name}
+                                        title={city.n}
                                         chevronColor={Colors.infraRed}
                                         onPress={() => {
-                                            this.props.onCitySelect(city);
+                                            this.props.onCitySelect(city, this.props.state);
                                             RouterActions.pop();
                                             setTimeout(() => {
                                                 RouterActions.pop();
