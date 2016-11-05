@@ -51,59 +51,71 @@ class ProfileView extends Component {
     onActionSelect = async (index) => {
         if (index > 0) {
             if (index === 1) {
-                const image = await ImagePicker.openCamera({
-                    width: 200,
-                    height: 200,
-                    cropping: true,
-                    includeBase64: true
-                });
-                this.setState({
-                    loading: true
-                });
                 try {
-                    await Storage.User.updateAvatar(image);
-                    Store.appStore.dispatch(Actions.Settings
-                        .fetchUserUpdate());
-                    this.setState({
-                        loading: false
+                    const image = await ImagePicker.openCamera({
+                        width: 200,
+                        height: 200,
+                        cropping: true,
+                        includeBase64: true
                     });
+                    this.setState({
+                        loading: true
+                    });
+                    try {
+                        await Storage.User.updateAvatar(image);
+                        Store.appStore.dispatch(Actions.Settings
+                            .fetchUserUpdate());
+                        this.setState({
+                            loading: false
+                        });
+                    } catch (e) {
+                        this.setState({
+                            loading: false
+                        });
+                        this.showNotice({
+                            icon: 'error',
+                            color: Colors.infraRed,
+                            header: Languages.t('error', this.props.locale),
+                            notice: Languages.t('avatarUploadError', this.props.locale)
+                        });
+                    }
                 } catch (e) {
                     this.setState({
                         loading: false
-                    });
-                    this.showNotice({
-                        icon: 'error',
-                        color: Colors.infraRed,
-                        header: Languages.t('error', this.props.locale),
-                        notice: Languages.t('avatarUploadError', this.props.locale)
                     });
                 }
             } else {
-                this.setState({
-                    loading: true
-                });
-                const image = await ImagePicker.openPicker({
-                    width: 200,
-                    height: 200,
-                    cropping: true,
-                    includeBase64: true
-                });
                 try {
-                    await Storage.User.updateAvatar(image);
-                    Store.appStore.dispatch(Actions.Settings
-                        .fetchUserUpdate());
                     this.setState({
-                        loading: false
+                        loading: true
                     });
+                    const image = await ImagePicker.openPicker({
+                        width: 200,
+                        height: 200,
+                        cropping: true,
+                        includeBase64: true
+                    });
+                    try {
+                        await Storage.User.updateAvatar(image);
+                        Store.appStore.dispatch(Actions.Settings
+                            .fetchUserUpdate());
+                        this.setState({
+                            loading: false
+                        });
+                    } catch (e) {
+                        this.setState({
+                            loading: false
+                        });
+                        this.showNotice({
+                            icon: 'error',
+                            color: Colors.infraRed,
+                            header: Languages.t('error', this.props.locale),
+                            notice: Languages.t('avatarUploadError', this.props.locale)
+                        });
+                    }
                 } catch (e) {
                     this.setState({
                         loading: false
-                    });
-                    this.showNotice({
-                        icon: 'error',
-                        color: Colors.infraRed,
-                        header: Languages.t('error', this.props.locale),
-                        notice: Languages.t('avatarUploadError', this.props.locale)
                     });
                 }
             }
