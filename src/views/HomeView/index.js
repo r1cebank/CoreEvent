@@ -70,7 +70,7 @@ class HomeView extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <ScrollView
                     ref={(c) => { this.scrollView = c; }}
                     showsHorizontalScrollIndicator={false}
