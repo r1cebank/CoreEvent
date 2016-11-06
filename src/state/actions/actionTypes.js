@@ -17,6 +17,7 @@ export const SELECT_TAB = 'SELECT_TAB';
 export const CAROUSEL_FETCHED = 'CAROUSEL_FETCHED';
 export const CATEGORY_FETCHED = 'CATEGORY_FETCHED';
 export const PUSH_RECEIVED = 'PUSH_RECEIVED';
+export const ADD_DRAFT = 'ADD_DRAFT';
 
 // Utils
 export const TOGGLE_MENU = 'TOGGLE_MENU';

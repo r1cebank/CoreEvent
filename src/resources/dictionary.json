@@ -64,7 +64,9 @@
         "eventInterestSubtitle": "Select a few topics",
         "interests": "Interests",
         "search": "Search...",
-        "myDraft": "My Draft"
+        "myDraft": "My Draft",
+        "success": "Success",
+        "draftCreated": "Your event draft has been created, please go to [Profile]->[My Draft] to finalize and publish"
     },
     "ja": {
         "hot": "おすすめ",
@@ -130,7 +132,9 @@
         "eventInterestSubtitle": "Select a few topics",
         "interests": "Interests",
         "search": "Search...",
-        "myDraft": "My Draft"
+        "myDraft": "My Draft",
+        "success": "Success",
+        "draftCreated": "Your event draft has been created, please go to [Profile]->[My Draft] to finalize and publish"
     },
     "zh": {
         "hot": "热门",
@@ -197,6 +201,8 @@
         "eventInterestSubtitle": "请选择几个主题",
         "interests": "主题",
         "search": "搜索...",
-        "myDraft": "待编辑"
+        "myDraft": "待编辑的活动",
+        "success": "成功",
+        "draftCreated": "活动草稿以创建，请到带编辑页面完整信息并发布"
     }
 }

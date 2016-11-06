@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { Card, Icon } from 'react-native-elements';
+import PopupDialog from 'react-native-popup-dialog';
 // import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
 import { Actions } from 'react-native-router-flux';
@@ -33,6 +34,8 @@ class HomeView extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            notice: {},
+            showNotice: false,
             isRefreshing: false
         };
     }
@@ -40,6 +43,12 @@ class HomeView extends Component {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
     }
     async componentWillReceiveProps(nextProps) {
+        if (nextProps.showNotice && nextProps.notice) {
+            this.setState({
+                showNotice: true,
+                notice: nextProps.notice
+            });
+        }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData && nextProps.modalLocationData) {
                 this.setState({
@@ -158,6 +167,17 @@ class HomeView extends Component {
                         </View>
                     </View>
                 </ScrollView>
+                <PopupDialog
+                    width={0.8}
+                    height={200}
+                    open={this.state.showNotice}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                    <Components.Notice
+                        color={this.state.notice.color}
+                        icon={this.state.notice.icon}
+                        header={this.state.notice.header}
+                        notice={this.state.notice.notice} />
+                </PopupDialog>
                 <Modal style={styles.eventModal} position="bottom" ref={(c) => this.eventModal = c}>
                     <Icon name="keyboard-arrow-down" size={30} color={Colors.secondary} />
                     {(() => {

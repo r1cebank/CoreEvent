@@ -14,3 +14,6 @@ export function updateCategory(data) {
 export function addPushMessage(message) {
     return { type: ActionType.PUSH_RECEIVED, message };
 }
+export function addDraft(event) {
+    return { type: ActionType.ADD_DRAFT, event };
+}

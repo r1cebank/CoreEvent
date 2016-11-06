@@ -1,3 +1,4 @@
+import Shortid from 'shortid';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { View, ScrollView, Text, InteractionManager } from 'react-native';
@@ -8,7 +9,7 @@ import { Hoshi } from 'react-native-textinput-effects';
 import Geocoder from 'react-native-geocoder';
 
 import styles from './resources/styles';
-import { Colors, Languages, Icons } from '../../global/globalIncludes';
+import { Colors, Languages, Store, Actions } from '../../global/globalIncludes';
 
 class NewEventView extends Component {
     static propTypes = {
@@ -59,12 +60,27 @@ class NewEventView extends Component {
     }
     createDraft = () => {
         const event = {
+            id: Shortid.generate(),
             city: this.state.city,
             state: this.state.state,
             geocode: this.state.geocode,
             name: this.state.eventName,
-            description: this.state.eventDescription
+            description: this.state.eventDescription,
+            created: new Date()
         };
+        Store.appStore.dispatch(Actions.Data
+                .addDraft(event));
+        RouterActions.pop({
+            refresh: {
+                showNotice: true,
+                notice: {
+                    icon: 'check',
+                    color: Colors.green,
+                    header: Languages.t('success', this.props.locale),
+                    notice: Languages.t('draftCreated', this.props.locale)
+                }
+            }
+        });
     }
     render() {
         return (

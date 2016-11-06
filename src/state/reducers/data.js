@@ -24,6 +24,11 @@ function reducer(state = {}, action) {
             newState.pushMessages.push(action.message);
             return newState;
         }
+        case ActionType.ADD_DRAFT: {
+            const newState = _.cloneDeep(state);
+            newState.drafts[action.event.id] = action.event;
+            return newState;
+        }
         default:
             return state;
     }
