@@ -64,7 +64,7 @@
         "eventInterestSubtitle": "Select a few topics",
         "interests": "Interests",
         "search": "Search...",
-        "myDraft": "My Draft",
+        "myDraft": "Unpublished Events",
         "success": "Success",
         "draftCreated": "Your event draft has been created, please go to [Profile]->[My Draft] to finalize and publish"
     },

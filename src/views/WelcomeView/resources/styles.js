@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
     loginButton: {
         color: Colors.frontColor,
         fontWeight: '700'
+    },
+    icon: {
+        resizeMode: 'cover',
+        width: 150,
+        height: 150,
+        alignSelf: 'center',
+        marginBottom: 30
     }
 });
 

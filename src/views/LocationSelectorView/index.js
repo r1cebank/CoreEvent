@@ -6,7 +6,6 @@ import { ListItem, List } from 'react-native-elements';
 
 import { Languages, Colors } from '../../global/globalIncludes';
 
-import CNCities from './resources/cncities.json';
 import CN from './resources/cn.json';
 import styles from './resources/styles';
 

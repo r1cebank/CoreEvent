@@ -182,24 +182,29 @@ class ProfileView extends Component {
                 </LinearGradient>
                 <List containerStyle={styles.listContainer}>
                     <ListItem
+                        hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
                         title={Languages.t('attending', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'directions-walk', style: styles.iconStyle }}
                     />
                     <ListItem
+                        hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myEvents', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'event', style: styles.iconStyle }}
                     />
                     <ListItem
+                        hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
+                        onPress={RouterActions.draftList}
                         title={Languages.t('myDraft', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'mode-edit', style: styles.iconStyle }}
                     />
                     <ListItem
+                        hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myFavorite', this.props.locale)}
                         titleStyle={styles.titleStyle}

@@ -49,7 +49,7 @@ class NewEventView extends Component {
     getInterestSubtitle = () => {
         if (this.state.interests.length) {
             return this.state.interests.map((interest) => {
-                return Languages.f(interest.get('name'), this.props.locale);
+                return Languages.f(interest.name, this.props.locale);
             }).join(' ');
         }
         return Languages.t('eventInterestSubtitle', this.props.locale);
@@ -65,6 +65,7 @@ class NewEventView extends Component {
             state: this.state.state,
             geocode: this.state.geocode,
             name: this.state.eventName,
+            interests: this.state.interests,
             description: this.state.eventDescription,
             created: new Date()
         };

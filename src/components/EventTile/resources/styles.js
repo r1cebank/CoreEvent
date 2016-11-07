@@ -3,6 +3,24 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
+    title: {
+        marginBottom: 10,
+        color: Colors.frontColor,
+        backgroundColor: 'transparent',
+        fontSize: 20,
+        fontWeight: '700',
+        textAlign: 'center'
+    },
+    timeVenue: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5
+    },
+    description: {
+        marginBottom: 10,
+        backgroundColor: 'transparent',
+        color: Colors.frontColor
+    },
     eventCard: {
         flex: 1,
         borderRadius: 20,

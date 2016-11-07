@@ -29,10 +29,10 @@ class EventTile extends Component {
                 colors={[ Colors.cyan, Colors.royalPurple ]}
                 style={styles.eventCard}>
                 <View>
-                    <Text style={{ marginBottom: 10, color: Colors.frontColor, backgroundColor: 'transparent', fontSize: 20, fontWeight: '700', textAlign:'center'}}>
+                    <Text style={styles.title}>
                         {this.props.eventTitle}
                     </Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                    <View style={styles.timeVenue}>
                         <Icon name="schedule" size={20} color={Colors.frontColor} />
                         <View style={{ marginLeft: 10 }}>
                             <Text style={styles.timeVenueText}>
@@ -43,7 +43,7 @@ class EventTile extends Component {
                             </Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                    <View style={styles.timeVenue}>
                         <Icon name="location-on" size={20} color={Colors.frontColor} />
                         <View style={{ marginLeft: 10 }}>
                             <Text style={styles.timeVenueText}>
@@ -57,7 +57,7 @@ class EventTile extends Component {
                     {(() => {
                         if (this.props.simple) {
                             return (
-                                <Text style={{ marginBottom: 10, backgroundColor: 'transparent', color: Colors.frontColor }}>
+                                <Text style={styles.description}>
                                     {this.props.description.slice(0, 100)}...
                                 </Text>
                             );

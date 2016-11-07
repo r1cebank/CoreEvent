@@ -30,8 +30,8 @@ class WelcomeView extends Component {
                     playWhenInactive={false}
                     style={styles.backgroundVideo} />
                 <View style={styles.contentContainer}>
-                    <View style={{marginTop: 50}}>
-                        <Image style={{resizeMode:'cover', width: 150, height: 150, alignSelf:'center', marginBottom: 30}} source={Assets.icon} />
+                    <View style={{ marginTop: 50 }}>
+                        <Image style={styles.icon} source={Assets.icon} />
                         <Text style={styles.header}>Let meet</Text>
                     </View>
                     <View>

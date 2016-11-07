@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 import {
     View,
     ScrollView,
-    InteractionManager,
-    Text,
-    TouchableOpacity
+    InteractionManager
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { Languages, Colors, Components } from '../../global/globalIncludes';
+import { Languages, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class CategoryView extends Component {

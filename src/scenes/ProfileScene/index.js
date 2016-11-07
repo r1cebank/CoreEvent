@@ -20,6 +20,16 @@ const scenes = Actions.create(
             navigationBarStyle={styles.navbarStyle}
             component={Views.ProfileView}
             initial={true} />
+        <Scene
+            key="draftList"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.DraftView} />
     </Scene>
 );
 

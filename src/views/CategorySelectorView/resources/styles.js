@@ -20,6 +20,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
+    },
+    tag: {
+        margin: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        padding: 5
     }
 });
 
