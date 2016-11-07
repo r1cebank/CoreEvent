@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     titleStyle: {
         color: Colors.infraRed
     },
+    rightButtonTextStyle: {
+        color: Colors.infraRed
+    },
     leftButtonIconStyle: {
         tintColor: Colors.infraRed
     }

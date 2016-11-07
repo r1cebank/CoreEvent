@@ -28,6 +28,7 @@ const scenes = Actions.create(
             }}
             leftButtonIconStyle={styles.leftButtonIconStyle}
             titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.DraftView} />
     </Scene>

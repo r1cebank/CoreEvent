@@ -15,7 +15,11 @@ class DraftView extends Component {
         drafts: React.PropTypes.object
     }
     componentWillMount() {
-        RouterActions.refresh({ title: Languages.t('myDraft', this.props.locale) });
+        RouterActions.refresh({
+            title: Languages.t('myDraft', this.props.locale),
+            rightTitle: Languages.t('removeAllDraft', this.props.locale),
+            onRight: () => {}
+        });
     }
     getSubtitle = (data) => {
         if (data.interests.length) {
@@ -33,7 +37,6 @@ class DraftView extends Component {
                 title={data.name}
                 subtitle={this.getSubtitle(data)}
                 titleStyle={styles.titleStyle}
-                leftIcon={{ name: 'favorite', style: styles.iconStyle }}
             />
         );
     }

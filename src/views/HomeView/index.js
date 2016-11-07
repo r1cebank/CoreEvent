@@ -47,9 +47,9 @@ class HomeView extends Component {
         if (nextProps.showNotice !== this.props.showNotice) {
             if (nextProps.showNotice && nextProps.notice) {
                 this.setState({
-                    showNotice: true,
                     notice: nextProps.notice
                 });
+                this.popupDialog.openDialog();
                 Actions.refresh({ showNotice: false });
             }
         }

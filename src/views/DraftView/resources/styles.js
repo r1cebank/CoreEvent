@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         backgroundColor: 'red'
+    },
+    deleteButton: {
+        width: 75,
+        alignItems: 'center'
     }
 });
 
