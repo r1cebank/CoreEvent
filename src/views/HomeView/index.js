@@ -29,7 +29,8 @@ class HomeView extends Component {
         config: React.PropTypes.object,
         locale: React.PropTypes.string,
         modalEventID: React.PropTypes.string,
-        showModal: React.PropTypes.bool
+        showModal: React.PropTypes.bool,
+        showNotice: React.PropTypes.bool
     }
     constructor(props) {
         super(props);
@@ -43,11 +44,14 @@ class HomeView extends Component {
         Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
     }
     async componentWillReceiveProps(nextProps) {
-        if (nextProps.showNotice && nextProps.notice) {
-            this.setState({
-                showNotice: true,
-                notice: nextProps.notice
-            });
+        if (nextProps.showNotice !== this.props.showNotice) {
+            if (nextProps.showNotice && nextProps.notice) {
+                this.setState({
+                    showNotice: true,
+                    notice: nextProps.notice
+                });
+                Actions.refresh({ showNotice: false });
+            }
         }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData && nextProps.modalLocationData) {
