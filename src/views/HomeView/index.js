@@ -112,6 +112,7 @@ class HomeView extends Component {
                                 contentContainerStyle={styles.yourEventContainer}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Components.MyEventTile
+                                        locale={this.props.locale}
                                         eventTitle="编程爱好者"
                                         venueName="Room H19"
                                         status="joined"
@@ -122,6 +123,7 @@ class HomeView extends Component {
                                         venueAddress="1 Infinite Loop"
                                         startTime={new Date()} />
                                     <Components.MyEventTile
+                                        locale={this.props.locale}
                                         eventTitle="Test Event 2"
                                         venueName="Room H19"
                                         status="joined"
@@ -143,6 +145,7 @@ class HomeView extends Component {
                                     <Row style={{ marginBottom: 10 }}>
                                         <Components.EventTile
                                             eventTitle="Code club"
+                                            locale={this.props.locale}
                                             imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
                                             venueName="Room H18"
                                             venueAddress="7131 Stride Ave"
@@ -156,6 +159,7 @@ class HomeView extends Component {
                                     <Row style={{ marginBottom: 10 }}>
                                         <Components.EventTile
                                             eventTitle="Code club"
+                                            locale={this.props.locale}
                                             imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
                                             venueName="Room H18"
                                             venueAddress="7131 Stride Ave"

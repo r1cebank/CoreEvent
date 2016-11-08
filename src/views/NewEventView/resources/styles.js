@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     itemSelectorContainer: {
-        borderBottomWidth: 1,
+        borderBottomWidth: 2,
         borderBottomColor: Colors.silverSand,
         padding: 10
     },
@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
         color: Colors.aurometalsaurus,
         fontSize: 16,
         marginLeft: 14
+    },
+    dateHeader: {
+        color: Colors.aurometalsaurus,
+        fontSize: 16,
+        marginTop: 20,
+        marginLeft: 30
     },
     button: {
         borderRadius: 40,

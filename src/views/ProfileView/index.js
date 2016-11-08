@@ -198,14 +198,6 @@ class ProfileView extends Component {
                     <ListItem
                         hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
-                        onPress={RouterActions.draftList}
-                        title={Languages.t('myDraft', this.props.locale)}
-                        titleStyle={styles.titleStyle}
-                        leftIcon={{ name: 'mode-edit', style: styles.iconStyle }}
-                    />
-                    <ListItem
-                        hideChevron={true}
-                        wrapperStyle={{ padding: 5 }}
                         title={Languages.t('myFavorite', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'favorite', style: styles.iconStyle }}

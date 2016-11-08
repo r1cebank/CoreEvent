@@ -26,6 +26,7 @@ const views = {
     get LocationSelectorView() { return require('../../views/LocationSelectorView'); },
     get ChildLocationSelectorView() { return require('../../views/ChildLocationSelectorView'); },
     get CategorySelectorView() { return require('../../views/CategorySelectorView'); },
+    get EventEditView() { return require('../../views/EventEditView'); },
     get DraftView() { return require('../../views/DraftView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };

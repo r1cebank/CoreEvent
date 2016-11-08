@@ -22,6 +22,12 @@ class MyEventTile extends Component {
         startTime: React.PropTypes.instanceOf(Date)
     }
     render() {
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
         return (
             <LinearGradient
                 colors={[ Colors.infraRed, Colors.redTangelo ]}
@@ -36,7 +42,8 @@ class MyEventTile extends Component {
                         <Icon name="schedule" size={20} color={Colors.frontColor} />
                         <View style={styles.dateTimeContainer}>
                             <Text style={styles.dateVenueText}>
-                                {dateFormat(this.props.startTime, 'dddd, mmm dd yyyy')}
+                                {this.props
+                                    .startTime.toLocaleDateString(this.props.locale, options)}
                             </Text>
                             <Text style={styles.dateVenueSecondaryText}>
                                 {dateFormat(this.props.startTime, 'hh:MM TT')}

@@ -59,12 +59,18 @@ const scenes = Actions.create(
         <Scene
             key="newEvent"
             direction="vertical"
+            panHandlers={null}
             sceneStyle={{
                 paddingTop: Navigator
                 .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
             }}
+            renderBackButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.pop}
+                    name="clear" />
+            }
             titleStyle={styles.titleStyle}
-            renderBackButton={() => null}
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.NewEventView} />

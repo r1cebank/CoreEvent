@@ -35,6 +35,7 @@ class DraftView extends Component {
                 hideChevron={true}
                 wrapperStyle={{ padding: 10 }}
                 title={data.name}
+                onPress={() => RouterActions.eventEdit({ event: data })}
                 subtitle={this.getSubtitle(data)}
                 titleStyle={styles.titleStyle}
             />

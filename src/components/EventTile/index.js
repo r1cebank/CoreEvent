@@ -18,12 +18,19 @@ class EventTile extends Component {
         simple: React.PropTypes.bool,
         onPress: React.PropTypes.func,
         venueName: React.PropTypes.string,
+        locale: React.PropTypes.string,
         venueAddress: React.PropTypes.string,
         description: React.PropTypes.string,
         ctaTitle: React.PropTypes.string,
         startTime: React.PropTypes.instanceOf(Date)
     }
     render() {
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
         return (
             <LinearGradient
                 colors={[ Colors.cyan, Colors.royalPurple ]}
@@ -36,7 +43,8 @@ class EventTile extends Component {
                         <Icon name="schedule" size={20} color={Colors.frontColor} />
                         <View style={{ marginLeft: 10 }}>
                             <Text style={styles.timeVenueText}>
-                                {dateFormat(this.props.startTime, 'dddd, mmm dd yyyy')}
+                                {this.props
+                                    .startTime.toLocaleDateString(this.props.locale, options)}
                             </Text>
                             <Text style={styles.timeVenueSecondaryText}>
                                 {dateFormat(this.props.startTime, 'hh:MM TT')}

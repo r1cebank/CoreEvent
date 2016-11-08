@@ -31,6 +31,18 @@ const scenes = Actions.create(
             rightButtonTextStyle={styles.rightButtonTextStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.DraftView} />
+        <Scene
+            key="eventEdit"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            direction="vertical"
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.EventEditView} />
     </Scene>
 );
 

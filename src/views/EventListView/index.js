@@ -59,6 +59,7 @@ class EventListView extends Component {
                                             key={index}
                                             style={styles.eventsContainer}>
                                             <Components.EventTile
+                                                locale={this.props.locale}
                                                 eventTitle={event.get('name')}
                                                 imageSource={{
                                                     uri: event.get('image').url()

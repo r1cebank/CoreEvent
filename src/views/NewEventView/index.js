@@ -1,5 +1,6 @@
 import Shortid from 'shortid';
 import { connect } from 'react-redux';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import React, { Component } from 'react';
 import { View, ScrollView, Text, InteractionManager } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -111,6 +112,22 @@ class NewEventView extends Component {
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
                         />
+                        <ListItem
+                            wrapperStyle={styles.itemSelector}
+                            containerStyle={[
+                                styles.itemSelectorContainer,
+                                this.state.city.n && styles.itemWithSelection
+                            ]}
+                            title={Languages.t('eventDate', this.props.locale)}
+                            subtitle={undefined}
+                            subtitleStyle={styles.itemSubtitle}
+                            titleStyle={styles.itemSelectorTitle}
+                            onPress={() => {
+                                this.setState({
+                                    isDateTimePickerVisible: true
+                                });
+                            }}
+                        />
                         <Hoshi
                             label={Languages.t('eventDescription', this.props.locale)}
                             style={styles.input}
@@ -167,6 +184,12 @@ class NewEventView extends Component {
                             title={Languages.t('start', this.props.locale)} />
                     </View>
                 </ScrollView>
+                <DateTimePicker
+                    mode="datetime"
+                    isVisible={this.state.isDateTimePickerVisible}
+                    onConfirm={() =>{}}
+                    onCancel={() => this.setState({ isDateTimePickerVisible: false })}
+                />
             </View>
         );
     }
