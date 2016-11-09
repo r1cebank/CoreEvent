@@ -68,7 +68,10 @@
         "success": "Success",
         "draftCreated": "Your event draft has been created, please go to [Profile]->[My Draft] to finalize and publish",
         "removeAllDraft": "Clear",
-        "eventDate": "Event Date"
+        "eventDate": "Event Date",
+        "pickDate": "Pick a date",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
     },
     "ja": {
         "hot": "おすすめ",
@@ -138,7 +141,10 @@
         "success": "Success",
         "draftCreated": "Your event draft has been created, please go to [Profile]->[Unpublished Events] to finalize and publish",
         "removeAllDraft": "Clear",
-        "eventDate": "Event Date"
+        "eventDate": "Event Date",
+        "pickDate": "Pick a date",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
     },
     "zh": {
         "hot": "热门",
@@ -209,6 +215,9 @@
         "success": "成功",
         "draftCreated": "活动草稿以创建，请到带编辑页面完整信息并发布",
         "removeAllDraft": "清空",
-        "eventDate": "活动日期"
+        "eventDate": "活动日期",
+        "pickDate": "请选择日期",
+        "cancel": "取消",
+        "confirm": "确认"
     }
 }

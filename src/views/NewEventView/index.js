@@ -188,6 +188,10 @@ class NewEventView extends Component {
                     mode="datetime"
                     isVisible={this.state.isDateTimePickerVisible}
                     onConfirm={() =>{}}
+                    titleIOS={Languages.t('pickDate', this.props.locale)}
+                    cancelTextIOS={Languages.t('cancel', this.props.locale)}
+                    confirmTextIOS={Languages.t('confirm', this.props.locale)}
+                    minDateAndroid={new Date()}
                     onCancel={() => this.setState({ isDateTimePickerVisible: false })}
                 />
             </View>
