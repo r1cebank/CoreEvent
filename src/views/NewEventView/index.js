@@ -57,9 +57,10 @@ class NewEventView extends Component {
     }
     checkCreate = () => {
         return !(!!this.state.eventName && !!this.state.eventDescription &&
-                !!this.state.city.n && !!this.state.interests.length);
+                !!this.state.city.n && !!this.state.interests.length) &&
+                !!this.state.date;
     }
-    createDraft = () => {
+    createEvent = () => {
         const event = {
             id: Shortid.generate(),
             city: this.state.city,
@@ -68,23 +69,31 @@ class NewEventView extends Component {
             name: this.state.eventName,
             interests: this.state.interests,
             description: this.state.eventDescription,
+            date: this.state.date,
             created: new Date()
         };
-        Store.appStore.dispatch(Actions.Data
-                .addDraft(event));
-        RouterActions.pop({
-            refresh: {
-                showNotice: true,
-                notice: {
-                    icon: 'check',
-                    color: Colors.green,
-                    header: Languages.t('success', this.props.locale),
-                    notice: Languages.t('draftCreated', this.props.locale)
-                }
-            }
-        });
+        console.log(event);
+        // Store.appStore.dispatch(Actions.Data
+        //         .addDraft(event));
+        // RouterActions.pop({
+        //     refresh: {
+        //         showNotice: true,
+        //         notice: {
+        //             icon: 'check',
+        //             color: Colors.green,
+        //             header: Languages.t('success', this.props.locale),
+        //             notice: Languages.t('draftCreated', this.props.locale)
+        //         }
+        //     }
+        // });
     }
     render() {
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
         return (
             <View style={styles.container}>
                 <LinearGradient
@@ -119,7 +128,10 @@ class NewEventView extends Component {
                                 this.state.city.n && styles.itemWithSelection
                             ]}
                             title={Languages.t('eventDate', this.props.locale)}
-                            subtitle={undefined}
+                            subtitle={this.state.date ?
+                                this.state.date.toLocaleDateString(this.props.locale, options) :
+                                undefined
+                            }
                             subtitleStyle={styles.itemSubtitle}
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
@@ -177,7 +189,7 @@ class NewEventView extends Component {
                                 });
                             }} />
                         <Button
-                            onPress={this.createDraft}
+                            onPress={this.createEvent}
                             disabled={this.checkCreate()}
                             backgroundColor={Colors.infraRed}
                             buttonStyle={styles.button}
@@ -187,7 +199,10 @@ class NewEventView extends Component {
                 <DateTimePicker
                     mode="datetime"
                     isVisible={this.state.isDateTimePickerVisible}
-                    onConfirm={() =>{}}
+                    onConfirm={(date) => {
+                        this.setState({ date });
+                        this.setState({ isDateTimePickerVisible: false });
+                    }}
                     titleIOS={Languages.t('pickDate', this.props.locale)}
                     cancelTextIOS={Languages.t('cancel', this.props.locale)}
                     confirmTextIOS={Languages.t('confirm', this.props.locale)}
