@@ -35,18 +35,18 @@ class CategorySelectorView extends Component {
     }
     isSelected = (item) => {
         const exists = this.state.selectedItems.filter((selected) => {
-            return (selected.objectId === item.objectId);
+            return (selected.id === item.id);
         });
         return !!exists.length;
     }
     toggleSelection = (item) => {
         const exists = this.state.selectedItems.filter((selected) => {
-            return (selected.objectId === item.objectId);
+            return (selected.id === item.id);
         });
         let selectedItems = this.state.selectedItems.slice(0);
         if (exists.length) {
             selectedItems = selectedItems.filter((obj) => {
-                return obj.objectId !== item.objectId;
+                return obj.id !== item.id;
             });
         } else {
             selectedItems.push(item);
@@ -74,21 +74,21 @@ class CategorySelectorView extends Component {
                     <View style={styles.list}>
                         {(() => {
                             return this.state.category.map((categoryItem, index) => {
-                                const jsonItem = categoryItem.toJSON();
-                                const selected = this.isSelected(jsonItem);
+                                const selected = this.isSelected(categoryItem);
                                 return (
                                     <Button
                                         key={index}
                                         onPress={() => {
                                             this.props
                                             .onInterestSelect(this
-                                                .toggleSelection(jsonItem));
+                                                .toggleSelection(categoryItem));
                                         }}
                                         fontSize={15}
                                         icon={{ name: selected ? 'check' : 'add' }}
                                         backgroundColor={selected ? Colors.green : Colors.infraRed}
                                         buttonStyle={styles.tag}
-                                        title={Languages.f(jsonItem.name, this.props.locale)} />
+                                        title={Languages.f(categoryItem.get('name'),
+                                        this.props.locale)} />
                                 );
                             });
                         })()}
