@@ -10,7 +10,7 @@ import { Hoshi } from 'react-native-textinput-effects';
 import Geocoder from 'react-native-geocoder';
 
 import styles from './resources/styles';
-import { Colors, Languages, Store, Actions } from '../../global/globalIncludes';
+import { Colors, Languages, Storage } from '../../global/globalIncludes';
 
 class NewEventView extends Component {
     static propTypes = {
@@ -60,7 +60,7 @@ class NewEventView extends Component {
                 !!this.state.city.n && !!this.state.interests.length) &&
                 !!this.state.date;
     }
-    createEvent = () => {
+    createEvent = async () => {
         const event = {
             id: Shortid.generate(),
             city: this.state.city,
@@ -69,10 +69,9 @@ class NewEventView extends Component {
             name: this.state.eventName,
             interests: this.state.interests,
             description: this.state.eventDescription,
-            date: this.state.date,
-            created: new Date()
+            date: this.state.date
         };
-        console.log(event);
+        const response = await Storage.Event.create(event);
         // Store.appStore.dispatch(Actions.Data
         //         .addDraft(event));
         // RouterActions.pop({
@@ -89,9 +88,9 @@ class NewEventView extends Component {
     }
     render() {
         const options = {
-            weekday: 'long',
+            weekday: 'short',
             year: 'numeric',
-            month: 'long',
+            month: 'short',
             day: 'numeric'
         };
         return (
@@ -125,7 +124,7 @@ class NewEventView extends Component {
                             wrapperStyle={styles.itemSelector}
                             containerStyle={[
                                 styles.itemSelectorContainer,
-                                this.state.city.n && styles.itemWithSelection
+                                this.state.date && styles.itemWithSelection
                             ]}
                             title={Languages.t('eventDate', this.props.locale)}
                             subtitle={this.state.date ?

@@ -15,7 +15,7 @@ class ChildLocationSelectorView extends Component {
         state: React.PropTypes.object
     }
     componentWillMount() {
-        RouterActions.refresh({ title: this.props.state.name });
+        RouterActions.refresh({ title: this.props.state.n });
     }
     render() {
         return (
@@ -36,10 +36,10 @@ class ChildLocationSelectorView extends Component {
                                         chevronColor={Colors.infraRed}
                                         onPress={() => {
                                             this.props.onCitySelect(city, this.props.state);
-                                            RouterActions.pop();
-                                            setTimeout(() => {
-                                                RouterActions.pop();
-                                            }, 100);
+                                            RouterActions.addressSearcher({
+                                                city,
+                                                state: this.props.state
+                                            });
                                         }}
                                         titleStyle={styles.titleStyle}
                                     />

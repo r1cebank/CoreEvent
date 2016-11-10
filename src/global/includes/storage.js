@@ -9,8 +9,8 @@ const storages = {
     get Config() { return require('../../storage/config'); },
     get Category() { return require('../../storage/category'); },
     get Event() { return require('../../storage/event'); },
-    get User() { return require('../../storage/user'); },
-    get Location() { return require('../../storage/location'); }
+    get Role() { return require('../../storage/role'); },
+    get User() { return require('../../storage/user'); }
 };
 
 module.exports = storages;

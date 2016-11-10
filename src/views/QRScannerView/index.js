@@ -34,13 +34,10 @@ class QRScannerView extends Component {
                     try {
                         this.setState({ reading: true });
                         const modalEventData = await Storage.Event.fetchById(dataJson.eventId);
-                        const modalLocationData = await Storage.Location
-                        .fetchById(modalEventData.get('location').id);
                         Actions.pop({
                             refresh: {
                                 showModal: true,
-                                modalEventData,
-                                modalLocationData
+                                modalEventData
                             }
                         });
                     } catch (e) {

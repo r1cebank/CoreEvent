@@ -22,9 +22,6 @@ class EventListView extends Component {
     async componentWillMount() {
         Actions.refresh({ title: Languages.f(this.props.category.get('name'), this.props.locale) });
         const events = await Storage.Event.fetchByCategory(this.props.category.id);
-        for (const event of events) {
-            event.locationData = await Storage.Location.fetchById(event.get('location').id);
-        }
         this.setState({ events });
     }
     onRefresh = () => {
@@ -61,14 +58,11 @@ class EventListView extends Component {
                                             <Components.EventTile
                                                 locale={this.props.locale}
                                                 eventTitle={event.get('name')}
-                                                imageSource={{
-                                                    uri: event.get('image').url()
-                                                }}
                                                 onPressSecondary={() => {
                                                     this.eventAction(event);
                                                 }}
-                                                venueName={event.locationData.get('name')}
-                                                venueAddress={event.locationData.get('address')}
+                                                venueName={event.get('location').name}
+                                                venueAddress={event.get('location').address}
                                                 description={event.get('description')}
                                                 ctaTitle={Languages.t('addToMe', this.props.locale)}
                                                 startTime={event.get('start')} />

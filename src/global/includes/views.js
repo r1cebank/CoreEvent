@@ -28,6 +28,7 @@ const views = {
     get CategorySelectorView() { return require('../../views/CategorySelectorView'); },
     get EventEditView() { return require('../../views/EventEditView'); },
     get DraftView() { return require('../../views/DraftView'); },
+    get AddressSelectorView() { return require('../../views/AddressSelectorView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

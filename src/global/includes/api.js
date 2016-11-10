@@ -15,7 +15,8 @@ const classes = {
     carousel: Parse.Object.extend('Carousel'),
     category: Parse.Object.extend('Category'),
     event: Parse.Object.extend('Event'),
-    location: Parse.Object.extend('Location')
+    location: Parse.Object.extend('Location'),
+    role: Parse.Object.extend('_Role')
 };
 
 const api = {

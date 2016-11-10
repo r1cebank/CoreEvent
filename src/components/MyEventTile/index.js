@@ -23,9 +23,9 @@ class MyEventTile extends Component {
     }
     render() {
         const options = {
-            weekday: 'long',
+            weekday: 'short',
             year: 'numeric',
-            month: 'long',
+            month: 'short',
             day: 'numeric'
         };
         return (
