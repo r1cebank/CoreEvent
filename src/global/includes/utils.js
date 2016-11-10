@@ -5,7 +5,8 @@
 /* eslint-disable global-require */
 
 const utils = {
-    get noop() { return () => {}; }
+    get noop() { return () => {}; },
+    get placeSuggestions() { return require('../../utils/placeSuggestions'); }
 };
 
 module.exports = utils;

@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { View, ScrollView, ListView } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { SearchBar, Button } from 'react-native-elements';
 
-import { Languages, Colors, Storage } from '../../global/globalIncludes';
+import { Languages, Colors, Storage, Utils } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -12,41 +13,40 @@ class AddressSelectorView extends Component {
     static propTypes = {
         locale: React.PropTypes.string,
         state: React.PropTypes.object,
+        onSelect: React.PropTypes.func,
         city: React.PropTypes.object
     }
     constructor(props) {
         super(props);
+        this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            searchVal: `${props.state.n}${props.city.n}`
+            searchVal: '',
+            suggestion: [],
+            dataSource: this.ds.cloneWithRows([])
         };
     }
     async componentWillMount() {
-        RouterActions.refresh({ title: Languages.t('interests', this.props.locale) });
+        RouterActions.refresh({ title: Languages.t('searchAddress', this.props.locale) });
         const category = await Storage.Category.fetchNonRoot();
         this.setState({ category });
     }
-    isSelected = (item) => {
-        const exists = this.state.selectedItems.filter((selected) => {
-            return (selected.id === item.id);
-        });
-        return !!exists.length;
+    getSuggestions = async (searchVal) => {
+        this.setState({ searchVal });
+        const suggestions = await Utils.placeSuggestions(searchVal);
+        this.setState({ dataSource: this.ds.cloneWithRows(suggestions.result) });
     }
-    toggleSelection = (item) => {
-        const exists = this.state.selectedItems.filter((selected) => {
-            return (selected.id === item.id);
-        });
-        let selectedItems = this.state.selectedItems.slice(0);
-        if (exists.length) {
-            selectedItems = selectedItems.filter((obj) => {
-                return obj.id !== item.id;
-            });
-        } else {
-            selectedItems.push(item);
-        }
-        this.setState({
-            selectedItems
-        });
-        return selectedItems;
+    renderRow = (data) => {
+        return (
+            <ListItem
+                hideChevron={true}
+                onPress={() => {
+                    RouterActions.pop();
+                    this.props.onSelect(data);
+                }}
+                wrapperStyle={{ padding: 10 }}
+                title={data.name}
+            />
+        );
     }
     render() {
         return (
@@ -58,15 +58,20 @@ class AddressSelectorView extends Component {
                     value={this.state.searchVal}
                     inputStyle={{ backgroundColor: Colors.frontColor }}
                     containerStyle={{ alignSelf: 'stretch', backgroundColor: Colors.silverSand }}
-                    onChangeText={() => {}}
+                    onChangeText={this.getSuggestions}
                     placeholder={Languages.t('search', this.props.locale)} />
                 <ScrollView
                     ref={(c) => { this.scrollView = c; }}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps={true}
                     style={styles.scrollView}>
-                    <View style={styles.list}>
-                    </View>
+                    <ListView
+                        style={styles.list}
+                        keyboardShouldPersistTaps={true}
+                        enableEmptySections={true}
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow} />
                 </ScrollView>
             </View>
         );

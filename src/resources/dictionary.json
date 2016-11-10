@@ -71,7 +71,8 @@
         "eventDate": "Event Date",
         "pickDate": "Pick a date",
         "cancel": "Cancel",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "searchAddress": "Search Address"
     },
     "ja": {
         "hot": "おすすめ",
@@ -144,7 +145,8 @@
         "eventDate": "Event Date",
         "pickDate": "Pick a date",
         "cancel": "Cancel",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "searchAddress": "Search Address"
     },
     "zh": {
         "hot": "热门",
@@ -218,6 +220,7 @@
         "eventDate": "活动日期",
         "pickDate": "请选择日期",
         "cancel": "取消",
-        "confirm": "确认"
+        "confirm": "确认",
+        "searchAddress": "搜索地址"
     }
 }

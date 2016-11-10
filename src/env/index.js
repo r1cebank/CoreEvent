@@ -11,7 +11,8 @@ if (__DEV__) {
         DEBUG_PASSWORD: '3939',
         PARSE_APPID: 'GuideFree',
         PARSE_URL: 'https://parse.agreatstartup.com/parse',
-        GCM: ''
+        GCM: '',
+        BAIDU_APIKEY: 'Ce87e1k6PGvXOaaaRcPj5SOwI5uvX2qs'
     };
 } else {
     environment = {
@@ -19,7 +20,8 @@ if (__DEV__) {
         DEBUG_PASSWORD: '3939',
         PARSE_APPID: 'GuideFree',
         PARSE_URL: 'https://parse.agreatstartup.com/parse',
-        GCM: ''
+        GCM: '',
+        BAIDU_APIKEY: 'Ce87e1k6PGvXOaaaRcPj5SOwI5uvX2qs'
     };
 }
 module.exports = environment;

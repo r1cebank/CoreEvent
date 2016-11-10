@@ -19,8 +19,7 @@ class NewEventView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city: {},
-            state: {},
+            address: {},
             interests: [],
             eventDescription: '',
             eventName: ''
@@ -35,14 +34,8 @@ class NewEventView extends Component {
     onChangeEventDescription = (eventDescription) => {
         this.setState({ eventDescription });
     }
-    onCitySelect = async (city, state) => {
-        let geocode;
-        try {
-            geocode = await Geocoder.geocodeAddress(`${state.n}${city.n}`);
-        } catch (e) {
-            // Report error
-        }
-        this.setState({ city, geocode, state });
+    onAddressSelect = (address) => {
+        this.setState({ address });
     }
     onInterestSelect = (interests) => {
         this.setState({ interests });
@@ -63,8 +56,7 @@ class NewEventView extends Component {
     createEvent = async () => {
         const event = {
             id: Shortid.generate(),
-            city: this.state.city,
-            state: this.state.state,
+            address: this.state.state,
             geocode: this.state.geocode,
             name: this.state.eventName,
             interests: this.state.interests,
@@ -152,19 +144,16 @@ class NewEventView extends Component {
                             wrapperStyle={styles.itemSelector}
                             containerStyle={[
                                 styles.itemSelectorContainer,
-                                this.state.city.n && styles.itemWithSelection
+                                this.state.address.name && styles.itemWithSelection
                             ]}
                             title={Languages.t('eventLocation', this.props.locale)}
-                            subtitle={
-                                this.state.city.n ? `${this.state.state.n}${this.state.city.n}` :
-                                        undefined
-                            }
+                            subtitle={this.state.address.name}
                             subtitleStyle={styles.itemSubtitle}
                             titleStyle={styles.itemSelectorTitle}
                             onPress={() => {
                                 InteractionManager.runAfterInteractions(() => {
-                                    RouterActions.locationSelector({
-                                        onCitySelect: this.onCitySelect
+                                    RouterActions.addressSearcher({
+                                        onSelect: this.onAddressSelect
                                     });
                                 });
                             }}

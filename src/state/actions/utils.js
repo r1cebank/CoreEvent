@@ -4,11 +4,10 @@
 
 import * as ActionType from './actionTypes';
 
-export function appError(error, errorState, data) {
+export function appError(error, data) {
     return {
         type: ActionType.APP_ERROR,
         error,
-        errorState,
         data
     };
 }
