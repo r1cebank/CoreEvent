@@ -2,7 +2,7 @@ import Shortid from 'shortid';
 import { connect } from 'react-redux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import React, { Component } from 'react';
-import { View, ScrollView, Text, InteractionManager } from 'react-native';
+import { View, Text, InteractionManager, ScrollView, findNodeHandle } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Button, ListItem } from 'react-native-elements';
@@ -20,6 +20,7 @@ class NewEventView extends Component {
         super(props);
         this.state = {
             address: {},
+            detailedAddress: '',
             interests: [],
             eventDescription: '',
             eventName: ''
@@ -33,6 +34,9 @@ class NewEventView extends Component {
     }
     onChangeEventDescription = (eventDescription) => {
         this.setState({ eventDescription });
+    }
+    onChangeDetailedAddress = (detailedAddress) => {
+        this.setState({ detailedAddress });
     }
     onAddressSelect = (address) => {
         this.setState({ address });
@@ -49,34 +53,61 @@ class NewEventView extends Component {
         return Languages.t('eventInterestSubtitle', this.props.locale);
     }
     checkCreate = () => {
-        return !(!!this.state.eventName && !!this.state.eventDescription &&
-                !!this.state.city.n && !!this.state.interests.length) &&
-                !!this.state.date;
+        return !!this.state.eventName && !!this.state.eventDescription &&
+                !!this.state.address && !!this.state.interests.length &&
+                !!this.state.date && !!this.state.detailedAddress;
     }
     createEvent = async () => {
         const event = {
             id: Shortid.generate(),
-            address: this.state.state,
+            address: this.state.address,
             geocode: this.state.geocode,
             name: this.state.eventName,
+            detailedAddress: this.state.detailedAddress,
             interests: this.state.interests,
             description: this.state.eventDescription,
             date: this.state.date
         };
-        const response = await Storage.Event.create(event);
-        // Store.appStore.dispatch(Actions.Data
-        //         .addDraft(event));
-        // RouterActions.pop({
-        //     refresh: {
-        //         showNotice: true,
-        //         notice: {
-        //             icon: 'check',
-        //             color: Colors.green,
-        //             header: Languages.t('success', this.props.locale),
-        //             notice: Languages.t('draftCreated', this.props.locale)
-        //         }
-        //     }
-        // });
+        try {
+            const response = await Storage.Event.create(event);
+            RouterActions.pop({
+                refresh: {
+                    showNotice: true,
+                    notice: {
+                        icon: 'check',
+                        color: Colors.green,
+                        header: Languages.t('success', this.props.locale),
+                        notice: Languages.t('eventCreated', this.props.locale)
+                    }
+                }
+            });
+        } catch (e) {
+            RouterActions.pop({
+                refresh: {
+                    showNotice: true,
+                    notice: {
+                        icon: 'error',
+                        color: Colors.infraRed,
+                        header: Languages.t('error', this.props.locale),
+                        notice: Languages.t('eventCreateError', this.props.locale)
+                    }
+                }
+            });
+        }
+    }
+    inputFocused = (refName) => {
+        setTimeout(() => {
+            const scrollResponder = this.scrollView.getScrollResponder();
+            scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+            findNodeHandle(this[refName].getRef()), 200, true);
+        }, 50);
+    }
+    inputLostFocus = (refName) => {
+        setTimeout(() => {
+            const scrollResponder = this.scrollView.getScrollResponder();
+            scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+            findNodeHandle(this[refName].getRef()), -200, true);
+        }, 50);
     }
     render() {
         const options = {
@@ -101,6 +132,7 @@ class NewEventView extends Component {
                     ref={(c) => { this.scrollView = c; }}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps={true}
                     style={styles.scrollView}>
                     <View style={{ marginTop: 10 }}>
                         <Hoshi
@@ -108,6 +140,48 @@ class NewEventView extends Component {
                             style={styles.input}
                             inputStyle={styles.inputText}
                             onChangeText={this.onChangeEventName}
+                            labelStyle={styles.inputLabel}
+                            borderColor={Colors.infraRed}
+                            backgroundColor={Colors.backgroundColor}
+                        />
+                        <ListItem
+                            wrapperStyle={styles.itemSelector}
+                            containerStyle={[
+                                styles.itemSelectorContainer,
+                                this.state.address.name && styles.itemWithSelection
+                            ]}
+                            title={Languages.t('eventLocation', this.props.locale)}
+                            subtitle={this.state.address.name}
+                            subtitleStyle={styles.itemSubtitle}
+                            titleStyle={styles.itemSelectorTitle}
+                            onPress={() => {
+                                InteractionManager.runAfterInteractions(() => {
+                                    RouterActions.addressSearcher({
+                                        onSelect: this.onAddressSelect
+                                    });
+                                });
+                            }}
+                        />
+                        <Hoshi
+                            ref={c => this.detailedAddress = c}
+                            label={Languages.t('longAddress', this.props.locale)}
+                            onFocus={() => this.inputFocused('detailedAddress')}
+                            onEndEditing={() => this.inputLostFocus('detailedAddress')}
+                            style={styles.input}
+                            inputStyle={styles.inputText}
+                            onChangeText={this.onChangeDetailedAddress}
+                            labelStyle={styles.inputLabel}
+                            borderColor={Colors.infraRed}
+                            backgroundColor={Colors.backgroundColor}
+                        />
+                        <Hoshi
+                            ref={c => this.descriptionField = c}
+                            label={Languages.t('eventDescription', this.props.locale)}
+                            onFocus={() => this.inputFocused('descriptionField')}
+                            onEndEditing={() => this.inputLostFocus('descriptionField')}
+                            style={styles.input}
+                            inputStyle={styles.inputText}
+                            onChangeText={this.onChangeEventDescription}
                             labelStyle={styles.inputLabel}
                             borderColor={Colors.infraRed}
                             backgroundColor={Colors.backgroundColor}
@@ -131,33 +205,6 @@ class NewEventView extends Component {
                                 });
                             }}
                         />
-                        <Hoshi
-                            label={Languages.t('eventDescription', this.props.locale)}
-                            style={styles.input}
-                            inputStyle={styles.inputText}
-                            onChangeText={this.onChangeEventDescription}
-                            labelStyle={styles.inputLabel}
-                            borderColor={Colors.infraRed}
-                            backgroundColor={Colors.backgroundColor}
-                        />
-                        <ListItem
-                            wrapperStyle={styles.itemSelector}
-                            containerStyle={[
-                                styles.itemSelectorContainer,
-                                this.state.address.name && styles.itemWithSelection
-                            ]}
-                            title={Languages.t('eventLocation', this.props.locale)}
-                            subtitle={this.state.address.name}
-                            subtitleStyle={styles.itemSubtitle}
-                            titleStyle={styles.itemSelectorTitle}
-                            onPress={() => {
-                                InteractionManager.runAfterInteractions(() => {
-                                    RouterActions.addressSearcher({
-                                        onSelect: this.onAddressSelect
-                                    });
-                                });
-                            }}
-                        />
                         <ListItem
                             wrapperStyle={styles.itemSelector}
                             containerStyle={[
@@ -178,7 +225,7 @@ class NewEventView extends Component {
                             }} />
                         <Button
                             onPress={this.createEvent}
-                            disabled={this.checkCreate()}
+                            disabled={!this.checkCreate()}
                             backgroundColor={Colors.infraRed}
                             buttonStyle={styles.button}
                             title={Languages.t('start', this.props.locale)} />

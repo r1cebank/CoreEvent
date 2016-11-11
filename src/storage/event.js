@@ -20,7 +20,11 @@ const event = {
         const relation = draft.relation('categories');
         relation.add(eventData.interests);
         draft.set('start', eventData.date);
-        draft.set('location', {});
+        draft.set('location', {
+            name: eventData.detailedAddress,
+            address: eventData.address.name,
+            coords: eventData.address.location
+        });
         draft.set('owner', API.Parse.User.current());
         const ACL = new API.Parse.ACL(API.Parse.User.current());
         ACL.setPublicReadAccess(true);

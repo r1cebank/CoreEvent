@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     input: {
+        height: 40,
         borderBottomWidth: 1,
         marginTop: 10
     },
@@ -76,7 +77,8 @@ const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 40,
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 20
     }
 });
 
