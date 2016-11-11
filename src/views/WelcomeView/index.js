@@ -38,7 +38,7 @@ class WelcomeView extends Component {
                         <Button
                             borderRadius={40}
                             textStyle={styles.signupButton}
-                            backgroundColor={Colors.frontColor}
+                            backgroundColor={Colors.infraRed}
                             onPress={Actions.signupView}
                             title={Languages.t('signup', this.props.locale)} />
                         <Button

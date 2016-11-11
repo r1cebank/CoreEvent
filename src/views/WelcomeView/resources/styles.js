@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     signupButton: {
-        color: Colors.grey,
+        color: Colors.frontColor,
         fontWeight: '700'
     },
     loginButton: {

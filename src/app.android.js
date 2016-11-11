@@ -20,7 +20,7 @@ import {
 
 const list = [
     {
-        title: 'hot',
+        title: 'aroundme',
         icon: 'location-on'
     },
     {

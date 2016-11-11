@@ -191,14 +191,14 @@ class SignupView extends Component {
                             disabled={false}
                             onPress={this.register}
                             textStyle={styles.button}
-                            backgroundColor={Colors.green}
+                            backgroundColor={Colors.infraRed}
                             buttonStyle={{ marginBottom: 10 }}
                             title={Languages.t('register', this.props.locale)} />
                         <Button
                             borderRadius={40}
                             textStyle={styles.button}
                             onPress={RouterActions.pop}
-                            backgroundColor={Colors.grey}
+                            backgroundColor={Colors.silverSand}
                             title={Languages.t('back', this.props.locale)} />
                     </View>
                 </View>
