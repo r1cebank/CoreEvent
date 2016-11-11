@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
 import { Navigator, Platform } from 'react-native';
-import { Scene, Router, Actions, Modal } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import { Views, Colors } from '../../global/globalIncludes';
 import styles from './resources/styles';

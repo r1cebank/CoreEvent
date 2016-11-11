@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0
     },
     titleStyle: {
+        fontSize: 18,
         color: Colors.infraRed
     },
     leftButtonIconStyle: {

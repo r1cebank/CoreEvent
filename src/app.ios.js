@@ -76,15 +76,15 @@ class App extends Component {
                     tabBarStyle={styles.tabBarStyle}>
                     <Tab
                         titleStyle={styles.titleStyle}
-                        tabStyle={selectedTab !== 'hot' && styles.tabNotSelected}
-                        selected={selectedTab === 'hot'}
+                        tabStyle={selectedTab !== 'aroundme' && styles.tabNotSelected}
+                        selected={selectedTab === 'aroundme'}
                         selectedTitleStyle={styles.titleSelected}
-                        title={Languages.t('hot', this.props.locale)}
+                        title={Languages.t('aroundme', this.props.locale)}
                         renderIcon={() => {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.saffron}
-                                    name="whatshot"
+                                    name="location-on"
                                     size={26} />
                             );
                         }}
@@ -92,11 +92,11 @@ class App extends Component {
                             return (
                                 <Icons.MaterialIcons
                                     color={Colors.infraRed}
-                                    name="whatshot"
+                                    name="location-on"
                                     size={26} />
                             );
                         }}
-                        onPress={() => this.props.changeTab('hot')}>
+                        onPress={() => this.props.changeTab('aroundme')}>
                         <Scenes.HomeScene />
                     </Tab>
                     <Tab

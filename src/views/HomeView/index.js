@@ -13,6 +13,7 @@ import {
     Text,
     ScrollView,
     InteractionManager,
+    TouchableOpacity,
     RefreshControl
 } from 'react-native';
 
@@ -41,7 +42,27 @@ class HomeView extends Component {
         };
     }
     componentDidMount() {
-        Actions.refresh({ title: Languages.t('whatshot', this.props.locale) });
+        Actions.refresh({
+            renderTitle: (navProps) => {
+                return (
+                    <TouchableOpacity
+                        style={{
+                            top: 22,
+                            padding: 8,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                        onPress={Actions.qrScanner}>
+                        <Text style={navProps.titleStyle}>
+                            {Languages.t('aroundme', this.props.locale)}
+                        </Text>
+                        <Icon
+                            color={Colors.infraRed}
+                            name="keyboard-arrow-down" />
+                    </TouchableOpacity>
+                );
+            }
+        });
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {

@@ -21,7 +21,7 @@ import {
 const list = [
     {
         title: 'hot',
-        icon: 'whatshot'
+        icon: 'location-on'
     },
     {
         title: 'interestsLC',
