@@ -14,11 +14,18 @@ class LoadingView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Spinner
-                    size={40}
-                    color={Colors.infraRed}
-                    type="ChasingDots" />
-                <Text style={styles.text}>{this.props.loadingText}</Text>
+                <View style={styles.loadingContainer}>
+                    <Spinner
+                        size={40}
+                        color={Colors.infraRed}
+                        type="ChasingDots" />
+                    {(() => {
+                        if (this.props.loadingText) {
+                            return <Text style={styles.text}>{this.props.loadingText}</Text>;
+                        }
+                        return null;
+                    })()}
+                </View>
             </View>
         );
     }

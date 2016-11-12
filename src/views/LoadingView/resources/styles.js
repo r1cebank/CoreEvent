@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.backgroundColor
     },
+    loadingContainer: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     text: {
         marginTop: 20,
         opacity: 1

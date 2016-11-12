@@ -23,6 +23,7 @@ import {
     Languages,
     Components,
     Storage,
+    Views,
     Store,
     Actions
 } from '../../global/globalIncludes';
@@ -47,6 +48,7 @@ class HomeView extends Component {
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             notice: {},
+            loading: true,
             showNotice: false,
             isRefreshing: false,
             nearbyDatasource: this.ds.cloneWithRows([])
@@ -93,6 +95,9 @@ class HomeView extends Component {
                 RouterActions.refresh({ showNotice: false });
             }
         }
+        if (nextProps.location.name !== this.props.location.name) {
+            await this.refreshEvents();
+        }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData && nextProps.modalLocationData) {
                 this.setState({
@@ -105,8 +110,10 @@ class HomeView extends Component {
         }
     }
     refreshEvents = async () => {
+        this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
         this.setState({ nearbyDatasource: this.ds.cloneWithRows(events) });
+        this.setState({ loading: false });
     }
     onAddressSelect = (address) => {
         Store.appStore.dispatch(Actions.Settings.updateLocation({
@@ -205,12 +212,21 @@ class HomeView extends Component {
                                 {Languages.t('aroundme', this.props.locale)}
                             </Text>
                             <View style={styles.recommendedContainer}>
-                                <ListView
-                                    style={styles.list}
-                                    keyboardShouldPersistTaps={true}
-                                    enableEmptySections={true}
-                                    dataSource={this.state.nearbyDatasource}
-                                    renderRow={this.renderNearbyRow} />
+                                {(() => {
+                                    if (this.state.loading) {
+                                        return (
+                                            <Views.LoadingView />
+                                        );
+                                    }
+                                    return (
+                                        <ListView
+                                            style={styles.list}
+                                            keyboardShouldPersistTaps={true}
+                                            enableEmptySections={true}
+                                            dataSource={this.state.nearbyDatasource}
+                                            renderRow={this.renderNearbyRow} />
+                                    );
+                                })()}
                             </View>
                         </View>
                     </View>
