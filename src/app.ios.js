@@ -11,6 +11,7 @@ import {
     Scenes,
     Icons,
     API,
+    Utils,
     Colors,
     Languages,
     Storage
@@ -58,6 +59,10 @@ class App extends Component {
         }
         if (!this.props.user) {
             return <Scenes.LoginScene />;
+        }
+        if (!this.props.location) {
+            Utils.updateLocation();
+            return null;
         }
         return (
             // TODO: More complex scene config
@@ -216,6 +221,7 @@ function select(store) {
         selectedTab: store.settings.selectedTab,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
+        location: store.settings.location,
         user: store.settings.user,
         loading: store.utils.loading,
         hydrationComplete: store.utils.hydrationComplete

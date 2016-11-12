@@ -9,6 +9,7 @@ const globalIncludes = {
     get Components() { return require('./includes/components'); },
     get Storage() { return require('./includes/storage'); },
     get Store() { return require('./includes/store'); },
+    get Geo() { return require('./includes/geo'); },
     get Colors() { return require('./includes/colors'); },
     get Dimensions() { return require('./includes/dimensions'); },
     get Icons() { return require('./includes/icons'); },

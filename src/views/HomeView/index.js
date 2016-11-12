@@ -14,10 +14,18 @@ import {
     ScrollView,
     InteractionManager,
     TouchableOpacity,
-    RefreshControl
+    RefreshControl,
+    ListView
 } from 'react-native';
 
-import { Colors, Languages, Components, Assets, Store, Actions } from '../../global/globalIncludes';
+import {
+    Colors,
+    Languages,
+    Components,
+    Storage,
+    Store,
+    Actions
+} from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
 
@@ -36,13 +44,15 @@ class HomeView extends Component {
     }
     constructor(props) {
         super(props);
+        this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             notice: {},
             showNotice: false,
-            isRefreshing: false
+            isRefreshing: false,
+            nearbyDatasource: this.ds.cloneWithRows([])
         };
     }
-    componentDidMount() {
+    async componentDidMount() {
         RouterActions.refresh({
             renderTitle: (navProps) => {
                 return (
@@ -70,6 +80,8 @@ class HomeView extends Component {
                 );
             }
         });
+        // Fetch nearby events
+        await this.refreshEvents();
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {
@@ -92,6 +104,10 @@ class HomeView extends Component {
             }
         }
     }
+    refreshEvents = async () => {
+        const events = await Storage.Event.fetchByLocation(this.props.location.location);
+        this.setState({ nearbyDatasource: this.ds.cloneWithRows(events) });
+    }
     onAddressSelect = (address) => {
         Store.appStore.dispatch(Actions.Settings.updateLocation({
             name: address.name,
@@ -104,16 +120,30 @@ class HomeView extends Component {
     editStatus = () => {
         this.editActionSheet.show();
     }
-    onRefresh = () => {
+    onRefresh = async () => {
         this.setState({ isRefreshing: true });
-        setTimeout(() => {
-            this.setState({ isRefreshing: false });
-        }, 5000);
+        await this.refreshEvents();
+        this.setState({ isRefreshing: false });
     }
-    openCarousel = carouselImage => {
+    openCarousel = (carouselImage) => {
         InteractionManager.runAfterInteractions(() => {
             RouterActions.carousel({ carouselImage });
         });
+    }
+    renderNearbyRow = (rowData) => {
+        return (
+            <Components.EventTile
+                eventTitle={rowData.get('name')}
+                locale={this.props.locale}
+                venueName={rowData.get('location').name}
+                venueAddress={rowData.get('location').address}
+                onPressSecondary={() => {
+                    this.eventAction();
+                }}
+                description={rowData.get('description')}
+                ctaTitle={Languages.t('addToMe', this.props.locale)}
+                startTime={rowData.get('start')} />
+        );
     }
     render() {
         return (
@@ -172,39 +202,15 @@ class HomeView extends Component {
                         </View>
                         <View>
                             <Text style={styles.header}>
-                                {Languages.t('trending', this.props.locale)}
+                                {Languages.t('aroundme', this.props.locale)}
                             </Text>
                             <View style={styles.recommendedContainer}>
-                                <Grid>
-                                    <Row style={{ marginBottom: 10 }}>
-                                        <Components.EventTile
-                                            eventTitle="Code club"
-                                            locale={this.props.locale}
-                                            imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
-                                            venueName="Room H18"
-                                            venueAddress="7131 Stride Ave"
-                                            onPressSecondary={() => {
-                                                this.eventAction();
-                                            }}
-                                            description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
-                                            ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                            startTime={new Date()} />
-                                    </Row>
-                                    <Row style={{ marginBottom: 10 }}>
-                                        <Components.EventTile
-                                            eventTitle="Code club"
-                                            locale={this.props.locale}
-                                            imageSource={{ uri: 'https://parse.agreatstartup.com/parse/files/GuideFree/d94120ca-e9e3-4ae5-bba5-0481bb1d9bc2_codeclub.png' }}
-                                            venueName="Room H18"
-                                            venueAddress="7131 Stride Ave"
-                                            onPressSecondary={() => {
-                                                this.eventAction();
-                                            }}
-                                            description="Want to learn about how to program? Now you can, join use after school in room H19 and lets learn about programming"
-                                            ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                            startTime={new Date()} />
-                                    </Row>
-                                </Grid>
+                                <ListView
+                                    style={styles.list}
+                                    keyboardShouldPersistTaps={true}
+                                    enableEmptySections={true}
+                                    dataSource={this.state.nearbyDatasource}
+                                    renderRow={this.renderNearbyRow} />
                             </View>
                         </View>
                     </View>
@@ -252,6 +258,9 @@ class HomeView extends Component {
 HomeView.defaultProps = {
     selectedTab: 'home',
     carousel: [],
+    location: {
+        name: ''
+    },
     config: { attributes: {} }
 };
 

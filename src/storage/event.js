@@ -12,6 +12,15 @@ const event = {
         query.limit(20);
         return await query.find();
     },
+    fetchByLocation: async (location, radius = 10) => {
+        const query = new API.Parse.Query(API.Classes.event);
+        const userlocation = new API.Parse.GeoPoint({
+            latitude: location.lat,
+            longitude: location.lng
+        });
+        query.withinKilometers('coords', userlocation, radius);
+        return await query.find();
+    },
     create: async (eventData) => {
         const draft = new API.Classes.event();
         draft.set('name', eventData.name);
