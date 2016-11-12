@@ -114,6 +114,23 @@ const scenes = Actions.create(
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.AddressSelectorView} />
+        <Scene
+            key="addressSearcherPush"
+            direction="vertical"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            renderBackButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.pop}
+                    name="clear" />
+            }
+            titleStyle={styles.titleStyle}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.AddressSelectorView} />
     </Scene>
 );
 

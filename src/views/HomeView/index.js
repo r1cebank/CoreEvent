@@ -5,7 +5,7 @@ import { Card, Icon } from 'react-native-elements';
 import PopupDialog from 'react-native-popup-dialog';
 // import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
-import { Actions } from 'react-native-router-flux';
+import { Actions as RouterActions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
 import {
@@ -17,7 +17,7 @@ import {
     RefreshControl
 } from 'react-native';
 
-import { Colors, Languages, Components, Assets } from '../../global/globalIncludes';
+import { Colors, Languages, Components, Assets, Store, Actions } from '../../global/globalIncludes';
 import styles from './resources/styles';
 // import icons from './resources/icons';
 
@@ -28,6 +28,7 @@ class HomeView extends Component {
     static propTypes = {
         carousel: React.PropTypes.array,
         config: React.PropTypes.object,
+        location: React.PropTypes.object,
         locale: React.PropTypes.string,
         modalEventID: React.PropTypes.string,
         showModal: React.PropTypes.bool,
@@ -42,7 +43,7 @@ class HomeView extends Component {
         };
     }
     componentDidMount() {
-        Actions.refresh({
+        RouterActions.refresh({
             renderTitle: (navProps) => {
                 return (
                     <TouchableOpacity
@@ -52,9 +53,15 @@ class HomeView extends Component {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
-                        onPress={Actions.qrScanner}>
+                        onPress={() => {
+                            InteractionManager.runAfterInteractions(() => {
+                                RouterActions.addressSearcherPush({
+                                    onSelect: this.onAddressSelect
+                                });
+                            });
+                        }}>
                         <Text style={navProps.titleStyle}>
-                            {Languages.t('aroundme', this.props.locale)}
+                            {this.props.location.name}
                         </Text>
                         <Icon
                             color={Colors.infraRed}
@@ -71,7 +78,7 @@ class HomeView extends Component {
                     notice: nextProps.notice
                 });
                 this.popupDialog.openDialog();
-                Actions.refresh({ showNotice: false });
+                RouterActions.refresh({ showNotice: false });
             }
         }
         if (nextProps.showModal !== this.props.showModal) {
@@ -81,9 +88,15 @@ class HomeView extends Component {
                     modalLocationData: nextProps.modalLocationData
                 });
                 this.eventModal.open();
-                Actions.refresh({ showModal: false });
+                RouterActions.refresh({ showModal: false });
             }
         }
+    }
+    onAddressSelect = (address) => {
+        Store.appStore.dispatch(Actions.Settings.updateLocation({
+            name: address.name,
+            location: address.location
+        }));
     }
     eventAction = () => {
         this.eventActionSheet.show();
@@ -99,7 +112,7 @@ class HomeView extends Component {
     }
     openCarousel = carouselImage => {
         InteractionManager.runAfterInteractions(() => {
-            Actions.carousel({ carouselImage });
+            RouterActions.carousel({ carouselImage });
         });
     }
     render() {
@@ -245,6 +258,7 @@ HomeView.defaultProps = {
 function select(store) {
     return {
         carousel: store.data.carousel,
+        location: store.settings.location,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
         loading: store.utils.loading,

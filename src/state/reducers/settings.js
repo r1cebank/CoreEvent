@@ -30,6 +30,12 @@ function reducer(state = {}, action) {
                 user: action.user
             };
         }
+        case ActionType.UPDATE_LOCATION: {
+            return {
+                ...state,
+                location: action.location
+            };
+        }
         case ActionType.LOGOUT_USER: {
             return {
                 ...state,

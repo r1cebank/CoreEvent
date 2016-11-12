@@ -20,6 +20,11 @@ const event = {
         const relation = draft.relation('categories');
         relation.add(eventData.interests);
         draft.set('start', eventData.date);
+        const coords = new API.Parse.GeoPoint({
+            latitude: eventData.address.location.lat,
+            longitude: eventData.address.location.lng
+        });
+        draft.set('coords', coords);
         draft.set('location', {
             name: eventData.detailedAddress,
             address: eventData.address.name,

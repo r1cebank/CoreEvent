@@ -29,6 +29,12 @@ export function updateUser(user) {
         user
     };
 }
+export function updateLocation(location) {
+    return {
+        type: ActionType.UPDATE_LOCATION,
+        location
+    };
+}
 export function logoutUser() {
     return async (dispatch) => {
         await Storage.User.logout();
