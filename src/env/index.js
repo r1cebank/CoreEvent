@@ -12,6 +12,7 @@ if (__DEV__) {
         PARSE_APPID: 'GuideFree',
         PARSE_URL: 'https://parse.agreatstartup.com/parse',
         GCM: '',
+        REFRESH_TIMEOUT: 10000,
         BAIDU_APIKEY: 'Ce87e1k6PGvXOaaaRcPj5SOwI5uvX2qs'
     };
 } else {
@@ -21,6 +22,7 @@ if (__DEV__) {
         PARSE_APPID: 'GuideFree',
         PARSE_URL: 'https://parse.agreatstartup.com/parse',
         GCM: '',
+        REFRESH_TIMEOUT: 10000,
         BAIDU_APIKEY: 'Ce87e1k6PGvXOaaaRcPj5SOwI5uvX2qs'
     };
 }

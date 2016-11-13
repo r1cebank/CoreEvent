@@ -28,6 +28,7 @@ import {
     Actions
 } from '../../global/globalIncludes';
 import styles from './resources/styles';
+import Env from '../../env';
 // import icons from './resources/icons';
 
 
@@ -48,7 +49,7 @@ class HomeView extends Component {
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             notice: {},
-            loading: true,
+            // loading: true,
             showNotice: false,
             isRefreshing: false,
             nearbyDatasource: this.ds.cloneWithRows([])
@@ -84,6 +85,9 @@ class HomeView extends Component {
         });
         // Fetch nearby events
         await this.refreshEvents();
+        this.nearbyInterval = setInterval(async () => {
+            await this.refreshEvents();
+        }, Env.REFRESH_TIMEOUT);
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {
@@ -109,11 +113,14 @@ class HomeView extends Component {
             }
         }
     }
+    componentWillUnmount() {
+        clearInterval(this.nearbyInterval);
+    }
     refreshEvents = async () => {
-        this.setState({ loading: true });
+        // this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
         this.setState({ nearbyDatasource: this.ds.cloneWithRows(events) });
-        this.setState({ loading: false });
+        // this.setState({ loading: false });
     }
     onAddressSelect = (address) => {
         Store.appStore.dispatch(Actions.Settings.updateLocation({
@@ -140,6 +147,7 @@ class HomeView extends Component {
     renderNearbyRow = (rowData) => {
         return (
             <Components.EventTile
+                style={styles.nearbyTile}
                 eventTitle={rowData.get('name')}
                 locale={this.props.locale}
                 venueName={rowData.get('location').name}

@@ -18,6 +18,7 @@ class EventTile extends Component {
         simple: React.PropTypes.bool,
         onPress: React.PropTypes.func,
         venueName: React.PropTypes.string,
+        style: View.propTypes.style,
         locale: React.PropTypes.string,
         venueAddress: React.PropTypes.string,
         description: React.PropTypes.string,
@@ -34,7 +35,7 @@ class EventTile extends Component {
         return (
             <LinearGradient
                 colors={[ Colors.cyan, Colors.royalPurple ]}
-                style={styles.eventCard}>
+                style={[ this.props.style, styles.eventCard ]}>
                 <View>
                     <Text style={styles.title}>
                         {this.props.eventTitle}

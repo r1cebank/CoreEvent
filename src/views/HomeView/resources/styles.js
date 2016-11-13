@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15
     },
+    nearbyTile: {
+        marginBottom: 10
+    },
     clouds: {
         height: 20,
         width: 100,
