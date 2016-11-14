@@ -127,13 +127,13 @@ class HomeView extends Component {
         });
     }
     refreshEvents = async () => {
-        // this.setState({ loading: true });
+        this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
         this.setState({
             nearbyEvents: events,
             nearbyDatasource: this.ds.cloneWithRows(events)
         });
-        // this.setState({ loading: false });
+        this.setState({ loading: false });
     }
     onAddressSelect = (address) => {
         Store.appStore.dispatch(Actions.Settings.updateLocation({
@@ -237,7 +237,7 @@ class HomeView extends Component {
                             </View>
                             <View style={styles.recommendedContainer}>
                                 {(() => {
-                                    if (this.state.loading) {
+                                    if (this.state.loading && !this.state.isRefreshing) {
                                         return (
                                             <Views.LoadingView />
                                         );
