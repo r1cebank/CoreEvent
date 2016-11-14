@@ -85,9 +85,10 @@ class HomeView extends Component {
         });
         // Fetch nearby events
         await this.refreshEvents();
-        this.nearbyInterval = setInterval(async () => {
-            await this.refreshEvents();
-        }, Env.REFRESH_TIMEOUT);
+        // TODO: replace to livequery
+        this.nearbySubscription = Storage.Event
+            .fetchByLocationSubscription(this.props.location.location);
+        this.nearbySubscription.on('create', this.appendEvent);
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {
@@ -114,12 +115,24 @@ class HomeView extends Component {
         }
     }
     componentWillUnmount() {
-        clearInterval(this.nearbyInterval);
+        this.nearbySubscription.unsubscribe();
+    }
+    appendEvent = (object) => {
+        // Append event to the state
+        const newEvents = this.state.nearbyEvents.slice(0);
+        newEvents.push(object);
+        this.setState({
+            nearbyEvents: newEvents,
+            nearbyDatasource: this.ds.cloneWithRows(newEvents)
+        });
     }
     refreshEvents = async () => {
         // this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
-        this.setState({ nearbyDatasource: this.ds.cloneWithRows(events) });
+        this.setState({
+            nearbyEvents: events,
+            nearbyDatasource: this.ds.cloneWithRows(events)
+        });
         // this.setState({ loading: false });
     }
     onAddressSelect = (address) => {
@@ -216,9 +229,12 @@ class HomeView extends Component {
                             </ScrollView>
                         </View>
                         <View>
-                            <Text style={styles.header}>
-                                {Languages.t('aroundme', this.props.locale)}
-                            </Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <Text style={styles.header}>
+                                    {Languages.t('aroundme', this.props.locale)}
+                                </Text>
+                                <Text style={styles.header}>10 KM</Text>
+                            </View>
                             <View style={styles.recommendedContainer}>
                                 {(() => {
                                     if (this.state.loading) {

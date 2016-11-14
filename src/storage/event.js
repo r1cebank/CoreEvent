@@ -19,7 +19,18 @@ const event = {
             longitude: location.lng
         });
         query.withinKilometers('coords', userlocation, radius);
+        query.limit(20);
         return await query.find();
+    },
+    fetchByLocationSubscription: (location, radius = 10) => {
+        const query = new API.Parse.Query(API.Classes.event);
+        const userlocation = new API.Parse.GeoPoint({
+            latitude: location.lat,
+            longitude: location.lng
+        });
+        query.withinKilometers('coords', userlocation, radius);
+        query.limit(20);
+        return query.subscribe();
     },
     create: async (eventData) => {
         const draft = new API.Classes.event();
