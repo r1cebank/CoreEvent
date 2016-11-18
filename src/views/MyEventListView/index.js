@@ -22,6 +22,9 @@ class MyEventListView extends Component {
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
         const events = await Storage.Event.fetchMyEvents();
+        for (const event of events) {
+            event.attendees = await Storage.Attendance.fetchAttendee(event.id);
+        }
         this.setState({ events });
     }
     onRefresh = () => {
@@ -64,6 +67,7 @@ class MyEventListView extends Component {
                                                 openQR={() => RouterActions.qrViewer({
                                                     event
                                                 })}
+                                                attendees={event.attendees.length}
                                                 editMode={true}
                                                 hideDescription={true}
                                                 venueName={event.get('location').name}

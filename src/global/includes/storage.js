@@ -9,6 +9,7 @@ const storages = {
     get Config() { return require('../../storage/config'); },
     get Category() { return require('../../storage/category'); },
     get Event() { return require('../../storage/event'); },
+    get Attendance() { return require('../../storage/attendance'); },
     get Role() { return require('../../storage/role'); },
     get User() { return require('../../storage/user'); }
 };

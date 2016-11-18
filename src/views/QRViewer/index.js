@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import dateFormat from 'dateformat';
 import QRCode from 'react-native-qrcode';
+import RNViewShot from 'react-native-view-shot';
+import Share from 'react-native-share';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
 
@@ -17,7 +19,22 @@ class QRViewer extends Component {
         event: React.PropTypes.object
     }
     componentWillMount() {
-        RouterActions.refresh({ title: Languages.t('viewQR', this.props.locale) });
+        RouterActions.refresh({
+            title: Languages.t('viewQR', this.props.locale),
+            renderRightButton: () =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={this.shareQR}
+                    type="ionicon"
+                    name="ios-share-outline" />
+        });
+    }
+    shareQR = async () => {
+        const dataURI = await RNViewShot.takeSnapshot(this.qrCard, { result: 'data-uri' });
+        Share.open({
+            message: 'Share QR',
+            url: dataURI
+        });
     }
     render() {
         const options = {
@@ -27,8 +44,11 @@ class QRViewer extends Component {
             day: 'numeric'
         };
         return (
-            <View style={styles.container}>
+            <View
+                ref={(c) => this.qrCard = c}
+                style={styles.container}>
                 <Card
+                    containerStyle={{ borderWidth: 0, borderRadius: 10}}
                     wrapperStyle={{alignItems: 'center', justifyContent: 'center'}}
                     title={this.props.event.get('name')}>
                     <View style={{ alignItems:'flex-start'}}>

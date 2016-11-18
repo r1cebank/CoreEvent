@@ -16,6 +16,7 @@ class EventTile extends Component {
     static propTypes = {
         eventTitle: React.PropTypes.string,
         simple: React.PropTypes.bool,
+        attendees: React.PropTypes.number,
         editMode: React.PropTypes.bool,
         hideDescription: React.PropTypes.bool,
         onPress: React.PropTypes.func,
@@ -89,7 +90,7 @@ class EventTile extends Component {
                                 <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
                                     <Button
                                         small
-                                        title="8"
+                                        title={this.props.attendees.toString()}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
                                         buttonStyle={styles.eventCardEditButton} />
