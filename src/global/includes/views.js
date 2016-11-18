@@ -29,6 +29,7 @@ const views = {
     get EventEditView() { return require('../../views/EventEditView'); },
     get DraftView() { return require('../../views/DraftView'); },
     get AddressSelectorView() { return require('../../views/AddressSelectorView'); },
+    get MyEventListView() { return require('../../views/MyEventListView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

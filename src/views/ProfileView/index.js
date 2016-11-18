@@ -191,6 +191,7 @@ class ProfileView extends Component {
                     <ListItem
                         hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
+                        onPress={RouterActions.myEvents}
                         title={Languages.t('myEvents', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'event', style: styles.iconStyle }}

@@ -233,7 +233,9 @@ class HomeView extends Component {
                                 <Text style={styles.header}>
                                     {Languages.t('aroundme', this.props.locale)}
                                 </Text>
-                                <Text style={styles.header}>10 KM</Text>
+                                <Text style={styles.header}>
+                                    10 公里
+                                </Text>
                             </View>
                             <View style={styles.recommendedContainer}>
                                 {(() => {

@@ -12,6 +12,12 @@ const event = {
         query.limit(20);
         return await query.find();
     },
+    fetchMyEvents: async () => {
+        const query = new API.Parse.Query(API.Classes.event).equalTo('owner',
+        API.Parse.User.current());
+        query.limit(20);
+        return await query.find();
+    },
     fetchByLocation: async (location, radius = 10) => {
         const query = new API.Parse.Query(API.Classes.event);
         const userlocation = new API.Parse.GeoPoint({
