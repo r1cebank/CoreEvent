@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Card } from 'react-native-elements';
 import { View, ScrollView, RefreshControl } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import { Languages, Views, Storage, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
@@ -20,7 +20,7 @@ class MyEventListView extends Component {
         };
     }
     async componentWillMount() {
-        Actions.refresh({ title: Languages.t('myEvents', this.props.locale) });
+        RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
         const events = await Storage.Event.fetchMyEvents();
         this.setState({ events });
     }
@@ -61,6 +61,9 @@ class MyEventListView extends Component {
                                                 onPressSecondary={() => {
                                                     this.eventAction(event);
                                                 }}
+                                                openQR={() => RouterActions.qrViewer({
+                                                    event
+                                                })}
                                                 editMode={true}
                                                 hideDescription={true}
                                                 venueName={event.get('location').name}

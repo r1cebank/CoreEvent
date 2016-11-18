@@ -30,6 +30,7 @@ const views = {
     get DraftView() { return require('../../views/DraftView'); },
     get AddressSelectorView() { return require('../../views/AddressSelectorView'); },
     get MyEventListView() { return require('../../views/MyEventListView'); },
+    get QRViewer() { return require('../../views/QRViewer'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Icon } from 'react-native-elements';
 import { Navigator, Platform } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
-import { Views } from '../../global/globalIncludes';
+import { Views, Colors } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
@@ -42,6 +43,24 @@ const scenes = Actions.create(
             rightButtonTextStyle={styles.rightButtonTextStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.MyEventListView} />
+        <Scene
+            key="qrViewer"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            renderBackButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.pop}
+                    name="clear" />
+            }
+            direction="vertical"
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.QRViewer} />
         <Scene
             key="eventEdit"
             sceneStyle={{

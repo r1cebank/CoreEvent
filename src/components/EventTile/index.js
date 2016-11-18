@@ -19,6 +19,7 @@ class EventTile extends Component {
         editMode: React.PropTypes.bool,
         hideDescription: React.PropTypes.bool,
         onPress: React.PropTypes.func,
+        openQR: React.PropTypes.func,
         venueName: React.PropTypes.string,
         style: View.propTypes.style,
         locale: React.PropTypes.string,
@@ -94,19 +95,32 @@ class EventTile extends Component {
                                         buttonStyle={styles.eventCardEditButton} />
                                     <Button
                                         small
-                                        icon={{ name: 'qrcode', type: 'font-awesome', style: styles.etcIconStyle }}
+                                        icon={{
+                                            name: 'qrcode',
+                                            type: 'font-awesome',
+                                            style: styles.etcIconStyle
+                                        }}
+                                        onPress={this.props.openQR}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
                                         buttonStyle={styles.eventCardEditButton} />
                                     <Button
                                         small
-                                        icon={{ name: 'pencil', type: 'font-awesome', style: styles.etcIconStyle }}
+                                        icon={{
+                                            name: 'pencil',
+                                            type: 'font-awesome',
+                                            style: styles.etcIconStyle
+                                        }}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
                                         buttonStyle={styles.eventCardEditButton} />
                                     <Button
                                         small
-                                        icon={{ name: 'trash', type: 'font-awesome', style: styles.etcIconStyle }}
+                                        icon={{
+                                            name: 'trash',
+                                            type: 'font-awesome',
+                                            style: styles.etcIconStyle
+                                        }}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
                                         buttonStyle={styles.eventCardEditButton} />
