@@ -61,6 +61,8 @@ class MyEventListView extends Component {
                                                 onPressSecondary={() => {
                                                     this.eventAction(event);
                                                 }}
+                                                editMode={true}
+                                                hideDescription={true}
                                                 venueName={event.get('location').name}
                                                 venueAddress={event.get('location').address}
                                                 description={event.get('description')}

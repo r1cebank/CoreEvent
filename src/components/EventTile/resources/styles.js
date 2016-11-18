@@ -59,6 +59,16 @@ const styles = StyleSheet.create({
         marginRight: 0,
         marginBottom: 0,
         marginTop: 10
+    },
+    eventCardEditButton: {
+        borderWidth: 1,
+        borderColor: Colors.frontColor,
+        borderRadius: 20,
+        marginLeft: 0,
+        marginRight: 0,
+        minWidth: 50,
+        marginBottom: 0,
+        marginTop: 10
     }
 });
 
