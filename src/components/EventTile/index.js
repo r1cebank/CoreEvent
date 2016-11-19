@@ -21,6 +21,7 @@ class EventTile extends Component {
         hideDescription: React.PropTypes.bool,
         onPress: React.PropTypes.func,
         openQR: React.PropTypes.func,
+        openUserSearch: React.PropTypes.func,
         venueName: React.PropTypes.string,
         style: View.propTypes.style,
         locale: React.PropTypes.string,
@@ -93,6 +94,7 @@ class EventTile extends Component {
                                         title={this.props.attendees.toString()}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
+                                        onPress={this.props.openUserSearch}
                                         buttonStyle={styles.eventCardEditButton} />
                                     <Button
                                         small

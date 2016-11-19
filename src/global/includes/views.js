@@ -31,6 +31,7 @@ const views = {
     get AddressSelectorView() { return require('../../views/AddressSelectorView'); },
     get MyEventListView() { return require('../../views/MyEventListView'); },
     get QRViewer() { return require('../../views/QRViewer'); },
+    get UserSearchView() { return require('../../views/UserSearchView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

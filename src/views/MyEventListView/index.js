@@ -67,6 +67,9 @@ class MyEventListView extends Component {
                                                 openQR={() => RouterActions.qrViewer({
                                                     event
                                                 })}
+                                                openUserSearch={() => RouterActions.userSearch({
+                                                    event
+                                                })}
                                                 attendees={event.attendees.length}
                                                 editMode={true}
                                                 hideDescription={true}

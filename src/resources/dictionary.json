@@ -77,7 +77,8 @@
         "longAddress": "Long Address",
         "eventCreated": "Your event has been created, please to to [Profile]->[My Events] to mange your events",
         "eventCreateError": "Event creation failed",
-        "viewQR": "View QR"
+        "viewQR": "View QR",
+        "inviteUser": "Invite User"
     },
     "ja": {
         "hot": "おすすめ",
@@ -156,7 +157,8 @@
         "longAddress": "Long Address",
         "eventCreated": "Your event has been created, please to to [Profile]->[My Events] to mange your events",
         "eventCreateError": "Event creation failed",
-        "viewQR": "View QR"
+        "viewQR": "View QR",
+        "inviteUser": "Invite User"
     },
     "zh": {
         "hot": "热门",
@@ -236,6 +238,7 @@
         "longAddress": "详细地址",
         "eventCreated": "你的活动已创建，请到【我的活动】管理",
         "eventCreateError": "创建活动失败",
-        "viewQR": "查看二维码"
+        "viewQR": "查看二维码",
+        "inviteUser": "邀请用户"
     }
 }

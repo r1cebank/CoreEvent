@@ -62,6 +62,24 @@ const scenes = Actions.create(
             navigationBarStyle={styles.navbarStyle}
             component={Views.QRViewer} />
         <Scene
+            key="userSearch"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            renderBackButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.pop}
+                    name="clear" />
+            }
+            direction="vertical"
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.UserSearchView} />
+        <Scene
             key="eventEdit"
             sceneStyle={{
                 paddingTop: Navigator
