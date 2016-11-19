@@ -9,6 +9,7 @@
 const assets = {
     get icon() { return require('../assets/icon.png'); },
     get placeholder() { return require('../assets/placeholder.png'); },
+    get profile() { return require('../assets/profile.png'); },
     get loginVideo() { return require('../assets/login.mp4'); },
     get launchpad_bg() { return require('../assets/launchpad_bg.png'); },
     get bear() { return require('../assets/bear.png'); },

@@ -18,7 +18,7 @@ import {
     Actions,
     Colors,
     API,
-    Icons,
+    Assets,
     Storage,
     Components
 } from '../../global/globalIncludes';
@@ -156,11 +156,26 @@ class ProfileView extends Component {
                         })()}
                         <TouchableOpacity
                             onPress={() => this.ActionSheet.show()}>
-                            <Image
-                                style={styles.avatarImage}
-                                indicatorProps={{ color: Colors.infraRed }}
-                                source={{ uri: API.Parse.User.current().get('avatar').url() }}
-                                indicator={Progress.Circle} />
+                            {(() => {
+                                if (API.Parse.User.current().get('avatar')) {
+                                    return (
+                                        <Image
+                                            style={styles.avatarImage}
+                                            indicatorProps={{ color: Colors.infraRed }}
+                                            source={{
+                                                uri: API.Parse.User.current().get('avatar').url()
+                                            }}
+                                            indicator={Progress.Circle} />
+                                    );
+                                }
+                                return (
+                                    <Image
+                                        style={styles.avatarImage}
+                                        indicatorProps={{ color: Colors.infraRed }}
+                                        source={Assets.profile}
+                                        indicator={Progress.Circle} />
+                                );
+                            })()}
                         </TouchableOpacity>
                     </View>
                     <View style={styles.nameStatContainer}>

@@ -78,7 +78,7 @@ class QRViewer extends Component {
                     </View>
                     <QRCode
                         value={`{"eventId":"${this.props.event.id}"}`}
-                        size={200}
+                        size={150}
                         bgColor="black"
                         fgColor="white" />
                 </Card>
