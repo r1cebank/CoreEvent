@@ -63,7 +63,8 @@ const user = {
             deviceModel: DeviceInfo.getModel(),
             buildNumber: DeviceInfo.getBuildNumber(),
             appVersion: DeviceInfo.getVersion(),
-            channels: ['general']
+            channels: ['general'],
+            user: API.Parse.User.current()
         });
         return installation.save();
     }

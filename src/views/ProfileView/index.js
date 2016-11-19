@@ -35,12 +35,15 @@ class ProfileView extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            hosted: 0,
             notice: {},
             loading: false
         };
     }
-    componentWillMount() {
+    async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('profileLC', this.props.locale) });
+        const events = await Storage.Event.fetchMyEvents();
+        this.setState({ hosted: events.length });
     }
     showNotice = (notice) => {
         this.setState({
@@ -187,7 +190,7 @@ class ProfileView extends Component {
                                 1 {Languages.t('attended', this.props.locale)}
                             </Text>
                             <Text style={styles.statText}>
-                                1 {Languages.t('hosted', this.props.locale)}
+                                {this.state.hosted} {Languages.t('hosted', this.props.locale)}
                             </Text>
                             <Text style={styles.statText}>
                                 1 {Languages.t('experience', this.props.locale)}
