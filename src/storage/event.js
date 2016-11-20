@@ -24,6 +24,8 @@ const event = {
             latitude: location.lat,
             longitude: location.lng
         });
+        // Omit my events
+        query.notEqualTo('owner', API.Parse.User.current());
         query.withinKilometers('coords', userlocation, radius);
         query.limit(20);
         return await query.find();
@@ -34,6 +36,8 @@ const event = {
             latitude: location.lat,
             longitude: location.lng
         });
+        // Omit my events
+        query.notEqualTo('owner', API.Parse.User.current());
         query.withinKilometers('coords', userlocation, radius);
         query.limit(20);
         return query.subscribe();
