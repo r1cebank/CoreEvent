@@ -20,6 +20,7 @@ class EventTile extends Component {
         editMode: React.PropTypes.bool,
         hideDescription: React.PropTypes.bool,
         onPress: React.PropTypes.func,
+        onPressSecondary: React.PropTypes.func,
         openQR: React.PropTypes.func,
         openUserSearch: React.PropTypes.func,
         venueName: React.PropTypes.string,
@@ -149,6 +150,7 @@ class EventTile extends Component {
                                         icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
                                         backgroundColor="transparent"
                                         fontFamily="NotoSans-Bold"
+                                        onPress={this.props.onPressSecondary}
                                         buttonStyle={styles.eventCardSecondary} />
                                 </Col>
                             </Grid>

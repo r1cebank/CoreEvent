@@ -84,7 +84,11 @@
         "invitationMessage": "You have a event invitation from {0}",
         "userAlreadyInvited": "User already invited",
         "inviteError": "Cannot invite user",
-        "userInvited": "User invitation successful"
+        "userInvited": "User invitation successful",
+        "favorite": "Favorite",
+        "hide": "Hide from my feed",
+        "report": "Report this event",
+        "attendanceMessage": "Someone joined {0}"
     },
     "ja": {
         "hot": "おすすめ",
@@ -170,7 +174,11 @@
         "invitationMessage": "You have a event invitation from {0}",
         "userAlreadyInvited": "User already invited",
         "inviteError": "Cannot invite user",
-        "userInvited": "User invitation successful"
+        "userInvited": "User invitation successful",
+        "favorite": "Favorite",
+        "hide": "Hide from my feed",
+        "report": "Report this event",
+        "attendanceMessage": "Someone joined {0}"
     },
     "zh": {
         "hot": "热门",
@@ -257,6 +265,10 @@
         "invitationMessage": "你有一个来自{0}的邀请",
         "userAlreadyInvited": "用户已邀请",
         "inviteError": "邀请用户失败",
-        "userInvited": "邀请成功"
+        "userInvited": "邀请成功",
+        "favorite": "收藏",
+        "hide": "从我的首页清除",
+        "report": "举报这个活动",
+        "attendanceMessage": "有人参加了 {0}"
     }
 }

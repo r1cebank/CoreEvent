@@ -5,6 +5,7 @@ import { Card, Icon } from 'react-native-elements';
 import PopupDialog from 'react-native-popup-dialog';
 // import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
+import ActionSheet from 'react-native-actionsheet';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
@@ -29,10 +30,6 @@ import {
 } from '../../global/globalIncludes';
 import styles from './resources/styles';
 import Env from '../../env';
-// import icons from './resources/icons';
-
-
-
 
 class HomeView extends Component {
     static propTypes = {
@@ -157,6 +154,10 @@ class HomeView extends Component {
             RouterActions.carousel({ carouselImage });
         });
     }
+    attend = async (event) => {
+        await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
+            this.props.locale));
+    }
     renderNearbyRow = (rowData) => {
         return (
             <Components.EventTile
@@ -165,15 +166,26 @@ class HomeView extends Component {
                 locale={this.props.locale}
                 venueName={rowData.get('location').name}
                 venueAddress={rowData.get('location').address}
-                onPressSecondary={() => {
-                    this.eventAction();
-                }}
+                onPress={() => this.attend(rowData)}
+                onPressSecondary={() => this.ActionSheet.show()}
                 description={rowData.get('description')}
                 ctaTitle={Languages.t('addToMe', this.props.locale)}
                 startTime={rowData.get('start')} />
         );
     }
     render() {
+        const ActionSheetOptions = {
+            eventMisc: {
+                options: [
+                    Languages.t('cancel', this.props.locale),
+                    Languages.t('favorite', this.props.locale),
+                    Languages.t('hide', this.props.locale),
+                    Languages.t('report', this.props.locale)
+                ],
+                CANCEL_INDEX: 0,
+                DESTRUCTIVE_INDEX: 3
+            }
+        };
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -292,6 +304,13 @@ class HomeView extends Component {
                         return null;
                     })()}
                 </Modal>
+                <ActionSheet
+                    ref={(o) => this.ActionSheet = o}
+                    options={ActionSheetOptions.eventMisc.options}
+                    cancelButtonIndex={ActionSheetOptions.eventMisc.CANCEL_INDEX}
+                    destructiveButtonIndex={ActionSheetOptions.eventMisc.DESTRUCTIVE_INDEX}
+                    onPress={this._handlePress}
+                />
             </View>
         );
     }
