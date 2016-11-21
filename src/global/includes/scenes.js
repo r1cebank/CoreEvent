@@ -12,6 +12,7 @@ const scenes = {
     get LoginScene() { return require('../../scenes/LoginScene'); },
     get SettingsScene() { return require('../../scenes/SettingsScene'); },
     get ProfileScene() { return require('../../scenes/ProfileScene'); },
+    get MessagesScene() { return require('../../scenes/MessagesScene'); },
     get CategoryScene() { return require('../../scenes/CategoryScene'); }
 };
 

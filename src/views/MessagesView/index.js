@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { Languages } from '../../global/globalIncludes';
+import { Languages, Storage } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -14,8 +14,13 @@ class MessagesView extends Component {
             isRefreshing: false
         };
     }
-    componentWillMount() {
+    async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('messageLC', this.props.locale) });
+        await this.refreshMessages();
+    }
+    refreshMessages = async () => {
+        const invitations = await Storage.Invitation.fetchMine();
+        debugger;
     }
     render() {
         return (

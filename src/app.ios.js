@@ -177,7 +177,7 @@ class App extends Component {
                             );
                         }}
                         onPress={() => this.props.changeTab('messages')}>
-                        <Views.EmptyView />
+                        <Scenes.MessagesScene />
                     </Tab>
                     <Tab
                         titleStyle={styles.titleStyle}

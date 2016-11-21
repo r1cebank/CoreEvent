@@ -14,6 +14,13 @@ const invitation = {
         ACL.setWriteAccess(user, true);
         draft.setACL(ACL);
         return await draft.save();
+    },
+    fetchMine: async () => {
+        const query = new API.Parse.Query(API.Classes.invitation).equalTo('user',
+        API.Parse.User.current());
+        query.limit(20);
+        query.ascending('createdAt');
+        return await query.find();
     }
 };
 
