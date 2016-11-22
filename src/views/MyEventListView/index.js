@@ -50,39 +50,36 @@ class MyEventListView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
-                    <Card
-                        containerStyle={styles.cardContainer}>
-                            {(() => {
-                                return this.state.events.map((event, index) => {
-                                    return (
-                                        <View
-                                            key={index}
-                                            style={styles.eventsContainer}>
-                                            <Components.EventTile
-                                                locale={this.props.locale}
-                                                eventTitle={event.get('name')}
-                                                onPressSecondary={() => {
-                                                    this.eventAction(event);
-                                                }}
-                                                openQR={() => RouterActions.qrViewer({
-                                                    event
-                                                })}
-                                                openUserSearch={() => RouterActions.userSearch({
-                                                    event
-                                                })}
-                                                attendees={event.attendees.length}
-                                                editMode={true}
-                                                hideDescription={true}
-                                                venueName={event.get('location').name}
-                                                venueAddress={event.get('location').address}
-                                                description={event.get('description')}
-                                                ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                                startTime={event.get('start')} />
-                                        </View>
-                                    );
-                                });
-                            })()}
-                    </Card>
+                    {(() => {
+                        return this.state.events.map((event, index) => {
+                            return (
+                                <View
+                                    key={index}
+                                    style={styles.eventsContainer}>
+                                    <Components.EventTile
+                                        locale={this.props.locale}
+                                        eventTitle={event.get('name')}
+                                        onPressSecondary={() => {
+                                            this.eventAction(event);
+                                        }}
+                                        openQR={() => RouterActions.qrViewer({
+                                            event
+                                        })}
+                                        openUserSearch={() => RouterActions.userSearch({
+                                            event
+                                        })}
+                                        attendees={event.attendees.length}
+                                        editMode={true}
+                                        hideDescription={true}
+                                        venueName={event.get('location').name}
+                                        venueAddress={event.get('location').address}
+                                        description={event.get('description')}
+                                        ctaTitle={Languages.t('addToMe', this.props.locale)}
+                                        startTime={event.get('start')} />
+                                </View>
+                            );
+                        });
+                    })()}
                 </ScrollView>
             </View>
         );

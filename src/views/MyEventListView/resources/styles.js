@@ -12,14 +12,10 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     eventsContainer: {
+        marginLeft: 10,
+        marginRight: 10,
         paddingBottom: 10,
         flexDirection: 'column'
-    },
-    cardContainer: {
-        backgroundColor: Colors.frontColor,
-        marginTop: 10,
-        margin: 0,
-        shadowRadius: 0
     }
 });
 

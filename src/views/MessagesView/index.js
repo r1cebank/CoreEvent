@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { View, Text, ScrollView, RefreshControl, ListView } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
 import { Languages, Storage } from '../../global/globalIncludes';
@@ -8,10 +9,15 @@ import { Languages, Storage } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class MessagesView extends Component {
+    static propTypes = {
+        locale: React.PropTypes.string
+    }
     constructor(props) {
         super(props);
+        this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            isRefreshing: false
+            isRefreshing: false,
+            messageDatasource: this.ds.cloneWithRows([])
         };
     }
     async componentWillMount() {
@@ -20,7 +26,17 @@ class MessagesView extends Component {
     }
     refreshMessages = async () => {
         const invitations = await Storage.Invitation.fetchMine();
-        debugger;
+        for (const invitation of invitations) {
+            invitation.event = await invitation.get('event').fetch();
+        }
+        this.setState({
+            messageDatasource: this.ds.cloneWithRows(invitations)
+        });
+    }
+    renderMessageRow = (rowData) => {
+        return (
+            <ListItem title={rowData.event.get('name')} />
+        );
     }
     render() {
         return (
@@ -36,6 +52,12 @@ class MessagesView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
+                    <ListView
+                        style={styles.list}
+                        keyboardShouldPersistTaps={true}
+                        enableEmptySections={true}
+                        dataSource={this.state.messageDatasource}
+                        renderRow={this.renderMessageRow} />
                 </ScrollView>
             </View>
         );
