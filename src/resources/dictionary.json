@@ -82,6 +82,7 @@
         "inviteUser": "Invite User",
         "userNotFound": "User not found",
         "invite": "Invite",
+        "invitation": "Invite",
         "invitationMessage": "You have a event invitation from {0}",
         "userAlreadyInvited": "User already invited",
         "inviteError": "Cannot invite user",
@@ -89,7 +90,8 @@
         "favorite": "Favorite",
         "hide": "Hide from my feed",
         "report": "Report this event",
-        "attendanceMessage": "Someone joined {0}"
+        "attendanceMessage": "Someone joined {0}",
+        "invitationFrom": "Invitation from {0}"
     },
     "ja": {
         "hot": "おすすめ",
@@ -173,6 +175,7 @@
         "inviteUser": "Invite User",
         "userNotFound": "User not found",
         "invite": "Invite",
+        "invitation": "Invite",
         "invitationMessage": "You have a event invitation from {0}",
         "userAlreadyInvited": "User already invited",
         "inviteError": "Cannot invite user",
@@ -180,7 +183,8 @@
         "favorite": "Favorite",
         "hide": "Hide from my feed",
         "report": "Report this event",
-        "attendanceMessage": "Someone joined {0}"
+        "attendanceMessage": "Someone joined {0}",
+        "invitationFrom": "Invitation from {0}"
     },
     "zh": {
         "hot": "热门",
@@ -265,6 +269,7 @@
         "inviteUser": "邀请用户",
         "userNotFound": "未找到用户",
         "invite": "邀请",
+        "invitation": "邀请",
         "invitationMessage": "你有一个来自{0}的邀请",
         "userAlreadyInvited": "用户已邀请",
         "inviteError": "邀请用户失败",
@@ -272,6 +277,7 @@
         "favorite": "收藏",
         "hide": "从我的首页清除",
         "report": "举报这个活动",
-        "attendanceMessage": "有人参加了 {0}"
+        "attendanceMessage": "有人参加了 {0}",
+        "invitationFrom": "来自 {0} 的邀请"
     }
 }

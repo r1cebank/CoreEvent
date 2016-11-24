@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { ListItem } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { View, Text, ScrollView, RefreshControl, ListView } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { Languages, Storage } from '../../global/globalIncludes';
+import { Languages, Storage, Colors } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -35,7 +35,24 @@ class MessagesView extends Component {
     }
     renderMessageRow = (rowData) => {
         return (
-            <ListItem title={rowData.event.get('name')} />
+            <View style={{ padding: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderColor: Colors.infraRed }}>
+                <View style={{ flex: 9, flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}>
+                    <Text style={{ flex: 1, fontWeight: 'bold', fontSize: 15, color: Colors.infraRed }}>
+                        {Languages.t('invitationFrom', this.props.locale)
+                            .replace('{0}', rowData.event.get('name'))}
+                    </Text>
+                </View>
+                <View style={{ flex: 3, flexDirection: 'row'}}>
+                    <Icon
+                        color={Colors.green}
+                        name="thumb-up"
+                        containerStyle={{ marginRight: 30 }} />
+                    <Icon
+                        color={Colors.infraRed}
+                        name="thumb-down"
+                        containerStyle={{ marginRight: 0 }} />
+                </View>
+            </View>
         );
     }
     render() {
@@ -52,6 +69,11 @@ class MessagesView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
+                    <View style={{ backgroundColor: Colors.infraRed, padding: 10 }}>
+                        <Text style={{ color: Colors.frontColor }}>
+                            {Languages.t('invitation', this.props.locale)}
+                        </Text>
+                    </View>
                     <ListView
                         style={styles.list}
                         keyboardShouldPersistTaps={true}
