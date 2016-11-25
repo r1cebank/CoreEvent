@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
+        color: Colors.grey,
         marginTop: 20,
         opacity: 1
     }

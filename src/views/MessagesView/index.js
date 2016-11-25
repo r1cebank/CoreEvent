@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements';
 import { View, Text, ScrollView, RefreshControl, ListView } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { Languages, Storage, Colors } from '../../global/globalIncludes';
+import { Languages, Storage, Colors, Views, Components } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -17,6 +17,7 @@ class MessagesView extends Component {
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             isRefreshing: false,
+            invitations: [],
             messageDatasource: this.ds.cloneWithRows([])
         };
     }
@@ -30,29 +31,48 @@ class MessagesView extends Component {
             invitation.event = await invitation.get('event').fetch();
         }
         this.setState({
+            invitations,
             messageDatasource: this.ds.cloneWithRows(invitations)
         });
     }
-    renderMessageRow = (rowData) => {
+    acceptInvitation = async (invitation, index) => {
+        try {
+            await Storage.Attendance.attend(invitation.event, Languages.t('attendanceMessage',
+                this.props.locale));
+            await Storage.Invitation.attend(invitation);
+            // Remove the data entry
+            const invitations = this.state.invitations.splice(0);
+            invitations.splice(index, 1);
+            this.setState({
+                invitations,
+                messageDatasource: this.ds.cloneWithRows(invitations)
+            });
+        } catch (e) {
+            // TODO: Handle Error
+            console.error(e);
+        }
+    }
+    rejectInvitation = async (invitation, index) => {
+        try {
+            await Storage.Invitation.reject(invitation);
+            // Remove the data entry
+            const invitations = this.state.invitations.splice(0);
+            invitations.splice(index, 1);
+            this.setState({
+                invitations,
+                messageDatasource: this.ds.cloneWithRows(invitations)
+            });
+        } catch (e) {
+            // TODO: Handle Error
+            console.error(e);
+        }
+    }
+    renderMessageRow = (rowData, sectionID, rowID) => {
         return (
-            <View style={{ padding: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderColor: Colors.infraRed }}>
-                <View style={{ flex: 9, flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}>
-                    <Text style={{ flex: 1, fontWeight: 'bold', fontSize: 15, color: Colors.infraRed }}>
-                        {Languages.t('invitationFrom', this.props.locale)
-                            .replace('{0}', rowData.event.get('name'))}
-                    </Text>
-                </View>
-                <View style={{ flex: 3, flexDirection: 'row'}}>
-                    <Icon
-                        color={Colors.green}
-                        name="thumb-up"
-                        containerStyle={{ marginRight: 30 }} />
-                    <Icon
-                        color={Colors.infraRed}
-                        name="thumb-down"
-                        containerStyle={{ marginRight: 0 }} />
-                </View>
-            </View>
+            <Components.Message
+                data={rowData}
+                onPressAccept={() => this.acceptInvitation(rowData, rowID)}
+                onPressReject={() => this.rejectInvitation(rowData, rowID)} />
         );
     }
     render() {
@@ -74,12 +94,23 @@ class MessagesView extends Component {
                             {Languages.t('invitation', this.props.locale)}
                         </Text>
                     </View>
-                    <ListView
-                        style={styles.list}
-                        keyboardShouldPersistTaps={true}
-                        enableEmptySections={true}
-                        dataSource={this.state.messageDatasource}
-                        renderRow={this.renderMessageRow} />
+                    {(() => {
+                        if (!this.state.messageDatasource.getRowCount()) {
+                            return (
+                                <View style={{ margin: 20 }}>
+                                    <Views.LoadingView loadingText="Loading invitations" />
+                                </View>
+                            );
+                        }
+                        return (
+                            <ListView
+                                style={styles.list}
+                                keyboardShouldPersistTaps={true}
+                                enableEmptySections={true}
+                                dataSource={this.state.messageDatasource}
+                                renderRow={this.renderMessageRow} />
+                        );
+                    })()}
                 </ScrollView>
             </View>
         );

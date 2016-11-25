@@ -10,6 +10,7 @@ const components = {
     get MyEventTile() { return require('../../components/MyEventTile'); },
     get Notice() { return require('../../components/Notice'); },
     get CategoryTile() { return require('../../components/CategoryTile'); },
+    get Message() { return require('../../components/Message'); },
     get CarouselImage() { return require('../../components/CarouselImage'); }
 };
 
