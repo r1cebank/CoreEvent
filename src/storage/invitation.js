@@ -20,7 +20,7 @@ const invitation = {
         invitationData.set('accepted', true);
         return await invitationData.save();
     },
-    ignore: async (invitationData) => {
+    reject: async (invitationData) => {
         invitationData.set('ignored', true);
         return await invitationData.save();
     },
