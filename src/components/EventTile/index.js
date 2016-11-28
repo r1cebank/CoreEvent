@@ -154,7 +154,7 @@ class EventTile extends Component {
                                         buttonStyle={styles.eventCardSecondary} />
                                 </Col>
                             </Grid>
-                        )
+                        );
                     })()}
                 </View>
             </LinearGradient>

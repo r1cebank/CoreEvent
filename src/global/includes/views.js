@@ -33,6 +33,7 @@ const views = {
     get QRViewer() { return require('../../views/QRViewer'); },
     get UserSearchView() { return require('../../views/UserSearchView'); },
     get MessagesView() { return require('../../views/MessagesView'); },
+    get MyAttendanceView() { return require('../../views/MyAttendanceView'); },
     get PopupView() { return require('../../views/PopupView'); }
 };
 

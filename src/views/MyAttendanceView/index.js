@@ -7,7 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { Languages, Views, Storage, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
-class MyEventListView extends Component {
+class MyAttendanceView extends Component {
     static propTypes = {
         category: React.PropTypes.object,
         locale: React.PropTypes.string
@@ -15,17 +15,19 @@ class MyEventListView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
+            attendances: [],
             isRefreshing: false
         };
     }
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
-        const events = await Storage.Event.fetchMyEvents();
-        for (const event of events) {
-            event.attendees = await Storage.Attendance.fetchAttendee(event.id);
+        const attendances = await Storage.Attendance.fetchMine();
+        for (const attendance of attendances) {
+            attendance.event = await attendance.get('event').fetch();
+            attendance.event.attendees = await Storage
+                .Attendance.fetchAttendee(attendance.event.id);
         }
-        this.setState({ events });
+        this.setState({ attendances });
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -34,7 +36,7 @@ class MyEventListView extends Component {
         }, 5000);
     }
     render() {
-        if (!this.state.events.length) {
+        if (!this.state.attendances.length) {
             return <Views.LoadingView loadingText="Loading" />;
         }
         return (
@@ -51,28 +53,25 @@ class MyEventListView extends Component {
                       />
                     }>
                     {(() => {
-                        return this.state.events.map((event, index) => {
+                        return this.state.attendances.map((attendance, index) => {
                             return (
                                 <View
                                     key={index}
                                     style={styles.eventsContainer}>
                                     <Components.EventTile
                                         locale={this.props.locale}
-                                        eventTitle={event.get('name')}
+                                        eventTitle={attendance.event.get('name')}
                                         openQR={() => RouterActions.qrViewer({
-                                            event
+                                            event: attendance.event
                                         })}
-                                        openUserSearch={() => RouterActions.userSearch({
-                                            event
-                                        })}
-                                        attendees={event.attendees.length}
-                                        editMode={true}
+                                        attendees={attendance.event.attendees.length}
+                                        editMode={false}
                                         hideDescription={true}
-                                        venueName={event.get('location').name}
-                                        venueAddress={event.get('location').address}
-                                        description={event.get('description')}
+                                        venueName={attendance.event.get('location').name}
+                                        venueAddress={attendance.event.get('location').address}
+                                        description={attendance.event.get('description')}
                                         ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                        startTime={event.get('start')} />
+                                        startTime={attendance.event.get('start')} />
                                 </View>
                             );
                         });
@@ -90,4 +89,4 @@ function select(store) {
     };
 }
 
-module.exports = connect(select)(MyEventListView);
+module.exports = connect(select)(MyAttendanceView);
