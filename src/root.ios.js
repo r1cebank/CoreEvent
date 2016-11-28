@@ -104,7 +104,7 @@ function setup() {
         }
         _handleQuickAction(action) {
             if (action.type === 'Scan') {
-                Store.appStore.dispatch(Actions.Settings.selectTab('hot'));
+                Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
                 RouterActions.qrScanner();
             }
         }

@@ -101,7 +101,7 @@ class HomeView extends Component {
             await this.refreshEvents();
         }
         if (nextProps.showModal !== this.props.showModal) {
-            if (nextProps.modalEventData && nextProps.modalLocationData) {
+            if (nextProps.modalEventData) {
                 this.setState({
                     modalEventData: nextProps.modalEventData,
                     modalLocationData: nextProps.modalLocationData
@@ -283,19 +283,15 @@ class HomeView extends Component {
                 <Modal style={styles.eventModal} position="bottom" ref={(c) => this.eventModal = c}>
                     <Icon name="keyboard-arrow-down" size={30} color={Colors.secondary} />
                     {(() => {
-                        if (this.state.modalEventData && this.state.modalLocationData) {
+                        if (this.state.modalEventData) {
                             return (
                                 <Components.EventTile
                                     eventTitle={this.state.modalEventData.get('name')}
-                                    imageSource={{
-                                        uri: this.state.modalEventData.get('image').url()
-                                    }}
-                                    simple={true}
-                                    onPressSecondary={() => {
-                                        this.eventAction(this.state.modalEventData);
-                                    }}
-                                    venueName={this.state.modalLocationData.get('name')}
-                                    venueAddress={this.state.modalLocationData.get('address')}
+                                    locale={this.props.locale}
+                                    venueName={this.state.modalEventData.get('location').name}
+                                    venueAddress={this.state.modalEventData.get('location').address}
+                                    onPress={() => this.attend(this.state.modalEventData)}
+                                    onPressSecondary={() => this.ActionSheet.show()}
                                     description={this.state.modalEventData.get('description')}
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
                                     startTime={this.state.modalEventData.get('start')} />

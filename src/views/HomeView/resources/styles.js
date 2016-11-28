@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
         marginBottom: 0
     },
     eventModal: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        alignSelf: 'stretch',
+        padding: 10,
         height: 300
     }
 });
