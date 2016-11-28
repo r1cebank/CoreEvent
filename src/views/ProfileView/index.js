@@ -36,6 +36,7 @@ class ProfileView extends Component {
         super(props);
         this.state = {
             hosted: 0,
+            attended: 0,
             notice: {},
             loading: false
         };
@@ -43,7 +44,11 @@ class ProfileView extends Component {
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('profileLC', this.props.locale) });
         const events = await Storage.Event.fetchMyEvents();
-        this.setState({ hosted: events.length });
+        const attendedEvents = await Storage.Attendance.fetchMine();
+        this.setState({
+            hosted: events.length,
+            attended: attendedEvents.length
+        });
     }
     showNotice = (notice) => {
         this.setState({
@@ -187,7 +192,7 @@ class ProfileView extends Component {
                         </Text>
                         <View style={styles.statContainer}>
                             <Text style={styles.statText}>
-                                1 {Languages.t('attended', this.props.locale)}
+                                {this.state.attended} {Languages.t('attended', this.props.locale)}
                             </Text>
                             <Text style={styles.statText}>
                                 {this.state.hosted} {Languages.t('hosted', this.props.locale)}
