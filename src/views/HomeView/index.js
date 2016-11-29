@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Col, Grid, Row } from 'react-native-easy-grid';
-import { Card, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import PopupDialog from 'react-native-popup-dialog';
 // import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
@@ -46,6 +45,7 @@ class HomeView extends Component {
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             notice: {},
+            attendances: [],
             // loading: true,
             showNotice: false,
             isRefreshing: false,
@@ -123,9 +123,19 @@ class HomeView extends Component {
             nearbyDatasource: this.ds.cloneWithRows(newEvents)
         });
     }
+    isAttending = (event) => {
+        return !!this.state.attendances.filter((attendance) => {
+            return attendance.get('event').id === event.id;
+        }).length;
+    }
+    refreshAttending = async () => {
+        const attendances = await Storage.Attendance.fetchMine();
+        this.setState({ attendances });
+    }
     refreshEvents = async () => {
         this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
+        await this.refreshAttending();
         this.setState({
             nearbyEvents: events,
             nearbyDatasource: this.ds.cloneWithRows(events)
@@ -162,6 +172,7 @@ class HomeView extends Component {
         return (
             <Components.EventTile
                 style={styles.nearbyTile}
+                attending={this.isAttending(rowData)}
                 eventTitle={rowData.get('name')}
                 locale={this.props.locale}
                 venueName={rowData.get('location').name}
@@ -170,6 +181,7 @@ class HomeView extends Component {
                 onPressSecondary={() => this.ActionSheet.show()}
                 description={rowData.get('description')}
                 ctaTitle={Languages.t('addToMe', this.props.locale)}
+                ctaAltTitle={Languages.t('attending', this.props.locale)}
                 startTime={rowData.get('start')} />
         );
     }
@@ -201,45 +213,6 @@ class HomeView extends Component {
                         />
                     }>
                     <View style={styles.container}>
-                        <View>
-                            <Text style={styles.header}>
-                                {Languages.t('myEvents', this.props.locale)}
-                            </Text>
-                            <ScrollView
-                                ref={(c) => { this.yourEvent = c; }}
-                                horizontal={true}
-                                automaticallyAdjustContentInsets={false}
-                                showsHorizontalScrollIndicator={false}
-                                showsVerticalScrollIndicator={false}
-                                scrollEventThrottle={200}
-                                style={styles.yourEvent}
-                                contentContainerStyle={styles.yourEventContainer}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Components.MyEventTile
-                                        locale={this.props.locale}
-                                        eventTitle="编程爱好者"
-                                        venueName="Room H19"
-                                        status="joined"
-                                        locale={this.props.locale}
-                                        onPressStatus={() => {
-                                            this.editStatus();
-                                        }}
-                                        venueAddress="1 Infinite Loop"
-                                        startTime={new Date()} />
-                                    <Components.MyEventTile
-                                        locale={this.props.locale}
-                                        eventTitle="Test Event 2"
-                                        venueName="Room H19"
-                                        status="joined"
-                                        locale={this.props.locale}
-                                        onPressStatus={() => {
-                                            this.editStatus();
-                                        }}
-                                        venueAddress="1 Infinite Loop"
-                                        startTime={new Date()} />
-                                </View>
-                            </ScrollView>
-                        </View>
                         <View>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                                 <Text style={styles.header}>

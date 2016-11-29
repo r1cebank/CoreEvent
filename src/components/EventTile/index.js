@@ -18,8 +18,10 @@ class EventTile extends Component {
         simple: React.PropTypes.bool,
         attendees: React.PropTypes.number,
         editMode: React.PropTypes.bool,
+        attending: React.PropTypes.bool,
         hideDescription: React.PropTypes.bool,
         onPress: React.PropTypes.func,
+        onPressAlt: React.PropTypes.func,
         onPressSecondary: React.PropTypes.func,
         openQR: React.PropTypes.func,
         openUserSearch: React.PropTypes.func,
@@ -29,6 +31,7 @@ class EventTile extends Component {
         venueAddress: React.PropTypes.string,
         description: React.PropTypes.string,
         ctaTitle: React.PropTypes.string,
+        ctaAltTitle: React.PropTypes.string,
         startTime: React.PropTypes.instanceOf(Date)
     }
     render() {
@@ -86,76 +89,96 @@ class EventTile extends Component {
                         }
                         return null;
                     })()}
-                    {(() => {
-                        if (this.props.editMode) {
+                    <View>
+                        {(() => {
+                            if (this.props.editMode) {
+                                return (
+                                    <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                        <Button
+                                            small
+                                            title={this.props.attendees.toString()}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            onPress={this.props.openUserSearch}
+                                            buttonStyle={styles.eventCardEditButton} />
+                                        <Button
+                                            small
+                                            icon={{
+                                                name: 'qrcode',
+                                                type: 'font-awesome',
+                                                style: styles.etcIconStyle
+                                            }}
+                                            onPress={this.props.openQR}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            buttonStyle={styles.eventCardEditButton} />
+                                        <Button
+                                            small
+                                            icon={{
+                                                name: 'pencil',
+                                                type: 'font-awesome',
+                                                style: styles.etcIconStyle
+                                            }}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            buttonStyle={styles.eventCardEditButton} />
+                                        <Button
+                                            small
+                                            icon={{
+                                                name: 'trash',
+                                                type: 'font-awesome',
+                                                style: styles.etcIconStyle
+                                            }}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            buttonStyle={styles.eventCardEditButton} />
+                                        </View>
+                                );
+                            }
+                            if (this.props.attending) {
+                                return (
+                                    <Grid>
+                                        <Col size={4}>
+                                            <Button
+                                                small
+                                                icon={{ name: 'check' }}
+                                                backgroundColor={Colors.green}
+                                                fontFamily="NotoSans-Bold"
+                                                buttonStyle={styles.attendingCTA}
+                                                onPress={this.props.onPressAlt}
+                                                textStyle={{ textAlign: 'center' }}
+                                                title={this.props.ctaAltTitle} />
+                                        </Col>
+                                    </Grid>
+                                );
+                            }
                             return (
-                                <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
-                                    <Button
-                                        small
-                                        title={this.props.attendees.toString()}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        onPress={this.props.openUserSearch}
-                                        buttonStyle={styles.eventCardEditButton} />
-                                    <Button
-                                        small
-                                        icon={{
-                                            name: 'qrcode',
-                                            type: 'font-awesome',
-                                            style: styles.etcIconStyle
-                                        }}
-                                        onPress={this.props.openQR}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        buttonStyle={styles.eventCardEditButton} />
-                                    <Button
-                                        small
-                                        icon={{
-                                            name: 'pencil',
-                                            type: 'font-awesome',
-                                            style: styles.etcIconStyle
-                                        }}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        buttonStyle={styles.eventCardEditButton} />
-                                    <Button
-                                        small
-                                        icon={{
-                                            name: 'trash',
-                                            type: 'font-awesome',
-                                            style: styles.etcIconStyle
-                                        }}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        buttonStyle={styles.eventCardEditButton} />
-                                    </View>
+                                <Grid>
+                                    <Col size={4}>
+                                        <Button
+                                            small
+                                            icon={{ name: 'add' }}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            buttonStyle={styles.eventCardCTA}
+                                            onPress={this.props.onPress}
+                                            textStyle={{ textAlign: 'center' }}
+                                            title={this.props.ctaTitle} />
+                                    </Col>
+                                    <Col size={1}>
+                                        <Button
+                                            small
+                                            icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
+                                            backgroundColor="transparent"
+                                            fontFamily="NotoSans-Bold"
+                                            onPress={this.props.onPressSecondary}
+                                            title=" "
+                                            buttonStyle={styles.eventCardSecondary} />
+                                    </Col>
+                                </Grid>
                             );
-                        }
-                        return (
-                            <Grid>
-                                <Col size={4}>
-                                    <Button
-                                        small
-                                        icon={{ name: 'add' }}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        buttonStyle={styles.eventCardCTA}
-                                        onPress={this.props.onPress}
-                                        textStyle={{ textAlign: 'center' }}
-                                        title={this.props.ctaTitle} />
-                                </Col>
-                                <Col size={1}>
-                                    <Button
-                                        small
-                                        icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
-                                        backgroundColor="transparent"
-                                        fontFamily="NotoSans-Bold"
-                                        onPress={this.props.onPressSecondary}
-                                        buttonStyle={styles.eventCardSecondary} />
-                                </Col>
-                            </Grid>
-                        );
-                    })()}
+                        })()}
+                    </View>
                 </View>
             </LinearGradient>
         );

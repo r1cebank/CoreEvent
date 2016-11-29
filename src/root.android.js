@@ -10,7 +10,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { AppState, BackAndroid } from 'react-native';
-import Reactotron from 'reactotron';
+// import Reactotron from 'reactotron';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import PushNotification from 'react-native-push-notification';
 
@@ -28,10 +28,10 @@ function setup() {
     if (!__DEV__) {
         console.disableYellowBox = true;
     }
-    Reactotron.connect({
-        name: 'eventcore',
-        enabled: __DEV__
-    });
+    // Reactotron.connect({
+    //     name: 'eventcore',
+    //     enabled: __DEV__
+    // });
 
     Analytics.GA.setTrackerId(Env.UA_APPID);
     // Fire appstart event

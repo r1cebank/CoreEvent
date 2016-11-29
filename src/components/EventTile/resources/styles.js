@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     eventCard: {
         flex: 1,
         borderRadius: 20,
-        padding: 10
+        padding: 20
         // borderColor: Colors.secondary
     },
     imageStyle: {
@@ -41,6 +41,15 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         marginLeft: 0,
         marginRight: 10,
+        marginBottom: 0,
+        marginTop: 10
+    },
+    attendingCTA: {
+        borderWidth: 1,
+        borderColor: Colors.frontColor,
+        borderRadius: 40,
+        marginLeft: 0,
+        marginRight: 0,
         marginBottom: 0,
         marginTop: 10
     },

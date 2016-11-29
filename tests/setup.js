@@ -19,8 +19,6 @@ mockery.registerMock('react-native-google-analytics-bridge', {
         return true;
     }
 })
-mockery.registerMock('reactotron-react-native', {
-})
 
 
 // Assets

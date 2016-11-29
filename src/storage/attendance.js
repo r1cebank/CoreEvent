@@ -13,6 +13,12 @@ const attendance = {
         query.limit(20);
         return await query.find();
     },
+    fetchMineSubscription: () => {
+        const query = new API.Parse.Query(API.Classes.attendance).equalTo('user',
+        API.Parse.User.current());
+        query.limit(20);
+        return query.subscribe();
+    },
     attend: async (event, message) => {
         const draft = new API.Classes.attendance();
         draft.set('user', API.Parse.User.current());

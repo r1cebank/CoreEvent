@@ -12,7 +12,7 @@ import devTools from 'remote-redux-devtools';
 
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import Reactotron from 'reactotron';
+// import Reactotron from 'reactotron';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 
@@ -25,8 +25,8 @@ const loggerMiddleware = createLogger();
 
 const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
     thunkMiddleware,
-    loggerMiddleware,
-    Reactotron.reduxMiddleware
+    loggerMiddleware
+    // Reactotron.reduxMiddleware
 )(createStore) : applyMiddleware(
     thunkMiddleware
 )(createStore);
@@ -52,9 +52,9 @@ const configureStore = function(initialState) {
             'utils'
         ]
     });
-    if (__DEV__) {
-        Reactotron.addReduxStore(store);
-    }
+    // if (__DEV__) {
+    //     Reactotron.addReduxStore(store);
+    // }
     return store;
 };
 
