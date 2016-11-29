@@ -65,11 +65,12 @@ class MyAttendanceView extends Component {
                                             event: attendance.event
                                         })}
                                         attendees={attendance.event.attendees.length}
-                                        editMode={false}
+                                        attending={true}
                                         hideDescription={true}
                                         venueName={attendance.event.get('location').name}
                                         venueAddress={attendance.event.get('location').address}
                                         description={attendance.event.get('description')}
+                                        ctaAltTitle={Languages.t('attending', this.props.locale)}
                                         ctaTitle={Languages.t('addToMe', this.props.locale)}
                                         startTime={attendance.event.get('start')} />
                                 </View>

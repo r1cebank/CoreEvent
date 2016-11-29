@@ -196,6 +196,17 @@ class HomeView extends Component {
                 ],
                 CANCEL_INDEX: 0,
                 DESTRUCTIVE_INDEX: 3
+            },
+            distance: {
+                options: [
+                    Languages.t('cancel', this.props.locale),
+                    `2 ${Languages.t('km', this.props.locale)}`,
+                    `5 ${Languages.t('km', this.props.locale)}`,
+                    `10 ${Languages.t('km', this.props.locale)}`,
+                    `30 ${Languages.t('km', this.props.locale)}`
+                ],
+                CANCEL_INDEX: 0,
+                DESTRUCTIVE_INDEX: 3
             }
         };
         return (
@@ -218,9 +229,12 @@ class HomeView extends Component {
                                 <Text style={styles.header}>
                                     {Languages.t('aroundme', this.props.locale)}
                                 </Text>
-                                <Text style={styles.header}>
-                                    10 公里
-                                </Text>
+                                <TouchableOpacity
+                                    onPress={() => this.distanceActionsheet.show()}>
+                                    <Text style={styles.header}>
+                                        10 公里
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                             <View style={styles.recommendedContainer}>
                                 {(() => {
@@ -264,7 +278,7 @@ class HomeView extends Component {
                                     venueName={this.state.modalEventData.get('location').name}
                                     venueAddress={this.state.modalEventData.get('location').address}
                                     onPress={() => this.attend(this.state.modalEventData)}
-                                    onPressSecondary={() => this.ActionSheet.show()}
+                                    onPressSecondary={() => this.eventMiscActionSheet.show()}
                                     description={this.state.modalEventData.get('description')}
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
                                     startTime={this.state.modalEventData.get('start')} />
@@ -274,11 +288,17 @@ class HomeView extends Component {
                     })()}
                 </Modal>
                 <ActionSheet
-                    ref={(o) => this.ActionSheet = o}
+                    ref={(o) => this.eventMiscActionSheet = o}
                     options={ActionSheetOptions.eventMisc.options}
                     cancelButtonIndex={ActionSheetOptions.eventMisc.CANCEL_INDEX}
                     destructiveButtonIndex={ActionSheetOptions.eventMisc.DESTRUCTIVE_INDEX}
-                    onPress={this._handlePress}
+                    onPress={() => {}}
+                />
+                <ActionSheet
+                    ref={(o) => this.distanceActionsheet = o}
+                    options={ActionSheetOptions.distance.options}
+                    cancelButtonIndex={ActionSheetOptions.distance.CANCEL_INDEX}
+                    onPress={() => {}}
                 />
             </View>
         );

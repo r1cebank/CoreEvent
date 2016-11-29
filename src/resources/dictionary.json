@@ -91,7 +91,8 @@
         "hide": "Hide from my feed",
         "report": "Report this event",
         "attendanceMessage": "Someone joined {0}",
-        "invitationFrom": "Invitation from {0}"
+        "invitationFrom": "Invitation from {0}",
+        "km": "KM"
     },
     "ja": {
         "hot": "おすすめ",
@@ -184,7 +185,8 @@
         "hide": "Hide from my feed",
         "report": "Report this event",
         "attendanceMessage": "Someone joined {0}",
-        "invitationFrom": "Invitation from {0}"
+        "invitationFrom": "Invitation from {0}",
+        "km": "KM"
     },
     "zh": {
         "hot": "热门",
@@ -278,6 +280,7 @@
         "hide": "从我的首页清除",
         "report": "举报这个活动",
         "attendanceMessage": "有人参加了 {0}",
-        "invitationFrom": "来自 {0} 的邀请"
+        "invitationFrom": "来自 {0} 的邀请",
+        "km": "公里"
     }
 }
