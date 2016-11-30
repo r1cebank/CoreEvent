@@ -24,12 +24,13 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignSelf: 'stretch',
+        marginBottom: 40,
         justifyContent: 'space-between'
     },
     checkboxContainer: {
         marginBottom: 0,
         flex: 5,
-        justifyContent: 'center'
+        justifyContent: 'flex-end'
     },
     headerContainer: {
         flex: 5,
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     inputContainer: {
-        flex: 2
+        flex: 1
     },
     checkBoxStyle: {
         backgroundColor: 'transparent',

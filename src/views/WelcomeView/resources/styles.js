@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
         color: Colors.frontColor,
         textAlign: 'center'
     },
-    signupButton: {
-        color: Colors.frontColor,
-        fontWeight: '700'
-    },
     loginButton: {
         color: Colors.frontColor,
         fontWeight: '700'

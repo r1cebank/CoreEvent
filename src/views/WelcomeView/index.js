@@ -37,16 +37,10 @@ class WelcomeView extends Component {
                     <View>
                         <Button
                             borderRadius={40}
-                            textStyle={styles.signupButton}
-                            backgroundColor={Colors.infraRed}
-                            onPress={Actions.signupView}
-                            title={Languages.t('signup', this.props.locale)} />
-                        <Button
-                            borderRadius={40}
                             textStyle={styles.loginButton}
+                            backgroundColor={Colors.infraRed}
                             onPress={Actions.loginView}
-                            backgroundColor="transparent"
-                            title={Languages.t('login', this.props.locale)} />
+                            title={`${Languages.t('signup', this.props.locale)} / ${Languages.t('login', this.props.locale)}`} />
                     </View>
                 </View>
             </View>

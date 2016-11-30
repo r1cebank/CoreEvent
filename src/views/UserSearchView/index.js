@@ -95,7 +95,7 @@ class UserSearchView extends Component {
                     <Kohana
                         style={styles.input}
                         autoCapitalize="none"
-                        label={Languages.t('username', this.props.locale)}
+                        label={Languages.t('phoneNumber', this.props.locale)}
                         onChangeText={this.onChangeText}
                         iconClass={Icons.MaterialIcons}
                         iconName={'account-circle'}

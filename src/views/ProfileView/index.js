@@ -188,7 +188,8 @@ class ProfileView extends Component {
                     </View>
                     <View style={styles.nameStatContainer}>
                         <Text style={styles.usernameText}>
-                            {API.Parse.User.current().get('username').toUpperCase()}
+                            {API.Parse.User.current().get('name').toUpperCase() ||
+                             API.Parse.User.current().get('username').toUpperCase()}
                         </Text>
                         <View style={styles.statContainer}>
                             <Text style={styles.statText}>

@@ -32,8 +32,7 @@ class LoginView extends Component {
         super(props);
         this.state = {
             notice: {},
-            username: '',
-            password: ''
+            phone: ''
         };
     }
     showNotice = (notice) => {
@@ -50,25 +49,17 @@ class LoginView extends Component {
         this.setState({ password });
     }
     login = async () => {
-        if (!this.state.username.length) {
+        if (!this.state.phone.length) {
             this.showNotice({
                 icon: 'warning',
                 color: Colors.saffron,
                 header: Languages.t('warning', this.props.locale),
-                notice: Languages.t('noUsername', this.props.locale)
-            });
-            return;
-        } else if (!this.state.password.length) {
-            this.showNotice({
-                icon: 'warning',
-                color: Colors.saffron,
-                header: Languages.t('warning', this.props.locale),
-                notice: Languages.t('noPassword', this.props.locale)
+                notice: Languages.t('noPhone', this.props.locale)
             });
             return;
         }
         try {
-            const user = await Storage.User.login(this.state.username, this.state.password);
+            const user = await Storage.User.login(this.state.phone, '');
             Store.appStore.dispatch(Actions.Settings
                 .updateUser(user.toJSON()));
             PushNotification.requestPermissions();
@@ -99,33 +90,23 @@ class LoginView extends Component {
                 <View style={styles.innerContainer}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>
+                            {Languages.t('signup', this.props.locale)}
+                            /
                             {Languages.t('login', this.props.locale)}
                         </Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <Kohana
-                            style={{ backgroundColor: Colors.secondary }}
+                            style={{ backgroundColor: Colors.frontColor }}
                             autoCapitalize="none"
-                            label={Languages.t('username', this.props.locale)}
+                            label={Languages.t('phoneNumber', this.props.locale)}
                             onChangeText={this.onChangeUsername}
                             value={this.state.username}
                             iconClass={Icons.MaterialIcons}
-                            iconName={'account-circle'}
-                            iconColor={Colors.green}
-                            labelStyle={{ color: Colors.japaneseIndigo }}
-                            inputStyle={{ color: Colors.japaneseIndigo }} />
-                        <Kohana
-                            style={{ backgroundColor: Colors.secondary }}
-                            autoCapitalize="none"
-                            label={Languages.t('password', this.props.locale)}
-                            onChangeText={this.onChangePassword}
-                            value={this.state.password}
-                            secureTextEntry={true}
-                            iconClass={Icons.MaterialIcons}
-                            iconName={'lock'}
-                            iconColor={Colors.green}
-                            labelStyle={{ color: Colors.japaneseIndigo }}
-                            inputStyle={{ color: Colors.japaneseIndigo }} />
+                            iconName={'smartphone'}
+                            iconColor={Colors.persianGreen}
+                            labelStyle={{ color: Colors.infraRed }}
+                            inputStyle={{ color: Colors.infraRed }} />
                     </View>
                     <View style={styles.checkboxContainer}>
                         <Button
