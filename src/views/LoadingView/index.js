@@ -5,7 +5,7 @@ import Spinner from 'react-native-spinkit';
 import { View, Text } from 'react-native';
 
 import styles from './resources/styles';
-import { Colors, Dimensions } from '../../global/globalIncludes';
+import { Colors } from '../../global/globalIncludes';
 
 class LoadingView extends Component {
     static propTypes = {

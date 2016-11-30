@@ -7,10 +7,8 @@ import styles from './resources/styles';
 import {
     Actions,
     Store,
-    Views,
     Scenes,
     Icons,
-    API,
     Utils,
     Colors,
     Languages,

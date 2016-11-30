@@ -28,7 +28,6 @@ import {
     Actions
 } from '../../global/globalIncludes';
 import styles from './resources/styles';
-import Env from '../../env';
 
 class HomeView extends Component {
     static propTypes = {
@@ -225,14 +224,14 @@ class HomeView extends Component {
                     }>
                     <View style={styles.container}>
                         <View>
-                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <View style={styles.headerContainer}>
                                 <Text style={styles.header}>
                                     {Languages.t('aroundme', this.props.locale)}
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() => this.distanceActionsheet.show()}>
                                     <Text style={styles.header}>
-                                        10 公里
+                                        10 {Languages.t('km', this.props.locale)}
                                     </Text>
                                 </TouchableOpacity>
                             </View>

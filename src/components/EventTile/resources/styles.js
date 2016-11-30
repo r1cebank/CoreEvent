@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
     etcIconStyle: {
         marginRight: 0
     },
+    buttonContainer: {
+        marginLeft: 20,
+        marginRight: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     timeVenueSecondaryText: {
         color: Colors.frontColor,
         backgroundColor: 'transparent'

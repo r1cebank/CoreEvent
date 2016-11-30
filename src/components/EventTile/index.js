@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Icon, Button } from 'react-native-elements';
 import { Col, Grid } from 'react-native-easy-grid';
 import { Text, View } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import dateFormat from 'dateformat';
 
 import { Colors, Components } from '../../global/globalIncludes';
@@ -93,7 +93,7 @@ class EventTile extends Component {
                         {(() => {
                             if (this.props.editMode) {
                                 return (
-                                    <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                    <View style={styles.buttonContainer}>
                                         <Button
                                             small
                                             title={this.props.attendees.toString()}
@@ -168,7 +168,10 @@ class EventTile extends Component {
                                     <Col size={1}>
                                         <Button
                                             small
-                                            icon={{ name: 'more-horiz', style: styles.etcIconStyle }}
+                                            icon={{
+                                                name: 'more-horiz',
+                                                style: styles.etcIconStyle
+                                            }}
                                             backgroundColor="transparent"
                                             fontFamily="NotoSans-Bold"
                                             onPress={this.props.onPressSecondary}

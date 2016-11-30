@@ -6,7 +6,7 @@ import * as Progress from 'react-native-progress';
 import ActionSheet from 'react-native-actionsheet';
 import PopupDialog from 'react-native-popup-dialog';
 import ImagePicker from 'react-native-image-crop-picker';
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { List, ListItem, Icon } from 'react-native-elements';

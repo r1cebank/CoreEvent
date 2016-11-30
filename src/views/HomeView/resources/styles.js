@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors, Dimensions } from '../../../global/globalIncludes';
+import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     container: {
@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
     },
     nearbyTile: {
         marginBottom: 10
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     clouds: {
         height: 20,

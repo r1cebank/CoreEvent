@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Card } from 'react-native-elements';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 

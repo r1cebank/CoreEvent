@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Icon } from 'react-native-elements';
 import { View, Text, ScrollView, RefreshControl, ListView } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
@@ -49,7 +48,6 @@ class MessagesView extends Component {
             });
         } catch (e) {
             // TODO: Handle Error
-            console.error(e);
         }
     }
     rejectInvitation = async (invitation, index) => {
@@ -64,7 +62,6 @@ class MessagesView extends Component {
             });
         } catch (e) {
             // TODO: Handle Error
-            console.error(e);
         }
     }
     renderMessageRow = (rowData, sectionID, rowID) => {
