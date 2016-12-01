@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     checkboxContainer: {
         marginBottom: 0,
-        flex: 5,
+        flex: 4,
         justifyContent: 'flex-end'
     },
     headerContainer: {
@@ -40,11 +40,22 @@ const styles = StyleSheet.create({
     inputContainer: {
         flex: 1
     },
+    verifyContainer: {
+        justifyContent: 'flex-start'
+    },
     checkBoxStyle: {
         backgroundColor: 'transparent',
         borderWidth: 0,
         margin: 0,
         marginBottom: 10
+    },
+    countDownContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    disabled: {
+        opacity: 0.5
     },
     checkboxText: {
         fontSize: 12
@@ -56,6 +67,14 @@ const styles = StyleSheet.create({
     header: {
         fontWeight: '700',
         fontSize: 40,
+        backgroundColor: 'transparent',
+        color: Colors.frontColor,
+        textAlign: 'center'
+    },
+    phoneNumber: {
+        fontWeight: '700',
+        fontSize: 30,
+        paddingTop: 10,
         backgroundColor: 'transparent',
         color: Colors.frontColor,
         textAlign: 'center'

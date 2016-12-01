@@ -40,7 +40,7 @@ function reducer(state = {}, action) {
             return {
                 ...state,
                 user: undefined,
-                selectedTab: 'hot'
+                selectedTab: 'aroundme'
             };
         }
         case ActionType.SET_PUSH_TOKEN: {

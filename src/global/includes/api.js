@@ -25,6 +25,7 @@ const api = {
     get ParseReact() { return require('parse-react/react-native'); },
     get Parse() { return Parse; },
     get Classes() { return classes; },
+    get Cloud() { return Parse.Cloud; },
     BaiduPlaces: 'https://api.map.baidu.com/place/v2/suggestion?query={input}&region=全国&output=json&ak={apiKey}'
 };
 

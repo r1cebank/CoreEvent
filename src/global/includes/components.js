@@ -11,6 +11,7 @@ const components = {
     get Notice() { return require('../../components/Notice'); },
     get CategoryTile() { return require('../../components/CategoryTile'); },
     get Message() { return require('../../components/Message'); },
+    get CountDown() { return require('../../components/CountDown'); },
     get CarouselImage() { return require('../../components/CarouselImage'); }
 };
 

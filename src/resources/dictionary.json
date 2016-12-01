@@ -94,7 +94,13 @@
         "attendanceMessage": "Someone joined {0}",
         "invitationFrom": "Invitation from {0}",
         "km": "KM",
-        "phoneNumber": "Phone number"
+        "phoneNumber": "Phone number",
+        "getCode": "Get code",
+        "phoneIncorrect": "Phone number format incorrect",
+        "inputVerify": "Verify phone",
+        "vcode": "Confirm code",
+        "secondsLater": "sec later ",
+        "resend": "Resend"
     },
     "ja": {
         "hot": "おすすめ",
@@ -190,7 +196,13 @@
         "attendanceMessage": "Someone joined {0}",
         "invitationFrom": "Invitation from {0}",
         "km": "KM",
-        "phoneNumber": "Phone number"
+        "phoneNumber": "Phone number",
+        "getCode": "Get code",
+        "phoneIncorrect": "Phone number format incorrect",
+        "inputVerify": "Verify phone",
+        "vcode": "Confirm code",
+        "secondsLater": "sec later ",
+        "resend": "Resend"
     },
     "zh": {
         "hot": "热门",
@@ -287,6 +299,12 @@
         "attendanceMessage": "有人参加了 {0}",
         "invitationFrom": "来自 {0} 的邀请",
         "km": "公里",
-        "phoneNumber": "手机号"
+        "phoneNumber": "手机号",
+        "getCode": "获取验证码",
+        "phoneIncorrect": "手机号格式错误",
+        "inputVerify": "确认手机",
+        "vcode": "确认码",
+        "secondsLater": "秒后 ",
+        "resend": "重新发送"
     }
 }

@@ -19,6 +19,9 @@ const user = {
             });
         });
     },
+    become: async (token) => {
+        return API.Parse.User.become(token);
+    },
     login: async (username, password) => {
         return new Promise((resolve, reject) => {
             API.Parse.User.logIn(username, password, {
