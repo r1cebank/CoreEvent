@@ -17,6 +17,12 @@ export function selectTab(selectedTab) {
         selectedTab
     };
 }
+export function updateRadius(radius) {
+    return {
+        type: ActionType.UPDATE_RADIUS,
+        radius
+    };
+}
 export function updateConfig(config) {
     return {
         type: ActionType.CONFIG_FETCHED,

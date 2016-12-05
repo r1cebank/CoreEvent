@@ -32,6 +32,7 @@ import styles from './resources/styles';
 class HomeView extends Component {
     static propTypes = {
         config: React.PropTypes.object,
+        searchRadius: React.PropTypes.number,
         location: React.PropTypes.object,
         locale: React.PropTypes.string,
         modalEventID: React.PropTypes.string,
@@ -80,7 +81,7 @@ class HomeView extends Component {
         });
         // Fetch nearby events
         await this.refreshAttending();
-        await this.refreshEvents();
+        await this.refreshEvents(this.props.searchRadius);
         this.subscribeLocation();
         this.subscribeAttending();
     }
@@ -95,7 +96,10 @@ class HomeView extends Component {
             }
         }
         if (nextProps.location.name !== this.props.location.name) {
-            await this.refreshEvents();
+            await this.refreshEvents(this.props.searchRadius);
+        }
+        if (nextProps.searchRadius !== this.props.searchRadius) {
+            await this.refreshEvents(nextProps.searchRadius);
         }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData) {
@@ -113,7 +117,7 @@ class HomeView extends Component {
     }
     subscribeLocation = () => {
         this.nearbySubscription = Storage.Event
-            .fetchByLocationSubscription(this.props.location.location);
+            .fetchByLocationSubscription(this.props.location.location, this.props.searchRadius);
         this.nearbySubscription.on('create', this.appendEvent);
     }
     subscribeAttending = () => {
@@ -148,9 +152,10 @@ class HomeView extends Component {
         const attendances = await Storage.Attendance.fetchMine();
         this.setState({ attendances });
     }
-    refreshEvents = async () => {
+    refreshEvents = async (radius) => {
         this.setState({ loading: true });
-        const events = await Storage.Event.fetchByLocation(this.props.location.location);
+        const events = await Storage.Event.fetchByLocation(this.props.location.location,
+            radius);
         this.setState({
             nearbyEvents: events,
             nearbyDatasource: this.ds.cloneWithRows(events)
@@ -177,6 +182,17 @@ class HomeView extends Component {
     attend = async (event) => {
         await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
             this.props.locale));
+    }
+    updateDistance = (index) => {
+        if (index === 1) {
+            Store.appStore.dispatch(Actions.Settings.updateRadius(2));
+        } else if (index === 2) {
+            Store.appStore.dispatch(Actions.Settings.updateRadius(5));
+        } else if (index === 3) {
+            Store.appStore.dispatch(Actions.Settings.updateRadius(10));
+        } else if (index === 4) {
+            Store.appStore.dispatch(Actions.Settings.updateRadius(30));
+        }
     }
     renderNearbyRow = (rowData) => {
         return (
@@ -242,7 +258,8 @@ class HomeView extends Component {
                                 <TouchableOpacity
                                     onPress={() => this.distanceActionsheet.show()}>
                                     <Text style={styles.header}>
-                                        10 {Languages.t('km', this.props.locale)}
+                                        {this.props.searchRadius} {Languages
+                                            .t('km', this.props.locale)}
                                     </Text>
                                 </TouchableOpacity>
                             </View>
@@ -308,7 +325,7 @@ class HomeView extends Component {
                     ref={(o) => this.distanceActionsheet = o}
                     options={ActionSheetOptions.distance.options}
                     cancelButtonIndex={ActionSheetOptions.distance.CANCEL_INDEX}
-                    onPress={() => {}}
+                    onPress={this.updateDistance}
                 />
             </View>
         );
@@ -325,6 +342,7 @@ HomeView.defaultProps = {
 
 function select(store) {
     return {
+        searchRadius: store.settings.searchRadius,
         location: store.settings.location,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,

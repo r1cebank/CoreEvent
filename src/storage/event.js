@@ -20,7 +20,7 @@ const event = {
         query.limit(20);
         return await query.find();
     },
-    fetchByLocation: async (location, radius = 10) => {
+    fetchByLocation: async (location, radius = 10, skip = 0) => {
         const query = new API.Parse.Query(API.Classes.event);
         const userlocation = new API.Parse.GeoPoint({
             latitude: location.lat,
@@ -31,7 +31,22 @@ const event = {
         query.withinKilometers('coords', userlocation, radius);
         query.ascending('start');
         query.limit(20);
+        query.skip(skip);
         return await query.find();
+    },
+    countRemaining: async (location, radius = 10, skip = 0) => {
+        const query = new API.Parse.Query(API.Classes.event);
+        const userlocation = new API.Parse.GeoPoint({
+            latitude: location.lat,
+            longitude: location.lng
+        });
+        // Omit my events
+        query.notEqualTo('owner', API.Parse.User.current());
+        query.withinKilometers('coords', userlocation, radius);
+        query.ascending('start');
+        query.limit(20);
+        query.skip(skip);
+        return await query.count();
     },
     fetchByLocationSubscription: (location, radius = 10) => {
         const query = new API.Parse.Query(API.Classes.event);

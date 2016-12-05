@@ -18,6 +18,12 @@ function reducer(state = {}, action) {
                 selectedTab: action.selectedTab
             };
         }
+        case ActionType.UPDATE_RADIUS: {
+            return {
+                ...state,
+                searchRadius: action.radius
+            };
+        }
         case ActionType.SET_ENV: {
             return {
                 ...state,

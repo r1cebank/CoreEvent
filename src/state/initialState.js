@@ -1,9 +1,8 @@
-import I18n from 'react-native-i18n';
-
 export const InitialAppState = {
     settings: {
-        locale: I18n.locale,
+        locale: 'zh-CN',
         env: 'staging',
+        searchRadius: 10,
         selectedTab: 'aroundme',
         inDebug: false
     },
