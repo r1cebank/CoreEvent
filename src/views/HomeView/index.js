@@ -31,7 +31,6 @@ import styles from './resources/styles';
 
 class HomeView extends Component {
     static propTypes = {
-        carousel: React.PropTypes.array,
         config: React.PropTypes.object,
         location: React.PropTypes.object,
         locale: React.PropTypes.string,
@@ -80,11 +79,10 @@ class HomeView extends Component {
             }
         });
         // Fetch nearby events
+        await this.refreshAttending();
         await this.refreshEvents();
-        // TODO: replace to livequery
-        this.nearbySubscription = Storage.Event
-            .fetchByLocationSubscription(this.props.location.location);
-        this.nearbySubscription.on('create', this.appendEvent);
+        this.subscribeLocation();
+        this.subscribeAttending();
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {
@@ -113,6 +111,16 @@ class HomeView extends Component {
     componentWillUnmount() {
         this.nearbySubscription.unsubscribe();
     }
+    subscribeLocation = () => {
+        this.nearbySubscription = Storage.Event
+            .fetchByLocationSubscription(this.props.location.location);
+        this.nearbySubscription.on('create', this.appendEvent);
+    }
+    subscribeAttending = () => {
+        this.attendingSubscription = Storage.Attendance
+            .fetchMineSubscription();
+        this.attendingSubscription.on('create', this.appendAttendances);
+    }
     appendEvent = (object) => {
         // Append event to the state
         const newEvents = this.state.nearbyEvents.slice(0);
@@ -120,6 +128,15 @@ class HomeView extends Component {
         this.setState({
             nearbyEvents: newEvents,
             nearbyDatasource: this.ds.cloneWithRows(newEvents)
+        });
+    }
+    appendAttendances = (object) => {
+        // Append event to the state
+        const attendances = this.state.attendances.slice(0);
+        attendances.push(object);
+        this.setState({
+            attendances,
+            nearbyDatasource: this.ds.cloneWithRows(this.state.nearbyEvents)
         });
     }
     isAttending = (event) => {
@@ -134,7 +151,6 @@ class HomeView extends Component {
     refreshEvents = async () => {
         this.setState({ loading: true });
         const events = await Storage.Event.fetchByLocation(this.props.location.location);
-        await this.refreshAttending();
         this.setState({
             nearbyEvents: events,
             nearbyDatasource: this.ds.cloneWithRows(events)
@@ -157,11 +173,6 @@ class HomeView extends Component {
         this.setState({ isRefreshing: true });
         await this.refreshEvents();
         this.setState({ isRefreshing: false });
-    }
-    openCarousel = (carouselImage) => {
-        InteractionManager.runAfterInteractions(() => {
-            RouterActions.carousel({ carouselImage });
-        });
     }
     attend = async (event) => {
         await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
@@ -306,7 +317,6 @@ class HomeView extends Component {
 
 HomeView.defaultProps = {
     selectedTab: 'home',
-    carousel: [],
     location: {
         name: ''
     },
@@ -315,7 +325,6 @@ HomeView.defaultProps = {
 
 function select(store) {
     return {
-        carousel: store.data.carousel,
         location: store.settings.location,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
