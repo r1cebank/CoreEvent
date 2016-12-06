@@ -21,6 +21,7 @@ export const CATEGORY_FETCHED = 'CATEGORY_FETCHED';
 export const PUSH_RECEIVED = 'PUSH_RECEIVED';
 export const ADD_DRAFT = 'ADD_DRAFT';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 
 // Utils
 export const TOGGLE_MENU = 'TOGGLE_MENU';

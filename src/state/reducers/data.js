@@ -25,6 +25,14 @@ function reducer(state = {}, action) {
             }
             return newState;
         }
+        case ActionType.REMOVE_FAVORITE: {
+            const newState = _.cloneDeep(state);
+            const newFavorite = newState.favorites.filter((favorite) => {
+                return (favorite.id !== action.event.id);
+            });
+            newState.favorites = newFavorite;
+            return newState;
+        }
         case ActionType.CATEGORY_FETCHED: {
             return {
                 ...state,

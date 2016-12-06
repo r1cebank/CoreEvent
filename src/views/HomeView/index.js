@@ -218,6 +218,13 @@ class HomeView extends Component {
         } else if (index === 3) {
         }
     }
+    eventFavMiscAction = (index) => {
+        if (index === 1) {
+            Store.appStore.dispatch(Actions.Data.removeFavorite(this.selectedEvent));
+        } else if (index === 2) {
+        } else if (index === 3) {
+        }
+    }
     updateDistance = (index) => {
         if (index === 1) {
             Store.appStore.dispatch(Actions.Settings.updateRadius(2));
