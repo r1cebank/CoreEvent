@@ -16,19 +16,27 @@ function reducer(state = {}, action) {
         case ActionType.ADD_FAVORITE: {
             const newState = _.cloneDeep(state);
             const match = newState.favorites.filter((favorite) => {
-                return (favorite.id === action.event.id);
+                return (favorite === action.event.id);
             });
             if (!match.length) {
-                newState.favorites.push({
-                    id: action.event.id
-                });
+                newState.favorites.push(action.event.id);
+            }
+            return newState;
+        }
+        case ActionType.HIDE_EVENT: {
+            const newState = _.cloneDeep(state);
+            const match = newState.hidden.filter((hidden) => {
+                return (hidden === action.event.id);
+            });
+            if (!match.length) {
+                newState.hidden.push(action.event.id);
             }
             return newState;
         }
         case ActionType.REMOVE_FAVORITE: {
             const newState = _.cloneDeep(state);
             const newFavorite = newState.favorites.filter((favorite) => {
-                return (favorite.id !== action.event.id);
+                return (favorite !== action.event.id);
             });
             newState.favorites = newFavorite;
             return newState;

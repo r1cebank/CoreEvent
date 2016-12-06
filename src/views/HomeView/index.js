@@ -36,6 +36,7 @@ class HomeView extends Component {
         location: React.PropTypes.object,
         locale: React.PropTypes.string,
         favorites: React.PropTypes.array,
+        hidden: React.PropTypes.array,
         modalEventID: React.PropTypes.string,
         showModal: React.PropTypes.bool,
         showNotice: React.PropTypes.bool
@@ -46,6 +47,7 @@ class HomeView extends Component {
         this.state = {
             notice: {},
             attendances: [],
+            nearbyEvents: [],
             // loading: true,
             showNotice: false,
             isRefreshing: false,
@@ -202,7 +204,7 @@ class HomeView extends Component {
     openEventMisc = (event) => {
         this.selectedEvent = event;
         const match = this.props.favorites.filter((favorite) => {
-            return (favorite.id === event.id);
+            return (favorite === event.id);
         });
         if (match.length) {
             this.eventFavMiscActionSheet.show();
@@ -215,6 +217,7 @@ class HomeView extends Component {
         if (index === 1) {
             Store.appStore.dispatch(Actions.Data.addFavorite(this.selectedEvent));
         } else if (index === 2) {
+            Store.appStore.dispatch(Actions.Data.hideEvent(this.selectedEvent));
         } else if (index === 3) {
         }
     }
@@ -222,6 +225,7 @@ class HomeView extends Component {
         if (index === 1) {
             Store.appStore.dispatch(Actions.Data.removeFavorite(this.selectedEvent));
         } else if (index === 2) {
+            Store.appStore.dispatch(Actions.Data.hideEvent(this.selectedEvent));
         } else if (index === 3) {
         }
     }
@@ -293,6 +297,9 @@ class HomeView extends Component {
                 DESTRUCTIVE_INDEX: 3
             }
         };
+        const nearbyDatasource = this.ds.cloneWithRows(this.state.nearbyEvents.filter((event) => {
+            return this.props.hidden.indexOf(event.id) < 0;
+        }));
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -333,7 +340,7 @@ class HomeView extends Component {
                                             style={styles.list}
                                             keyboardShouldPersistTaps={true}
                                             enableEmptySections={true}
-                                            dataSource={this.state.nearbyDatasource}
+                                            dataSource={nearbyDatasource}
                                             renderRow={this.renderNearbyRow} />
                                     );
                                 })()}
@@ -409,6 +416,7 @@ function select(store) {
     return {
         searchRadius: store.settings.searchRadius,
         favorites: store.data.favorites,
+        hidden: store.data.hidden,
         location: store.settings.location,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,

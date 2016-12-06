@@ -17,6 +17,9 @@ export function addPushMessage(message) {
 export function addFavorite(event) {
     return { type: ActionType.ADD_FAVORITE, event };
 }
+export function hideEvent(event) {
+    return { type: ActionType.HIDE_EVENT, event };
+}
 export function removeFavorite(event) {
     return { type: ActionType.REMOVE_FAVORITE, event };
 }

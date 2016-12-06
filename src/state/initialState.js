@@ -9,7 +9,8 @@ export const InitialAppState = {
     data: {
         pushMessages: [],
         drafts: {},
-        favorites: []
+        favorites: [],
+        hidden: []
     },
     utils: {
         errors: [],
