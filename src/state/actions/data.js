@@ -14,6 +14,9 @@ export function updateCategory(data) {
 export function addPushMessage(message) {
     return { type: ActionType.PUSH_RECEIVED, message };
 }
+export function addFavorite(event) {
+    return { type: ActionType.ADD_FAVORITE, event };
+}
 export function addDraft(event) {
     return { type: ActionType.ADD_DRAFT, event };
 }

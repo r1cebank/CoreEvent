@@ -100,7 +100,10 @@
         "inputVerify": "Verify phone",
         "vcode": "Confirm code",
         "secondsLater": "sec later ",
-        "resend": "Resend"
+        "resend": "Resend",
+        "eventAttended": "Event attended",
+        "eventAttendFailed": "Cannot attend event",
+        "removeFav": "Remove from favorites"
     },
     "ja": {
         "hot": "おすすめ",
@@ -202,7 +205,10 @@
         "inputVerify": "Verify phone",
         "vcode": "Confirm code",
         "secondsLater": "sec later ",
-        "resend": "Resend"
+        "resend": "Resend",
+        "eventAttended": "Event Attended",
+        "eventAttendFailed": "Cannot attend event",
+        "removeFav": "Remove from favorites"
     },
     "zh": {
         "hot": "热门",
@@ -305,6 +311,9 @@
         "inputVerify": "确认手机",
         "vcode": "确认码",
         "secondsLater": "秒后 ",
-        "resend": "重新发送"
+        "resend": "重新发送",
+        "eventAttended": "活动参加成功",
+        "eventAttendFailed": "活动参加失败",
+        "removeFav": "从我的收藏删除"
     }
 }

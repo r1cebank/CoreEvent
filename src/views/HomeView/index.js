@@ -35,6 +35,7 @@ class HomeView extends Component {
         searchRadius: React.PropTypes.number,
         location: React.PropTypes.object,
         locale: React.PropTypes.string,
+        favorites: React.PropTypes.array,
         modalEventID: React.PropTypes.string,
         showModal: React.PropTypes.bool,
         showNotice: React.PropTypes.bool
@@ -180,8 +181,42 @@ class HomeView extends Component {
         this.setState({ isRefreshing: false });
     }
     attend = async (event) => {
-        await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
-            this.props.locale));
+        try {
+            await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
+                this.props.locale));
+            this.showNotice({
+                icon: 'check',
+                color: Colors.green,
+                header: Languages.t('success', this.props.locale),
+                notice: Languages.t('eventAttended', this.props.locale)
+            });
+        } catch (e) {
+            this.showNotice({
+                icon: 'error',
+                color: Colors.infraRed,
+                header: Languages.t('error', this.props.locale),
+                notice: Languages.t('eventAttendFailed', this.props.locale)
+            });
+        }
+    }
+    openEventMisc = (event) => {
+        this.selectedEvent = event;
+        const match = this.props.favorites.filter((favorite) => {
+            return (favorite.id === event.id);
+        });
+        if (match.length) {
+            this.eventFavMiscActionSheet.show();
+        } else {
+            this.eventMiscActionSheet.show();
+        }
+
+    }
+    eventMiscAction = (index) => {
+        if (index === 1) {
+            Store.appStore.dispatch(Actions.Data.addFavorite(this.selectedEvent));
+        } else if (index === 2) {
+        } else if (index === 3) {
+        }
     }
     updateDistance = (index) => {
         if (index === 1) {
@@ -194,6 +229,12 @@ class HomeView extends Component {
             Store.appStore.dispatch(Actions.Settings.updateRadius(30));
         }
     }
+    showNotice = (notice) => {
+        this.setState({
+            notice
+        });
+        this.popupDialog.openDialog();
+    }
     renderNearbyRow = (rowData) => {
         return (
             <Components.EventTile
@@ -204,7 +245,7 @@ class HomeView extends Component {
                 venueName={rowData.get('location').name}
                 venueAddress={rowData.get('location').address}
                 onPress={() => this.attend(rowData)}
-                onPressSecondary={() => this.ActionSheet.show()}
+                onPressSecondary={() => this.openEventMisc(rowData)}
                 description={rowData.get('description')}
                 ctaTitle={Languages.t('addToMe', this.props.locale)}
                 ctaAltTitle={Languages.t('attending', this.props.locale)}
@@ -217,6 +258,16 @@ class HomeView extends Component {
                 options: [
                     Languages.t('cancel', this.props.locale),
                     Languages.t('favorite', this.props.locale),
+                    Languages.t('hide', this.props.locale),
+                    Languages.t('report', this.props.locale)
+                ],
+                CANCEL_INDEX: 0,
+                DESTRUCTIVE_INDEX: 3
+            },
+            eventMiscFav: {
+                options: [
+                    Languages.t('cancel', this.props.locale),
+                    Languages.t('removeFav', this.props.locale),
                     Languages.t('hide', this.props.locale),
                     Languages.t('report', this.props.locale)
                 ],
@@ -305,7 +356,7 @@ class HomeView extends Component {
                                     venueName={this.state.modalEventData.get('location').name}
                                     venueAddress={this.state.modalEventData.get('location').address}
                                     onPress={() => this.attend(this.state.modalEventData)}
-                                    onPressSecondary={() => this.eventMiscActionSheet.show()}
+                                    onPressSecondary={() => this.openEventMisc(this.state.modalEventData)}
                                     description={this.state.modalEventData.get('description')}
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
                                     startTime={this.state.modalEventData.get('start')} />
@@ -319,7 +370,14 @@ class HomeView extends Component {
                     options={ActionSheetOptions.eventMisc.options}
                     cancelButtonIndex={ActionSheetOptions.eventMisc.CANCEL_INDEX}
                     destructiveButtonIndex={ActionSheetOptions.eventMisc.DESTRUCTIVE_INDEX}
-                    onPress={() => {}}
+                    onPress={this.eventMiscAction}
+                />
+                <ActionSheet
+                    ref={(o) => this.eventFavMiscActionSheet = o}
+                    options={ActionSheetOptions.eventMiscFav.options}
+                    cancelButtonIndex={ActionSheetOptions.eventMiscFav.CANCEL_INDEX}
+                    destructiveButtonIndex={ActionSheetOptions.eventMiscFav.DESTRUCTIVE_INDEX}
+                    onPress={this.eventFavMiscAction}
                 />
                 <ActionSheet
                     ref={(o) => this.distanceActionsheet = o}
@@ -343,6 +401,7 @@ HomeView.defaultProps = {
 function select(store) {
     return {
         searchRadius: store.settings.searchRadius,
+        favorites: store.data.favorites,
         location: store.settings.location,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,

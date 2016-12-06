@@ -13,6 +13,18 @@ function reducer(state = {}, action) {
                 carousel: action.data
             };
         }
+        case ActionType.ADD_FAVORITE: {
+            const newState = _.cloneDeep(state);
+            const match = newState.favorites.filter((favorite) => {
+                return (favorite.id === action.event.id);
+            });
+            if (!match.length) {
+                newState.favorites.push({
+                    id: action.event.id
+                });
+            }
+            return newState;
+        }
         case ActionType.CATEGORY_FETCHED: {
             return {
                 ...state,
