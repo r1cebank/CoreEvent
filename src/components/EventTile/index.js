@@ -16,6 +16,7 @@ class EventTile extends Component {
     static propTypes = {
         eventTitle: React.PropTypes.string,
         simple: React.PropTypes.bool,
+        buttons: React.PropTypes.array,
         attendees: React.PropTypes.number,
         editMode: React.PropTypes.bool,
         attending: React.PropTypes.bool,
@@ -33,6 +34,70 @@ class EventTile extends Component {
         ctaTitle: React.PropTypes.string,
         ctaAltTitle: React.PropTypes.string,
         startTime: React.PropTypes.instanceOf(Date)
+    }
+    renderButtons = () => {
+        return (
+            <View style={styles.buttonContainer}>
+                {this.props.buttons.includes('count') ? this.renderCount() : null}
+                {this.props.buttons.includes('qr') ? this.renderQR() : null}
+                {this.props.buttons.includes('edit') ? this.renderEdit() : null}
+                {this.props.buttons.includes('delete') ? this.renderDelete() : null}
+            </View>
+        );
+    }
+    renderCount = () => {
+        return (
+            <Button
+                small
+                title={this.props.attendees.toString()}
+                backgroundColor="transparent"
+                fontFamily="NotoSans-Bold"
+                onPress={this.props.openUserSearch}
+                buttonStyle={styles.eventCardEditButton} />
+        );
+    }
+    renderQR = () => {
+        return (
+            <Button
+                small
+                icon={{
+                    name: 'qrcode',
+                    type: 'font-awesome',
+                    style: styles.etcIconStyle
+                }}
+                onPress={this.props.openQR}
+                backgroundColor="transparent"
+                fontFamily="NotoSans-Bold"
+                buttonStyle={styles.eventCardEditButton} />
+        );
+    }
+    renderEdit = () => {
+        return (
+            <Button
+                small
+                icon={{
+                    name: 'pencil',
+                    type: 'font-awesome',
+                    style: styles.etcIconStyle
+                }}
+                backgroundColor="transparent"
+                fontFamily="NotoSans-Bold"
+                buttonStyle={styles.eventCardEditButton} />
+        );
+    }
+    renderDelete = () => {
+        return (
+            <Button
+                small
+                icon={{
+                    name: 'trash',
+                    type: 'font-awesome',
+                    style: styles.etcIconStyle
+                }}
+                backgroundColor="transparent"
+                fontFamily="NotoSans-Bold"
+                buttonStyle={styles.eventCardEditButton} />
+        );
     }
     render() {
         const options = {
@@ -92,48 +157,7 @@ class EventTile extends Component {
                     <View>
                         {(() => {
                             if (this.props.editMode) {
-                                return (
-                                    <View style={styles.buttonContainer}>
-                                        <Button
-                                            small
-                                            title={this.props.attendees.toString()}
-                                            backgroundColor="transparent"
-                                            fontFamily="NotoSans-Bold"
-                                            onPress={this.props.openUserSearch}
-                                            buttonStyle={styles.eventCardEditButton} />
-                                        <Button
-                                            small
-                                            icon={{
-                                                name: 'qrcode',
-                                                type: 'font-awesome',
-                                                style: styles.etcIconStyle
-                                            }}
-                                            onPress={this.props.openQR}
-                                            backgroundColor="transparent"
-                                            fontFamily="NotoSans-Bold"
-                                            buttonStyle={styles.eventCardEditButton} />
-                                        <Button
-                                            small
-                                            icon={{
-                                                name: 'pencil',
-                                                type: 'font-awesome',
-                                                style: styles.etcIconStyle
-                                            }}
-                                            backgroundColor="transparent"
-                                            fontFamily="NotoSans-Bold"
-                                            buttonStyle={styles.eventCardEditButton} />
-                                        <Button
-                                            small
-                                            icon={{
-                                                name: 'trash',
-                                                type: 'font-awesome',
-                                                style: styles.etcIconStyle
-                                            }}
-                                            backgroundColor="transparent"
-                                            fontFamily="NotoSans-Bold"
-                                            buttonStyle={styles.eventCardEditButton} />
-                                        </View>
-                                );
+                                return this.renderButtons();
                             }
                             if (this.props.attending) {
                                 return (

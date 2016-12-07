@@ -66,6 +66,7 @@ class MyEventListView extends Component {
                                         })}
                                         attendees={event.attendees.length}
                                         editMode={true}
+                                        buttons={[ 'count', 'qr', 'edit', 'delete' ]}
                                         hideDescription={true}
                                         venueName={event.get('location').name}
                                         venueAddress={event.get('location').address}
