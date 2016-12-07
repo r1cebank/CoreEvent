@@ -104,7 +104,9 @@
         "eventAttended": "Event attended",
         "eventAttendFailed": "Cannot attend event",
         "removeFav": "Remove from favorites",
-        "hiddenEvents": "Hidden events"
+        "hiddenEvents": "Hidden events",
+        "eventReported": "Event reported",
+        "eventAlreadyReported": "You already reported this event"
     },
     "ja": {
         "hot": "おすすめ",
@@ -210,7 +212,9 @@
         "eventAttended": "Event Attended",
         "eventAttendFailed": "Cannot attend event",
         "removeFav": "Remove from favorites",
-        "hiddenEvents": "Hidden events"
+        "hiddenEvents": "Hidden events",
+        "eventReported": "Event reported",
+        "eventAlreadyReported": "You already reported this event"
     },
     "zh": {
         "hot": "热门",
@@ -317,6 +321,8 @@
         "eventAttended": "活动参加成功",
         "eventAttendFailed": "活动参加失败",
         "removeFav": "从我的收藏删除",
-        "hiddenEvents": "已隐藏的活动"
+        "hiddenEvents": "已隐藏的活动",
+        "eventReported": "举报成功",
+        "eventAlreadyReported": "你已举报过此活动"
     }
 }

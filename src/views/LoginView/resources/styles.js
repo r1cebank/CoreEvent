@@ -1,9 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width, height } = Dimensions.get('window');
-const vw = width / 100;
-const vh = height / 100;
-
+import { StyleSheet } from 'react-native';
 import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({

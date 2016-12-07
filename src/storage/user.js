@@ -44,7 +44,7 @@ const user = {
     },
     updateAvatar: async (image) => {
         const avatar = new API.Parse.File(
-            image.path.replace(/^.*[\\\/]/, ''),
+            image.path.replace(/^.*[\\\/]/, ''), // eslint-disable-line
             { base64: image.data },
             image.mime);
         await avatar.save();

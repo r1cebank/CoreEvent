@@ -201,6 +201,25 @@ class HomeView extends Component {
             });
         }
     }
+    report = async (event) => {
+        try {
+            await Storage.Report.create(event);
+            this.showNotice({
+                icon: 'check',
+                color: Colors.green,
+                header: Languages.t('success', this.props.locale),
+                notice: Languages.t('eventReported', this.props.locale)
+            });
+            Store.appStore.dispatch(Actions.Data.hideEvent(event));
+        } catch (e) {
+            this.showNotice({
+                icon: 'error',
+                color: Colors.infraRed,
+                header: Languages.t('error', this.props.locale),
+                notice: Languages.t(e.message, this.props.locale)
+            });
+        }
+    }
     openEventMisc = (event) => {
         this.selectedEvent = event;
         const match = this.props.favorites.filter((favorite) => {
@@ -219,6 +238,7 @@ class HomeView extends Component {
         } else if (index === 2) {
             Store.appStore.dispatch(Actions.Data.hideEvent(this.selectedEvent));
         } else if (index === 3) {
+            this.report(this.selectedEvent);
         }
     }
     eventFavMiscAction = (index) => {
@@ -227,6 +247,7 @@ class HomeView extends Component {
         } else if (index === 2) {
             Store.appStore.dispatch(Actions.Data.hideEvent(this.selectedEvent));
         } else if (index === 3) {
+            this.report(this.selectedEvent);
         }
     }
     updateDistance = (index) => {

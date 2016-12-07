@@ -12,6 +12,7 @@ const storages = {
     get Attendance() { return require('../../storage/attendance'); },
     get Role() { return require('../../storage/role'); },
     get Invitation() { return require('../../storage/invitation'); },
+    get Report() { return require('../../storage/report'); },
     get User() { return require('../../storage/user'); }
 };
 

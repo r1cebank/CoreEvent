@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Video from 'react-native-video';
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard'
 import { Button } from 'react-native-elements';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import PopupDialog from 'react-native-popup-dialog';

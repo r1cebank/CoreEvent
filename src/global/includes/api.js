@@ -18,6 +18,7 @@ const classes = {
     location: Parse.Object.extend('Location'),
     attendance: Parse.Object.extend('Attendance'),
     invitation: Parse.Object.extend('Invitation'),
+    report: Parse.Object.extend('Report'),
     role: Parse.Object.extend('_Role')
 };
 

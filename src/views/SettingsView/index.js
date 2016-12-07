@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import DialogBox from 'react-native-dialogbox';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { List, ListItem, Button } from 'react-native-elements';
