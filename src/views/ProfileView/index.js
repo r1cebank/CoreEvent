@@ -224,6 +224,7 @@ class ProfileView extends Component {
                     <ListItem
                         hideChevron={true}
                         wrapperStyle={{ padding: 5 }}
+                        onPress={RouterActions.myFavorites}
                         title={Languages.t('myFavorite', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         leftIcon={{ name: 'favorite', style: styles.iconStyle }}

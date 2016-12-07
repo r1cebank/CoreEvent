@@ -44,6 +44,17 @@ const scenes = Actions.create(
             navigationBarStyle={styles.navbarStyle}
             component={Views.MyEventListView} />
         <Scene
+            key="myFavorites"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.MyFavoriteListView} />
+        <Scene
             key="attending"
             sceneStyle={{
                 paddingTop: Navigator

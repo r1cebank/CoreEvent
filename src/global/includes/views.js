@@ -30,6 +30,7 @@ const views = {
     get DraftView() { return require('../../views/DraftView'); },
     get AddressSelectorView() { return require('../../views/AddressSelectorView'); },
     get MyEventListView() { return require('../../views/MyEventListView'); },
+    get MyFavoriteListView() { return require('../../views/MyFavoriteListView'); },
     get QRViewer() { return require('../../views/QRViewer'); },
     get UserSearchView() { return require('../../views/UserSearchView'); },
     get MessagesView() { return require('../../views/MessagesView'); },

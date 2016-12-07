@@ -6,9 +6,9 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { API, Languages, Views, Storage, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
-class MyEventListView extends Component {
+class MyFavoriteListView extends Component {
     static propTypes = {
-        category: React.PropTypes.object,
+        favorites: React.PropTypes.array,
         locale: React.PropTypes.string
     }
     constructor(props) {
@@ -19,13 +19,23 @@ class MyEventListView extends Component {
         };
     }
     async componentWillMount() {
-        RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
-        const events = await Storage.Event.fetchMyEvents();
-        for (const event of events) {
+        RouterActions.refresh({ title: Languages.t('myFavorite', this.props.locale) });
+        await this.updateFavorites(this.props.favorites);
+    }
+    async componentWillReceiveProps(nextProps) {
+        if (this.props.favorites !== nextProps.favorites) {
+            await this.updateFavorites(nextProps.favorites);
+        }
+    }
+    updateFavorites = async (favorites) => {
+        const events = [];
+        for (const eventId of favorites) {
+            const event = await Storage.Event.fetchById(eventId);
             const response = await API.Cloud.run('countAttendance', {
                 objectId: event.id
             });
             event.attendeeCount = response;
+            events.push(event);
         }
         this.setState({ events });
     }
@@ -69,7 +79,7 @@ class MyEventListView extends Component {
                                         })}
                                         attendees={event.attendeeCount}
                                         editMode={true}
-                                        buttons={[ 'count', 'qr', 'edit', 'delete' ]}
+                                        buttons={[ 'count', 'qr', 'delete' ]}
                                         hideDescription={true}
                                         venueName={event.get('location').name}
                                         venueAddress={event.get('location').address}
@@ -86,11 +96,16 @@ class MyEventListView extends Component {
     }
 }
 
+MyFavoriteListView.defaultProps = {
+    favorites: []
+};
+
 function select(store) {
     return {
         locale: store.settings.locale,
+        favorites: store.data.favorites,
         config: store.settings.config
     };
 }
 
-module.exports = connect(select)(MyEventListView);
+module.exports = connect(select)(MyFavoriteListView);

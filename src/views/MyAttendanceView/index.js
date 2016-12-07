@@ -19,7 +19,7 @@ class MyAttendanceView extends Component {
         };
     }
     async componentWillMount() {
-        RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
+        RouterActions.refresh({ title: Languages.t('attending', this.props.locale) });
         const attendances = await Storage.Attendance.fetchMine();
         for (const attendance of attendances) {
             attendance.event = await attendance.get('event').fetch();
