@@ -84,7 +84,7 @@ class HomeView extends Component {
         });
         // Fetch nearby events
         await this.refreshAttending();
-        await this.refreshEvents(this.props.searchRadius);
+        await this.refreshEvents(this.props.location.location, this.props.searchRadius);
         this.subscribeLocation();
         this.subscribeAttending();
     }
@@ -99,10 +99,10 @@ class HomeView extends Component {
             }
         }
         if (nextProps.location.name !== this.props.location.name) {
-            await this.refreshEvents(this.props.searchRadius);
+            await this.refreshEvents(nextProps.location.location, this.props.searchRadius);
         }
         if (nextProps.searchRadius !== this.props.searchRadius) {
-            await this.refreshEvents(nextProps.searchRadius);
+            await this.refreshEvents(this.props.location.location, nextProps.searchRadius);
         }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData) {
@@ -155,9 +155,9 @@ class HomeView extends Component {
         const attendances = await Storage.Attendance.fetchMine();
         this.setState({ attendances });
     }
-    refreshEvents = async (radius) => {
+    refreshEvents = async (location, radius) => {
         this.setState({ loading: true });
-        const events = await Storage.Event.fetchByLocation(this.props.location.location,
+        const events = await Storage.Event.fetchByLocation(location,
             radius);
         this.setState({
             nearbyEvents: events,
@@ -179,7 +179,7 @@ class HomeView extends Component {
     }
     onRefresh = async () => {
         this.setState({ isRefreshing: true });
-        await this.refreshEvents();
+        await this.refreshEvents(this.props.location.location, this.props.searchRadius);
         this.setState({ isRefreshing: false });
     }
     attend = async (event) => {
