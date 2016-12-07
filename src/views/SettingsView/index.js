@@ -34,6 +34,14 @@ class SettingsView extends Component {
                 <List containerStyle={styles.listContainer}>
                     <ListItem
                         wrapperStyle={{ padding: 5 }}
+                        title={Languages.t('hiddenEvents', this.props.locale)}
+                        titleStyle={styles.titleStyle}
+                        chevronColor={Colors.infraRed}
+                        onPress={RouterActions.languages}
+                        leftIcon={{ name: 'remove-circle', style: styles.iconStyle }}
+                    />
+                    <ListItem
+                        wrapperStyle={{ padding: 5 }}
                         title={Languages.t('language', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         chevronColor={Colors.infraRed}

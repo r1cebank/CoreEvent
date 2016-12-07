@@ -103,7 +103,8 @@
         "resend": "Resend",
         "eventAttended": "Event attended",
         "eventAttendFailed": "Cannot attend event",
-        "removeFav": "Remove from favorites"
+        "removeFav": "Remove from favorites",
+        "hiddenEvents": "Hidden events"
     },
     "ja": {
         "hot": "おすすめ",
@@ -208,7 +209,8 @@
         "resend": "Resend",
         "eventAttended": "Event Attended",
         "eventAttendFailed": "Cannot attend event",
-        "removeFav": "Remove from favorites"
+        "removeFav": "Remove from favorites",
+        "hiddenEvents": "Hidden events"
     },
     "zh": {
         "hot": "热门",
@@ -314,6 +316,7 @@
         "resend": "重新发送",
         "eventAttended": "活动参加成功",
         "eventAttendFailed": "活动参加失败",
-        "removeFav": "从我的收藏删除"
+        "removeFav": "从我的收藏删除",
+        "hiddenEvents": "已隐藏的活动"
     }
 }
