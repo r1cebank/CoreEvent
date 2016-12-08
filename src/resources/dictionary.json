@@ -106,7 +106,8 @@
         "removeFav": "Remove from favorites",
         "hiddenEvents": "Hidden events",
         "eventReported": "Event reported",
-        "eventAlreadyReported": "You already reported this event"
+        "eventAlreadyReported": "You already reported this event",
+        "leaveConfirm": "Are you sure to leave this event?"
     },
     "ja": {
         "hot": "おすすめ",
@@ -214,7 +215,8 @@
         "removeFav": "Remove from favorites",
         "hiddenEvents": "Hidden events",
         "eventReported": "Event reported",
-        "eventAlreadyReported": "You already reported this event"
+        "eventAlreadyReported": "You already reported this event",
+        "leaveConfirm": "Are you sure to leave this event?"
     },
     "zh": {
         "hot": "热门",
@@ -323,6 +325,7 @@
         "removeFav": "从我的收藏删除",
         "hiddenEvents": "已隐藏的活动",
         "eventReported": "举报成功",
-        "eventAlreadyReported": "你已举报过此活动"
+        "eventAlreadyReported": "你已举报过此活动",
+        "leaveConfirm": "确认要退出此活动吗？"
     }
 }

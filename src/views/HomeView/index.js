@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import DialogBox from 'react-native-dialogbox';
 import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
 import PopupDialog from 'react-native-popup-dialog';
@@ -126,7 +127,8 @@ class HomeView extends Component {
     subscribeAttending = () => {
         this.attendingSubscription = Storage.Attendance
             .fetchMineSubscription();
-        this.attendingSubscription.on('create', this.appendAttendances);
+        this.attendingSubscription.on('create', this.appendAttendance);
+        this.attendingSubscription.on('delete', this.removeAttendance);
     }
     appendEvent = (object) => {
         // Append event to the state
@@ -137,7 +139,17 @@ class HomeView extends Component {
             nearbyDatasource: this.ds.cloneWithRows(newEvents)
         });
     }
-    appendAttendances = (object) => {
+    removeAttendance = (object) => {
+        const attendances = this.state.attendances.slice(0);
+        const newAttendances = attendances.filter((attendance) => {
+            return object.get('event').id !== attendance.get('event').id;
+        });
+        this.setState({
+            attendances: newAttendances,
+            nearbyDatasource: this.ds.cloneWithRows(this.state.nearbyEvents)
+        });
+    }
+    appendAttendance = (object) => {
         // Append event to the state
         const attendances = this.state.attendances.slice(0);
         attendances.push(object);
@@ -267,16 +279,32 @@ class HomeView extends Component {
         });
         this.popupDialog.openDialog();
     }
+    confirmQuit = (event) => {
+        this.dialogbox.confirm({
+            content: Languages.t('leaveConfirm', this.props.locale),
+            ok: {
+                callback: async () => {
+                    await Storage.Attendance.leave(event);
+                }
+            }
+        });
+    }
     renderNearbyRow = (rowData) => {
+        const isAttending = this.isAttending(rowData);
         return (
             <Components.EventTile
                 style={styles.nearbyTile}
-                attending={this.isAttending(rowData)}
+                attending={isAttending}
                 eventTitle={rowData.get('name')}
                 locale={this.props.locale}
                 venueName={rowData.get('location').name}
                 venueAddress={rowData.get('location').address}
                 onPress={() => this.attend(rowData)}
+                onPressAlt={() => {
+                    if (isAttending) {
+                        this.confirmQuit(rowData);
+                    }
+                }}
                 onPressSecondary={() => this.openEventMisc(rowData)}
                 description={rowData.get('description')}
                 ctaTitle={Languages.t('addToMe', this.props.locale)}
@@ -420,6 +448,7 @@ class HomeView extends Component {
                     cancelButtonIndex={ActionSheetOptions.distance.CANCEL_INDEX}
                     onPress={this.updateDistance}
                 />
+                <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
             </View>
         );
     }

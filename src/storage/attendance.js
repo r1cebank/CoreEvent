@@ -19,6 +19,13 @@ const attendance = {
         query.limit(20);
         return query.subscribe();
     },
+    leave: async (event) => {
+        const query = new API.Parse.Query(API.Classes.attendance);
+        query.equalTo('user', API.Parse.User.current());
+        query.equalTo('event', event);
+        const attendanceObject = await query.first();
+        return await attendanceObject.destroy();
+    },
     attend: async (event, message) => {
         const draft = new API.Classes.attendance();
         draft.set('user', API.Parse.User.current());
