@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors, Dimensions } from '../../../global/globalIncludes';
+import { Colors } from '../../../global/globalIncludes';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flex: 1,
+        paddingTop: 20,
         alignSelf: 'stretch'
     },
     eventsContainer: {

@@ -47,8 +47,8 @@ class EventListView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
-                    <Card
-                        containerStyle={styles.cardContainer}>
+                    <View
+                        style={styles.cardContainer}>
                             {(() => {
                                 return this.state.events.map((event, index) => {
                                     return (
@@ -70,7 +70,7 @@ class EventListView extends Component {
                                     );
                                 });
                             })()}
-                    </Card>
+                    </View>
                 </ScrollView>
             </View>
         );
