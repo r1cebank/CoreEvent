@@ -26,6 +26,7 @@ class EventTile extends Component {
         onPressSecondary: React.PropTypes.func,
         openQR: React.PropTypes.func,
         openUserSearch: React.PropTypes.func,
+        onDelete: React.PropTypes.func,
         venueName: React.PropTypes.string,
         style: View.propTypes.style,
         locale: React.PropTypes.string,
@@ -94,6 +95,7 @@ class EventTile extends Component {
                     type: 'font-awesome',
                     style: styles.etcIconStyle
                 }}
+                onPress={this.props.onDelete}
                 backgroundColor="transparent"
                 fontFamily="NotoSans-Bold"
                 buttonStyle={styles.eventCardEditButton} />

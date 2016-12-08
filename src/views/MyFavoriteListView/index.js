@@ -3,7 +3,15 @@ import React, { Component } from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { API, Languages, Views, Storage, Components } from '../../global/globalIncludes';
+import {
+    API,
+    Languages,
+    Views,
+    Storage,
+    Components,
+    Actions,
+    Store
+} from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class MyFavoriteListView extends Component {
@@ -77,6 +85,10 @@ class MyFavoriteListView extends Component {
                                         openUserSearch={() => RouterActions.userSearch({
                                             event
                                         })}
+                                        onDelete={() => {
+                                            Store.appStore
+                                            .dispatch(Actions.Data.removeFavorite(event));
+                                        }}
                                         attendees={event.attendeeCount}
                                         editMode={true}
                                         buttons={[ 'count', 'qr', 'delete' ]}
