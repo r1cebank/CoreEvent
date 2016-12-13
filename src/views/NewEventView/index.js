@@ -99,14 +99,14 @@ class NewEventView extends Component {
         setTimeout(() => {
             const scrollResponder = this.scrollView.getScrollResponder();
             scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
-            findNodeHandle(this[refName].getRef()), 200, true);
+            findNodeHandle(this[refName].refs.input), 100, true);
         }, 50);
     }
     inputLostFocus = (refName) => {
         setTimeout(() => {
             const scrollResponder = this.scrollView.getScrollResponder();
             scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
-            findNodeHandle(this[refName].getRef()), -200, true);
+            findNodeHandle(this[refName].refs.input), -100, true);
         }, 50);
     }
     render() {
@@ -118,22 +118,22 @@ class NewEventView extends Component {
         };
         return (
             <View style={styles.container}>
-                <LinearGradient
-                    colors={[ Colors.royalPurple, Colors.infraRed ]}
-                    style={styles.headerContainer}>
-                    <Text style={styles.header}>
-                        {Languages.t('newEvent', this.props.locale)}
-                    </Text>
-                    <Text style={styles.headerSubtitle}>
-                        {Languages.t('newEventSubtitle', this.props.locale)}
-                    </Text>
-                </LinearGradient>
                 <ScrollView
                     ref={(c) => { this.scrollView = c; }}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps={true}
                     style={styles.scrollView}>
+                    <LinearGradient
+                        colors={[ Colors.royalPurple, Colors.infraRed ]}
+                        style={styles.headerContainer}>
+                        <Text style={styles.header}>
+                            {Languages.t('newEvent', this.props.locale)}
+                        </Text>
+                        <Text style={styles.headerSubtitle}>
+                            {Languages.t('newEventSubtitle', this.props.locale)}
+                        </Text>
+                    </LinearGradient>
                     <View style={{ marginTop: 10 }}>
                         <Hoshi
                             label={Languages.t('eventName', this.props.locale)}

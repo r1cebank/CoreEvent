@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.backgroundColor
     },
     scrollView: {
-        flex: 8,
+        // flex: 8,
         alignSelf: 'stretch'
     },
     header: {
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     headerContainer: {
-        flex: 2,
+        paddingTop: 20,
+        paddingBottom: 20,
         flexDirection: 'column',
         justifyContent: 'center',
         alignSelf: 'stretch',
