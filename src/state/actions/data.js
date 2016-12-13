@@ -23,6 +23,9 @@ export function hideEvent(event) {
 export function removeFavorite(event) {
     return { type: ActionType.REMOVE_FAVORITE, event };
 }
+export function removeHidden(event) {
+    return { type: ActionType.REMOVE_HIDDEN, event };
+}
 export function addDraft(event) {
     return { type: ActionType.ADD_DRAFT, event };
 }

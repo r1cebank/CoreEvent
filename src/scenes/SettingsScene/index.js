@@ -30,6 +30,17 @@ const scenes = Actions.create(
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}
             component={Views.LanguagesView} />
+        <Scene
+            key="myHidden"
+            sceneStyle={{
+                paddingTop: Navigator
+                .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
+            }}
+            leftButtonIconStyle={styles.leftButtonIconStyle}
+            titleStyle={styles.titleStyle}
+            rightButtonTextStyle={styles.rightButtonTextStyle}
+            navigationBarStyle={styles.navbarStyle}
+            component={Views.MyHiddenListView} />
     </Scene>
 );
 

@@ -41,6 +41,14 @@ function reducer(state = {}, action) {
             newState.favorites = newFavorite;
             return newState;
         }
+        case ActionType.REMOVE_HIDDEN: {
+            const newState = _.cloneDeep(state);
+            const newHidden = newState.hidden.filter((hidden) => {
+                return (hidden !== action.event.id);
+            });
+            newState.hidden = newHidden;
+            return newState;
+        }
         case ActionType.CATEGORY_FETCHED: {
             return {
                 ...state,

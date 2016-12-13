@@ -47,7 +47,7 @@
     "parse": "^1.9.2",
     "parse-react": "^0.5.2",
     "react": "15.3.2",
-    "react-native": "^0.35.0",
+    "react-native": "^0.39.2",
     "react-native-action-button": "^2.0.9",
     "react-native-actionsheet": "^2.0.4",
     "react-native-animatable": "^0.6.1",

@@ -37,7 +37,7 @@ class SettingsView extends Component {
                         title={Languages.t('hiddenEvents', this.props.locale)}
                         titleStyle={styles.titleStyle}
                         chevronColor={Colors.infraRed}
-                        onPress={RouterActions.languages}
+                        onPress={RouterActions.myHidden}
                         leftIcon={{ name: 'remove-circle', style: styles.iconStyle }}
                     />
                     <ListItem
