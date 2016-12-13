@@ -51,7 +51,12 @@ const scenes = Actions.create(
                 paddingTop: Navigator
                 .NavigationBar.Styles.General.NavBarHeight + statusBarHeight
             }}
-            renderBackButton={() => null}
+            renderBackButton={() =>
+                <Icon
+                    color={Colors.infraRed}
+                    onPress={Actions.pop}
+                    name="clear" />
+            }
             titleStyle={styles.titleStyle}
             leftButtonIconStyle={styles.leftButtonIconStyle}
             navigationBarStyle={styles.navbarStyle}

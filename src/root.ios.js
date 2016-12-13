@@ -106,6 +106,9 @@ function setup() {
             if (action.type === 'Scan') {
                 Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
                 RouterActions.qrScanner();
+            } else if (action.type === 'Event') {
+                Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+                RouterActions.newEvent();
             }
         }
         _handleAppStateChange(state) {

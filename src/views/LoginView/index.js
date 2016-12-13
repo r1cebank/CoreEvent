@@ -3,6 +3,7 @@
 import { connect } from 'react-redux';
 import Video from 'react-native-video';
 import React, { Component } from 'react';
+import QuickActions from 'react-native-quick-actions';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Actions as RouterActions } from 'react-native-router-flux';
@@ -60,9 +61,25 @@ class LoginView extends Component {
             Store.appStore.dispatch(Actions.Settings
                 .updateUser(user.toJSON()));
             PushNotification.requestPermissions();
+            this.setShortcuts();
         } catch (e) {
             // TODO: Catch errors
         }
+    }
+    setShortcuts = () => {
+        // Add few actions
+        QuickActions.setShortcutItems([
+            {
+                type: 'Event', // Required
+                subtitle: Languages.t('newEvent', this.props.locale),
+                icon: 'Compose'
+            },
+            {
+                type: 'Scan', // Required
+                title: Languages.t('qrScanner', this.props.locale),
+                icon: 'scan'
+            }
+        ]);
     }
     transitionToVerification = async () => {
         // Invoke cloud sendcode function
