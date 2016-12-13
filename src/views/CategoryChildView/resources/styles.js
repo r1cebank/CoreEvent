@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     list: {
+        marginTop: 10,
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'

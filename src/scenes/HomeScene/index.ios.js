@@ -25,7 +25,7 @@ const scenes = Actions.create(
                 <Icon
                     color={Colors.infraRed}
                     onPress={Actions.qrScanner}
-                    name="search" />
+                    name="crop-free" />
             }
             renderLeftButton={() =>
                 <Icon

@@ -23,7 +23,9 @@ class CategoryChildView extends Component {
     async componentWillMount() {
         Actions.refresh({ title: Languages.f(this.props.category.name, this.props.locale) });
         const category = await Storage.Category.fetchChild(this.props.category.objectId);
-        this.setState({ category });
+        this.setState({
+            category: JSON.parse(JSON.stringify(category))
+        });
     }
     render() {
         if (!this.state.category.length) {
@@ -48,9 +50,9 @@ class CategoryChildView extends Component {
                                                 Actions.eventListView({ category: rowData });
                                             });
                                         }}
-                                        color={rowData.get('color')}
+                                        color={rowData.color}
                                         name={Languages
-                                            .f(rowData.get('name'), this.props.locale)} />
+                                            .f(rowData.name, this.props.locale)} />
                                 );
                             });
                         })()}

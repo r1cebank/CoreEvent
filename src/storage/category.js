@@ -14,6 +14,12 @@ const category = {
         parentCategory.id = parent;
         const query = new API.Parse.Query(API.Classes.category).equalTo('parent', parentCategory);
         return await query.find();
+    },
+    fetchByName: async (searchVal) => {
+        const query = new API.Parse.Query(API.Classes.category);
+        query.equalTo('root', false);
+        query.contains('search', searchVal);
+        return await query.find();
     }
 };
 
