@@ -52,6 +52,11 @@ const user = {
         currentUser.set('avatar', avatar);
         currentUser.save();
     },
+    updateName: async (username) => {
+        const currentUser = API.Parse.User.current();
+        currentUser.set('name', username);
+        currentUser.save();
+    },
     updatePushToken: async (token) => {
         const installationController = API.Parse.CoreManager.getInstallationController();
         const installationId = await installationController.currentInstallationId();

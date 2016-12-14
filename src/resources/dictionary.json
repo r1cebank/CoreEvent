@@ -35,7 +35,7 @@
         "warning": "Warning",
         "passwordLengthNotice": "Password needs to be longer than 6",
         "passwordMatchNotice": "Password needs to match",
-        "shortUsername": "Username needs to be at least than 5 letters",
+        "shortUsername": "Username needs to be at least than 1 character",
         "termsNotice": "You must agree with the terms",
         "error": "Error",
         "usernameTaken": "Username is taken",
@@ -107,7 +107,8 @@
         "hiddenEvents": "Hidden events",
         "eventReported": "Event reported",
         "eventAlreadyReported": "You already reported this event",
-        "leaveConfirm": "Are you sure to leave this event?"
+        "leaveConfirm": "Are you sure to leave this event?",
+        "usernameUpdated": "Username updated"
     },
     "ja": {
         "hot": "おすすめ",
@@ -143,7 +144,7 @@
         "register": "登録する",
         "back": "戻る",
         "warning": "ご注意",
-        "passwordLengthNotice": "パスワードは6文字以上にしてください。",
+        "passwordLengthNotice": "パスワードは1文字以上にしてください。",
         "passwordMatchNotice": "パスワードは一致しません。",
         "shortUsername": "ユーザーIDは5文字以上にしてください。",
         "termsNotice": "アカウントを作成すると、利用規約とプライバシーポリシーに同意する。",
@@ -216,7 +217,8 @@
         "hiddenEvents": "Hidden events",
         "eventReported": "Event reported",
         "eventAlreadyReported": "You already reported this event",
-        "leaveConfirm": "Are you sure to leave this event?"
+        "leaveConfirm": "Are you sure to leave this event?",
+        "usernameUpdated": "Username updated"
     },
     "zh": {
         "hot": "热门",
@@ -254,7 +256,7 @@
         "warning": "提示",
         "passwordLengthNotice": "密码需要至少6位",
         "passwordMatchNotice": "密码不一致",
-        "shortUsername": "用户名需要至少5位",
+        "shortUsername": "用户名需要至少1位",
         "termsNotice": "请同意条款",
         "error": "出错啦",
         "usernameTaken": "用户名已经占用",
@@ -326,6 +328,7 @@
         "hiddenEvents": "已隐藏的活动",
         "eventReported": "举报成功",
         "eventAlreadyReported": "你已举报过此活动",
-        "leaveConfirm": "确认要退出此活动吗？"
+        "leaveConfirm": "确认要退出此活动吗？",
+        "usernameUpdated": "用户名已更新"
     }
 }

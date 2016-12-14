@@ -1,6 +1,7 @@
-import { View, TouchableOpacity, Text } from 'react-native';
+import { Alert, View, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Sae } from 'react-native-textinput-effects';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import ActionSheet from 'react-native-actionsheet';
@@ -9,13 +10,14 @@ import ImagePicker from 'react-native-image-crop-picker';
 import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import { List, ListItem, Icon } from 'react-native-elements';
+import { List, ListItem, Icon, Button } from 'react-native-elements';
 
 
 import {
     Languages,
     Store,
     Actions,
+    Icons,
     Colors,
     API,
     Assets,
@@ -35,6 +37,7 @@ class ProfileView extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: '',
             hosted: 0,
             attended: 0,
             notice: {},
@@ -55,6 +58,17 @@ class ProfileView extends Component {
             notice
         });
         this.popupDialog.openDialog();
+    }
+    updateUsername = async () => {
+        if (this.state.username.length < 1) {
+            Alert.alert(Languages.t('shortUsername', this.props.locale));
+        } else {
+            await Storage.User.updateName(this.state.username);
+            Store.appStore.dispatch(Actions.Settings
+                .fetchUserUpdate());
+            this.inputDialog.closeDialog();
+            Alert.alert(Languages.t('usernameUpdated', this.props.locale));
+        }
     }
     onActionSelect = async (index) => {
         if (index > 0) {
@@ -129,6 +143,17 @@ class ProfileView extends Component {
             }
         }
     }
+    renderTitle = () => {
+        return (
+            <TouchableOpacity
+                onPress={() => this.inputDialog.openDialog()}>
+                <Text style={styles.usernameText}>
+                    {API.Parse.User.current().get('name').toUpperCase() ||
+                     API.Parse.User.current().get('username').toUpperCase()}
+                </Text>
+            </TouchableOpacity>
+        );
+    }
     render() {
         const buttons = [
             'cancel',
@@ -187,10 +212,7 @@ class ProfileView extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.nameStatContainer}>
-                        <Text style={styles.usernameText}>
-                            {API.Parse.User.current().get('name').toUpperCase() ||
-                             API.Parse.User.current().get('username').toUpperCase()}
-                        </Text>
+                        {this.renderTitle()}
                         <View style={styles.statContainer}>
                             <Text style={styles.statText}>
                                 {this.state.attended} {Languages.t('attended', this.props.locale)}
@@ -247,6 +269,32 @@ class ProfileView extends Component {
                         icon={this.state.notice.icon}
                         header={this.state.notice.header}
                         notice={this.state.notice.notice} />
+                </PopupDialog>
+                <PopupDialog
+                    width={0.8}
+                    height={200}
+                    ref={(popupDialog) => { this.inputDialog = popupDialog; }}>
+                    <View style={{ flex: 1, padding: 10, justifyContent: 'space-between' }}>
+                        <Text style={{ textAlign: 'center', color: Colors.grey, fontWeight: '700' }}>
+                            Update name
+                        </Text>
+                        <Sae
+                            label={'Username'}
+                            iconClass={Icons.FontAwesome}
+                            iconName={'pencil'}
+                            inputStyle={{ color: Colors.grey }}
+                            iconColor={Colors.cyan}
+                            onChangeText={(username) => this.setState({ username })}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                        />
+                        <Button
+                            raised
+                            onPress={this.updateUsername}
+                            backgroundColor={Colors.cyan}
+                            buttonStyle={{ borderRadius: 40 }}
+                            title="Save" />
+                    </View>
                 </PopupDialog>
             </View>
         );
