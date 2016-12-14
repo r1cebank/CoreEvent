@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PopupDialog from 'react-native-popup-dialog';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
@@ -10,7 +11,8 @@ import {
     Storage,
     Components,
     Actions,
-    Store
+    Store,
+    Colors
 } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
@@ -23,6 +25,8 @@ class MyFavoriteListView extends Component {
         super(props);
         this.state = {
             events: [],
+            notice: {},
+            showNotice: false,
             isRefreshing: false
         };
     }
@@ -52,6 +56,35 @@ class MyFavoriteListView extends Component {
         setTimeout(() => {
             this.setState({ isRefreshing: false });
         }, 5000);
+    }
+    showNotice = (notice) => {
+        this.setState({
+            notice
+        });
+        this.popupDialog.openDialog();
+    }
+    attend = async (event) => {
+        try {
+            await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
+                this.props.locale));
+            this.showNotice({
+                icon: 'check',
+                color: Colors.green,
+                header: Languages.t('success', this.props.locale),
+                notice: Languages.t('eventAttended', this.props.locale)
+            });
+            setTimeout(() => { this.removeFavorite(event); }, 2000);
+        } catch (e) {
+            this.showNotice({
+                icon: 'error',
+                color: Colors.infraRed,
+                header: Languages.t('error', this.props.locale),
+                notice: Languages.t('eventAttendFailed', this.props.locale)
+            });
+        }
+    }
+    removeFavorite = (event) => {
+        Store.appStore.dispatch(Actions.Data.removeFavorite(event));
     }
     render() {
         if (!this.state.events.length) {
@@ -85,13 +118,11 @@ class MyFavoriteListView extends Component {
                                         openUserSearch={() => RouterActions.userSearch({
                                             event
                                         })}
-                                        onDelete={() => {
-                                            Store.appStore
-                                            .dispatch(Actions.Data.removeFavorite(event));
-                                        }}
+                                        onDelete={() => this.removeFavorite(event)}
+                                        onPress={() => this.attend(event)}
                                         attendees={event.attendeeCount}
                                         editMode={true}
-                                        buttons={[ 'count', 'qr', 'delete' ]}
+                                        buttons={[ 'qr', 'delete', 'add' ]}
                                         hideDescription={true}
                                         venueName={event.get('location').name}
                                         venueAddress={event.get('location').address}
@@ -103,6 +134,17 @@ class MyFavoriteListView extends Component {
                         });
                     })()}
                 </ScrollView>
+                <PopupDialog
+                    width={0.8}
+                    height={200}
+                    open={this.state.showNotice}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                    <Components.Notice
+                        color={this.state.notice.color}
+                        icon={this.state.notice.icon}
+                        header={this.state.notice.header}
+                        notice={this.state.notice.notice} />
+                </PopupDialog>
             </View>
         );
     }

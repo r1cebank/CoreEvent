@@ -40,6 +40,7 @@ class EventTile extends Component {
         return (
             <View style={styles.buttonContainer}>
                 {this.props.buttons.includes('count') ? this.renderCount() : null}
+                {this.props.buttons.includes('add') ? this.renderAdd() : null}
                 {this.props.buttons.includes('qr') ? this.renderQR() : null}
                 {this.props.buttons.includes('edit') ? this.renderEdit() : null}
                 {this.props.buttons.includes('delete') ? this.renderDelete() : null}
@@ -83,6 +84,17 @@ class EventTile extends Component {
                 }}
                 backgroundColor="transparent"
                 fontFamily="NotoSans-Bold"
+                buttonStyle={styles.eventCardEditButton} />
+        );
+    }
+    renderAdd = () => {
+        return (
+            <Button
+                small
+                icon={{ name: 'add', style: styles.etcIconStyle }}
+                backgroundColor="transparent"
+                fontFamily="NotoSans-Bold"
+                onPress={this.props.onPress}
                 buttonStyle={styles.eventCardEditButton} />
         );
     }
