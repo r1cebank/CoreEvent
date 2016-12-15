@@ -276,10 +276,10 @@ class ProfileView extends Component {
                     ref={(popupDialog) => { this.inputDialog = popupDialog; }}>
                     <View style={{ flex: 1, padding: 10, justifyContent: 'space-between' }}>
                         <Text style={{ textAlign: 'center', color: Colors.grey, fontWeight: '700' }}>
-                            Update name
+                            {Languages.t('updateName', this.props.locale)}
                         </Text>
                         <Sae
-                            label={'Username'}
+                            label={Languages.t('username', this.props.locale)}
                             iconClass={Icons.FontAwesome}
                             iconName={'pencil'}
                             inputStyle={{ color: Colors.grey }}
@@ -293,7 +293,7 @@ class ProfileView extends Component {
                             onPress={this.updateUsername}
                             backgroundColor={Colors.cyan}
                             buttonStyle={{ borderRadius: 40 }}
-                            title="Save" />
+                            title={Languages.t('save', this.props.locale)} />
                     </View>
                 </PopupDialog>
             </View>

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import DialogBox from 'react-native-dialogbox';
 import React, { Component } from 'react';
-import { Icon } from 'react-native-elements';
+import { Icon, Button } from 'react-native-elements';
 import PopupDialog from 'react-native-popup-dialog';
 // import Carousel from 'react-native-looped-carousel';
 // import PullToRefresh from 'react-native-animated-ptr';
@@ -289,6 +289,15 @@ class HomeView extends Component {
             }
         });
     }
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                message={Languages.t('noEventsFound', this.props.locale)}
+                onPress={RouterActions.newEvent}
+                buttonText={Languages.t('createOne', this.props.locale)}
+                />
+        );
+    }
     renderNearbyRow = (rowData) => {
         const isAttending = this.isAttending(rowData);
         return (
@@ -383,6 +392,8 @@ class HomeView extends Component {
                                         return (
                                             <Views.LoadingView />
                                         );
+                                    } else if (nearbyDatasource.getRowCount() < 1) {
+                                        return this.renderEmpty();
                                     }
                                     return (
                                         <ListView
@@ -419,7 +430,9 @@ class HomeView extends Component {
                                     venueName={this.state.modalEventData.get('location').name}
                                     venueAddress={this.state.modalEventData.get('location').address}
                                     onPress={() => this.attend(this.state.modalEventData)}
-                                    onPressSecondary={() => this.openEventMisc(this.state.modalEventData)}
+                                    onPressSecondary={() => {
+                                        this.openEventMisc(this.state.modalEventData);
+                                    }}
                                     description={this.state.modalEventData.get('description')}
                                     ctaTitle={Languages.t('addToMe', this.props.locale)}
                                     startTime={this.state.modalEventData.get('start')} />

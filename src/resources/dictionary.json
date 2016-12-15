@@ -108,7 +108,11 @@
         "eventReported": "Event reported",
         "eventAlreadyReported": "You already reported this event",
         "leaveConfirm": "Are you sure to leave this event?",
-        "usernameUpdated": "Username updated"
+        "usernameUpdated": "Username updated",
+        "save": "Save",
+        "updateName": "Update name",
+        "noEventsFound": "No event found, maybe",
+        "createOne": "Create one?"
     },
     "ja": {
         "hot": "おすすめ",
@@ -218,7 +222,11 @@
         "eventReported": "Event reported",
         "eventAlreadyReported": "You already reported this event",
         "leaveConfirm": "Are you sure to leave this event?",
-        "usernameUpdated": "Username updated"
+        "usernameUpdated": "Username updated",
+        "save": "Save",
+        "updateName": "Update name",
+        "noEventsFound": "No event found, maybe",
+        "createOne": "Create one?"
     },
     "zh": {
         "hot": "热门",
@@ -329,6 +337,10 @@
         "eventReported": "举报成功",
         "eventAlreadyReported": "你已举报过此活动",
         "leaveConfirm": "确认要退出此活动吗？",
-        "usernameUpdated": "用户名已更新"
+        "usernameUpdated": "用户名已更新",
+        "save": "保存",
+        "updateName": "更新用户名",
+        "noEventsFound": "没有找到任何活动",
+        "createOne": "创建一个？"
     }
 }
