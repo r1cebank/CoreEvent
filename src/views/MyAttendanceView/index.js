@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { Languages, Views, Storage, Components } from '../../global/globalIncludes';
+import { Store, Actions, Languages, Views, Storage, Components } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class MyAttendanceView extends Component {
@@ -15,27 +15,72 @@ class MyAttendanceView extends Component {
         super(props);
         this.state = {
             attendances: [],
+            loading: true,
             isRefreshing: false
         };
     }
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('attending', this.props.locale) });
+        await this.loadAttendances();
+    }
+    loadAttendances = async () => {
         const attendances = await Storage.Attendance.fetchMine();
         for (const attendance of attendances) {
             attendance.event = await attendance.get('event').fetch();
             attendance.event.attendees = await Storage
                 .Attendance.fetchAttendee(attendance.event.id);
         }
-        this.setState({ attendances });
+        this.setState({
+            attendances,
+            loading: false
+        });
     }
-    onRefresh = () => {
+    onRefresh = async () => {
         this.setState({ isRefreshing: true });
-        setTimeout(() => {
-            this.setState({ isRefreshing: false });
-        }, 5000);
+        await this.loadAttendances();
+        this.setState({ isRefreshing: false });
+    }
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                message={Languages.t('noAttendedEvents', this.props.locale)}
+                onPress={() => {
+                    Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+                }}
+                buttonText={Languages.t('browseEvents', this.props.locale)}
+                />
+        );
+    }
+    renderList = () => {
+        if (this.state.attendances.length < 1) {
+            return this.renderEmpty();
+        }
+        return this.state.attendances.map((attendance, index) => {
+            return (
+                <View
+                    key={index}
+                    style={styles.eventsContainer}>
+                    <Components.EventTile
+                        locale={this.props.locale}
+                        eventTitle={attendance.event.get('name')}
+                        openQR={() => RouterActions.qrViewer({
+                            event: attendance.event
+                        })}
+                        attendees={attendance.event.attendees.length}
+                        attending={true}
+                        hideDescription={true}
+                        venueName={attendance.event.get('location').name}
+                        venueAddress={attendance.event.get('location').address}
+                        description={attendance.event.get('description')}
+                        ctaAltTitle={Languages.t('attending', this.props.locale)}
+                        ctaTitle={Languages.t('addToMe', this.props.locale)}
+                        startTime={attendance.event.get('start')} />
+                </View>
+            );
+        });
     }
     render() {
-        if (!this.state.attendances.length) {
+        if (this.state.loading) {
             return <Views.LoadingView loadingText="Loading" />;
         }
         return (
@@ -51,31 +96,7 @@ class MyAttendanceView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
-                    {(() => {
-                        return this.state.attendances.map((attendance, index) => {
-                            return (
-                                <View
-                                    key={index}
-                                    style={styles.eventsContainer}>
-                                    <Components.EventTile
-                                        locale={this.props.locale}
-                                        eventTitle={attendance.event.get('name')}
-                                        openQR={() => RouterActions.qrViewer({
-                                            event: attendance.event
-                                        })}
-                                        attendees={attendance.event.attendees.length}
-                                        attending={true}
-                                        hideDescription={true}
-                                        venueName={attendance.event.get('location').name}
-                                        venueAddress={attendance.event.get('location').address}
-                                        description={attendance.event.get('description')}
-                                        ctaAltTitle={Languages.t('attending', this.props.locale)}
-                                        ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                        startTime={attendance.event.get('start')} />
-                                </View>
-                            );
-                        });
-                    })()}
+                    {this.renderList()}
                 </ScrollView>
             </View>
         );

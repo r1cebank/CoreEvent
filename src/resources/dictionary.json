@@ -112,7 +112,9 @@
         "save": "Save",
         "updateName": "Update name",
         "noEventsFound": "No event found, maybe",
-        "createOne": "Create one?"
+        "createOne": "Create one?",
+        "noAttendedEvents": "Not attending any events",
+        "browseEvents": "Browse events"
     },
     "ja": {
         "hot": "おすすめ",
@@ -226,7 +228,9 @@
         "save": "Save",
         "updateName": "Update name",
         "noEventsFound": "No event found, maybe",
-        "createOne": "Create one?"
+        "createOne": "Create one?",
+        "noAttendedEvents": "Not attending any events",
+        "browseEvents": "Browse events"
     },
     "zh": {
         "hot": "热门",
@@ -341,6 +345,8 @@
         "save": "保存",
         "updateName": "更新用户名",
         "noEventsFound": "没有找到任何活动",
-        "createOne": "创建一个？"
+        "createOne": "创建一个？",
+        "noAttendedEvents": "你没有参加任何活动",
+        "browseEvents": "看看周边的活动"
     }
 }

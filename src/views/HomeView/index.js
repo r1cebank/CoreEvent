@@ -49,7 +49,7 @@ class HomeView extends Component {
             notice: {},
             attendances: [],
             nearbyEvents: [],
-            // loading: true,
+            loading: true,
             showNotice: false,
             isRefreshing: false,
             nearbyDatasource: this.ds.cloneWithRows([])
