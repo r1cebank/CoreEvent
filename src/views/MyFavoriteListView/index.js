@@ -26,6 +26,7 @@ class MyFavoriteListView extends Component {
         this.state = {
             events: [],
             notice: {},
+            loading: true,
             showNotice: false,
             isRefreshing: false
         };
@@ -49,7 +50,10 @@ class MyFavoriteListView extends Component {
             event.attendeeCount = response;
             events.push(event);
         }
-        this.setState({ events });
+        this.setState({
+            events,
+            loading: false
+        });
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -86,9 +90,53 @@ class MyFavoriteListView extends Component {
     removeFavorite = (event) => {
         Store.appStore.dispatch(Actions.Data.removeFavorite(event));
     }
-    render() {
-        if (!this.state.events.length) {
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                message={Languages.t('noFavoriteEvents', this.props.locale)}
+                onPress={() => {
+                    Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+                }}
+                buttonText={Languages.t('browseEvents', this.props.locale)}
+                />
+        );
+    }
+    renderList = () => {
+        if (this.state.loading) {
             return <Views.LoadingView loadingText="Loading" />;
+        }
+        return this.state.events.map((event, index) => {
+            return (
+                <View
+                    key={index}
+                    style={styles.eventsContainer}>
+                    <Components.EventTile
+                        locale={this.props.locale}
+                        eventTitle={event.get('name')}
+                        openQR={() => RouterActions.qrViewer({
+                            event
+                        })}
+                        openUserSearch={() => RouterActions.userSearch({
+                            event
+                        })}
+                        onDelete={() => this.removeFavorite(event)}
+                        onPress={() => this.attend(event)}
+                        attendees={event.attendeeCount}
+                        editMode={true}
+                        buttons={[ 'qr', 'delete', 'add' ]}
+                        hideDescription={true}
+                        venueName={event.get('location').name}
+                        venueAddress={event.get('location').address}
+                        description={event.get('description')}
+                        ctaTitle={Languages.t('addToMe', this.props.locale)}
+                        startTime={event.get('start')} />
+                </View>
+            );
+        });
+    }
+    render() {
+        if (this.state.events.length < 1) {
+            return this.renderEmpty();
         }
         return (
             <View style={styles.container}>
@@ -103,36 +151,7 @@ class MyFavoriteListView extends Component {
                         onRefresh={this.onRefresh}
                       />
                     }>
-                    {(() => {
-                        return this.state.events.map((event, index) => {
-                            return (
-                                <View
-                                    key={index}
-                                    style={styles.eventsContainer}>
-                                    <Components.EventTile
-                                        locale={this.props.locale}
-                                        eventTitle={event.get('name')}
-                                        openQR={() => RouterActions.qrViewer({
-                                            event
-                                        })}
-                                        openUserSearch={() => RouterActions.userSearch({
-                                            event
-                                        })}
-                                        onDelete={() => this.removeFavorite(event)}
-                                        onPress={() => this.attend(event)}
-                                        attendees={event.attendeeCount}
-                                        editMode={true}
-                                        buttons={[ 'qr', 'delete', 'add' ]}
-                                        hideDescription={true}
-                                        venueName={event.get('location').name}
-                                        venueAddress={event.get('location').address}
-                                        description={event.get('description')}
-                                        ctaTitle={Languages.t('addToMe', this.props.locale)}
-                                        startTime={event.get('start')} />
-                                </View>
-                            );
-                        });
-                    })()}
+                    {this.renderList()}
                 </ScrollView>
                 <PopupDialog
                     width={0.8}

@@ -114,7 +114,9 @@
         "noEventsFound": "No event found, maybe",
         "createOne": "Create one?",
         "noAttendedEvents": "Not attending any events",
-        "browseEvents": "Browse events"
+        "browseEvents": "Browse events",
+        "noCreatedEvents": "You are hot hosting any event, maybe",
+        "noFavoriteEvents": "You don't have any favorited events"
     },
     "ja": {
         "hot": "おすすめ",
@@ -230,7 +232,9 @@
         "noEventsFound": "No event found, maybe",
         "createOne": "Create one?",
         "noAttendedEvents": "Not attending any events",
-        "browseEvents": "Browse events"
+        "browseEvents": "Browse events",
+        "noCreatedEvents": "You are hot hosting any event, maybe",
+        "noFavoriteEvents": "You don't have any favorited events"
     },
     "zh": {
         "hot": "热门",
@@ -347,6 +351,8 @@
         "noEventsFound": "没有找到任何活动",
         "createOne": "创建一个？",
         "noAttendedEvents": "你没有参加任何活动",
-        "browseEvents": "看看周边的活动"
+        "browseEvents": "看看周边的活动",
+        "noCreatedEvents": "你没有主办任何活动",
+        "noFavoriteEvents": "你没有任何收藏的活动"
     }
 }
