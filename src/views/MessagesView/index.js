@@ -15,6 +15,7 @@ class MessagesView extends Component {
         super(props);
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
+            loading: true,
             isRefreshing: false,
             invitations: [],
             messageDatasource: this.ds.cloneWithRows([])
@@ -25,12 +26,18 @@ class MessagesView extends Component {
         await this.refreshMessages();
     }
     refreshMessages = async () => {
+        this.setState({
+            isRefreshing: true,
+            loading: false
+        });
         const invitations = await Storage.Invitation.fetchMine();
         for (const invitation of invitations) {
             invitation.event = await invitation.get('event').fetch();
         }
         this.setState({
             invitations,
+            loading: false,
+            isRefreshing: false,
             messageDatasource: this.ds.cloneWithRows(invitations)
         });
     }
@@ -72,6 +79,14 @@ class MessagesView extends Component {
                 onPressReject={() => this.rejectInvitation(rowData, rowID)} />
         );
     }
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                hideButton={true}
+                message={Languages.t('noMessages', this.props.locale)}
+                />
+        );
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -83,7 +98,7 @@ class MessagesView extends Component {
                     refreshControl={
                       <RefreshControl
                         refreshing={this.state.isRefreshing}
-                        onRefresh={this.onRefresh}
+                        onRefresh={this.refreshMessages}
                       />
                     }>
                     <View style={{ backgroundColor: Colors.infraRed, padding: 10 }}>
@@ -92,10 +107,17 @@ class MessagesView extends Component {
                         </Text>
                     </View>
                     {(() => {
-                        if (!this.state.messageDatasource.getRowCount()) {
+                        if (this.state.loading) {
                             return (
                                 <View style={{ margin: 20 }}>
                                     <Views.LoadingView loadingText="Loading invitations" />
+                                </View>
+                            );
+                        }
+                        if (!this.state.messageDatasource.getRowCount()) {
+                            return (
+                                <View style={{ margin: 20 }}>
+                                    {this.renderEmpty()}
                                 </View>
                             );
                         }

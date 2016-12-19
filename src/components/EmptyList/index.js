@@ -13,6 +13,7 @@ class EmptyList extends Component {
     static propTypes = {
         index: React.PropTypes.number,
         onPress: React.PropTypes.func,
+        hideButton: React.PropTypes.bool,
         message: React.PropTypes.string,
         buttonText: React.PropTypes.string
     }
@@ -26,12 +27,19 @@ class EmptyList extends Component {
                 <Text style={styles.message}>
                     {this.props.message}
                 </Text>
-                <Button
-                    raised
-                    onPress={this.props.onPress}
-                    backgroundColor={Colors.infraRed}
-                    buttonStyle={{ borderRadius: 40 }}
-                    title={this.props.buttonText} />
+                {(() => {
+                    if (!this.props.hideButton) {
+                        return (
+                            <Button
+                                raised
+                                onPress={this.props.onPress}
+                                backgroundColor={Colors.infraRed}
+                                buttonStyle={{ borderRadius: 40 }}
+                                title={this.props.buttonText} />
+                        );
+                    }
+                    return null;
+                })()}
             </View>
         );
     }
