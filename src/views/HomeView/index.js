@@ -283,9 +283,13 @@ class HomeView extends Component {
         this.dialogbox.confirm({
             content: Languages.t('leaveConfirm', this.props.locale),
             ok: {
+                text: Languages.t('confirm', this.props.locale),
                 callback: async () => {
                     await Storage.Attendance.leave(event);
                 }
+            },
+            cancel: {
+                text: Languages.t('cancel', this.props.locale)
             }
         });
     }

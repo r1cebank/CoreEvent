@@ -23,11 +23,15 @@ class SettingsView extends Component {
         this.dialogbox.confirm({
             content: Languages.t('logoutConfirm', this.props.locale),
             ok: {
+                text: Languages.t('confirm', this.props.locale),
                 callback: () => {
                     Store.appStore.dispatch(Actions.Settings
                         .logoutUser());
                     QuickActions.clearShortcutItems();
                 }
+            },
+            cancel: {
+                text: Languages.t('cancel', this.props.locale)
             }
         });
     }

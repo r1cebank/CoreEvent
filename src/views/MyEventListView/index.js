@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import DialogBox from 'react-native-dialogbox';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
@@ -59,6 +60,20 @@ class MyEventListView extends Component {
                 />
         );
     }
+    deleteEvent = () => {
+        this.dialogbox.confirm({
+            content: Languages.t('deleteEventConfirm', this.props.locale),
+            ok: {
+                text: Languages.t('confirm', this.props.locale),
+                callback: () => {
+                    // Delete event
+                }
+            },
+            cancel: {
+                text: Languages.t('cancel', this.props.locale)
+            }
+        });
+    }
     renderList = () => {
         if (this.state.events.length < 1) {
             return this.renderEmpty();
@@ -77,6 +92,7 @@ class MyEventListView extends Component {
                         openUserSearch={() => RouterActions.userSearch({
                             event
                         })}
+                        onDelete={() => this.deleteEvent(event)}
                         attendees={event.attendeeCount}
                         editMode={true}
                         buttons={[ 'count', 'qr', 'edit', 'delete' ]}
@@ -109,6 +125,7 @@ class MyEventListView extends Component {
                     }>
                     {this.renderList()}
                 </ScrollView>
+                <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
             </View>
         );
     }
