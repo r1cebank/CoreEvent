@@ -28,7 +28,7 @@ class MessagesView extends Component {
     refreshMessages = async () => {
         this.setState({
             isRefreshing: true,
-            loading: false
+            loading: true
         });
         const invitations = await Storage.Invitation.fetchMine();
         for (const invitation of invitations) {

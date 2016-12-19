@@ -118,7 +118,9 @@
         "noCreatedEvents": "You are hot hosting any event, maybe",
         "noFavoriteEvents": "You don't have any favorited events",
         "noMessages": "You dont have any messages",
-        "deleteEventConfirm": "Are you sure, all attended users will be notified"
+        "deleteEventConfirm": "Are you sure, all attended users will be notified",
+        "eventDeleted": "Event deleted",
+        "eventDeleteFailed": "Event delete failed, please try again later"
     },
     "ja": {
         "hot": "おすすめ",
@@ -238,7 +240,9 @@
         "noCreatedEvents": "You are hot hosting any event, maybe",
         "noFavoriteEvents": "You don't have any favorited events",
         "noMessages": "You dont have any messages",
-        "deleteEventConfirm": "Are you sure, all attended users will be notified"
+        "deleteEventConfirm": "Are you sure, all attended users will be notified",
+        "eventDeleted": "Event deleted",
+        "eventDeleteFailed": "Event delete failed, please try again later"
     },
     "zh": {
         "hot": "热门",
@@ -359,6 +363,8 @@
         "noCreatedEvents": "你没有主办任何活动",
         "noFavoriteEvents": "你没有任何收藏的活动",
         "noMessages": "没有消息",
-        "deleteEventConfirm": "你确认要删除这个活动吗？这将通知所有参加活动的用户"
+        "deleteEventConfirm": "你确认要删除这个活动吗？这将通知所有参加活动的用户",
+        "eventDeleted": "活动删除成功",
+        "eventDeleteFailed": "活动删除失败，请稍后再试"
     }
 }

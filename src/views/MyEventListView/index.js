@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PopupDialog from 'react-native-popup-dialog';
 import DialogBox from 'react-native-dialogbox';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
@@ -11,6 +12,7 @@ import {
     Store,
     Actions,
     Storage,
+    Colors,
     Components
 } from '../../global/globalIncludes';
 import styles from './resources/styles';
@@ -24,12 +26,20 @@ class MyEventListView extends Component {
         super(props);
         this.state = {
             events: [],
+            showNotice: false,
+            notice: {},
             loading: true,
             isRefreshing: false
         };
     }
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('myEvents', this.props.locale) });
+        await this.fetchMyEvents();
+        this.setState({
+            loading: false
+        });
+    }
+    fetchMyEvents = async () => {
         const events = await Storage.Event.fetchMyEvents();
         for (const event of events) {
             const response = await API.Cloud.run('countAttendance', {
@@ -38,8 +48,7 @@ class MyEventListView extends Component {
             event.attendeeCount = response;
         }
         this.setState({
-            events,
-            loading: false
+            events
         });
     }
     onRefresh = () => {
@@ -60,13 +69,37 @@ class MyEventListView extends Component {
                 />
         );
     }
-    deleteEvent = () => {
+    showNotice = (notice) => {
+        this.setState({
+            notice
+        });
+        this.popupDialog.openDialog();
+    }
+    deleteEvent = (event) => {
         this.dialogbox.confirm({
             content: Languages.t('deleteEventConfirm', this.props.locale),
             ok: {
                 text: Languages.t('confirm', this.props.locale),
-                callback: () => {
+                callback: async () => {
                     // Delete event
+                    try {
+                        await Storage.Event.delete(event);
+                        this.showNotice({
+                            icon: 'check',
+                            color: Colors.green,
+                            header: Languages.t('success', this.props.locale),
+                            notice: Languages.t('eventDeleted', this.props.locale)
+                        });
+                        // TODO: change to update instead of pop later
+                        setTimeout(() => { RouterActions.pop(); }, 2000);
+                    } catch (e) {
+                        this.showNotice({
+                            icon: 'error',
+                            color: Colors.infraRed,
+                            header: Languages.t('error', this.props.locale),
+                            notice: Languages.t('eventDeleteFailed', this.props.locale)
+                        });
+                    }
                 }
             },
             cancel: {
@@ -125,6 +158,17 @@ class MyEventListView extends Component {
                     }>
                     {this.renderList()}
                 </ScrollView>
+                <PopupDialog
+                    width={0.8}
+                    height={200}
+                    open={this.state.showNotice}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                    <Components.Notice
+                        color={this.state.notice.color}
+                        icon={this.state.notice.icon}
+                        header={this.state.notice.header}
+                        notice={this.state.notice.notice} />
+                </PopupDialog>
                 <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
             </View>
         );

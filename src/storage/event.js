@@ -1,6 +1,9 @@
 import { API } from '../global/globalIncludes';
 
 const event = {
+    delete: async (eventObj) => {
+        return eventObj.destroy();
+    },
     fetchById: async (id) => {
         const query = new API.Parse.Query(API.Classes.event);
         return await query.get(id);
