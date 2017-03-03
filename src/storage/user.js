@@ -47,6 +47,7 @@ const user = {
             image.path.replace(/^.*[\\\/]/, ''), // eslint-disable-line
             { base64: image.data },
             image.mime);
+            debugger;
         await avatar.save();
         const currentUser = API.Parse.User.current();
         currentUser.set('avatar', avatar);
@@ -55,6 +56,11 @@ const user = {
     updateName: async (username) => {
         const currentUser = API.Parse.User.current();
         currentUser.set('name', username);
+        currentUser.save();
+    },
+    updateFlag: async (propName, value) => {
+        const currentUser = API.Parse.User.current();
+        currentUser.set(propName, value);
         currentUser.save();
     },
     updatePushToken: async (token) => {

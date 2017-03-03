@@ -65,6 +65,7 @@ class NewEventView extends Component {
             name: this.state.eventName,
             detailedAddress: this.state.detailedAddress,
             interests: this.state.interests,
+            cancelMessage: Languages.t('cancelMessage', this.props.locale),
             description: this.state.eventDescription,
             date: this.state.date
         };

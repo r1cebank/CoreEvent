@@ -32,7 +32,8 @@ const CANCEL_INDEX = 0;
 class ProfileView extends Component {
     static propTypes = {
         locale: React.PropTypes.string,
-        user: React.PropTypes.object
+        user: React.PropTypes.object,
+        attributes: React.PropTypes.object
     }
     constructor(props) {
         super(props);
@@ -187,29 +188,36 @@ class ProfileView extends Component {
                             }
                             return null;
                         })()}
-                        <TouchableOpacity
-                            onPress={() => this.ActionSheet.show()}>
-                            {(() => {
-                                if (API.Parse.User.current().get('avatar')) {
-                                    return (
-                                        <Image
-                                            style={styles.avatarImage}
-                                            indicatorProps={{ color: Colors.infraRed }}
-                                            source={{
-                                                uri: API.Parse.User.current().get('avatar').url()
-                                            }}
-                                            indicator={Progress.Circle} />
-                                    );
-                                }
+                        {(() => {
+                            if (this.props.config.attributes.show_avatar) {
                                 return (
-                                    <Image
-                                        style={styles.avatarImage}
-                                        indicatorProps={{ color: Colors.infraRed }}
-                                        source={Assets.profile}
-                                        indicator={Progress.Circle} />
+                                    <TouchableOpacity
+                                        onPress={() => this.ActionSheet.show()}>
+                                        {(() => {
+                                            if (API.Parse.User.current().get('avatar')) {
+                                                return (
+                                                    <Image
+                                                        style={styles.avatarImage}
+                                                        indicatorProps={{ color: Colors.infraRed }}
+                                                        source={{
+                                                            uri: API.Parse.User.current().get('avatar').url()
+                                                        }}
+                                                        indicator={Progress.Circle} />
+                                                );
+                                            }
+                                            return (
+                                                <Image
+                                                    style={styles.avatarImage}
+                                                    indicatorProps={{ color: Colors.infraRed }}
+                                                    source={Assets.profile}
+                                                    indicator={Progress.Circle} />
+                                            );
+                                        })()}
+                                    </TouchableOpacity>
                                 );
-                            })()}
-                        </TouchableOpacity>
+                            }
+                            return null;
+                        })()}
                     </View>
                     <View style={styles.nameStatContainer}>
                         {this.renderTitle()}
@@ -308,6 +316,7 @@ ProfileView.defaultProps = {
 function select(store) {
     return {
         locale: store.settings.locale,
+        config: store.settings.config,
         user: store.settings.user
     };
 }

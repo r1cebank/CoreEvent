@@ -100,7 +100,7 @@ class LoginView extends Component {
                 icon: 'error',
                 color: Colors.infraRed,
                 header: Languages.t('error', this.props.locale),
-                notice: Languages.t(e.message, this.props.locale)
+                notice: Languages.t('codeSentFailed', this.props.locale)
             });
             return;
         }

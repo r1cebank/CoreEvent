@@ -77,6 +77,7 @@ const event = {
             longitude: eventData.address.location.lng
         });
         draft.set('coords', coords);
+        draft.set('cancelMessage', eventData.cancelMessage);
         draft.set('location', {
             name: eventData.detailedAddress,
             address: eventData.address.name,

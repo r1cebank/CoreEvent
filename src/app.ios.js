@@ -32,12 +32,12 @@ class App extends Component {
         // Fetch data
         // Store.appStore.dispatch(Actions.Settings
         //         .fetchConfig());
-        const carousel = await Storage.Carousel.fetch();
+        // const carousel = await Storage.Carousel.fetch();
         const category = await Storage.Category.fetchRoot();
         const config = await Storage.Config.fetch();
         // Fetch new user config
-        Store.appStore.dispatch(Actions.Data
-                .updateCarousel(carousel));
+        // Store.appStore.dispatch(Actions.Data
+        //         .updateCarousel(carousel));
         Store.appStore.dispatch(Actions.Data
                 .updateCategory(category));
         Store.appStore.dispatch(Actions.Settings

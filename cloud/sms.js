@@ -39,6 +39,7 @@ Parse.Cloud.define('sendCode', function(req, res) {
             user.setPassword(secretPasswordToken + num);
             user.set('level', 0);
             user.set('vip', false);
+            user.set('name', '');
             user.setACL({});
             user.save().then(function(a) {
                 return sendCode(phoneNumber, num, method);

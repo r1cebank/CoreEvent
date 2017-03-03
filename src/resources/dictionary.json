@@ -120,7 +120,16 @@
         "noMessages": "You dont have any messages",
         "deleteEventConfirm": "Are you sure, all attended users will be notified",
         "eventDeleted": "Event deleted",
-        "eventDeleteFailed": "Event delete failed, please try again later"
+        "eventDeleteFailed": "Event delete failed, please try again later",
+        "cancelMessage": "{0} is cancelled",
+        "notificationSettings": "Notification settings",
+        "showAttendingNotification": "Show attending notification",
+        "showInviteNotification": "Show invite notification",
+        "showCancelNotification": "Show cancel notification",
+        "showPromoNotification": "Show promo notification",
+        "on": "On",
+        "off": "Off",
+        "codeSentFailed": "Confirmation sent failed, please check your phone number"
     },
     "ja": {
         "hot": "おすすめ",
@@ -242,7 +251,16 @@
         "noMessages": "You dont have any messages",
         "deleteEventConfirm": "Are you sure, all attended users will be notified",
         "eventDeleted": "Event deleted",
-        "eventDeleteFailed": "Event delete failed, please try again later"
+        "eventDeleteFailed": "Event delete failed, please try again later",
+        "cancelMessage": "{0} is cancelled",
+        "notificationSettings": "Notification settings",
+        "showAttendingNotification": "Show attending notification",
+        "showInviteNotification": "Show invite notification",
+        "showCancelNotification": "Show cancel notification",
+        "showPromoNotification": "Show promo notification",
+        "on": "On",
+        "off": "Off",
+        "codeSentFailed": "Confirmation sent failed, please check your phone number"
     },
     "zh": {
         "hot": "热门",
@@ -365,6 +383,15 @@
         "noMessages": "没有消息",
         "deleteEventConfirm": "你确认要删除这个活动吗？这将通知所有参加活动的用户",
         "eventDeleted": "活动删除成功",
-        "eventDeleteFailed": "活动删除失败，请稍后再试"
+        "eventDeleteFailed": "活动删除失败，请稍后再试",
+        "cancelMessage": "{0} 已取消",
+        "notificationSettings": "信息推送",
+        "showAttendingNotification": "接收参加通知",
+        "showInviteNotification": "接收邀请通知",
+        "showCancelNotification": "接收取消通知",
+        "showPromoNotification": "接收推荐通知",
+        "on": "开",
+        "off": "关",
+        "codeSentFailed": "确认码发送失败，请检查电话号码"
     }
 }
