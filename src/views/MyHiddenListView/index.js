@@ -58,7 +58,7 @@ class MyFavoriteListView extends Component {
     renderEmpty = () => {
         return (
             <Components.EmptyList
-                message={Languages.t('noAttendedEvents', this.props.locale)}
+                message={Languages.t('noEventsFound', this.props.locale)}
                 onPress={() => {
                     Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
                 }}
