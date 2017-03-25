@@ -120,7 +120,7 @@ class SignupView extends Component {
         return (
             <View style={styles.container}>
                 <Video
-                    source={Assets.loginVideo}
+                    source={Assets.signupVideo}
                     rate={1.0}
                     muted={true}
                     paused={false}

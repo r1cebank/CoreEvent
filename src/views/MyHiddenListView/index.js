@@ -28,7 +28,9 @@ class MyFavoriteListView extends Component {
     }
     async componentWillMount() {
         RouterActions.refresh({ title: Languages.t('hiddenEvents', this.props.locale) });
+        this.setState({ isRefreshing: true });
         await this.updateHidden(this.props.hidden);
+        this.setState({ isRefreshing: false });
     }
     async componentWillReceiveProps(nextProps) {
         if (this.props.hidden !== nextProps.hidden) {
@@ -53,9 +55,23 @@ class MyFavoriteListView extends Component {
             this.setState({ isRefreshing: false });
         }, 5000);
     }
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                message={Languages.t('noAttendedEvents', this.props.locale)}
+                onPress={() => {
+                    Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+                }}
+                buttonText={Languages.t('browseEvents', this.props.locale)}
+                />
+        );
+    }
     render() {
-        if (!this.state.events.length) {
+        if (this.state.isRefreshing) {
             return <Views.LoadingView loadingText="Loading" />;
+        }
+        if (!this.state.events.length) {
+            return this.renderEmpty();
         }
         return (
             <View style={styles.container}>

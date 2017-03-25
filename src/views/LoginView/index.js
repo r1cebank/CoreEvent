@@ -42,7 +42,9 @@ class LoginView extends Component {
         };
     }
     componentWillUnmount() {
-        this.countDown.removeInterval();
+        if (this.countDown) {
+            this.countDown.removeInterval();
+        }
     }
     showNotice = (notice) => {
         this.setState({
@@ -114,7 +116,7 @@ class LoginView extends Component {
         return (
             <View style={styles.container}>
                 <Video
-                    source={Assets.loginVideo}
+                    source={Assets.signupVideo}
                     rate={1.0}
                     muted={true}
                     paused={false}
@@ -170,7 +172,7 @@ class LoginView extends Component {
                                 <Kohana
                                     style={{ backgroundColor: Colors.frontColor }}
                                     autoCapitalize="none"
-                                    autoFocus={true}
+                                    autoFocus={false}
                                     label={Languages.t('phoneNumber', this.props.locale)}
                                     onChangeText={(phone) => this.setState({ phone })}
                                     value={this.state.phone}

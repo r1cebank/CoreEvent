@@ -26,13 +26,13 @@ class WelcomeView extends Component {
                     muted={true}                  // Mutes the audio entirely.
                     paused={false}                 // Pauses playback entirely.
                     resizeMode="cover"             // Fill the whole screen at aspect ratio.
-                    repeat={true}                  // Repeat forever.
+                    repeat={false}                  // Repeat forever.
                     playWhenInactive={false}
                     style={styles.backgroundVideo} />
                 <View style={styles.contentContainer}>
                     <View style={{ marginTop: 50 }}>
                         <Image style={styles.icon} source={Assets.icon} />
-                        <Text style={styles.header}>Let meet</Text>
+                        <Text style={styles.header}>Meet Changes Life</Text>
                     </View>
                     <View>
                         <Button

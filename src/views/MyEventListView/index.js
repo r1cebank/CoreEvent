@@ -128,7 +128,7 @@ class MyEventListView extends Component {
                         onDelete={() => this.deleteEvent(event)}
                         attendees={event.attendeeCount}
                         editMode={true}
-                        buttons={[ 'count', 'qr', 'edit', 'delete' ]}
+                        buttons={[ 'count', 'qr', 'delete' ]}
                         hideDescription={true}
                         venueName={event.get('location').name}
                         venueAddress={event.get('location').address}

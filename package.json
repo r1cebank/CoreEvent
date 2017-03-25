@@ -55,7 +55,7 @@
     "react-native-calendar-strip": "^0.1.1",
     "react-native-camera": "github:lwansbrough/react-native-camera",
     "react-native-device-info": "^0.9.6",
-    "react-native-dialogbox": "^0.6.2",
+    "react-native-dialogbox": "^0.6.4",
     "react-native-dismiss-keyboard": "^1.0.0",
     "react-native-drawer": "^2.3.0",
     "react-native-easy-grid": "0.1.6",

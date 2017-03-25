@@ -11,6 +11,7 @@ const assets = {
     get placeholder() { return require('../assets/placeholder.png'); },
     get profile() { return require('../assets/profile.png'); },
     get loginVideo() { return require('../assets/login.mp4'); },
+    get signupVideo() { return require('../assets/signup.mp4'); },
     get launchpad_bg() { return require('../assets/launchpad_bg.png'); },
     get bear() { return require('../assets/bear.png'); },
     get cloud() { return require('../assets/cloud.png'); },

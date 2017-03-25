@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Card } from 'react-native-elements';
 import { View, ScrollView, RefreshControl } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
-import { Languages, Views, Storage, Components } from '../../global/globalIncludes';
+import { Languages, Views, Storage, Components, Store, Actions } from '../../global/globalIncludes';
 import styles from './resources/styles';
 
 class EventListView extends Component {
@@ -20,9 +20,10 @@ class EventListView extends Component {
         };
     }
     async componentWillMount() {
-        Actions.refresh({ title: Languages.f(this.props.category.name, this.props.locale) });
+        RouterActions.refresh({ title: Languages.f(this.props.category.name, this.props.locale) });
+        this.setState({ isRefreshing: true });
         const events = await Storage.Event.fetchByCategory(this.props.category.objectId);
-        this.setState({ events });
+        this.setState({ events, isRefreshing: false });
     }
     onRefresh = () => {
         this.setState({ isRefreshing: true });
@@ -30,9 +31,27 @@ class EventListView extends Component {
             this.setState({ isRefreshing: false });
         }, 5000);
     }
+    createNew = () => {
+        Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+        setTimeout(() => {
+            RouterActions.newEvent();
+        }, 100);
+    }
+    renderEmpty = () => {
+        return (
+            <Components.EmptyList
+                message={Languages.t('noEventsFound', this.props.locale)}
+                onPress={this.createNew}
+                buttonText={Languages.t('createOne', this.props.locale)}
+                />
+        );
+    }
     render() {
-        if (!this.state.events.length) {
+        if (this.state.isRefreshing) {
             return <Views.LoadingView loadingText="Loading" />;
+        }
+        if (!this.state.events.length) {
+            return this.renderEmpty();
         }
         return (
             <View style={styles.container}>

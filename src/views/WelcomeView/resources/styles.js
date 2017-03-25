@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontWeight: '700',
-        fontSize: 40,
+        fontSize: 30,
         backgroundColor: 'transparent',
         color: Colors.frontColor,
         textAlign: 'center'
