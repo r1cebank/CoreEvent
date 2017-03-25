@@ -91,7 +91,7 @@ class UserSearchView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View>
+                <View style={{ flex: 1 }}>
                     <Kohana
                         style={styles.input}
                         autoCapitalize="none"

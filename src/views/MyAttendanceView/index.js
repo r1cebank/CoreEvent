@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import DialogBox from 'react-native-dialogbox';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
@@ -51,6 +52,21 @@ class MyAttendanceView extends Component {
                 />
         );
     }
+    confirmQuit = (event) => {
+        this.dialogbox.confirm({
+            content: Languages.t('leaveConfirm', this.props.locale),
+            ok: {
+                text: Languages.t('confirm', this.props.locale),
+                callback: async () => {
+                    await Storage.Attendance.leave(event);
+                    Store.appStore.dispatch(Actions.Settings.selectTab('aroundme'));
+                }
+            },
+            cancel: {
+                text: Languages.t('cancel', this.props.locale)
+            }
+        });
+    }
     renderList = () => {
         if (this.state.attendances.length < 1) {
             return this.renderEmpty();
@@ -68,6 +84,9 @@ class MyAttendanceView extends Component {
                         })}
                         attendees={attendance.event.attendees.length}
                         attending={true}
+                        onPressAlt={() => {
+                            this.confirmQuit(attendance.event);
+                        }}
                         hideDescription={true}
                         venueName={attendance.event.get('location').name}
                         venueAddress={attendance.event.get('location').address}
@@ -98,6 +117,7 @@ class MyAttendanceView extends Component {
                     }>
                     {this.renderList()}
                 </ScrollView>
+                <DialogBox ref={(dialogbox) => this.dialogbox = dialogbox} />
             </View>
         );
     }

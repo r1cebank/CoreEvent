@@ -7,7 +7,7 @@ var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
 
 var messsages = {
     'en-US': 'Your verification code is: {0}',
-    'zh-CN': '乐汇：您的验证码是 {0}'
+    'zh-CN': '觅圈儿：您的验证码是 {0}'
 }
 
 Parse.Cloud.define('sendCode', function(req, res) {
@@ -40,7 +40,9 @@ Parse.Cloud.define('sendCode', function(req, res) {
             user.set('level', 0);
             user.set('vip', false);
             user.set('name', '');
-            user.setACL({});
+            var postACL = new Parse.ACL({});
+            postACL.setPublicReadAccess(true);
+            user.setACL(postACL);
             user.save().then(function(a) {
                 return sendCode(phoneNumber, num, method);
             }).then(function() {

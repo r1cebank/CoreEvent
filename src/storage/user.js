@@ -47,7 +47,6 @@ const user = {
             image.path.replace(/^.*[\\\/]/, ''), // eslint-disable-line
             { base64: image.data },
             image.mime);
-            debugger;
         await avatar.save();
         const currentUser = API.Parse.User.current();
         currentUser.set('avatar', avatar);

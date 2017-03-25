@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     },
     input: {
         borderBottomWidth: 0,
-        margin: 10
+        margin: 10,
+        flex: 1
     }
 });
 
