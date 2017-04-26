@@ -141,7 +141,7 @@ class MyEventListView extends Component {
     }
     render() {
         if (this.state.loading) {
-            return <Views.LoadingView loadingText="Loading" />;
+            return <Views.LoadingView loadingText={Languages.t('loading', this.props.locale)} />;
         }
         return (
             <View style={styles.container}>

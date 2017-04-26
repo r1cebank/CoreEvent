@@ -110,7 +110,7 @@ class MessagesView extends Component {
                         if (this.state.loading) {
                             return (
                                 <View style={{ margin: 20 }}>
-                                    <Views.LoadingView loadingText="Loading invitations" />
+                                    <Views.LoadingView loadingText={Languages.t('loading', this.props.locale)} />
                                 </View>
                             );
                         }

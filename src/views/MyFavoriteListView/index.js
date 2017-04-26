@@ -103,7 +103,7 @@ class MyFavoriteListView extends Component {
     }
     renderList = () => {
         if (this.state.loading) {
-            return <Views.LoadingView loadingText="Loading" />;
+            return <Views.LoadingView loadingText={Languages.t('loading', this.props.locale)} />;
         }
         return this.state.events.map((event, index) => {
             return (
