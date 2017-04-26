@@ -129,6 +129,7 @@
         "showPromoNotification": "Show promo notification",
         "on": "On",
         "off": "Off",
+        "incorrectCode": "Incorrect confirmation, please try again",
         "codeSentFailed": "Confirmation sent failed, please check your phone number"
     },
     "ja": {
@@ -260,6 +261,7 @@
         "showPromoNotification": "Show promo notification",
         "on": "On",
         "off": "Off",
+        "incorrectCode": "Incorrect confirmation, please try again",
         "codeSentFailed": "Confirmation sent failed, please check your phone number"
     },
     "zh": {
@@ -392,6 +394,7 @@
         "showPromoNotification": "接收推荐通知",
         "on": "开",
         "off": "关",
+        "incorrectCode": "确认码无效",
         "codeSentFailed": "确认码发送失败，请检查电话号码"
     }
 }

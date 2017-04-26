@@ -65,7 +65,12 @@ class LoginView extends Component {
             PushNotification.requestPermissions();
             this.setShortcuts();
         } catch (e) {
-            // TODO: Catch errors
+            this.showNotice({
+                icon: 'error',
+                color: Colors.infraRed,
+                header: Languages.t('error', this.props.locale),
+                notice: Languages.t('incorrectCode', this.props.locale)
+            });
         }
     }
     setShortcuts = () => {
