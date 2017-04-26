@@ -32,7 +32,7 @@ class WelcomeView extends Component {
                 <View style={styles.contentContainer}>
                     <View style={{ marginTop: 50 }}>
                         <Image style={styles.icon} source={Assets.icon} />
-                        <Text style={styles.header}>Meet Changes Life</Text>
+                        <Text style={styles.header}>相聚   改变   生活</Text>
                     </View>
                     <View>
                         <Button
