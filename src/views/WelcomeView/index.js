@@ -6,7 +6,7 @@ import Video from 'react-native-video';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
-import { Colors, Languages, Assets } from '../../global/globalIncludes';
+import { Colors, Languages, Assets, Components } from '../../global/globalIncludes';
 
 import styles from './resources/styles';
 
@@ -41,6 +41,13 @@ class WelcomeView extends Component {
                             backgroundColor={Colors.infraRed}
                             onPress={Actions.loginView}
                             title={`${Languages.t('signup', this.props.locale)} / ${Languages.t('login', this.props.locale)}`} />
+                        <View style={styles.disclaimerContainer}>
+                            <Text style={styles.disclaimer}>{Languages.t('disclaimer', this.props.locale)}</Text>
+                            <Components.LinkButton
+                                text={Languages.t('privacyStatement', this.props.locale)}
+                                textStyle={styles.link}
+                                url={Languages.t('privacyLink', this.props.locale)} />
+                        </View>
                     </View>
                 </View>
             </View>

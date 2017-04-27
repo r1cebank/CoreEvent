@@ -13,7 +13,8 @@ const components = {
     get CategoryTile() { return require('../../components/CategoryTile'); },
     get Message() { return require('../../components/Message'); },
     get CountDown() { return require('../../components/CountDown'); },
-    get CarouselImage() { return require('../../components/CarouselImage'); }
+    get CarouselImage() { return require('../../components/CarouselImage'); },
+    get LinkButton() { return require('../../components/LinkButton'); }
 };
 
 module.exports = components;

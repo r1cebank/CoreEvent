@@ -23,6 +23,28 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0
     },
+    disclaimerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 20
+    },
+    disclaimer: {
+        fontWeight: '700',
+        fontSize: 10,
+        marginTop: 10,
+        backgroundColor: 'transparent',
+        color: Colors.frontColor,
+        textAlign: 'center'
+    },
+    link: {
+        fontWeight: '700',
+        fontSize: 10,
+        marginTop: 10,
+        backgroundColor: 'transparent',
+        color: Colors.frontColor,
+        textAlign: 'center',
+        textDecorationLine: 'underline'
+    },
     header: {
         fontWeight: '700',
         fontSize: 30,

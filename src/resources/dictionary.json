@@ -131,7 +131,10 @@
         "off": "Off",
         "incorrectCode": "Incorrect confirmation, please try again",
         "codeSentFailed": "Confirmation sent failed, please check your phone number",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "disclaimer": "By logging in you accept our ",
+        "privacyStatement": "Privacy Statement",
+        "privacyLink": "https://miquaner.surge.sh/"
     },
     "ja": {
         "hot": "おすすめ",
@@ -264,7 +267,10 @@
         "off": "Off",
         "incorrectCode": "Incorrect confirmation, please try again",
         "codeSentFailed": "Confirmation sent failed, please check your phone number",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "disclaimer": "By logging in you accept our ",
+        "privacyStatement": "Privacy Statement",
+        "privacyLink": "https://miquaner.surge.sh/"
     },
     "zh": {
         "hot": "热门",
@@ -398,6 +404,9 @@
         "off": "关",
         "incorrectCode": "确认码无效",
         "codeSentFailed": "确认码发送失败，请检查电话号码",
-        "loading": "加载中..."
+        "loading": "加载中...",
+        "disclaimer": "登陆等于已经阅读并接收 ",
+        "privacyStatement": "《使用协议》",
+        "privacyLink": "https://miquaner.surge.sh/"
     }
 }
