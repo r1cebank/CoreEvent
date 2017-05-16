@@ -8,8 +8,8 @@ import {
     Actions,
     Store,
     Scenes,
-    Icons,
     Utils,
+    Icons,
     Colors,
     Languages,
     Storage
@@ -44,6 +44,9 @@ class App extends Component {
                 .updateConfig(config));
         Store.appStore.dispatch(Actions.Settings
             .fetchUserUpdate());
+        // if (this.props.user) {
+        //     Utils.updateLocation();
+        // }
     }
     changeTab(selectedTab) {
         this.setState({
@@ -60,7 +63,6 @@ class App extends Component {
         }
         if (!this.props.location) {
             Utils.updateLocation();
-            return null;
         }
         return (
             // TODO: More complex scene config

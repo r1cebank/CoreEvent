@@ -47,7 +47,6 @@
 		E8FC0A8C58D04CC4B95B18A1 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8068FB01A779470681D733E2 /* libRNGeocoder.a */; };
 		EC35401A1DB94B89000DC2EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3540191DB94B89000DC2EF /* CoreData.framework */; };
 		EC35401C1DB94B92000DC2EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401B1DB94B92000DC2EF /* SystemConfiguration.framework */; };
-		EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401D1DB94B9D000DC2EF /* libz.tbd */; };
 		EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */; };
 		EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC486AED1DB9EE6B00FC177A /* libART.a */; };
 		EC5D34891E009744005D1A60 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5D34561E009729005D1A60 /* libRCTAnimation.a */; };
@@ -67,6 +66,7 @@
 		EC8A51FD1DB9A48F0098F194 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51F31DB9A48F0098F194 /* Lato-Light.ttf */; };
 		EC8A51FE1DB9A48F0098F194 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51F41DB9A48F0098F194 /* Lato-LightItalic.ttf */; };
 		EC8A51FF1DB9A48F0098F194 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC8A51F51DB9A48F0098F194 /* Lato-Regular.ttf */; };
+		ECB1A3B81EB96B0000F54D73 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB1A3B71EB96B0000F54D73 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +287,13 @@
 			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
 			remoteInfo = "React-tvOS";
 		};
+		EC61EB331EBC10B500B143DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D8FC9699A804B5D991418FB /* imageCropPicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
+			remoteInfo = imageCropPicker;
+		};
 		EC7262C21DC5BDB400D826D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EC7262BE1DC5BDB400D826D6 /* RCTPushNotification.xcodeproj */;
@@ -383,6 +390,7 @@
 		1C0AE7C24C6C4845B9C86551 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2189A4CF4BE842959C059479 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		34711E653C8D497284B81DF1 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		3D8FC9699A804B5D991418FB /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		45B89379D6C34B508D81AE0C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		46917351ADFB4D53982CA259 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		59CFC9E88E8C450DBDD41ACF /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -416,10 +424,10 @@
 		EB89868C48434722AD864DDD /* libRNSpinkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpinkit.a; sourceTree = "<group>"; };
 		EC3540191DB94B89000DC2EF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EC35401B1DB94B92000DC2EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EC35401D1DB94B9D000DC2EF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		EC3540491DB95BD4000DC2EF /* CoreEvent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CoreEvent.entitlements; path = CoreEvent/CoreEvent.entitlements; sourceTree = "<group>"; };
 		EC486AE81DB9EE6B00FC177A /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		EC4957281EB2EE7300CF9D75 /* KSCrash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSCrash.framework; path = "../../../Library/Developer/Xcode/DerivedData/CoreEvent-bvhdnsefsbjqomcmqntoxsizehsa/Build/Products/Debug-iphonesimulator/KSCrash.framework"; sourceTree = "<group>"; };
 		EC5D344C1E009729005D1A60 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		EC7262BE1DC5BDB400D826D6 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		EC7DD70B1DC010F800D34C12 /* RNQuickAction.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNQuickAction.xcodeproj; path = "../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction.xcodeproj"; sourceTree = "<group>"; };
@@ -437,6 +445,7 @@
 		EC8A51F31DB9A48F0098F194 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		EC8A51F41DB9A48F0098F194 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		EC8A51F51DB9A48F0098F194 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		ECB1A3B71EB96B0000F54D73 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F1790BABEC7A44609A7EB2FD /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		F54497C2A677439FA4A24080 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		F58F8EA8E0C547F3B20E184E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -456,11 +465,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB1A3B81EB96B0000F54D73 /* libz.tbd in Frameworks */,
 				EC5D34891E009744005D1A60 /* libRCTAnimation.a in Frameworks */,
 				EC486AFC1DB9EE7500FC177A /* libART.a in Frameworks */,
 				EC3540201DB94BA6000DC2EF /* libsqlite3.0.tbd in Frameworks */,
 				EC7DD7221DC0110F00D34C12 /* libRNQuickAction.a in Frameworks */,
-				EC35401E1DB94B9D000DC2EF /* libz.tbd in Frameworks */,
 				EC35401C1DB94B92000DC2EF /* SystemConfiguration.framework in Frameworks */,
 				EC35401A1DB94B89000DC2EF /* CoreData.framework in Frameworks */,
 				EC7262C41DC5BDC500D826D6 /* libRCTPushNotification.a in Frameworks */,
@@ -635,6 +644,7 @@
 				A56BE4FC1CB54826AC937C82 /* RNGeocoder.xcodeproj */,
 				9B7AC93B51DF49F3B3E49E3B /* RNViewShot.xcodeproj */,
 				F1790BABEC7A44609A7EB2FD /* RNShare.xcodeproj */,
+				3D8FC9699A804B5D991418FB /* imageCropPicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -708,8 +718,9 @@
 		EC3540181DB94B89000DC2EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECB1A3B71EB96B0000F54D73 /* libz.tbd */,
+				EC4957281EB2EE7300CF9D75 /* KSCrash.framework */,
 				EC35401F1DB94BA6000DC2EF /* libsqlite3.0.tbd */,
-				EC35401D1DB94B9D000DC2EF /* libz.tbd */,
 				EC35401B1DB94B92000DC2EF /* SystemConfiguration.framework */,
 				EC3540191DB94B89000DC2EF /* CoreData.framework */,
 				919079B8A2BFEF4058EE5C43 /* libPods-CoreEvent.a */,
@@ -762,6 +773,14 @@
 			children = (
 				EC5D34561E009729005D1A60 /* libRCTAnimation.a */,
 				EC5D34581E009729005D1A60 /* libRCTAnimation-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC61EB2D1EBC10B500B143DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC61EB341EBC10B500B143DD /* libimageCropPicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -962,6 +981,10 @@
 				{
 					ProductGroup = EC7263491DC6AEA700D826D6 /* Products */;
 					ProjectRef = 719A474719B147D4BB404778 /* ImageCropPicker.xcodeproj */;
+				},
+				{
+					ProductGroup = EC61EB2D1EBC10B500B143DD /* Products */;
+					ProjectRef = 3D8FC9699A804B5D991418FB /* imageCropPicker.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1283,6 +1306,13 @@
 			remoteRef = EC5D347C1E009729005D1A60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EC61EB341EBC10B500B143DD /* libimageCropPicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimageCropPicker.a;
+			remoteRef = EC61EB331EBC10B500B143DD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		EC7262C31DC5BDB400D826D6 /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1408,7 +1438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		54FC4B225AA3531B592E2CA0 /* [CP] Embed Pods Frameworks */ = {
@@ -1483,11 +1513,7 @@
 				INFOPLIST_FILE = CoreEventTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreEvent.app/CoreEvent";
 			};
@@ -1501,11 +1527,7 @@
 				INFOPLIST_FILE = CoreEventTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreEvent.app/CoreEvent";
 			};
@@ -1515,6 +1537,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DAA08CDF6B1F9DB4402D354B /* Pods-CoreEvent.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CoreEvent/CoreEvent.entitlements;
@@ -1543,6 +1566,7 @@
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = CoreEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1554,6 +1578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.ricebank.fullguide;
 				PRODUCT_NAME = CoreEvent;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1562,6 +1587,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61F990532C0210019FFFDDA8 /* Pods-CoreEvent.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CoreEvent/CoreEvent.entitlements;
@@ -1589,6 +1615,7 @@
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = CoreEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1600,6 +1627,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.ricebank.fullguide;
 				PRODUCT_NAME = CoreEvent;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1656,6 +1684,7 @@
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1710,6 +1739,7 @@
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

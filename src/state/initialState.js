@@ -4,7 +4,14 @@ export const InitialAppState = {
         env: 'staging',
         searchRadius: 10,
         selectedTab: 'aroundme',
-        inDebug: false
+        inDebug: false,
+        defaultLocation: {
+            location: {
+                lat: 45.749997,
+                lng: 126.6333308
+            },
+            name: '哈尔滨'
+        }
     },
     data: {
         pushMessages: [],

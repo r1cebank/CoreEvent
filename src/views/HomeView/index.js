@@ -35,6 +35,7 @@ class HomeView extends Component {
         config: React.PropTypes.object,
         searchRadius: React.PropTypes.number,
         location: React.PropTypes.object,
+        defaultLocation: React.PropTypes.object,
         locale: React.PropTypes.string,
         favorites: React.PropTypes.array,
         hidden: React.PropTypes.array,
@@ -74,7 +75,7 @@ class HomeView extends Component {
                             });
                         }}>
                         <Text style={navProps.titleStyle}>
-                            {this.props.location.name}
+                            {(this.props.location || this.props.defaultLocation).name}
                         </Text>
                         <Icon
                             color={Colors.infraRed}
@@ -85,9 +86,11 @@ class HomeView extends Component {
         });
         // Fetch nearby events
         await this.refreshAttending();
-        await this.refreshEvents(this.props.location.location, this.props.searchRadius);
-        this.subscribeLocation();
-        this.subscribeAttending();
+        await this.refreshEvents((this.props.location || this.props.defaultLocation).location, this.props.searchRadius);
+        if (this.props.config.attributes.live_query) {
+            this.subscribeLocation();
+            this.subscribeAttending();
+        }
     }
     async componentWillReceiveProps(nextProps) {
         if (nextProps.showNotice !== this.props.showNotice) {
@@ -99,11 +102,14 @@ class HomeView extends Component {
                 RouterActions.refresh({ showNotice: false });
             }
         }
-        if (nextProps.location.name !== this.props.location.name) {
-            await this.refreshEvents(nextProps.location.location, this.props.searchRadius);
+
+        if (nextProps.location) {
+            if (nextProps.location.name !== (this.props.location || this.props.defaultLocation).name) {
+                await this.refreshEvents(nextProps.location.location, this.props.searchRadius);
+            }
         }
         if (nextProps.searchRadius !== this.props.searchRadius) {
-            await this.refreshEvents(this.props.location.location, nextProps.searchRadius);
+            await this.refreshEvents((this.props.location || this.props.defaultLocation).location, nextProps.searchRadius);
         }
         if (nextProps.showModal !== this.props.showModal) {
             if (nextProps.modalEventData) {
@@ -117,11 +123,13 @@ class HomeView extends Component {
         }
     }
     componentWillUnmount() {
-        this.nearbySubscription.unsubscribe();
+        if (this.props.config.attributes.live_query) {
+            this.nearbySubscription.unsubscribe();
+        }
     }
     subscribeLocation = () => {
         this.nearbySubscription = Storage.Event
-            .fetchByLocationSubscription(this.props.location.location, this.props.searchRadius);
+            .fetchByLocationSubscription((this.props.location || this.props.defaultLocation).location, this.props.searchRadius);
         this.nearbySubscription.on('create', this.appendEvent);
     }
     subscribeAttending = () => {
@@ -191,7 +199,7 @@ class HomeView extends Component {
     }
     onRefresh = async () => {
         this.setState({ isRefreshing: true });
-        await this.refreshEvents(this.props.location.location, this.props.searchRadius);
+        await this.refreshEvents((this.props.location || this.props.defaultLocation).location, this.props.searchRadius);
         this.setState({ isRefreshing: false });
     }
     attend = async (event) => {
@@ -473,9 +481,6 @@ class HomeView extends Component {
 
 HomeView.defaultProps = {
     selectedTab: 'home',
-    location: {
-        name: ''
-    },
     config: { attributes: {} }
 };
 
@@ -485,6 +490,7 @@ function select(store) {
         favorites: store.data.favorites,
         hidden: store.data.hidden,
         location: store.settings.location,
+        defaultLocation: store.settings.defaultLocation,
         locale: store.settings.locale,
         inDebug: store.settings.inDebug,
         loading: store.utils.loading,

@@ -26,12 +26,16 @@ function handleLocationUpdate(location) {
 
 function updateLocation() {
     if (Platform.OS === 'ios') {
-        Geo.Location.requestWhenInUseAuthorization();
-        Geo.Location.requestAlwaysAuthorization();
-        Geo.Location.setDistanceFilter(5.0);
-        Geo.Location.startUpdatingLocation();
-        subscription = DeviceEventEmitter
-        .addListener('locationUpdated', handleLocationUpdate);
+        try {
+            Geo.Location.requestWhenInUseAuthorization();
+            Geo.Location.requestAlwaysAuthorization();
+            Geo.Location.setDistanceFilter(5.0);
+            Geo.Location.startUpdatingLocation();
+            subscription = DeviceEventEmitter
+            .addListener('locationUpdated', handleLocationUpdate);
+        } catch (e) {
+            console.log(e);
+        }
     } else {
         navigator.geolocation.getCurrentPosition((location) => {
             Store.appStore.dispatch(Actions.Settings.updateLocation(location.coords));

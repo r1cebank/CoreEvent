@@ -15,7 +15,6 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import QuickActions from 'react-native-quick-actions';
 import PushNotification from 'react-native-push-notification';
 
-
 // The root view is a navigation component which define a default view
 import Env from './env';
 import App from './app.ios.js';

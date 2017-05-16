@@ -1,5 +1,7 @@
 platform :ios, '8.0'
 
+node_modules_path = '../node_modules'
+
 target 'CoreEvent' do
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'

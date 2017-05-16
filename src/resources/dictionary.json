@@ -405,7 +405,7 @@
         "incorrectCode": "确认码无效",
         "codeSentFailed": "确认码发送失败，请检查电话号码",
         "loading": "加载中...",
-        "disclaimer": "登陆等于已经阅读并接收 ",
+        "disclaimer": "登陆等于已经阅读并接受 ",
         "privacyStatement": "《使用协议》",
         "privacyLink": "https://miquaner.surge.sh/"
     }

@@ -13,6 +13,7 @@ const event = {
         parentCategory.id = id;
         const query = new API.Parse.Query(API.Classes.event).equalTo('categories', parentCategory);
         query.ascending('start');
+        query.greaterThan('start', new Date());
         query.limit(20);
         return await query.find();
     },
@@ -33,6 +34,7 @@ const event = {
         query.notEqualTo('owner', API.Parse.User.current());
         query.withinKilometers('coords', userlocation, radius);
         query.ascending('start');
+        query.greaterThan('start', new Date());
         query.limit(20);
         query.skip(skip);
         return await query.find();
@@ -47,6 +49,7 @@ const event = {
         query.notEqualTo('owner', API.Parse.User.current());
         query.withinKilometers('coords', userlocation, radius);
         query.ascending('start');
+        query.greaterThan('start', new Date());
         query.limit(20);
         query.skip(skip);
         return await query.count();

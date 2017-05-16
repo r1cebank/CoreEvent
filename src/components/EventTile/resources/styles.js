@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.frontColor,
         borderRadius: 40,
+        minHeight: 40,
         marginLeft: 0,
         marginRight: 10,
         marginBottom: 0,
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.frontColor,
         borderRadius: 40,
+        minHeight: 40,
         marginLeft: 0,
         marginRight: 0,
         marginBottom: 0,
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
         borderColor: Colors.frontColor,
         borderRadius: 40,
         marginLeft: 0,
+        minHeight: 40,
         marginRight: 0,
         marginBottom: 0,
         marginTop: 10

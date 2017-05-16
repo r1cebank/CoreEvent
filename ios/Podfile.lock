@@ -1,6 +1,6 @@
 PODS:
   - QBImagePickerController (3.4.0)
-  - RSKImageCropper (1.5.1)
+  - RSKImageCropper (1.6.1)
 
 DEPENDENCIES:
   - QBImagePickerController
@@ -8,8 +8,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
-  RSKImageCropper: edd65fedb3734332818deb139906d6b7f54b8a44
+  RSKImageCropper: 0df8c99e77a8ea7ca7a8b83ef468556f31584254
 
-PODFILE CHECKSUM: bbb70ff00866bd1071d5d93bc1f9d6a21cdef33e
+PODFILE CHECKSUM: 7e15e58554fe0565f638889cb9f14bdff445166a
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
