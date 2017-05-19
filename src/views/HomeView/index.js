@@ -199,6 +199,7 @@ class HomeView extends Component {
     }
     onRefresh = async () => {
         this.setState({ isRefreshing: true });
+        await this.refreshAttending();
         await this.refreshEvents((this.props.location || this.props.defaultLocation).location, this.props.searchRadius);
         this.setState({ isRefreshing: false });
     }
@@ -206,6 +207,9 @@ class HomeView extends Component {
         try {
             await Storage.Attendance.attend(event, Languages.t('attendanceMessage',
                 this.props.locale));
+            setTimeout(() => {
+                this.refreshAttending();
+            }, 1000);
             this.showNotice({
                 icon: 'check',
                 color: Colors.green,
