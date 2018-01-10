@@ -21,7 +21,6 @@ Parse.Cloud.afterSave('Attendance', function(request, response) {
 });
 
 Parse.Cloud.beforeSave('Attendance', function(request, response) {
-    Parse.Cloud.useMasterKey();
     var Attendance = Parse.Object.extend('Attendance');
     var query = new Parse.Query(Attendance);
     // Add query filters to check for uniqueness
@@ -29,7 +28,7 @@ Parse.Cloud.beforeSave('Attendance', function(request, response) {
         request.object.get('user').fetch().then(function (user) {
             query.equalTo('event', event);
             query.equalTo('user', user);
-            query.first().then(function(existingObject) {
+            query.first({useMasterKey:true}).then(function(existingObject) {
                 if (existingObject) {
                     // Existing object, stop initial save
                     response.error('User already attending');
@@ -43,7 +42,6 @@ Parse.Cloud.beforeSave('Attendance', function(request, response) {
 });
 
 Parse.Cloud.define('countAttendance', function(request, response) {
-    Parse.Cloud.useMasterKey();
     var query = new Parse.Query('Attendance');
     var event = new Parse.Object('Event');
     event.id = request.params.objectId;
@@ -55,5 +53,5 @@ Parse.Cloud.define('countAttendance', function(request, response) {
         error: function(error) {
             response.error('failed to count attendance');
         }
-    });
+    }, {useMasterKey:true});
 });

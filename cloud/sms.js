@@ -19,23 +19,22 @@ Parse.Cloud.define('sendCode', function(req, res) {
     if (!phoneNumber || (phoneNumber !== '828282111111' && phoneNumber.length !== 10 && phoneNumber.length !== 11)) {
         return res.error('phoneIncorrect');
     }
-    Parse.Cloud.useMasterKey();
     var query = new Parse.Query(Parse.User);
     query.equalTo('username', phoneNumber + '');
-    query.first().then(function(result) {
+    query.first({useMasterKey:true}).then(function(result) {
         var min = 1000; var max = 9999;
         var num = Math.floor(Math.random() * (max - min + 1)) + min;
 
         if (result) {
             if (phoneNumber === '828282111111') {
                 num = 6666;
-                result.setPassword(secretPasswordToken + num);
-                result.save().then(function() {
+                result.setPassword(secretPasswordToken + num, {useMasterKey:true});
+                result.save({useMasterKey:true}).then(function() {
                     return res.success({});
                 });
             }
-            result.setPassword(secretPasswordToken + num);
-            result.save().then(function() {
+            result.setPassword(secretPasswordToken + num, {useMasterKey:true});
+            result.save({useMasterKey:true}).then(function() {
                 return sendCode(phoneNumber, num, method);
             }).then(function() {
                 res.success({});
@@ -52,7 +51,7 @@ Parse.Cloud.define('sendCode', function(req, res) {
             var postACL = new Parse.ACL({});
             postACL.setPublicReadAccess(true);
             user.setACL(postACL);
-            user.save().then(function(a) {
+            user.save({useMasterKey:true}).then(function(a) {
                 return sendCode(phoneNumber, num, method);
             }).then(function() {
                 res.success({});
@@ -66,13 +65,12 @@ Parse.Cloud.define('sendCode', function(req, res) {
 });
 
 Parse.Cloud.define('login', function(req, res) {
-    Parse.Cloud.useMasterKey();
 
     var phoneNumber = req.params.phoneNumber;
     phoneNumber = phoneNumber.replace(/\D/g, '');
 
     if (phoneNumber && req.params.codeEntry) {
-        Parse.User.logIn(phoneNumber, secretPasswordToken + req.params.codeEntry).then(function (user) {
+        Parse.User.logIn(phoneNumber, secretPasswordToken + req.params.codeEntry, {useMasterKey:true}).then(function (user) {
             res.success(user.getSessionToken());
         }, function (err) {
             res.error(err);

@@ -27,7 +27,6 @@ Parse.Cloud.beforeSave('Invitation', function(request, response) {
     if (request.object.get('ignored') || request.object.get('accepted')) {
         response.success();
     }
-    Parse.Cloud.useMasterKey();
     var Invitation = Parse.Object.extend('Invitation');
     var query = new Parse.Query(Invitation);
     // Add query filters to check for uniqueness
@@ -36,7 +35,7 @@ Parse.Cloud.beforeSave('Invitation', function(request, response) {
             request.object.get('user').fetch().then(function (user) {
                 query.equalTo('event', event);
                 query.equalTo('user', user);
-                query.first().then(function(existingObject) {
+                query.first({useMasterKey:true}).then(function(existingObject) {
                     if (existingObject) {
                         // Existing object, stop initial save
                         response.error('User already invited');

@@ -1,10 +1,9 @@
 Parse.Cloud.afterSave("_User", function(request, response) {
-    Parse.Cloud.useMasterKey(); // grant us administrative access, required to write to the secured UserRole PFRole
     var user = request.object;
 
     query = new Parse.Query(Parse.Role);
     query.equalTo("name", "normalUser");
-    query.first ( {
+    query.first ({
         success: function(object) {
             object.relation("users").add(user);
             object.save();
@@ -13,5 +12,5 @@ Parse.Cloud.afterSave("_User", function(request, response) {
         error: function(error) {
             //response.error("User authorization failed!");
         }
-    });
+    }, {useMasterKey:true});
 });

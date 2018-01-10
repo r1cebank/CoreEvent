@@ -27,7 +27,6 @@ Parse.Cloud.beforeSave('Report', function(request, response) {
     if (request.object.get('verified')) {
         response.success();
     }
-    Parse.Cloud.useMasterKey();
     var Report = Parse.Object.extend('Report');
     var query = new Parse.Query(Report);
     // Add query filters to check for uniqueness
@@ -35,7 +34,7 @@ Parse.Cloud.beforeSave('Report', function(request, response) {
         request.object.get('reportedBy').fetch().then(function (user) {
             query.equalTo('event', event);
             query.equalTo('reportedBy', user);
-            query.first().then(function(existingObject) {
+            query.first({useMasterKey:true}).then(function(existingObject) {
                 if (existingObject) {
                     // Existing object, stop initial save
                     response.error('eventAlreadyReported');

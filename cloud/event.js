@@ -2,7 +2,6 @@ Parse.Cloud.afterDelete("Event", function(request) {
     var Attendance = Parse.Object.extend('Attendance');
     var query = new Parse.Query(Attendance);
     query.equalTo("event", request.object);
-    Parse.Cloud.useMasterKey();
     query.find().then(function(attendances) {
         attendances.map(function(attendance) {
             var pushQuery = new Parse.Query(Parse.Installation);
@@ -18,9 +17,8 @@ Parse.Cloud.afterDelete("Event", function(request) {
                 },
                 error: function(e) {
                     console.log('error: Parse.Push.send code: ' + e.code + ' msg: ' + e.message);
-                },
-                useMasterKey: true
-            });
+                }
+            }, {useMasterKey:true});
         });
         return Parse.Object.destroyAll(attendances);
     }).then(function(success) {
